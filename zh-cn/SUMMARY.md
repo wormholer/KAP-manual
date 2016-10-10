@@ -4,6 +4,7 @@
 
 * [Kyligence大数据分析平台](introduction/README.md)
  * [概念](introduction/concepts.cn.md)
+ * [快速上手](introduction/quickstart.cn.md)
  * [Azure体验版快速上手](introduction/quickstart_azure.cn.md)
 * 安装KAP
  * [必备条件](install/hadoop_env.cn.md)
