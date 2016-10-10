@@ -3,6 +3,7 @@
 ![logo](logo.jpg)
 
 * [Kyligence Analytics Platform](introduction/README.md)
+ * [Quick Start](introduction/quick_start.en.md)
  * [Glossary](introduction/concepts.en.md)
 * Install KAP 
  * [Requirement](install/hadoop_env.en.md)
