@@ -1,30 +1,32 @@
-# KAP用户手册
+# KAP手册
 
 ![logo](logo.jpg)
 
-* [Kyligence大数据分析平台](introduction/README.md)
+* [KAP简介](introduction/README.md)
  * [概念](introduction/concepts.cn.md)
- * [快速上手](introduction/quickstart.cn.md)
- * [Azure体验版快速上手](introduction/quickstart_azure.cn.md)
-* 安装KAP
+* [KAP发布说明](release/README.md)
+* [KAP快速上手](quickstart/README.md)
+ * [快速上手](quickstart/quickstart_sandbox.cn.md)
+ * [Azure体验版快速上手](quickstart/quickstart_azure.cn.md) 
+* [KAP安装](install/README.md)
  * [必备条件](install/hadoop_env.cn.md)
  * [安装和启动](install/install_guide.cn.md)
  * [部署方式](install/deploy.cn.md)
- * [卸载](install/uninstall.cn.md) 
-* 配置KAP
+ * [卸载](install/uninstall.cn.md)
+* [KAP升级](upgrade/README.md) 
+* [KAP配置](config/README.md)
  * [配置文件](config/config_file.cn.md)
  * [配置参数](config/settings.cn.md)
  * [启用任务引擎HA](config/jobengine_ha.cn.md)
-* 基本多维分析
+* [基本多维分析](molap/README.md)
  * [样例数据集](molap/dataset.cn.md)
  * [数据导入](molap/datasource.cn.md)
  * [创建数据模型](molap/datamodel.cn.md)
  * [创建Cube](molap/create_cube.cn.md)
  * [构建Cube](molap/build_cube.cn.md)
  * [SQL查询](molap/query.cn.md)
-* Web界面
- * [查询](gui/web.cn.md)
- * [数据展现](gui/visualization.cn.md)
+ * [Web界面](molap/web.cn.md)
+ * [数据展现](molap/visualization.cn.md)
 * REST API
  * [访问及安全验证](rest/authentication.cn.md)
  * [查询 API](rest/query_api.cn.md)
@@ -59,5 +61,6 @@
  * [系统升级](operation/upgrade.cn.md) 
 #* [(TODO) 实践](practice/README.md)
 * [常见问题](faq/README.md)
+* [KAP词汇表](GLOSSARY.cn.md)
 * [联系我们](contact/README.md)
 
