@@ -25,7 +25,10 @@ hdfs dfs -mkdir /kylin
 ${KYLIN_HOME}/bin/check-env.sh
 ```
 
+> **可选项**：如果要在一个Hadoop集群上安装多个KAP实例，请为每个实例配置不同的元数据URL。即在`conf/kylin.properties`中设置`kylin.metadata.url`为不同的值，例如`kylin_metadata@hbase`（缺省值），或`kylin_prod@hbase`，或`kylin_qa@hbase`等。
+
 ## 启动KAP
+
 执行`bin/kylin.sh start`，KAP将在后台开始启动，您可以用`tail`等命令观察`logs/kylin.log`文件，了解启动详细进度。
 
 ```
