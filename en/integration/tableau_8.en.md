@@ -23,19 +23,19 @@ Refer to this guide: [Kylin ODBC Driver Tutorial](./odbc.html).
 
 Connect Using Driver: Select "Other Database(ODBC)" in the left panel and choose KylinODBCDriver in the pop-up window. 
 
-![](/images/Kylin-and-Tableau-Tutorial/1 odbc.png)
+![](images/tableau_8/1 odbc.png)
 
 Enter your Sever location and credentials: server host, port, username and password.
 
-![]( /images/Kylin-and-Tableau-Tutorial/2 serverhost.jpg)
+![](images/tableau_8//2 serverhost.jpg)
 
 Click "Connect" to get the list of projects that you have permission to access. See details about permission in [Kylin Cube Permission Grant Tutorial](./acl.html). Then choose the project you want to connect in the drop down list. 
 
-![]( /images/Kylin-and-Tableau-Tutorial/3 project.jpg)
+![](images/tableau_8//3 project.jpg)
 
 Click "Done" to complete the connection.
 
-![]( /images/Kylin-and-Tableau-Tutorial/4 done.jpg)
+![](images/tableau_8//4 done.jpg)
 
 ### Step 3. Using Single Table or Multiple Tables
 > Limitation
@@ -48,66 +48,66 @@ Click "Done" to complete the connection.
 
 Select `Multiple Tables`.
 
-![]( /images/Kylin-and-Tableau-Tutorial/5 multipleTable.jpg)
+![](images/tableau_8//5 multipleTable.jpg)
 
 Then click `Add Table...` to add a fact table.
 
-![]( /images/Kylin-and-Tableau-Tutorial/6 facttable.jpg)
+![](images/tableau_8/6 facttable.jpg)
 
-![]( /images/Kylin-and-Tableau-Tutorial/6 facttable2.jpg)
+![](images/tableau_8//6 facttable2.jpg)
 
 **Select Look-up Table**
 
 Click `Add Table...` to add a look-up table. 
 
-![]( /images/Kylin-and-Tableau-Tutorial/7 lkptable.jpg)
+![](images/tableau_8/7 lkptable.jpg)
 
 Set up the join clause carefully. 
 
-![]( /images/Kylin-and-Tableau-Tutorial/8 join.jpg)
+![](images/tableau_8/8 join.jpg)
 
 Keep add tables through click `Add Table...` until all the look-up tables have been added properly. Give the connection a name for use in Tableau.
 
-![]( /images/Kylin-and-Tableau-Tutorial/9 connName.jpg)
+![](images/tableau_8/9 connName.jpg)
 
 **Using Connect Live**
 
 There are three types of `Data Connection`. Choose the `Connect Live` option. 
 
-![]( /images/Kylin-and-Tableau-Tutorial/10 connectLive.jpg)
+![](images/tableau_8/10 connectLive.jpg)
 
 Then you can enjoy analyzing with Tableau.
 
-![]( /images/Kylin-and-Tableau-Tutorial/11 analysis.jpg)
+![](images/tableau_8/11 analysis.jpg)
 
 **Add additional look-up Tables**
 
 Click `Data` in the top menu bar, select `Edit Tables...` to update the look-up table information.
 
-![]( /images/Kylin-and-Tableau-Tutorial/12 edit tables.jpg)
+![](images/tableau_8/12 edit tables.jpg)
 
 ### Step 4. Using Customized SQL
 To use customized SQL resembles using Single Table/Multiple Tables, except that you just need to paste your SQL in `Custom SQL` tab and take the same instruction as above.
 
-![]( /images/Kylin-and-Tableau-Tutorial/19 custom.jpg)
+![](images/tableau_8/19 custom.jpg)
 
 ### Step 5. Publish to Tableau Server
 Suppose you have finished making a dashboard with Tableau, you can publish it to Tableau Server.
 Click `Server` in the top menu bar, select `Publish Workbook...`. 
 
-![]( /images/Kylin-and-Tableau-Tutorial/14 publish.jpg)
+![](images/tableau_8/14 publish.jpg)
 
 Then sign in your Tableau Server and prepare to publish. 
 
-![]( /images/Kylin-and-Tableau-Tutorial/16 prepare-publish.png)
+![](images/tableau_8/16 prepare-publish.png)
 
 If you're Using Driver Connect instead of DSN connect, you'll need to additionally embed your password in. Click the `Authentication` button at left bottom and select `Embedded Password`. Click `Publish` and you will see the result.
 
-![]( /images/Kylin-and-Tableau-Tutorial/17 embedded-pwd.png)
+![](images/tableau_8/17 embedded-pwd.png)
 
 ### Tips
 * Hide Table name in Tableau
 
-    * Tableau will display columns be grouped by source table name, but user may want to organize columns with different structure. Using "Group by Folder" in Tableau and Create Folders to group different columns.
+* Tableau will display columns be grouped by source table name, but user may want to organize columns with different structure. Using "Group by Folder" in Tableau and Create Folders to group different columns.
 
-     ![]( /images/Kylin-and-Tableau-Tutorial/18 groupby-folder.jpg)
+![](images/tableau_8//18 groupby-folder.jpg)

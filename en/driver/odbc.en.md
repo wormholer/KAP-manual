@@ -34,15 +34,15 @@ KAP提供了Windows系统下的ODBC驱动程序，支持ODBC接口的应用可�
    * 32位ODBC驱动：请在“开始>运行”中打开C:\Windows\SysWOW64\odbcad32.exe
    * 64位ODBC驱动：请直接在“控制面板>管理工具”中找到“ODBC Data Source Administrator”并打开
   
-![](/images/driver/odbc/01.png)
+![](images/odbc/01.png)
 
 2.切换到系统DSN选项卡，单击“Add”，在弹出的驱动程序选择框中选择“KylinODBCDriver”并单击Finish按钮
 
-![](/images/driver/odbc/02.png)
+![](images/odbc/02.png)
 
 3.在弹出的Kylin DSN Configuration Dialog中输入KAP服务器信息，如图所示
 
-![](/images/driver/odbc/03.png)
+![](images/odbc/03.png)
 
 其中，各项参数介绍如下：
 
@@ -59,15 +59,15 @@ KAP提供了Windows系统下的ODBC驱动程序，支持ODBC接口的应用可�
 1.从Microsoft网站下载并安装Power Query
 2.打开Excel，切换到Power Query的FastTab，单击From Other Sources并展开菜单，选择From ODBC项
 
-![](/images/driver/odbc/04.png)
+![](images/odbc/04.png)
 
 3.在弹出的“从ODBC”输入框中，首先选择前面创建的DSN作为数据源（如kylin），然后在下方输入希望执行的SQL语句
 
-![](/images/driver/odbc/05.png)
+![](images/odbc/05.png)
 
 4.这时，SQL的查询结果就显示到Excel表格中了。
 
-![](/images/driver/odbc/06.png)
+![](images/odbc/06.png)
 
 5.如果KAP中有数据更新，用户可以直接单击Excel上的Refresh按钮对表格中的数据进行刷新。
 

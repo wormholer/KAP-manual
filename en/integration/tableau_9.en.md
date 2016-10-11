@@ -16,30 +16,30 @@ Please make sure to download and install Kylin ODBC Driver __v1.2__. If you alre
 
 ### Connect to Kylin Server
 Connect Using Driver: Start Tableau 9.1 desktop, click `Other Database(ODBC)` in the left panel and choose KylinODBCDriver in the pop-up window. 
-![](/images/tutorial/odbc/tableau_91/1.png)
+![](images/tableau_9/1.png)
 
 Provide your Sever location, credentials and project. Clicking `Connect` button, you can get the list of projects that you have permission to access, see details at [Kylin Cube Permission Grant Tutorial](./acl.html).
-![](/images/tutorial/odbc/tableau_91/2.png)
+![](images/tableau_9/2.png)
 
 ### Mapping Data Model
 In left panel, select `defaultCatalog` as Database, click `Search` button in Table search box, and all tables get listed. With drag and drop to the right region, tables will become data source. Make sure JOINs are configured correctly.
-![](/images/tutorial/odbc/tableau_91/3.png)
+![](images/tableau_9/3.png)
 
 ### Connect Live
 There are two types of `Connection`, choose the `Live` option to make sure using Connect Live mode.
-![](/images/tutorial/odbc/tableau_91/4.png)
+![](images/tableau_9/4.png)
 
 ### Custom SQL
 To use customized SQL, click `New Custom SQL` in left panel and type SQL statement in pop-up dialog.
-![](/images/tutorial/odbc/tableau_91/5.png)
+![](images/tableau_9/5.png)
 
 ### Visualization
 Now you can start to enjou analyzing with Tableau 9.1.
-![](/images/tutorial/odbc/tableau_91/6.png)
+![](images/tableau_9/6.png)
 
 ### Publish to Tableau Server
 If you want to publish local dashboard to a Tableau Server, just expand `Server` menu and select `Publish Workbook`.
-![](/images/tutorial/odbc/tableau_91/7.png)
+![](images/tableau_9/7.png)
 
 ### More
 Please refer to [Kylin and Tableau Tutorial](./tableau.html) for more detail.

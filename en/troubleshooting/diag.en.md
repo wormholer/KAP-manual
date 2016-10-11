@@ -5,11 +5,11 @@ KAP provides a function called "Diagnosis" on Web UI, which will extract related
 
 ## System Diagnosis
 Click 'Diagnosis' button on System page, then package of Kylin instance's information will be genrated.
-![](/images/monitor/diagnosis/Picture1.png)
+![](images/diagnosis/Picture1.png)
 
 ## Job Diagnosis
 Click 'Diagnosis' button under one job on Monitor page, then package of current job will be genrated.
-![](/images/monitor/diagnosis/Picture2.png)
+![](images/diagnosis/Picture2.png)
 
 # Leverage KyBot
 KyBot is an online analyzing, trouble shooting, optimization support service for Apache Kylin, provided by Kyligence. User can generate diagnosis package with KyBot Agent, and upload to KyBot platform, to get insight of KAP healthy, such as performance, storage etc.
@@ -19,7 +19,7 @@ KyBot login: http://kybot.io
 
 Currently KyBot is under internal test. Please contact [support@kyligence.io](mailto:support@kyligence.io) to apply a test account at first time.
 
-![](/images/monitor/diagnosis/kybot_login.png)
+![](images/diagnosis/kybot_login.png)
 
 ## Generate KyBot Package
 (Only for KAP users) KyBot Agent is embeded in KAP. Just click 'Diagnosis' button in System page, the generated diagnosis package can be directly used for KyBot.
@@ -44,26 +44,26 @@ Dump kybot package locates at:
 2. Click 'Select a package', select and upload the prepared KyBot package, and wait for complete
 3. The package pushed to analyzing queue, and user can tracking the progress on upload page
 
-![](/images/monitor/diagnosis/kybot_upload.png)
+![](images/diagnosis/kybot_upload.png)
 
 ## Dashboard
 User can view the dashboard of KAP instances after package analyzing finished.
 
 User could switch dashboard from left navigation panel, to view statistics information of different modules.
 
-![](/images/monitor/diagnosis/kybot_cube.png)
-![](/images/monitor/diagnosis/kybot_query.png)
-![](/images/monitor/diagnosis/kybot_job.png)
-![](/images/monitor/diagnosis/kybot_user.png)
-![](/images/monitor/diagnosis/kybot_storage.png)
-![](/images/monitor/diagnosis/kybot_env.png)
+![](images/diagnosis/kybot_cube.png)
+![](images/diagnosis/kybot_query.png)
+![](images/diagnosis/kybot_job.png)
+![](images/diagnosis/kybot_user.png)
+![](images/diagnosis/kybot_storage.png)
+![](images/diagnosis/kybot_env.png)
 
 ## Incidents
 KyBot can detect incidents from logs, and presents the statistics and list. User can click 'Incidents > Exceptions' on left navigation panel.
 
-![](/images/monitor/diagnosis/kybot_exception.png)
+![](images/diagnosis/kybot_exception.png)
 
 ## Technical Support
 User can request techinial support from Kyligence with KyBot. Click 'Support' in left navigation panel, user can create tickets based on uploaded packages.
 
-![](/images/monitor/diagnosis/kybot_create_ticket.png)
+![](images/diagnosis/kybot_create_ticket.png)

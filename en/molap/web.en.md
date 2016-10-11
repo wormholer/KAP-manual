@@ -16,7 +16,7 @@ Click *Insight* on KAP navigation header, all query-able tables will be listed o
 * **PK** - Primary Key
 * **FK** - Foreign Key
 
-![]( /images/gui/web/query_list_table.png)
+![](images/web/query_list_table.png)
 
 ## Query with SQL
 > **Query Limitations**
@@ -26,16 +26,16 @@ Click *Insight* on KAP navigation header, all query-able tables will be listed o
 > 2. SQL will not be routed to the source, such as hive, if the realization in cube is not found.
 
 Enter SQL and click *Submit*, you will see query results. One more thing, there's a *LIMIT* field at the bottom right of the page. If there's no *LIMIT* field in your SQL, the default limit will be *50000*. If you want to disable the limit, just replace *50000* with *0*.
-![]( /images/gui/web/query_input_sql.png)
+![](images/web/query_input_sql.png)
 
 
 ## Save Query
 User could click *Save SQL* button at right bottom to save queries, the query is associated with current user.
 
-![]( /images/gui/web/query_list_save_query.png)
+![](images/web/query_list_save_query.png)
 
 ## Query History
 All query histories will show in *Query History* tab. Click *Query History* tab, you can resubmit your sql. If the browser cookies are cleared, all histories will be lost. 
 
-![]( /images/gui/web/query_list_history.png)
+![](images/web/query_list_history.png)
 
