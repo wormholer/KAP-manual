@@ -2,28 +2,34 @@
 
 ![logo](logo.jpg)
 
-* [Kyligence Analytics Platform](introduction/README.md)
- * [Quick Start](introduction/quick_start.en.md)
+* [KAP Introduction](introduction/README.md)
+ * [KAP Overview](introduction/overview.en.md)
  * [Glossary](introduction/concepts.en.md)
-* Install KAP 
+* [KAP Release Notes](release/README.md)
+ * [KAP 2.1 Release Notes](release/KAP_2_1_notes.en.md)
+ * [KAP 2.0 Release Notes](release/KAP_2_0_notes.en.md)
+* [KAP Quick Start](quickstart/README.md)
+ * [Quick Start on HDP](quickstart/quickstart_hdp.en.md)
+ * [Quick Start on CDH](quickstart/quickstart_cdh.en.md)
+* [KAP Installation](install/README.md) 
  * [Requirement](install/hadoop_env.en.md)
  * [Install and Start](install/install_guide.en.md)
  * [Advanced Deployment](install/deploy.en.md)
- * [Uninstall KAP](install/uninstall.en.md) 
-* KAP Configuration
+ * [Uninstall KAP](install/uninstall.en.md)
+* [KAP Upgrade](upgrade/README.md) 
+* [KAP Configuration](config/README.md)
  * [Configuration File](config/config_file.en.md)
  * [Configuration Properties](config/settings.en.md)
  * [Job Engine HA](config/jobengine_ha.en.md)
-* [Quick Start](molap/quickstart.en.md)
+* [MOLAP](molap/quickstart.en.md)
  * [Sample Data Set](molap/dataset.en.md)
  * [Import Data](molap/import.en.md)
  * [Create Data Model](molap/datamodel.en.md)
  * [Create Cube](molap/create_cube.en.md)
  * [Build Cube](molap/build_cube.en.md)
  * [SQL Query](molap/query.en.md)
-* Web Interface
- * [Query](gui/web.en.md)
- * [Visualization](gui/visualization.en.md)
+ * [Query](molap/web.en.md)
+ * [Visualization](molap/visualization.en.md)
 #* (TODO) REST API
 # * [(TODO) Authentication](rest/authentication.cn.md)
 # * [(TODO) Query API](rest/query_api.cn.md)
@@ -35,21 +41,21 @@
 #* (TODO) Data Access Drivers
 # * [(TODO) JDBC Driver](driver/jdbc.cn.md)
 # * [(TODO) ODBC Driver](driver/odbc.cn.md)
-* KyAnalyzer
- * [How to use KyAnalyzer](integration/analyzer.en.md)
+* [KyAnalyzer](analyzer/README.md)
+ * [How to use KyAnalyzer](analyzer/analyzer.en.md)
 #* (TODO) BI Integration
 # * [(TODO) Tableau8.x Integration](integration/tableau_8.cn.md)
 # * [(TODO) Tableau9.x Integration](integration/tableau_9.cn.md)
 # * [(TODO) Apache Zeppelin Integration](integration/zeppelin.cn.md)
 # * [(TODO) 如何创建Schema](integration/saiku_mondrian_schema.cn.md)
-* Trouble Shooting
- * [Logging](troubleshooting/logging.en.md)
- * [Techinal Support & Diagnosis](troubleshooting/diag.en.md)
-* Security Controll
+* [Security Controll](security/README.md)
 # * [Manage User](security/user.en.md)
- * [Integrate with LDAP ](security/ldap.en.md)
+ * [Integrate with LDAP](security/ldap.en.md)
  * [Manage ACL](security/acl.en.md)
  * [Cell Level Security](security/cell.en.md)
+* [Trouble Shooting](troubleshooting/README.md)
+ * [Logging](troubleshooting/logging.en.md)
+ * [Techinal Support & Diagnosis](troubleshooting/diag.en.md)
 * Daily Operation
 # * [Basic Operations](operation/basic_ops.en.md)
  * [Metadata Backup](operation/metadata_backup.en.md)
