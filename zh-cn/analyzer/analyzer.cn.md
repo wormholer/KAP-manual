@@ -17,74 +17,74 @@
 
 根目录下文件信息
 
-![](/images/integration/kyanalyzer/server_dir.png)
+![](images/server_dir.png)
 
 
 KyAnalyzer的数据信息主要存储在根目录下的repository和data目录下，如果需要进行升级，可备份这两个目录。
 
 ### 认证
 KyAnalyzer的用户认证是通过KAP认证，所以只需要输入KAP的账号密码即可登录。用户的管理也是通过KAP进行。KAP中的管理员在KyAnalyzer中同样具有Admin角色。
-![](/images/integration/kyanalyzer/analyzer_login.png)
+![](images/analyzer_login.png)
 
 ### 管理控制台
 该页面仅管理员可见。
 为了同步KAP中的Cube，针对每一个Cube，Saiku中都必须创建一个对应的schema文件，同时配置对应的数据源。Saiku将通过这些配置信息组成SQL发送给KAP。KyAnalyzer将这一块自动化掉，用户不需要手动创建schema以及数据源。只需要点击页面左侧的**Sync Cubes From Kylin**，右侧下拉框会列出KAP中所有的Project。
 
-![](/images/integration/kyanalyzer/admin_sync.png)
+![](images/admin_sync.png)
 
 选中项目后，点击绿色的按钮**Sync Cubes From Kylin**，KAP中该项目下所有状态为*READY*的Cube信息将会被同步到过来。
 
-![](/images/integration/kyanalyzer/sync_done_tip.png)
+![](images/sync_done_tip.png)
 
 KyAnalyzer提供了对schema的在线编辑功能，对mondrian schema用户熟悉的用户可以根据需要修改，正常情况下不需要修改这块。
 
 ### 新建查询
 点击导航栏的新建查询按钮，点击刷新按钮获取最新的数据，在'选择多维数据' 下拉框中选中要查询的Cube， 点击自己要查询的数据自由查询。
 
-![](/images/integration/kyanalyzer/cube_refresh.png)
+![](images/cube_refresh.png)
 
 KyAnalyzer支持多种展现形式，表格，柱状图，堆积柱状图，百分比堆积柱状图，折线图，面积图，热点图，树状地图，环形图，散点图，瀑布图等，下面列举部分。
 
 #### 柱状图
-![](/images/integration/kyanalyzer/bar_chart.png)
+![](images/bar_chart.png)
 
 #### 饼图
-![](/images/integration/kyanalyzer/pie_chart.png)
+![](images/pie_chart.png)
 
 #### 数据透视表
-![](/images/integration/kyanalyzer/pivotal_table.png)
+![](images/pivotal_table.png)
 
 #### 对COUNT DISTINCT的支持
-![](/images/integration/kyanalyzer/count_distinct.png)
+![](images/count_distinct.png)
 
 #### 对层级维度进行层次化展示
-![](/images/integration/kyanalyzer/hierarchy_table.png)
+![](images/hierarchy_table.png)
 
 
 ### 数据过滤
 对于查询的结果，通过点击行下对应的维度名称，会弹出针对该维度的过滤框，在输入框中输入对应模式缩小筛选范围，然后勾选要过滤的数据，可以通过包含(Include)和排除（Exclude）的方式进行过滤。
-![](/images/integration/kyanalyzer/filter.png)
+![](images/filter.png)
 
 ### 查询结果保存
 查询对应的表格和图标都可以成文件或图片
 
 #### 导出表格
-![](/images/integration/kyanalyzer/export_table.png)
+![](images/export_table.png)
 
 #### 导出图表
-![](/images/integration/kyanalyzer/export_image.png)
+![](images/export_image.png)
 
 ### 保存查询结果
 我们也可以将当前的查询保存到KyAnalyzer中，下次登录时直接打开即可，不用重复点击。
 
 #### 保存查询
-![](/images/integration/kyanalyzer/save_query.png)
+![](images/save_query.png)
 
 #### 打开查询
-![](/images/integration/kyanalyzer/open_query.png)
+![](images/open_query.png)
 
 #### 执行查询
-![](/images/integration/kyanalyzer/execute_query.png)
+![](images/execute_query.png)
 
 
 

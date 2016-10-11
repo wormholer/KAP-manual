@@ -7,7 +7,7 @@
 ### 登录
 KAP默认访问地址：HOSTNAME:7070/kylin/，默认用户名：ADMIN  密码:KYLIN 
 
-![](/images/introduction/quickstart/login.png)
+![](images/login.png)
 
 ### 了解样例数据集
 
@@ -18,7 +18,7 @@ KAP默认访问地址：HOSTNAME:7070/kylin/，默认用户名：ADMIN  密码:K
   这三张表一起构成了整个星型模型的结构，下图是实例-关系图（图中未列出表上的所有列）
 
 #### 表关系
-![](/images/introduction/quickstart/ER.png)
+![](images/ER.png)
 
 #### 表关键字段
 
@@ -45,7 +45,7 @@ KAP默认访问地址：HOSTNAME:7070/kylin/，默认用户名：ADMIN  密码:K
 镜像中的KAP已经建立了例子项目learn_kylin，设计了模型和Cube，并且已经完成了样例Cube的构建，用户可以直接执行SQL查询。
 
 #### 操作步骤：
-![](/images/introduction/quickstart/insight.png)
+![](images/insight.png)
 1.	选择第一个分析TAB，跳转分析页
     2.在页面左上角选择样例所用的learn_kylin 项目
     3.在新查询输入框里输入SQL语句
@@ -103,7 +103,7 @@ KAP默认访问地址：HOSTNAME:7070/kylin/，默认用户名：ADMIN  密码:K
 
 ### 体验Cube操作
 
-如用户想进一步体验模型，Cube的设计和构建，也可以根据样例数据来尝试创建与构建Cube。具体操作步骤可参考本手册中的[创建数据模型](https://kyligence-git.gitbooks.io/kap-user-manual/content/zh-cn/molap/datamodel.cn.html)，[创建Cube](https://kyligence-git.gitbooks.io/kap-user-manual/content/zh-cn/molap/create_cube.cn.html) 和[构建Cube章节](https://kyligence-git.gitbooks.io/kap-user-manual/content/zh-cn/molap/build_cube.cn.html)。
+如用户想进一步体验模型，Cube的设计和构建，也可以根据样例数据来尝试创建与构建Cube。具体操作步骤可参考本手册中的[创建数据模型](https://kyligence-git.gitbooks.io/kap-manual/content/zh-cn/molap/datamodel.cn.html)，[创建Cube](https://kyligence-git.gitbooks.io/kap-manual/content/zh-cn/molap/create_cube.cn.html) 和[构建Cube章节](https://kyligence-git.gitbooks.io/kap-manual/content/zh-cn/molap/build_cube.cn.html)。
 
 更多意见与建议，欢迎与我们联系：support@kyligence.io
 

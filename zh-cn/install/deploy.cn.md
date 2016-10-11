@@ -1,7 +1,7 @@
 ### 单节点部署
 通常部署单个KAP节点，已经能够满足中小规模(QPS<50)的查询需求；单节点部署具有简单、快速的特点。部署过程即上一节的安装过程，下图是一个单节点部署的示意图。
 
-![]( /images/install/single_node.png)
+![]( images/single_node.png)
 
 在单节点部署中，尤其是部署在沙箱中，以下的配置项值得注意。其中`yarn.nodemanager.resource.cpu-vcores`涉及CPU资源的分配，其他的配置项则是关于内存资源的分配。关于配置项的具体解释，请参考[Hadoop的官方网站](https://hadoop.apache.org/docs/r2.7.3/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)。
 
@@ -25,7 +25,7 @@ KAP实例是无状态的服务，所有的状态信息，都存储在HBase中；
 
 为了将外部请求发给集群，而不是单个节点，需要部署一个负载均衡器（Load Balancer），如Apache HTTP Server或Nginx Server。负载均衡器通过一定策略决定将某个请求转给某个节点，并且在节点失效时重试其它节点。终端用户通过负载均衡器的地址来访问KAP。为了便于用户和角色的管理，通常此时会启用LDAP集成的安全验证。
 
-![]( /images/install/cluster.png)
+![]( images/cluster.png)
 	
 ### 读写分离的部署
 通常，KAP连接一个Hadoop集群(HBase也运行在这个集群上)，所有的负载，包括Cube构建和Cube查询都在这个集群上进行，相互影响，容易导致性能不稳定，特别是及时性要求很高的查询负载，要尽可能地独立运行。
@@ -34,7 +34,7 @@ KAP实例是无状态的服务，所有的状态信息，都存储在HBase中；
 
 读写分离的部署架构，参考下图。
 
-![]( /images/install/rw_separated.png)
+![]( images/rw_separated.png)
 
 部署通常有以下步骤：
 

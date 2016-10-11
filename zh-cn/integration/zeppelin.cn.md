@@ -5,7 +5,7 @@ Apache Zeppelin 是一个开源的数据分析平台，为Apache顶级项目。�
 ### Zeppelin架构简介
 如下图所示，Zeppelin客户端通过HTTP Rest和Websocket两种方式与服务端交互，在server端Zeppelin支持可插拔的Interpreter(解释器)，以Kyin为例，只需要开发Kylin的Interpreter集成进Zeppelin便可以基于Zeppelin客户端与Kylin服务端进行通信，访问Kylin相关数据。
 
-![](/images/integration/zeppelin/zeppelin_arc.png)
+![](images/zeppelin/zeppelin_arc.png)
 
 ### KylinInterpreter工作原理
 KylinInterpreter是构建在AP的Rest API之上的，也是一种典型的使用KAP API的场景，KylinInterpreter读取Zeppelin前端针对KAP的配置的 URL，user，password，查询对应的project，limit，以及offset，ispartial，结合前面所讲的查询Rest API，你可能已经明白，这里主要就是拼接查询请求的参数，用户再在前端页面输入SQL，结合配置的参数，就可以通过HTTP POST方式向KAP发送请求，获取数据。
@@ -47,12 +47,12 @@ Zeppelin的前端有自己的schema，所以KylinInterpreter需要把KAP返回�
 * 配置Interpreter
 打开Zeppelin配置页面，点击‘Interpreter’页面，创建针对KAP某个项目的Interpreter配置，如下图。
 
-![](/images/integration/zeppelin/zeppelin_config.png)
+![](images/zeppelin/zeppelin_config.png)
 
 * 查询
 打开Notebook创建一个新的note，在该note中输入SQL，注意针对KAP的查询需要在SQL前面加上 ‘％kylin’，Zeppelin后端需要知道对应用哪个Interpreter去处理查询。效果如下图，可以拖拽维度和度量灵活获取自己想要的结果。
 
-![](/images/integration/zeppelin/zeppelin_query.png)
+![](images/zeppelin/zeppelin_query.png)
 
 * Zeppelin发布功能
 
