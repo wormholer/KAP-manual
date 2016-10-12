@@ -30,7 +30,7 @@ export KYLIN_HOME=/usr/local/kap-{version}
 `bin/sample.sh`会创建3个Hive Table，并导入样例数据。数据导入成功后，会自动创建样例项目、模型和Cube定义。
 
 ```shell
-cd kylin-kap-{version}-bin
+cd kap-{version}
 bin/sample.sh
 ```
 
@@ -39,7 +39,7 @@ bin/sample.sh
 进入KAP安装目录，并执行启动脚本`bin/kylin.sh start`。
 
 ```shell
-cd kylin-kap-{version}-bin
+cd kap-{version}
 bin/kylin.sh start
 ```
 
@@ -49,7 +49,7 @@ KAP启动之后，可以通过浏览器访问，默认地址http://{hostname}:70
 
 进入KAP后，通过页面左上角的下拉菜单选择样例项目*learn_kylin*。
 
-进入**模型**页面，选择样例Cube *kylin_sales_cube*，选择*操作*->*构建*，选择一个晚于*2014-01-01*的日期，这样会包含全部10000条原始数据，并提交。
+进入**模型**页面，选择样例Cube *kylin_sales_cube*，选择*操作*->*构建*，选择一个晚于*2014-01-01*的结束日期，这样会包含全部10000条原始数据，并提交。
 
 进入**监控**页面，可以看到正在构建的Cube任务，可以点击*刷新*，获得最新进度，直到100%。
 
