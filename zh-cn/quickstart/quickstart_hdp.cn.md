@@ -12,17 +12,17 @@ KAP内置了样例数据集及模型，可以通过脚本，快速导入数据�
 
 ### 安装KAP
 
-拷贝KAP二进制包至安装机器并解压。
+拷贝KAP二进制包至安装机器，并解压至/usr/local
 
 ```shell
 cd /usr/local
-tar -zxvf kylin-kap-{version}-bin.tar.gz
+tar -zxvf kap-{version}.tar.gz 
 ```
 
 设置环境变量`KYLIN_HOME`为KAP的解压缩目录。
 
 ```shell
-export KYLIN_HOME=/usr/local/kylin-kap-{version}-bin
+export KYLIN_HOME=/usr/local/kap-{version}
 ```
 
 ## 导入样例数据和模型
