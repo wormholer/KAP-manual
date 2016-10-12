@@ -30,7 +30,7 @@ export KYLIN_HOME=/usr/local/kap-{version}
 `bin/sample.sh` will create three sample hive tables and import sample data. After the data uploaded into Hive, the sample project metadata will be imported also, which includes model and cube definiton. 
 
 ```shell
-cd kylin-kap-{version}-bin
+cd kap-{version}
 bin/sample.sh
 ```
 
@@ -39,7 +39,7 @@ bin/sample.sh
 Enter KAP home directory，and run the script`bin/kylin.sh start`。
 
 ```shell
-cd kylin-kap-{version}-bin
+cd kap-{version}
 bin/kylin.sh start
 ```
 
@@ -49,7 +49,7 @@ When KAP is started successfully, the web portal is ready to access. The default
 
 Logon KAP web, select project *learn_kylin* in the project dropdown list(left upper corner). 
 
-At the **Model** page, select the sample cube Cube *kylin_sales_cube*, click *Action* -> *Build*, pick up a date later than *2014-01-01*(to cover all 10000 sample records), and submmit the build job.
+At the **Model** page, select the sample cube Cube *kylin_sales_cube*, click *Action* -> *Build*, pick up a end date later than *2014-01-01*(to cover all 10000 sample records), and submmit the build job.
 
 At the **Monitor** page, click *Refresh* to check the build progress, until 100%.
 
