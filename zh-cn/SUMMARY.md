@@ -13,6 +13,7 @@
 * [KAP快速上手](quickstart/README.md)
  * [HDP Sandbox快速上手](quickstart/quickstart_hdp.cn.md)
  * [CDH Sandbox快速上手](quickstart/quickstart_cdh.cn.md)
+ * [Docker容器快速上手](quickstart/quickstart_docker.cn.md)
  * [Azure体验版快速上手](quickstart/quickstart_azure.cn.md) 
 * [KAP安装](install/README.md)
  * [必备条件](install/hadoop_env.cn.md)
