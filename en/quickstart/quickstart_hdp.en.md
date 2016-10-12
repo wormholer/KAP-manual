@@ -6,23 +6,23 @@ KAP releases a few sample data sets and cubes in its package together. User coul
 
 KAP need run in a Hadoop node, to get better stability, we suggest you to deploy it a pure Hadoop client machine, on which it command like *hive*, *hbase*, *hadoop*, *hdfs* already be installed and configured. To make things easier we strongly recommend you try KAP with *All-in-one* sandbox VM, like *Hortonworks Sandbox 2.2* and *Cloudera QuickStart VM 5.7*. The minimal memory should be 10GB. 
 
-To avoid permission issue in the sandbox, you can use its *root* account. The password for *Hortonworks Sandbox 2.2* is *hadoop*, for *Cloudera QuickStart VM 5.7* is *cloudera*. 
+To avoid permission issue in the sandbox, you can use its *root* account through SSH . The password for *Hortonworks Sandbox 2.2* is *hadoop*, for *Cloudera QuickStart VM 5.7* is *cloudera*. 
 
 We also suggest you using *bridged* mode instead of NAT mode in Virtual Box settings. Bridged mode will assign your sandbox an independent IP address so that you could access the KAP web page locally and remotely. 
 
 ### Install KAP
 
-Copy KAP binary package into the server mentioned above, and decompress. 
+Copy KAP binary package into the server mentioned above, and decompress to /usr/local
 
 ```shell
 cd /usr/local
-tar -zxvf kylin-kap-{version}-bin.tar.gz
+tar -zxvf kap-{version}.tar.gz 
 ```
 
 Set environment variable `KYLIN_HOME` to KAP home directory.
 
 ```shell
-export KYLIN_HOME=/usr/local/kylin-kap-{version}-bin
+export KYLIN_HOME=/usr/local/kap-{version}
 ```
 
 ## Import Sample Data and Cube
