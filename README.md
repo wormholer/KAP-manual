@@ -12,3 +12,5 @@ The manual can be viewed or downloaded at [Gitbook](https://www.gitbook.com/book
 
 Kyligence Inc.
 
+http://kyligence.io
+

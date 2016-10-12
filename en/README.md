@@ -6,3 +6,5 @@ This manual is still growing. It can be viewed or downloaded at [Gitbook](https:
 
 Kyligence Inc.
 
+http://kyligence.io
+
