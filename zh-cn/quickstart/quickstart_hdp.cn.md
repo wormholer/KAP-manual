@@ -6,7 +6,7 @@ KAP内置了样例数据集及模型，可以通过脚本，快速导入数据�
 
 运行KAP需要Hadoop环境支持，KAP安装在Hadoop集群的客户端节点上。作为快速上手，我们推荐使用*All in one*的沙箱虚拟机用于本地测试，包括*Hortonworks Sandbox 2.2* 和*Cloudera QuickStart VM 5.7*。虚拟机需要至少*10G*内存。
 
-为了避免权限问题，我们建议使用*root*账号登陆虚拟机，*Hortonworks Sandbox 2.2*的默认密码是*hadoop*， *Cloudera QuickStart VM 5.7*的默认密码是cloudera。
+为了避免权限问题，我们建议使用*root*账号通过SSH的方式登录虚拟机，*Hortonworks Sandbox 2.2*的默认密码是*hadoop*， *Cloudera QuickStart VM 5.7*的默认密码是cloudera。
 
 我们建议采用网桥（bridged）模式配置虚拟机网络，网桥模式将为虚拟机分配独立IP地址，方便本机访问KAP Web页面。
 
