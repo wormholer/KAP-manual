@@ -4,6 +4,7 @@
 
 * [KAP简介](introduction/README.md)
  * [KAP概览](introduction/overview.cn.md)
+ * [Apache Kylin简介](introduction/kylin.cn.md)
  * [概念](introduction/concepts.cn.md)
  * [获取支持](introduction/get_support.cn.md)
 * [KAP发行说明](release/README.md)
