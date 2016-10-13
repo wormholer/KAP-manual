@@ -19,6 +19,7 @@ Note that the recover operation will overwrite the whole remote metadata with th
 If only changes a couple of metadata files, the administrator can just pick these files to restore, without having to cover all the metadata. Compared to the full recovery, this approach is more efficient, less impaction to users, so it is recommended.
 
 * Create a new empty directory, and then create subdirectories in it according to the location of the metadata files to restore; for example, to restore a Cube instance, you should create a "cube" subdirectory：
+
 ```
 mkdir /path/to/restore_new
 mkdir /path/to/restore_new/cube
@@ -26,13 +27,16 @@ mkdir /path/to/restore_new/cube
 ```
 
 * Copy the metadata file to be restored to this new directory
+
 ```
 cp meta_backups/meta_2016_06_10_20_24_50/cube/kylin_sales_cube.json /path/to/restore_new/cube/
 
 ```
+
 At this point you can use modify/fix the metadata manually.
 
 * Restore from this directory
+
 ```
 cd $KYLIN_HOME
 bin/metastore.sh restore /path/to/restore_new

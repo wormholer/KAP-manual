@@ -42,6 +42,7 @@ cp meta_backups/meta_2016_06_10_20_24_50/cube/kylin_sales_cube.json /path/to/res
 此时可以用编辑器对元数据做修改。
 
 * 从此目录下恢复
+
 ```
 cd $KYLIN_HOME
 bin/metastore.sh restore /path/to/restore_new
