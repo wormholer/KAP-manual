@@ -26,6 +26,7 @@ bin/metastore.sh restore meta_backups/meta_2016_06_10_20_24_50
 如管理员只是改动某几个元数据文件，可以只恢复这几个文件，而无需覆盖所有元数据。相比于全部恢复，这种做法效率高、对用户影响小，故推荐使用；步骤如下：
 
 * 创建一个新的空目录，按要恢复的元数据文件所在的位置创建子目录；例如恢复一个Cube实例信息，应创建cube子目录：
+
 ```
 mkdir /path/to/restore_new
 mkdir /path/to/restore_new/cube
@@ -33,6 +34,7 @@ mkdir /path/to/restore_new/cube
 ```
 
 * 将要恢复的元数据文件拷贝到此新目录下
+
 ```
 cp meta_backups/meta_2016_06_10_20_24_50/cube/kylin_sales_cube.json /path/to/restore_new/cube/
 
