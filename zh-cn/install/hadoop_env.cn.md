@@ -10,7 +10,7 @@ KAP需要一个状态良好的Hadoop集群做为运行环境。为获得更好�
 
 ## 认证的和已测试的Hadoop企业版
 * Cloudera CDH 5.7 / 5.8
-* Hortonworks HDP 2.2 / 2.3 / 2.4 / 2.5
+* Hortonworks HDP 2.2 / 2.3 / 2.4 
 
 
 ## 兼容的Hadoop版本

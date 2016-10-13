@@ -11,12 +11,15 @@
 ![](images/createcube_2.png)
 第二步，从数据模型的维度中选择一些列作为Cube的维度。这里的设置会影响到生成的Cuboid数量，进而影响Cube的数据量大小。
 在KYLIN\_CATEGORY\_GROUPINGS表里，和商品分类相关的三个字段（META\_CATEG\_NAME、CATEG\_LVL2\_NAME、CATEG\_LVL3\_NAME）都可能出现在过滤条件中，我们先把他们添加为普通类型维度。因为从查询表上添加普通维度不能通过自动生成器（Auto Generator）生成，因此采用手动添加方式，过程如下：
+
 1. 单击“添加维度”按钮，然后选择“普通维度”。
 2. 针对每一个维度字段，首先在Name输入框中输入维度名称，在Table Name中选择KYLIN_CATEGORY_GROUPINGS表，然后在Column Name中选择相应的列名。
-   此外，在查询中还经常把时间作为过滤或聚合的条件，如按周过滤、按周聚合等。这里我们以按周为例，需要用到KYLIN_CAL_DT中的WEEK_BEG_DT字段，但是该字段实际上可以由PART_DT字段决定，即根据每一个PART_DT值可以对应出一个WEEK_BEG_DT字段，因此，我们添加WEEK_BEG_DT字段为可推倒维度。
-   同样的，KYLIN_CATEGORY_GROUPINGS表中还有一些可作为可推到维度的字段，如USER_DEFINED_FIELD1、USER_DEFINED_FIELD3、UPD_DATE、UPD_USER等。
-   在事实表上，表征交易类型的LSTG_FORMAT_NAME字段也会用于过滤或聚合条件，因此，我们再添加LSTG_FORMAT_NAME字段作为普通维度。
-   最终，维度的设置结果如下图所示：
+
+此外，在查询中还经常把时间作为过滤或聚合的条件，如按周过滤、按周聚合等。这里我们以按周为例，需要用到KYLIN_CAL_DT中的WEEK_BEG_DT字段，但是该字段实际上可以由PART_DT字段决定，即根据每一个PART_DT值可以对应出一个WEEK_BEG_DT字段，因此，我们添加WEEK_BEG_DT字段为可推倒维度。
+同样的，KYLIN_CATEGORY_GROUPINGS表中还有一些可作为可推到维度的字段，如USER_DEFINED_FIELD1、USER_DEFINED_FIELD3、UPD_DATE、UPD_USER等。
+
+在事实表上，表征交易类型的LSTG_FORMAT_NAME字段也会用于过滤或聚合条件，因此，我们再添加LSTG_FORMAT_NAME字段作为普通维度。
+最终，维度的设置结果如下图所示：
 
 ![](images/createcube_3.png)
 第三步，根据数据分析中的聚合需求，我们需要为Cube定义度量的聚合形式。默认的，系统会自动创建好一个COUNT()聚合，用于考量交易订单的数量。在这个案例中，我们还需要通过PRICE的不同聚合形式考量销售额，如总销售额为SUM(PRICE)、最高订单金额为MAX(PRICE)、最低订单金额为MIN(PRICE)。因此，我们手动创建三个度量，分别选择聚合表达式为SUM、MIN、MAX，并选择PRICE列作为目标列。
@@ -27,7 +30,7 @@
 ![](images/createcube_5.png)
 在销售业务分析的场景中，往往需要挑选出销售业绩最好的商家，这时候就需要TOP-N的度量了。在这个例子中，我们会选出SUM(PRICE)最高的一些SELLER_ID，实际上就是执行如下的SQL语句：
 
-```
+```sql
 SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES 
 GROUP BY SELLER_ID 
 ORDER BY SUM(PRICE)

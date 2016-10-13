@@ -6,15 +6,15 @@ KAP配置文件中，最重要就是*kylin.properties*了。在本节，将对�
 ### kylin.hdfs.working.dir
 指定KAP服务所用的HDFS路径。默认为HDFS上/kylin的目录下，以元数据库URL中的HTable表名为子目录。例如，如果元数据库URL设置为kylin\_metadata@hbase，那么该HDFS路径默认值就是*/kylin/kylin\_metadata*。请预先确保启动KAP的用户有读写该目录的权限。
 ### kylin.server.mode
-指定KAP服务的运行模式，值可以是“all”，“job”，“query”中的一个，默认是“all”。Job模式指该服务仅用于Cube任务调度，不用于SQL查询。Query模式表示该服务仅用于SQL查询，不用于Cube构建任务的调度。“all“模式指该服务同时用于任务调度和SQL查询。
+指定KAP服务的运行模式，值可以是*all*，*job*，*query*中的一个，默认是*all*。Job模式指该服务仅用于Cube任务调度，不用于SQL查询。Query模式表示该服务仅用于SQL查询，不用于Cube构建任务的调度。*all*模式指该服务同时用于任务调度和SQL查询。
 ### kylin.job.hive.database.for.intermediatetable
 指定Hive中间表保存在哪个Hive数据库中，默认是*default*。如果执行KAP的用户没有操作*default*数据库的权限，可以修改此参数以使用其他数据库。
 ### kylin.hbase.default.compression.codec
-KAP创建的HTable所采用的压缩算法，配置文件中默认使用了*snappy*。如果实际环境不支持*snappy*压缩，可以修改该参数以使用其他压缩算法，如*lzo*、*gzip*、*lz4*等，删除该配置项即不启动任何压缩算法。
+KAP创建的HTable所采用的压缩算法，配置文件中默认使用了*none*，没有启用压缩。请根据实际支持压缩算法的情况，选择合适的压缩算法，如*snappy*、*lzo*、*gzip*、*lz4*等，配置*none*即不启动任何压缩算法。
 ### kylin.security.profile
-指定KAP服务启用的安全方案，可以是*ldap*、*saml*、*testing*。默认值是*testing*，即使用固定的测试账号进行登录。用户可以修改此参数以接入已有的企业级认证体系，如*ldap*、*saml*。具体设置可以参考其他章节。
+指定KAP服务启用的安全授权方案，可以是*ldap*、*saml*、*testing*。默认值是*testing*，即使用固定的测试账号进行登录。用户可以修改此参数以接入已有的企业级认证体系，如*ldap*、*saml*。具体设置可以参考[安全控制](../security/README.md)章节。
 ### kylin.rest.timezone
-指定KAP的Rest服务所使用的时区，默认是*GMT+8*。用户可以根据具体应用的需要修改此参数。
+指定KAP的REST服务所使用的时区，默认是*GMT+8*。用户可以根据具体应用的需要修改此参数。
 ### kylin.hive.client
 指定Hive命令行类型，可以是*cli*或*beeline*。默认是*cli*，即hive cli。如果实际系统只支持beeline作为Hive命令行，可以修改此配置为*beeline*。
 ### kylin.hive.beeline.params
@@ -25,7 +25,7 @@ beeline -n root -u 'jdbc:hive2://localhost:10000' -f abc.sql
 
 那么，请设置此参数：
 ```
-kylin.hive.beeline.params=beeline -n root -u 'jdbc:hive2://localhost:10000'
+kylin.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000' -f abc.sql
 ```
 ### deploy.env
 指定KAP部署的用途，可以是*DEV*、*PROD*、*QA*。默认是*QA*; 在*DEV*模式下一些开发者功能将被启用, 在*PROD*模式下禁止创建新Cube。

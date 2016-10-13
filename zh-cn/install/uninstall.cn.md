@@ -14,13 +14,13 @@ KAP以非侵入方式运行，故停止各个KAP服务进程，即停止在集�
   ```
 
 4. 删除KAP在HDFS上的工作目录：首先检查conf/kylin.properties文件，确定工作目录名，如“kylin.hdfs.working.dir=/kylin”， 使用`hdfs`命令行删除此目录：
- 
+
   ```
-  hdfs fs -rmr /kylin
+  hdfs fs -rm -r /kylin
   ```
-  
+
 5. 删除KAP元数据表，首先检查conf/kylin.properties文件，确定元数据表名，如"kylin.metadata.url=kylin\_metadata@hbase", 则元数据表名为“kylin\_metadata”。使用hbase shell删除该表：
- 
+
   ```
   hbase shell 
   disable 'kylin_metadata'
@@ -32,6 +32,6 @@ KAP以非侵入方式运行，故停止各个KAP服务进程，即停止在集�
 
 
 至此，卸载完成。
+
   
-  
-  
+
