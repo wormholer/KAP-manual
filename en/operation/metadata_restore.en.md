@@ -10,7 +10,7 @@ If you recover from the previous example backup, run command:
 cd $KYLIN_HOME
 bin/metastore.sh restore meta_backups/meta_2016_06_10_20_24_50
 ```
-When the restore operation is finished, click the "Reload Metadata" button on Web UI to refresh the cache, and then can see the latest metadata.
+When the restore operation is finished, click the "Reload Metadata" button on the right of System Config page to refresh the cache, and then can see the latest metadata.
 
 Note that the recover operation will overwrite the whole remote metadata with the local one, so you'd better make sure the KAP service is in a stopped or inactive state (no building task) when doing restore; otherwise some changes in remote metastore might be lost. If you want to minimal the impact, please use the "Selective Metadata Recover" method.
 
