@@ -1,17 +1,17 @@
 ## Job REST API
 
 > **提示**
-> 
+>
 > 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+>
 
 
-   * [恢复 job](#resume-job)
-   * [抛弃 job](#discard-job)
-   * [返回 job 信息](#get-job-status)
-   * [返回 job 每步输出](#get-job-step-output)
+* [恢复 job](#resume-job)
+* [抛弃 job](#discard-job)
+* [返回 job 信息](#get-job-status)
+* [返回 job 每步输出](#get-job-step-output)
 
-### <span id="resume-job">恢复 job</span>
+### 恢复 job
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/jobs/{jobId}/resume`
@@ -20,7 +20,7 @@
 * jobId - `必选` `string` Job id.
 
 #### 响应示例
-```
+```json
 {  
    "uuid":"c143e0e4-ac5f-434d-acf3-46b0d15e3dc6",
    "last_modified":1407908916705,
@@ -81,7 +81,7 @@
 }
 ```
 
-### <span id="discard-job">抛弃 job</span>
+### 抛弃 job
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/jobs/{jobId}/cancel`
@@ -92,7 +92,7 @@
 #### 响应示例
 (同 "恢复 job")
 
-### <span id="get-job-status">返回 job 信息</span>
+### 返回 job 信息
 `GET /jobs/{jobId}`
 
 #### 路径变量
@@ -101,7 +101,7 @@
 #### 响应示例
 (同 "恢复 Job")
 
-### <span id="get-job-step-output">返回 Job 每步输出</span>
+### 返回 Job 每步输出
 `GET /{jobId}/steps/{stepId}/output`
 
 #### 路径变量
@@ -109,7 +109,7 @@
 * stepId - `必选` `string` 步骤 id;  步骤id由Job id和步骤序列id组成; 例如, jobId 是 "fb479e54-837f-49a2-b457-651fc50be110", 第三步 步骤 id 是 "fb479e54-837f-49a2-b457-651fc50be110-3", 
 
 #### 响应示例
-```
+```json
 {  
    "cmd_output":"log string"
 }

@@ -1,9 +1,9 @@
 ## 查询 REST API
 
 > **提示**
-> 
+>
 > 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+>
 
 访问KAP构建的数据集，主要两个API，一个是直接查询Cube数据，一个是列出所有可以查询的表。
 
@@ -12,7 +12,7 @@
    * [列出可查询的表](#list-queryable-tables)
 
 
-## <span id="query">查询Cube数据</span>
+### 查询Cube数据
 `请求方式 POST`
 
 `访问路径 http://host:port/kylin/api/query`
@@ -23,9 +23,9 @@
 * limit - `可选` `int` •  加上limit参数后会从offset开始返回对应的行数，不足limt以实际行数为准
 
 * acceptPartial - `可选` `bool` (该参数在KAP2.1之后已无效 )
-默认是“true”，如果为true，那么当前实际最多会返回一百万行数据，如果要返回超过一百万行的结果集，那该参数需要设置为“false”
+  默认是“true”，如果为true，那么当前实际最多会返回一百万行数据，如果要返回超过一百万行的结果集，那该参数需要设置为“false”
 * project - `可选` `string` 
-默认为 ‘DEFAULT’，在实际使用时，如果对应查询的项目不是“DEFAULT”，需要设置为自己的项目
+  默认为 ‘DEFAULT’，在实际使用时，如果对应查询的项目不是“DEFAULT”，需要设置为自己的项目
 
 
 #### 请求示例
@@ -50,7 +50,7 @@
 * Partial - 这个查询结果是否为部分返回，这个取决于请求参数中的 acceptPartial 为true或者false.
 
 #### 响应示例
-```sh
+```json
 {  
    "columnMetas":[  
       {  
@@ -137,7 +137,7 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/j
 ```
 
 
-## <span id="list-queryable-tables">列出可查询的表</span>
+### 列出可查询的表
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/tables_and_columns`
@@ -146,7 +146,7 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/j
 * project - `必选` `string` 说明对应要列出哪个Project下的表 
 
 #### 响应示例
-```sh
+```json
 [  
    {  
       "columns":[  

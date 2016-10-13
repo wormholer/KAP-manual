@@ -1,16 +1,16 @@
 ## 数据源 REST API
 > **提示**
-> 
+>
 > 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+>
 
 
-   * [返回 Hive 表信息](#get-hive-table)
-   * [返回 Hive 表扩展信息](#get-hive-table-extend-info)
-   * [返回多个 Hive 表](#get-hive-tables)
-   * [加载 Hive 表](#load-hive-tables)
+* [返回 Hive 表信息](#get-hive-table)
+* [返回 Hive 表扩展信息](#get-hive-table-extend-info)
+* [返回多个 Hive 表](#get-hive-tables)
+* [加载 Hive 表](#load-hive-tables)
 
-### <span id="get-hive-table">Get Hive Table</span>
+### 返回Hive表信息
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/tables/{tableName}`
@@ -19,7 +19,7 @@
 * tableName - `必选` `string` 表名.
 
 #### 响应示例
-```sh
+```json
 {
     uuid: "69cc92c0-fc42-4bb9-893f-bd1141c91dbe",
     name: "SAMPLE_07",
@@ -45,7 +45,7 @@
 }
 ```
 
-### <span id="get-hive-table-extend-info">返回 Hive 表扩展信息</span>
+### 返回 Hive 表扩展信息
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/tables/{tableName}/exd-map`
@@ -54,7 +54,7 @@
 * tableName - `可选` `string` 表名.
 
 #### 响应示例
-```
+```json
 {
     "minFileSize": "46055",
     "totalNumberFiles": "1",
@@ -74,7 +74,7 @@
 }
 ```
 
-### <span id="get-hive-tables">返回多个 Hive 表</span>
+### 返回多个 Hive 表
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/tables`
@@ -84,7 +84,7 @@
 * ext- `可选` `boolean`  要返回扩展信息设置该参数为true.
 
 #### 响应示例
-```sh
+```json
 [
  {
     uuid: "53856c96-fe4d-459e-a9dc-c339b1bc3310",
@@ -130,7 +130,7 @@
 ]
 ```
 
-### <span id="load-hive-tables">加载 Hive 表</span>
+### 加载 Hive 表
 `请求方式 POST`
 
 `访问路径 http://host:port/kylin/api/tables/{tables}/{project}`
@@ -140,7 +140,7 @@
 * project - `必选` `String`  指定hive表将要加载到哪个项目
 
 #### 响应示例
-```
+```json
 {
     "result.loaded": ["DEFAULT.SAMPLE_07"],
     "result.unloaded": ["sapmle_08"]

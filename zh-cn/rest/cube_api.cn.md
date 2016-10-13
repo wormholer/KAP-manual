@@ -1,22 +1,22 @@
 ## Cube REST API
 
 > **提示**
-> 
+>
 > 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+>
 
 
-   * [返回多个Cube](#list-cubes)
-   * [返回指定cube](#get-cube)
-   * [返回Cube描述信息(维度, 度量，等)](#get-cube-descriptor)
-   * [返回数据模型 (事实表及维度表等信息)](#get-data-model)
-   * [构建 cube](#build-cube)
-   * [克隆 cube](#clone-cube)
-   * [禁用 cube](#disable-cube)
-   * [清理 cube](#purge-cube)
-   * [启用 cube](#enable-cube)
+* [返回多个Cube](#list-cubes)
+* [返回指定cube](#get-cube)
+* [返回Cube描述信息(维度, 度量，等)](#get-cube-descriptor)
+* [返回数据模型 (事实表及维度表等信息)](#get-data-model)
+* [构建 cube](#build-cube)
+* [克隆 cube](#clone-cube)
+* [禁用 cube](#disable-cube)
+* [清理 cube](#purge-cube)
+* [启用 cube](#enable-cube)
 
-### <span id="list-cubes">返回多个Cube</span>
+### 返回多个Cube
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/cubes`
@@ -29,7 +29,7 @@
 * projectName - `可选` `string` 指定返回该项目下Cube
 
 #### 响应示例
-```sh
+```json
 [  
    {  
       "uuid":"1eaca32a-a33e-4b69-83dd-0bb8b1f8c53b",
@@ -50,7 +50,7 @@
 ]
 ```
 
-### <span id="get-cube">返回指定cube</span>
+### 返回指定cube
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}`
@@ -58,7 +58,7 @@
 #### 路径变量
 * cubeName - `必选` `string` 要获取的Cube 名称.
 
-### <span id="get-cube-descriptor">返回Cube描述信息(维度, 度量，等)</span>
+### 返回Cube描述信息(维度, 度量，等)
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/cube_desc/{cubeName}/desc`
@@ -67,7 +67,7 @@
 * cubeName - `必选` `string` Cube 名称.
 
 #### 响应示例
-```sh
+```json
     {
   "uuid" : "a24ca905-1fc6-4f67-985c-38fa5aeafd92",
  
@@ -351,7 +351,7 @@
 }
 ```
 
-### <span id="build-cube">构建 cube</span>
+### 构建 Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/rebuild`
@@ -361,13 +361,13 @@
 
 #### 请求主体
 * startTime - `必选` `long` 要计算的数据对应起始时间对应的timestamp，应为GMT0格式的
-timestamp , e.g. 1388563200000 for 2014-1-1
+  timestamp , e.g. 1388563200000 for 2014-1-1
 * endTime - `必选` `long` 要计算的数据对应起始时间对应的timestamp，应为GMT0格式的
-timestamp
+  timestamp
 * buildType - `必选` `string` 支持的计算类型: 'BUILD', 'MERGE', 'REFRESH'
 
 #### 响应示例
-```
+```json
 {  
    "uuid":"c143e0e4-ac5f-434d-acf3-46b0d15e3dc6",
    "last_modified":1407908916705,
@@ -428,7 +428,7 @@ timestamp
 }
 ```
 
-### <span id="clone-cube">克隆Cube</span>
+### 克隆Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/clone`
@@ -444,7 +444,7 @@ timestamp
 #### 响应示例
 (同 "启用 Cube")
 
-### <span id="enable-cube">启用 Cube</span>
+### 启用 Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/enable`
@@ -453,7 +453,7 @@ timestamp
 * cubeName - `必选` `string` Cube 名称.
 
 #### 响应示例
-```sh
+```json
 {  
    "uuid":"1eaca32a-a33e-4b69-83dd-0bb8b1f8c53b",
    "last_modified":1407909046305,
@@ -500,7 +500,7 @@ timestamp
 }
 ```
 
-### <span id="disable-cube">禁用 Cube</span>
+### 禁用 Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/disable`
@@ -511,7 +511,7 @@ timestamp
 #### 响应示例
 (同 "启用 Cube")
 
-### <span id="purge-cube">清理 Cube</span>
+### 清理 Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/purge`

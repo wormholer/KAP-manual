@@ -1,17 +1,17 @@
 ## 模型 REST API
 
 > **提示**
-> 
+>
 > 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+>
 
 
-   * [返回多个模型](#list-models)
-   * [返回指定模型](#get-model)
-   * [克隆模型](#clone-model)
-   * [删除模型](#drop-model)
+* [返回多个模型](#list-models)
+* [返回指定模型](#get-model)
+* [克隆模型](#clone-model)
+* [删除模型](#drop-model)
 
-### <span id="list-models">返回多个模型</span>
+### 返回多个模型
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/models`
@@ -23,7 +23,7 @@
 * projectName - `可选` `string` 指定返回该项目下
 
 #### 响应示例
-```sh
+```json
 ［
   {
    
@@ -125,7 +125,7 @@
   ］
 ```
 
-### <span id="get-model">返回指定模型</span>
+### 返回指定模型
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/model/{modelName}`
@@ -133,7 +133,7 @@
 #### 路径变量
 * modelName - `必选` `string` 要获取的model 名称.
 
-### <span id="clone-model">克隆模型</span>
+### 克隆模型
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/models/{modelName}/clone`
@@ -147,7 +147,7 @@
 
 
 #### 响应示例
-```sh
+```json
   {
     message:null,
     modelDescData:null,
@@ -158,7 +158,7 @@
 }
 ```
 
-### <span id="drop-model">删除数据模型</span>
+### 删除数据模型
 `请求方式 DELETE`
 
 `访问路径 http://host:port/kylin/api/model/{modelName}`

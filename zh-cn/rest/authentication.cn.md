@@ -10,7 +10,7 @@ KAP所有的API都是基于[basic authentication](http://en.wikipedia.org/wiki/B
 ### 认证要点
 * 在HTTP头添加`Authorization`信息
 * 或者可以通过`POST http://localhost:7070/kylin/api/user/authentication` 进行认证，一旦认证通过，接下来对API请求基于cookies在HTTP头中免去`Authorization`信息
-   
+
 ```
 POST http://localhost:7070/kylin/api/user/authentication 
 Authorization:Basic xxxxJD124xxxGFxxxSDF
@@ -18,8 +18,8 @@ Content-Type: application/json;charset=UTF-8
 ```
 
 这里以javascript和curl为例介绍在访问API时如何添加认证信息。
-## Query API示例
-```
+### Query API示例
+```javascript
 $.ajaxSetup({
       headers: { 'Authorization': "Basic eWFu**********X***ZA==", 'Content-Type': 'application/json;charset=utf-8' } // use your own authorization code here
     });
@@ -35,12 +35,11 @@ $.ajaxSetup({
     request.fail(function( jqXHR, textStatus ) {
        alert( "Request failed: " + textStatus );
   });
-
 ```
 
 Javascript如何生成authorization信息(下载"jquery.base64.js" [https://github.com/yckart/jquery.base64.js](https://github.com/yckart/jquery.base64.js)).
 
-```
+```javascript
 var authorizationCode = $.base64('encode', 'NT_USERNAME' + ":" + 'NT_PASSWORD');
  
 $.ajaxSetup({
@@ -52,7 +51,7 @@ $.ajaxSetup({
 ```
 
 
-## Curl 示例
+### Curl 示例
 
 ```
 curl -c /path/to/cookiefile.txt -X POST -H "Authorization: Basic XXXXXXXXX" -H 'Content-Type: application/json' http://<host>:<port>/kylin/api/user/authentication
