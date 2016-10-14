@@ -8,11 +8,13 @@ KAP内置了样例数据集及模型，可以通过脚本，快速导入数据�
 
 > 由于不同Sandbox采用了不同的HBase版本，安装KAP时需要采用对应的版本。
 >
-> HDP 2.2 请采用HBase 0.98版本；HDP 2.3/2.3 请采用HBase 1.X版本
+> *HDP 2.2* 请采用*HBase 0.98*版本；*HDP 2.3/2.4* 请采用*HBase 1.X*版本
 >
-> CDH 5.7/5.8请采用CDH版本
+> *CDH 5.7/5.8*请采用CDH版本
 
-为了避免权限问题，我们建议使用*root*账号通过SSH的方式登录虚拟机，*HDP 2.2*的默认密码是*hadoop*， *HDP 2.3/2.4* 请参考[Hortonworks文档](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)了解账号密码，*Cloudera QuickStart VM 5.7/5.8*的默认密码是cloudera。以下指南以*root*账户为例。
+为了避免权限问题，我们建议使用*root*账号通过SSH的方式登录虚拟机，*HDP 2.2*的默认密码是*hadoop*， *HDP 2.3/2.4* 请参考[Hortonworks文档](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)了解账号密码，*Cloudera QuickStart VM 5.7/5.8*的默认密码是cloudera。
+
+以下指南以*root*账户为例。
 
 我们建议采用网桥（bridged）模式配置虚拟机网络，网桥模式将为虚拟机分配独立IP地址，方便本机访问KAP Web页面。
 
@@ -22,8 +24,8 @@ KAP内置了样例数据集及模型，可以通过脚本，快速导入数据�
 
 以下配置需要修改，以配合KAP的资源需求
 
-1. 针对HDP2.2，找到YARN-Configs，修改*yarn.nodemanager.resource.memeory-mb*为*6144*，*yarn.scheduler.maximum-allocation-mb*为*4096*；针对HDP2.4，找到YARN-Configs->Settings，修改*Memory Node*为*6144*
-2. 针对HDP2.4，找到MapReduce2-Configs->Advanced，修改*MR Map Java Heap Size*及*MR Reduce Java Heap Size*为 *-Xmx3072m*
+1. 针对*HDP 2.2*，找到YARN-Configs，修改*yarn.nodemanager.resource.memeory-mb*为*8192*，*yarn.scheduler.maximum-allocation-mb*为*4096*；针对*HDP 2.3/2.4*，找到YARN-Configs->Settings，修改*Memory Node*为*8192*
+2. 针对*HDP2.4*，找到MapReduce2-Configs->Advanced，修改*MR Map Java Heap Size*及*MR Reduce Java Heap Size*为 *-Xmx3072m*
 3. 如果遇到*org.apache.hadoop.hbase.security.AccessDeniedException: Insufficient permissions for user 'root (auth:SIMPLE)'*这样的异常，表示没有写HBase的权限，可以将*hbase.coprocessor.region.classes*和*hbase.coprocessor.master.classes*设置为空，*hbase.security.authentication*设置为*simple*，*hbase.security.authorization*设置为*false*，以关闭HBase的权限验证。
 
 ### 安装KAP
@@ -56,15 +58,19 @@ export KYLIN_HOME=/usr/local/kap-{version}-{hbase}
 
 ```shell
 hdfs dfs -mkdir /kylin
+hdfs dfs -mkdir /user/root
 ```
 
 > 如果遇到没有HDFS写权限问题，可以先切换到hdfs账号，创建目录，再授权给*root*账户。
 >
-> su hdfs
->
-> hdfs dfs -mkdir /kylin
->
-> hdfs dfs -chown root /kylin
+
+```shell
+su hdfs
+hdfs dfs -mkdir /kylin
+hdfs dfs -chown root /kylin
+hdfs dfs -mkdir /user/root
+hdfs dfs -chown root /user/root
+```
 
 ### 导入样例数据和模型
 
