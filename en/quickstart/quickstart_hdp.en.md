@@ -34,6 +34,23 @@ cd kap-{version}
 bin/sample.sh
 ```
 
+
+
+## **Start Hadoop**
+
+use ambari to launch hadoop
+
+```shell
+ambari-agent start
+amber-server start
+```
+
+With both command successfully run you can go to ambari homepage at [http://{hostname}:8080](http://your_sandbox_ip:8080/) (username:admin,password:admin)to check everything’s status. 
+
+By default hortonworks ambari disables Hbase, you need manually start the Hbase service at ambari homepage.
+
+ ![Screen Shot 2016-10-13 at 5.23.10 PM](/Users/zhangqi/Desktop/Screen Shot 2016-10-13 at 5.23.10 PM.png)
+
 ## Start KAP
 
 Enter KAP home directory，and run the script`bin/kylin.sh start`。

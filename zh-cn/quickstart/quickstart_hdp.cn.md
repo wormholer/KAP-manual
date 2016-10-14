@@ -16,7 +16,7 @@ KAP内置了样例数据集及模型，可以通过脚本，快速导入数据�
 
 我们建议采用网桥（bridged）模式配置虚拟机网络，网桥模式将为虚拟机分配独立IP地址，方便本机访问KAP Web页面。
 
-登录Ambari管理门户, http://{hostname}:8080，确认HDFS/MapReduce2/YARN/Hive/HBase/ZooKeeper都处于正常运行状态，没有警告信息，可以针对每个服务运行*Service Check*以确认服务状态，特别是HBase服务，需要运行Service Check验证读写权限。
+登录Ambari管理门户, [http://{hostname}:8080](http://{hostname}:8080)(默认登录用户名admin, 密码admin)确认HDFS/MapReduce2/YARN/Hive/HBase/ZooKeeper都处于正常运行状态，没有警告信息，可以针对每个服务运行*Service Check*以确认服务状态，特别是HBase服务，需要运行Service Check验证读写权限。
 
 ![](images/hdp_22_status.jpg)
 
@@ -79,6 +79,21 @@ bin/sample.sh
 
 > Sample cube is created successfully in project 'learn_kylin'.
 > Restart Kylin server or reload the metadata from web UI to see the change.
+
+### 启动 Hadoop
+
+用ambari来启动hadoop
+
+```shell
+ambari-agent start
+amber-server start
+```
+
+命令成功之后，登录ambari  [http://{hostname}:8080](http://{hostname}:8080) (默认登录用户名admin, 密码admin)来检查各项状态。
+
+默认Hbase是禁用的，需要在ambari 主页启动Hbase服务。
+
+![Screen Shot 2016-10-13 at 5.23.10 PM](/Users/zhangqi/Desktop/Screen Shot 2016-10-13 at 5.23.10 PM.png)
 
 ### 启动KAP
 
