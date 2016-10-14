@@ -8,13 +8,17 @@
 ![](images/datamodel_2.png)
 第二步，为模型选择事实表（*Fact Table*）和查找表（*Lookup Table*）。根据星型模型结构，选择KYLIN_SALES为事实表，然后添加KYLIN_CAL_DT和KYLIN_CATEGORY_GROUPINGS作为查找表，并设置好连接条件：
 
-KYLIN_CAL_DT 连接类型：Inner 连接条件：DEFAULT.KYLIN_SALES.PART_DT = DEFAULT.KYLIN_CAL_DT.CAL_DT
-
+KYLIN_CAL_DT 连接类型：Inner 
+连接条件：
+```
+DEFAULT.KYLIN_SALES.PART_DT = DEFAULT.KYLIN_CAL_DT.CAL_DT
+```
 KYLIN_CATEGORY_GROUPINGS 连接类型：Inner 
 连接条件：
+```
 KYLIN_SALES.LEAF_CATEG_ID = KYLIN_CATEGORY_GROUPINGS.LEAF_CATEG_ID
-
 KYLIN_SALES.LSTG_SITE_ID = KYLIN_CATEGORY_GROUPINGS.SITE_ID
+```
 
 下图是设置好之后的界面：
 ![](images/datamodel_3.png)
