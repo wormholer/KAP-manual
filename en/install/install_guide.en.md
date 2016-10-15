@@ -37,7 +37,7 @@ ${KYLIN_HOME}/bin/kylin.sh start
 
 To confirm KAP is running, check the process by `ps -ef | grep kylin`.
 
-> **For Plus Version**: The command also starts a Spark client process in the background. Check its log `logs/spark_client.out` and process `ps -ef | grep spark`.
+> **For Plus Version**: The command also starts a Spark client process in the background. Check its log `logs/spark_client.out`, also `ps -ef | grep kylin` should report 2 processes.
 
 > **Troubleshooting**: If had problem, please confirm all KAP process(es) are stopped before starting again. See "Stop KAP" section for details.
 
@@ -51,5 +51,3 @@ Please replace `host_name` to machine name, ip address or domain name. The defau
 Execute command `bin/kylin.sh stop` to stop KAP service.
 
 Confirm KAP process is stopped, `ps -ef | grep kylin` should return nothing.
-
-> **For Plus Version**: Also check the Spark client process is stopped, `ps -ef | grep spark`.

@@ -37,7 +37,7 @@ ${KYLIN_HOME}/bin/kylin.sh start
 
 要确认KAP进程正在运行，可以执行`ps -ef | grep kylin`查看进程。
 
-> **对Plus版本**: 上述命令还会启动一个额外的Spark客户进程。它的日志在 `logs/spark_client.out`，可以用 `ps -ef | grep spark`确认该进程的存在。
+> **对Plus版本**: 上述命令还会启动一个额外的Spark客户进程。它的日志在 `logs/spark_client.out`，同时 `ps -ef | grep kylin`应当返回2个进程。
 
 > **故障排除**: 如果遇到问题，请确认所有KAP都已经停止，再重试启动。请参阅"停止KAP"。
 
@@ -51,5 +51,3 @@ ${KYLIN_HOME}/bin/kylin.sh start
 执行`bin/kylin.sh stop`命令，停止KAP进程。
 
 要确认KAP进程已经停止，请执行`ps -ef | grep kylin`确认没有活跃进程。
-
-> **对Plus版本**: 要确认Spark客户进程已经停止，请执行 `ps -ef | grep spark`确认没有活跃进程。
