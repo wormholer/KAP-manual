@@ -14,7 +14,7 @@ KAP instance running mode. The optional values are `all`, `job` and `query` and 
 Specify which Hive database intermediate table locates, the default value is `default`. If the user running KAP doesn't have `default` database access permission, please change it to other database name.
 
 ### kylin.hbase.default.compression.codec
-The compression algorithm used in KAP creating HTable, the default value is `snappy`. If the deployed environment doesn't support `snappy` algorithm, modify the value to others, such as `lzo`, `gzip` and `lz4`. The configuration missing means no compression algorithm is taken.
+The compression algorithm used in KAP creating HTable, the default value is `none`. If the deployed environment supports `snappy` algorithm, modify the value to `snappy`, or other supported alogirthms, such as `lzo`, `gzip` and `lz4`. The configuration `none` means no compression algorithm is taken.
 
 ### kylin.security.profile
 KAP instance security profile. The optional values are `ldap`, `saml`, `testing`, and the default value is `testing`. `testing` means enable testing account. Users can integrate existing enterprise authentication system, such as LDAP and SAML. Please refer to other sections for detailed explanation.
@@ -33,7 +33,7 @@ beeline -n root -u 'jdbc:hive2://localhost:10000' -f abc.sql
 
 Please set the following configuration:
 ```
-kylin.hive.beeline.params=beeline -n root -u 'jdbc:hive2://localhost:10000'
+kylin.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000'
 ```
 
 ### deploy.env

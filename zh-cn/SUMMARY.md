@@ -26,7 +26,7 @@
  * [启用任务引擎HA](config/jobengine_ha.cn.md)
 * [基本多维分析](molap/README.md)
  * [样例数据集](molap/dataset.cn.md)
- * [数据导入](molap/datasource.cn.md)
+ * [数据导入](molap/import.cn.md)
  * [创建数据模型](molap/datamodel.cn.md)
  * [创建Cube](molap/create_cube.cn.md)
  * [构建Cube](molap/build_cube.cn.md)
