@@ -10,7 +10,7 @@
 
 ```kylin.cell.level.security.acl.config=``` 指定安全控制文件名，KAP Sample里默认名为```userctrl.acl```。用户指定完安全配置文件名后，同时需要在```$KYLIN_HOME/conf```下新建一个同名文件。
 
-```kylin.cell.level.security.decision.maker=``` 指定实现安全控制的接口
+```kylin.query.access.controller=``` 指定实现安全控制的接口
 
 **2.用户安全控制文件**
 
@@ -41,7 +41,7 @@ b.目前安全配置文件里的值支持两种表达式：
 
 2. ```kylin.cell.level.security.acl.config=userctrl.acl```
 
-3. ```kylin.cell.level.security.decision.maker=io.kyligence.kap.query.security.KapAccessDecisionMaker```
+3. ```kylin.query.access.controller=io.kyligence.kap.query.security.KapAccessDecisionMaker```
 
 4. kylin_sales_cube构建完毕
 
