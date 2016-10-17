@@ -49,7 +49,7 @@ With both command successfully run you can go to ambari homepage at [http://{ho
 
 By default hortonworks ambari disables Hbase, you need manually start the Hbase service at ambari homepage.
 
- ![Screen Shot 2016-10-13 at 5.23.10 PM](/Users/zhangqi/Desktop/Screen Shot 2016-10-13 at 5.23.10 PM.png)
+   ![kap_quickstart_hbase](image/kap_quickstart_hbase.png)
 
 ## Start KAP
 

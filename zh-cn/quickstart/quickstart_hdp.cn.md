@@ -99,7 +99,7 @@ amber-server start
 
 默认Hbase是禁用的，需要在ambari 主页启动Hbase服务。
 
-![Screen Shot 2016-10-13 at 5.23.10 PM](/Users/zhangqi/Desktop/Screen Shot 2016-10-13 at 5.23.10 PM.png)
+ ![kap_quickstart_hbase](images/kap_quickstart_hbase.png)
 
 ### 启动KAP
 
