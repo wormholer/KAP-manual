@@ -11,17 +11,17 @@ OpenLDAP服务器的安装，依系统不同而略有区别。这里以CentOS 6.
 
 * 安装之前检查
 
-```
+```shell
 find / -name openldap*
 ```
 如果没有安装，使用yum安装：
-```
+```shell
 sudo yum install -y openldap openldap-servers openldap-clients
 ```
 
 * 安装以后进行配置
 
-```
+```shell
 cp /usr/share/openldap-servers/slapd.conf.obsolete /etc/openldap/slapd.conf
 cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
 mv /etc/openldap/slapd.d{,.bak}
@@ -66,23 +66,23 @@ rootpw {SSHA}vv2y+i6V6esazrIv70xSSnNAJE18bb2u
 ```
 
 4．为配置文件修改权限
-```
+```shell
 chown ldap.ldap /etc/openldap/*
 chown ldap.ldap /var/lib/ldap/*
 ```
 
 5．新建目录/etc/openldap/cacerts
-```
+```shell
 mkdir /etc/openldap/cacerts
 ```
 
 6．重启系统，然后开启服务  
-```
+```shell
 sudo service slapd start
 ```
 
 7．新建文件example.ldif
-```
+```properties
 dn:dc=example,dc=com
 objectclass:dcObject
 objectclass:organization
@@ -95,7 +95,7 @@ cn:Manager
 ```
 
 8．通过命令导入
-```
+```shell
 /usr/bin/ldapadd -x -W -D "cn=Manager,dc=example,dc=com" -f example.ldif
 ```
 
@@ -104,9 +104,13 @@ cn:Manager
 
 #### 在KAP中配置LDAP服务器信息
 
-首先，在conf/kylin.properties中，配置LDAP服务器的URL, 必要的用户名和密码（如果LDAP Server不是匿名访问）；为安全起见，这里的密码是需要加密（加密算法AES），您可以运行 "${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password"来获得加密后的值，然后填写在kylin.properties中，如下：
-
+首先，在conf/kylin.properties中，配置LDAP服务器的URL, 必要的用户名和密码（如果LDAP Server不是匿名访问）；为安全起见，这里的密码是需要加密（加密算法AES），您可以运行
+```shell
+${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password
 ```
+来获得加密后的值，然后填写在kylin.properties中，如下：
+
+```properties
 ldap.server=ldap://<your_ldap_host>:<port>
 ldap.username=<your_user_name>
 ldap.password=<your_password_hash>
@@ -114,13 +118,25 @@ ldap.password=<your_password_hash>
 
 其次，提供检索用户信息的模式, 例如从某个节点开始查询，需要满足哪些条件等；下面是一个例子，供参考:
 
-```
+```properties
 ldap.user.searchBase=OU=UserAccounts,DC=mycompany,DC=com
 ldap.user.searchPattern=(&(AccountName={0})(memberOf=CN=MYCOMPANY-USERS,DC=mycompany,DC=com))
 ldap.user.groupSearchBase=OU=Group,DC=mycompany,DC=com
 ```
 
 如果您需要服务账户（供系统集成）可以访问KAP，那么依照上面的例子配置`ldap.service.*`，否则请将它们留空。
+
+以下为一个例子：
+
+```properties
+ldap.server=ldap://127.0.0.1:389
+ldap.username=cn=Manager,dc=example,dc=com
+ldap.password=ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+ldap.user.searchBase=ou=People,dc=example,dc=com
+ldap.user.searchPattern=(&(cn={0}))
+ldap.user.groupSearchBase=OU=Groups,DC=example,DC=com
+```
 
 ### 配置管理员群组和默认角色
 

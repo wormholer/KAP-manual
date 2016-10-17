@@ -10,17 +10,17 @@ If you don't have LDAP server, need install one for KAP. The recommended server 
 The installation may vary with different platform. You may need check different documents or tutorials like. Here we take CentOS 6.4 as an example:  
 
 * Check installation
-```
+```shell
 sudo find / -name openldap*
 ```
 
 If not installed, install with yum:
-```
+```shell
 sudo yum install -y openldap openldap-servers openldap-clients
 ```
 
 * Configure after installation
-```
+```shell
 cp /usr/share/openldap-servers/slapd.conf.obsolete /etc/openldap/slapd.conf
 cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
 mv /etc/openldap/slapd.d{,.bak}
@@ -75,18 +75,18 @@ rootpw {SSHA}vv2y+i6V6esazrIv70xSSnNAJE18bb2u
 
 4．Change the owner for these configuration files
 
-```
+```shell
 chown ldap.ldap /etc/openldap/*
 chown ldap.ldap /var/lib/ldap/*
 ```
 
 5．Make new directory:
-```
+```shell
 mkdir /etc/openldap/cacerts
 ```
 
 6．Reboot the system, and then start the service:
-```
+```shell
 sudo service slapd start
 ```
 
@@ -94,7 +94,7 @@ After the service is started, you can import some sample data.
 
 7．Create new file example.ldif
 
-```
+```properties
 dn:dc=example,dc=com
 objectclass:dcObject
 objectclass:organization
@@ -108,7 +108,7 @@ cn:Manager
 
 8．Import it with command:
 
-```
+```shell
 /usr/bin/ldapadd -x -W -D "cn=Manager,dc=example,dc=com" -f example.ldif
 ```
 
@@ -117,9 +117,14 @@ When prompt the password, enter the password of LDAP administrator. Then the imp
 
 #### Configure LDAP Information in KAP
 
-First, in conf/kylin.properties, configure the URL of the LDAP server, the necessary username and password (if the LDAP server is not anonymous); for security reason, the password here need be encrypted with AES, you can run "${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES <your_password>"to get the encrypted value, and then fill in kylin.properties:
-
+First, in conf/kylin.properties, configure the URL of the LDAP server, the necessary username and password (if the LDAP server is not anonymous); for security reason, the password here need be encrypted with AES, you can run 
+```shell
+${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES <your_password>
 ```
+
+to get the encrypted value, and then fill in kylin.properties:
+
+```properties
 ldap.server=ldap://<your_ldap_host>:<port>
 ldap.username=<your_user_name>
 ldap.password=<your_password_hash>
@@ -127,13 +132,25 @@ ldap.password=<your_password_hash>
 
 Second, provide user retrieval pattern, such as starting organization unit, filtering conditions etc; The following is an example for reference:
 
-```
+```properties
 ldap.user.searchBase=OU=UserAccounts,DC=mycompany,DC=com
 ldap.user.searchPattern=(&(AccountName={0})(memberOf=CN=MYCOMPANY-USERS,DC=mycompany,DC=com))
 ldap.user.groupSearchBase=OU=Group,DC=mycompany,DC=com
 ```
 
 If you need service accounts (for system integration) to access KAP, follow the example above to configure `ldap.service. *`, Otherwise leave them blank.
+
+One example:
+
+```properties
+ldap.server=ldap://127.0.0.1:389
+ldap.username=cn=Manager,dc=example,dc=com
+ldap.password=ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+ldap.user.searchBase=ou=People,dc=example,dc=com
+ldap.user.searchPattern=(&(cn={0}))
+ldap.user.groupSearchBase=OU=Groups,DC=example,DC=com
+```
 
 ### Configure Administrator Groups and Default Roles
 
