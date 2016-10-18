@@ -18,13 +18,14 @@ First of all, we need to compose a couple of configs:
 
 In access control file, it defines the specific conditions for restricting user behavior. Here is a KAP example file: **userctrl.acl** *(the default split is whitespace)*:
 
-| **user** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
-| :------- | :--------------------- | :-------------------- | :------------------------------- |
-| ADMIN    | Shanghai               | yes                   | yes                              |
-| ANALYST  | Beijing                | no                    | yes                              |
-| MODELER  | Hongkong               | yes                   | no                               |
+| **login_user** | **kylin_sales.user_id** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
+| :------------: | :---------------------: | :--------------------: | :-------------------: | :------------------------------: |
+|     ADMIN      |          ADMIN          |        Shanghai        |          yes          |               yes                |
+|    ANALYST     |         ANALYST         |        Beijing         |          no           |               yes                |
+|    MODELER     |         MODELER         |        Hongkong        |          yes          |                no                |
 
-**Description**: *1. The first column is the user login name, once the user is added to the file, will only access their own data. 2. The remaining columns are attributes that belong to the user, will restrict the user's access in addition. 3. Users that do not appear in the file don't have any restrictions.*
+
+**Description**: *1. The first column is the user login name. 2. The remaining columns are attributes that belong to the user, will restrict the user's access in addition.*
 
 At present, the access control file only supports two expressions, i.e. *boolean* and *equal*.
 
@@ -52,7 +53,7 @@ a. ADMIN login KAP, and execute query：
 
 ```select * from kylin_sales```
 
-Since ADMIN is added into userctrl.acl, only ADMIN-related records are returned.
+As the results shown,  the records that fulfill the conditions are returned.
 
 b. Execute the query：
 

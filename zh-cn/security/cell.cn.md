@@ -16,13 +16,13 @@
 
 a.在安全控制文件里，定义了限制用户行为的具体条件，下面是KAP Sample里userctrl.acl文件内容（默认分隔符为空格）：
 
-| **kylin_sales.user_id** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
-| :---------------------- | :--------------------- | :-------------------- | :------------------------------- |
-| ADMIN                   | Shanghai               | yes                   | yes                              |
-| ANALYST                 | Beijing                | no                    | yes                              |
-| MODELER                 | Hongkong               | yes                   | no                               |
+| **login_user** | **kylin_sales.user_id** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
+| :------------: | :---------------------: | :--------------------: | :-------------------: | :------------------------------: |
+|     ADMIN      |          ADMIN          |        Shanghai        |          yes          |               yes                |
+|    ANALYST     |         ANALYST         |        Beijing         |          no           |               yes                |
+|    MODELER     |         MODELER         |        Hongkong        |          yes          |                no                |
 
-*内容说明：1.第一列是用户登录名，只要被添加进安全控制文件的用户，将只能访问其自有数据。2.剩余列是隶属于该用户的属性，可以进一步限制该用户访问权限。3.没有在安全配置文件里出现的用户及其列，将不受任何限制。*
+*内容说明：1.第一列是KAP用户登录名。2.剩余列是隶属于该用户的属性，可以进一步限制该用户访问权限。*
 
 b.目前安全配置文件里的值支持两种表达式：
 
@@ -53,7 +53,7 @@ a.ADMIN用户登录KAP，执行查询：
 
 ```select * from kylin_sales```
 
-由于在userctrl.acl里有ADMIN用户，所以返回的结果都是ADMIN相关的。
+由于在userctrl.acl里对ADMIN用户进行了安全控制，只返回符合安全控制条件的结果。
 
 b.执行查询：
 
@@ -73,4 +73,4 @@ c.修改userctrl.acl, 把ADMIN的属性kylin_sales.lstg_format_name设置为No�
 
 结果报错：用户ADMIN没有权限访问kylin_sales.lstg_format_name。
 
-切换用户MODELER登录，修改对应的安全配置属性，再执行以上查询，同样在结果里只有MODELER相关的记录。
+切换用户MODELER登录，修改对应的安全配置属性，再执行以上查询，同样在结果都做了安全处理。
