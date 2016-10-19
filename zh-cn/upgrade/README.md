@@ -22,9 +22,9 @@
 
    如果对`conf/`下的配置文件有任何修改，请同样更新在最新的配置文件上。
 
-4. 复制License
+4. 确认License
 
-   复制License文件到新的KAP安装目录下。
+   确认License文件在新的KAP安装目录下。
 
 5. 升级HBase Coprocessor
 

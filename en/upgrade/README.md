@@ -22,9 +22,9 @@ The metadata of the two versions are compatible. Simply upgrade by overwrite the
 
    If you have modified config files under `conf/`, please apply the changes again in the new `conf/` folder.
 
-4. Copy License file
+4. Confirm the license file
 
-   Copy your license file to the new KAP home.
+   Confirm the license file exists in the new KAP home.
 
 5. Upgrade HBase Coprocessor
 
