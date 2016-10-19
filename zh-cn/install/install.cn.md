@@ -4,13 +4,13 @@
 
 ```
 cd /usr/local
-tar -zxvf kap-{version}-{hbase}.tar.gz
+tar -zxvf kap-{version-env}.tar.gz
 ```
 
 设置环境变量`KYLIN_HOME`为KAP的解压缩目录。
 
 ```
-export KYLIN_HOME=/usr/local/kap-{version}-{hbase}
+export KYLIN_HOME=/usr/local/kap-{version-env}
 ```
 
 准备一个在HDFS上的KAP工作目录。该目录默认为`/kylin`，也可以在`conf/kylin.properties`中修改目录的位置。

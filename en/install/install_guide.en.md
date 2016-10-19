@@ -4,13 +4,13 @@ Copy KAP binary to local and unpack.
 
 ```
 cd /usr/local
-tar -zxvf kylin-kap-{version}-bin.tar.gz
+tar -zxvf kap-{version-env}.tar.gz
 ```
 
 Set environment variable `KYLIN_HOME` to the KAP extracted directory.
 
 ```
-export KYLIN_HOME=/usr/local/kylin-kap-{version}-bin
+export KYLIN_HOME=/usr/local/kap-{version-env}
 ```
 
 Prepare a working directory on HDFS for KAP user. The directory is `/kylin` by default and is configurable in `conf/kylin.properties`.
