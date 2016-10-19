@@ -1,11 +1,21 @@
-> KyAnalyzer is developed by Kyligence based on Saiku. KyAnalyzer automatize some unecessary operations to make user analyze data easier and quicker.
->
-> This document is based on KyAnalyzer version 0.2.
+## KyAnalyzer Self-service Agile BI Tools
+
+KyAnalyzer is developed based on open source MOLAP Tools [Saiku](https://github.com/OSBI/saiku). KyAnalyzer has integrated with KAP(Kylin) seemlessly, to make user analyze data easier and quicker.
+
+Compared with Saiku, KyAnalyzer has included the following enhancements and bug fixes:
+
+- Support sync cube from KAP
+- Support online editing Schema
+- Support integrate KAP user authentication
+- Support Distinct Count
+- Support embed report into third-party dashboard
+- Fix many Saiku bugs
 
 ###Pre-Condition
+
 * KAP should be version 2.1 or later
 * Apache Kylin version should be 1.5.4.1 or later.
-* KyAnalyzer does not supprt *left join*,you should use *inner join* when create cube mode in KAP.
+* KyAnalyzer does not supprt *left join*, you should use *inner join* when create cube mode in KAP.
 
 ### Install
 Get the package KyAnalyzer-{version}.zip from Kyligence Inc, and download the customized mondrian mondrian-kylin-{version}.jar from GitHub kylin-mondrian repository: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/), if the version is updated, please use the latest jar.
@@ -31,18 +41,18 @@ KyAnalyzer authenticates user at KAP side, so you can use KAP user and password 
 ### Admin Page
 Only the admin could visit this page.
 To import the Cube from KAP, Saiku needs to create schema and datasource for each cube in KAP by default. KyAnalyzer automatize the flow, user don't have to write schema by themeselves.
-Click **Sync Cubes From Kylin** on the left side, the right panel will list all projects from KAP.
+Click `Sync Cubes From Kylin` on the left side, the right panel will list all projects from KAP.
 
 ![](images/admin_sync.png)
 
-Click the green button **Sync Cubes From Kylin** after select project, KyAnalyzer will create *schema* and *datasource* for all cubes under this project whose status is 'READY'.
+Click the green button `Sync Cubes From Kylin` after select project, KyAnalyzer will create *schema* and *datasource* for all cubes under this project whose status is 'READY'.
 
 ![](images/sync_done_tip.png)
 
 The schema could be edited online in KyAnalyzer, it's not necessary at most time.
 
 ### New Query
-Click *New Query* button at navigation bar, then click *Refresh* button to fetch the latest data, select the cube under *Cubes* menu, now all dimensions and measures are shown.
+Click `New Query` button at navigation bar, then click `Refresh` button to fetch the latest meta data, select the cube under *Cubes* menu, now all dimensions and measures are shown. In the report designer area, here are four panels: *Measures*, *Columns*, *Rows*, *Filter*. User could drag measures into Measures panel, and dimensions into Columns and Rows panels.
 
 ![](images/cube_refresh.png)
 

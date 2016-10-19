@@ -1,16 +1,24 @@
-> KyAnalyzer由Kyligence公司基于saiku进行二次开发，将一些对用户而言不必要的流程自动化掉，让用户以最简单快捷的方式访问KAP的数据。
-> 本篇文档主要基于0.2版对KyAnalyzer进行介绍。
->
+## KyAnalyzer 自助式敏捷BI工具
+
+KyAnalyzer是基于开源多维分析工具[Saiku](https://github.com/OSBI/saiku)进行二次开发，无缝集成KAP（Kylin），让用户以最简单快捷的方式访问KAP的数据。
+KyAnalyzer相对开源Saiku主要包含以下更新：
+
+- 支持KAP数据模型同步到Saiku
+- 支持在线编辑Schema文档
+- 支持Saiku集成KAP的用户访问验证机制
+- 支持Distinct Count
+- 支持报表嵌入到第三方平台
+- 修复了若干Saiku Bug
 
 ###使用KyAnalyzer的前提条件
 * KAP版本需为2.1或之后版本
 * Apache Kylin版本需为1.5.4.1或之后版本
-* KyAnalyzer暂不支持left join查询，使用者构建Cube模型时需指定join关系为inner
+* KyAnalyzer暂不支持*left join*查询，使用者构建Cube模型时需指定join关系为*inner join*
 
 ### 安装
 通过Kyligence公司获得定制版的KyAnalyzer安装包 KyAnalyzer-{version}.zip，同时需要下载对应KAP版本的Mondrian包，请下载mondrian-kylin-{version}.jar。对应Mondrian包可在GitHub kylin-mondrian 仓库: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/) 上获得。
 解压KyAnalyzer安装包，把下载的mondrian-kylin对应的jar包拷到 saiku-server/tomcat/webapps/saiku/WEB-INF/lib 目录下, 版本若有变动请下载最新版本。
-在WEB-INF目录下有个配置文件kyanalyzer-beans.properties， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，*kap.port*为KAP REST API的端口，默认7070。
+在WEB-INF目录下有个配置文件*kyanalyzer-beans.properties*， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，*kap.port*为KAP REST API的端口，默认7070。
 
 通过saiku-server 目录下的 start-saiku.sh启动KyAnalyzer，默认端口为8080,可通过 http://{hostname}:8080 访问页面。如果要停掉应用执行stop-saiku.sh即可。如果在启动过程中遇到问题页面打不开，可以到tomcat/logs目录下查看具体出错信息。
 
@@ -28,18 +36,18 @@ KyAnalyzer的用户认证是通过KAP认证，所以只需要输入KAP的账号�
 
 ### 管理控制台
 该页面仅管理员可见。
-为了同步KAP中的Cube，针对每一个Cube，Saiku中都必须创建一个对应的schema文件，同时配置对应的数据源。Saiku将通过这些配置信息组成SQL发送给KAP。KyAnalyzer将这一块自动化掉，用户不需要手动创建schema以及数据源。只需要点击页面左侧的**Sync Cubes From Kylin**，右侧下拉框会列出KAP中所有的Project。
+为了同步KAP中的Cube，针对每一个Cube，Saiku中都必须创建一个对应的schema文件，同时配置对应的数据源(data source)。Saiku将通过这些配置信息组成SQL发送给KAP。KyAnalyzer将这一块自动化掉，用户不需要手动创建schema以及数据源。只需要点击页面左侧的`Sync Cubes From Kylin`，右侧下拉框会列出KAP中所有的Project。
 
 ![](images/admin_sync.png)
 
-选中项目后，点击绿色的按钮**Sync Cubes From Kylin**，KAP中该项目下所有状态为*READY*的Cube信息将会被同步到过来。
+选中项目后，点击绿色的按钮`Sync Cubes From Kylin`，KAP中该项目下所有状态为*READY*的Cube信息将会被同步到过来。
 
 ![](images/sync_done_tip.png)
 
 KyAnalyzer提供了对schema的在线编辑功能，对mondrian schema用户熟悉的用户可以根据需要修改，正常情况下不需要修改这块。
 
 ### 新建查询
-点击导航栏的新建查询按钮，点击刷新按钮获取最新的数据，在'选择多维数据' 下拉框中选中要查询的Cube， 点击自己要查询的数据自由查询。
+点击导航栏的`新建查询`按钮，点击`刷新`按钮获取最新的元数据，在`选择多维数据` 下拉框中选中要查询的Cube， 所有相关的维度和指标会列出。报表制作区域有*指标*，*列*，*行*，*过滤* 四个区域，其中*指标* 区域只能拖拽指标，*列*和*行*可以拖拽维度，多个维度可以组合为层级维度等。
 
 ![](images/cube_refresh.png)
 
