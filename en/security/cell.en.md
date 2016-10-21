@@ -74,3 +74,5 @@ c. Modify ADMIN's *kylin_sales.lstg_format_name* to *No*，execute：
 The results shows an error: User ADMIN is not allowed to access kylin_sales.lstg_format_name.
 
 Switch the login user to MODELER, modify the corresponding properties, then execute the above queries again.
+
+**Notice**: After modifying the userctrl.acl, but haven't got the correct query results, it is probably due to the system cache. After disabling System->Disable Cache, try the query again. 

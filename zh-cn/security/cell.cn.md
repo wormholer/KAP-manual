@@ -74,3 +74,5 @@ c.修改userctrl.acl, 把ADMIN的属性kylin_sales.lstg_format_name设置为No�
 结果报错：用户ADMIN没有权限访问kylin_sales.lstg_format_name。
 
 切换用户MODELER登录，修改对应的安全配置属性，再执行以上查询，同样在结果都做了安全处理。
+
+**注意：** 如果修改了userctrl.acl配置属性，而查询结果没有随之改变，可能是系统开了缓存的原因。在System-Disable Cacheh后，再查询。
