@@ -23,6 +23,7 @@
  * [Upgrade from Kylin](upgrade/upgrade_kylin.en.md)
 * [KAP Configuration](config/README.md)
  * [Configuration Properties](config/settings.en.md)
+ * [Configuration Properties for Spark](config/spark_settings.en.md)
  * [Job Engine HA](config/jobengine_ha.en.md)
 * [MOLAP](molap/README.md)
  * [Sample Data Set](molap/dataset.en.md)
