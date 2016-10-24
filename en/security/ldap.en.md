@@ -93,17 +93,60 @@ sudo service slapd start
 After the service is started, you can import some sample data.
 
 7．Create new file example.ldif
+```ldif
+dn: dc=example,dc=com
+objectClass: dcObject
+objectClass: organization
+objectClass: top
+dc: example
+o: Example, Inc.
 
-```properties
-dn:dc=example,dc=com
-objectclass:dcObject
-objectclass:organization
-o:Example, Inc.
-dc:example
+dn: cn=Manager,dc=example,dc=com
+objectClass: organizationalRole
+objectClass: top
+cn: Manager
 
-dn:cn=Manager,dc=example,dc=com
-objectclass:organizationalRole
-cn:Manager
+dn: ou=People,dc=example,dc=com
+objectClass: organizationalRole
+objectClass: top
+cn: People
+ou: People
+
+# user： johnny password：example123
+dn: cn=johnny,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: johnny
+mail: johnny@example.io
+ou: Manager
+sn: johnny wang
+userPassword:: ZXhhbXBsZTEyMw==
+
+# user： jenny password：example123
+dn: cn=jenny,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: jenny
+mail: jenny@example.io
+ou: Analyst
+sn: jenny liu
+userPassword:: ZXhhbXBsZTEyMw==
+
+dn: ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: Groups
+
+dn: cn=itpeople,ou=Groups,dc=example,dc=com
+objectClass: groupOfNames
+objectClass: top
+cn: itpeople
+member: cn=johnny,ou=People,dc=example,dc=com
+member: cn=jenny,ou=People,dc=example,dc=com
 ```
 
 8．Import it with command:
@@ -117,39 +160,39 @@ When prompt the password, enter the password of LDAP administrator. Then the imp
 
 #### Configure LDAP Information in KAP
 
-First, in conf/kylin.properties, configure the URL of the LDAP server, the necessary username and password (if the LDAP server is not anonymous); for security reason, the password here need be encrypted with AES, you can run 
+First, in `conf/kylin.properties`, configure the URL of the LDAP server, the necessary username and password (if the LDAP server is not anonymous). For security reason, the password here need be encrypted with AES, you can run code below to get the encrypted password: 
 ```shell
-${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES <your_password>
+${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES kylin
+# YeqVr9MakSFbgxEec9sBwg==
 ```
 
-to get the encrypted value, and then fill in kylin.properties:
+Then fill in kylin.properties:
 
 ```properties
-ldap.server=ldap://<your_ldap_host>:<port>
-ldap.username=<your_user_name>
-ldap.password=<your_password_hash>
+# ldap.server=ldap://<your_ldap_host>:<port>
+# ldap.username=<your_user_name>
+# ldap.password=<your_password_hash>
+
+ldap.server=ldap://127.0.0.1:389
+ldap.username=cn=Manager,dc=example,dc=com
+ldap.password=YeqVr9MakSFbgxEec9sBwg==
 ```
 
 Second, provide user retrieval pattern, such as starting organization unit, filtering conditions etc; The following is an example for reference:
 
 ```properties
-ldap.user.searchBase=OU=UserAccounts,DC=mycompany,DC=com
-ldap.user.searchPattern=(&(AccountName={0})(memberOf=CN=MYCOMPANY-USERS,DC=mycompany,DC=com))
-ldap.user.groupSearchBase=OU=Group,DC=mycompany,DC=com
+# LDAP user account directory
+ldap.user.searchBase=ou=People,dc=example,dc=com
+ldap.user.searchPattern=(&(cn={0}))
+ldap.user.groupSearchBase=ou=Groups,dc=example,dc=com
 ```
 
 If you need service accounts (for system integration) to access KAP, follow the example above to configure `ldap.service. *`, Otherwise leave them blank.
-
-One example:
-
 ```properties
-ldap.server=ldap://127.0.0.1:389
-ldap.username=cn=Manager,dc=example,dc=com
-ldap.password=ABCDEFGHIJKLMNOPQRSTUVWXYZ
-
-ldap.user.searchBase=ou=People,dc=example,dc=com
-ldap.user.searchPattern=(&(cn={0}))
-ldap.user.groupSearchBase=OU=Groups,DC=example,DC=com
+# LDAP service account directory
+ldap.service.searchBase=ou=People,dc=example,dc=com
+ldap.service.searchPattern=(&(cn={0}))
+ldap.service.groupSearchBase=ou=Groups,dc=example,dc=com
 ```
 
 ### Configure Administrator Groups and Default Roles

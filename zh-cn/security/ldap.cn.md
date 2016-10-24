@@ -81,17 +81,61 @@ mkdir /etc/openldap/cacerts
 sudo service slapd start
 ```
 
-7．新建文件example.ldif
-```properties
-dn:dc=example,dc=com
-objectclass:dcObject
-objectclass:organization
-o:Example, Inc.
-dc:example
+7．新建文件 example.ldif
+```ldif
+dn: dc=example,dc=com
+objectClass: dcObject
+objectClass: organization
+objectClass: top
+dc: example
+o: Example, Inc.
 
-dn:cn=Manager,dc=example,dc=com
-objectclass:organizationalRole
-cn:Manager
+dn: cn=Manager,dc=example,dc=com
+objectClass: organizationalRole
+objectClass: top
+cn: Manager
+
+dn: ou=People,dc=example,dc=com
+objectClass: organizationalRole
+objectClass: top
+cn: People
+ou: People
+
+# 用户： johnny 密码：example123
+dn: cn=johnny,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: johnny
+mail: johnny@example.io
+ou: Manager
+sn: johnny wang
+userPassword:: ZXhhbXBsZTEyMw==
+
+# 用户： jenny 密码：example123
+dn: cn=jenny,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: jenny
+mail: jenny@example.io
+ou: Analyst
+sn: jenny liu
+userPassword:: ZXhhbXBsZTEyMw==
+
+dn: ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: Groups
+
+dn: cn=itpeople,ou=Groups,dc=example,dc=com
+objectClass: groupOfNames
+objectClass: top
+cn: itpeople
+member: cn=johnny,ou=People,dc=example,dc=com
+member: cn=jenny,ou=People,dc=example,dc=com
 ```
 
 8．通过命令导入
@@ -104,38 +148,38 @@ cn:Manager
 
 #### 在KAP中配置LDAP服务器信息
 
-首先，在conf/kylin.properties中，配置LDAP服务器的URL, 必要的用户名和密码（如果LDAP Server不是匿名访问）；为安全起见，这里的密码是需要加密（加密算法AES），您可以运行
+首先，在conf/kylin.properties中，配置LDAP服务器的URL, 必要的用户名和密码（如果LDAP Server不是匿名访问）。为安全起见，这里的密码是需要加密（加密算法AES），您可以运行下面的命令来获得加密后的密码：
 ```shell
-${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES your_password
+${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES kylin
+# YeqVr9MakSFbgxEec9sBwg==
 ```
-来获得加密后的值，然后填写在kylin.properties中，如下：
+然后填写在kylin.properties中，如下：
 
 ```properties
-ldap.server=ldap://<your_ldap_host>:<port>
-ldap.username=<your_user_name>
-ldap.password=<your_password_hash>
+# ldap.server=ldap://<your_ldap_host>:<port>
+# ldap.username=<your_user_name>
+# ldap.password=<your_password_hash>
+
+ldap.server=ldap://127.0.0.1:389
+ldap.username=cn=Manager,dc=example,dc=com
+ldap.password=YeqVr9MakSFbgxEec9sBwg==
 ```
 
-其次，提供检索用户信息的模式, 例如从某个节点开始查询，需要满足哪些条件等；下面是一个例子，供参考:
+其次，提供检索用户信息的模式, 例如从某个节点开始查询，需要满足哪些条件等。下面是一个例子，供参考:
 
 ```properties
-ldap.user.searchBase=OU=UserAccounts,DC=mycompany,DC=com
-ldap.user.searchPattern=(&(AccountName={0})(memberOf=CN=MYCOMPANY-USERS,DC=mycompany,DC=com))
-ldap.user.groupSearchBase=OU=Group,DC=mycompany,DC=com
+# LDAP user account directory
+ldap.user.searchBase=ou=People,dc=example,dc=com
+ldap.user.searchPattern=(&(cn={0}))
+ldap.user.groupSearchBase=ou=Groups,dc=example,dc=com
 ```
 
 如果您需要服务账户（供系统集成）可以访问KAP，那么依照上面的例子配置`ldap.service.*`，否则请将它们留空。
-
-以下为一个例子：
-
 ```properties
-ldap.server=ldap://127.0.0.1:389
-ldap.username=cn=Manager,dc=example,dc=com
-ldap.password=ABCDEFGHIJKLMNOPQRSTUVWXYZ
-
-ldap.user.searchBase=ou=People,dc=example,dc=com
-ldap.user.searchPattern=(&(cn={0}))
-ldap.user.groupSearchBase=OU=Groups,DC=example,DC=com
+# LDAP service account directory
+ldap.service.searchBase=ou=People,dc=example,dc=com
+ldap.service.searchPattern=(&(cn={0}))
+ldap.service.groupSearchBase=ou=Groups,dc=example,dc=com
 ```
 
 ### 配置管理员群组和默认角色
