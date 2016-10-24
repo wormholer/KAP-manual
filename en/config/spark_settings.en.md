@@ -1,5 +1,5 @@
 ## Introduction
-By default, KAP stores all cubes in a columar format on HDFS. When querying, KAP uses Spark (http://spark.apache.org, specifically we use Spark on yarn mode) for cubing reading and possibly storage pre-aggregations.  One or more executors are started as long-running processes to receive any cube visit requests. For production deployments you should go through this page to make sure your spark executors are well configured.
+By default, KAP stores all cubes in a columar format on HDFS. When querying, KAP uses Spark (http://spark.apache.org, specifically we use Spark on yarn mode) for cube reading and possibly storage pre-aggregations.  One or more Spark executors are started as long-running processes to receive any cube visit requests. For production deployments you should go through this page to make sure your spark executors are well configured.
 
 ## Tune spark parameters
 
