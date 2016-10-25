@@ -26,7 +26,7 @@ cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
 mv /etc/openldap/slapd.d{,.bak}
 ```
 
-Edit slapd.conf, as follows：
+Edit slapd.conf, take *example.com* as example, as follows：
 
 1．Set the directory suffix
 
@@ -93,7 +93,7 @@ sudo service slapd start
 After the service is started, you can import some sample data.
 
 7．Create new file example.ldif
-```ldif
+```properties
 dn: dc=example,dc=com
 objectClass: dcObject
 objectClass: organization
@@ -162,8 +162,8 @@ When prompt the password, enter the password of LDAP administrator. Then the imp
 
 First, in `conf/kylin.properties`, configure the URL of the LDAP server, the necessary username and password (if the LDAP server is not anonymous). For security reason, the password here need be encrypted with AES, you can run code below to get the encrypted password: 
 ```shell
-${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES kylin
-# YeqVr9MakSFbgxEec9sBwg==
+${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES *your_password*
+# ${crypted_password}
 ```
 
 Then fill in kylin.properties:
@@ -175,7 +175,7 @@ Then fill in kylin.properties:
 
 ldap.server=ldap://127.0.0.1:389
 ldap.username=cn=Manager,dc=example,dc=com
-ldap.password=YeqVr9MakSFbgxEec9sBwg==
+ldap.password=${crypted_password}
 ```
 
 Second, provide user retrieval pattern, such as starting organization unit, filtering conditions etc; The following is an example for reference:

@@ -27,7 +27,7 @@ cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
 mv /etc/openldap/slapd.d{,.bak}
 ```
 
-* 修改slapd.conf，步骤如下：
+* 修改slapd.conf，以给example.com公司配置为例，步骤如下：
 
 1．设置目录树的后缀
 
@@ -82,7 +82,7 @@ sudo service slapd start
 ```
 
 7．新建文件 example.ldif
-```ldif
+```properties
 dn: dc=example,dc=com
 objectClass: dcObject
 objectClass: organization
@@ -150,8 +150,8 @@ member: cn=jenny,ou=People,dc=example,dc=com
 
 首先，在conf/kylin.properties中，配置LDAP服务器的URL, 必要的用户名和密码（如果LDAP Server不是匿名访问）。为安全起见，这里的密码是需要加密（加密算法AES），您可以运行下面的命令来获得加密后的密码：
 ```shell
-${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES kylin
-# YeqVr9MakSFbgxEec9sBwg==
+${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES *your_password*
+# ${crypted_password}
 ```
 然后填写在kylin.properties中，如下：
 
@@ -162,7 +162,7 @@ ${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES kylin
 
 ldap.server=ldap://127.0.0.1:389
 ldap.username=cn=Manager,dc=example,dc=com
-ldap.password=YeqVr9MakSFbgxEec9sBwg==
+ldap.password=${crypted_password}
 ```
 
 其次，提供检索用户信息的模式, 例如从某个节点开始查询，需要满足哪些条件等。下面是一个例子，供参考:
