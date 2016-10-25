@@ -9,8 +9,8 @@ To uninstall KAP completely and erase all data, please follow these steps:
 
   ```
   hbase shell
-  disable_all 'KYLIN_.*'
-  drop_all 'KYLIN_.*'
+  disable_all "KYLIN.*"
+  drop_all "KYLIN.*"
   ```
 
 4. Delete KAP directory on HDFS. First check file `${KYLIN_HOME}/conf/kylin.properites` and find out working directory. For example `kylin.hdfs.working.dir=/kylin`, execute following command to delete it:
@@ -23,8 +23,8 @@ To uninstall KAP completely and erase all data, please follow these steps:
 
   ```
   hbase shell
-  disable 'kylin_metadata.*'
-  drop 'kylin_metadata.*'
+  disable_all "kylin_metadata.*"
+  drop_all "kylin_metadata.*"
 
   ```
 
