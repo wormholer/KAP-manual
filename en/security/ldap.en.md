@@ -1,6 +1,6 @@
 ## LDAP Authentication
 
-KAP supports integration with LDAP servers for user authentication. This validation is achieved through the Spring Security framework, so it has a good versatility. 
+KAP supports integration with LDAP servers for user authentication. This validation is achieved through the Spring Security framework, so it has a good versatility.
 
 #### Setup LDAP server
 Before enabling LDAP authentication, you need an running LDAP service. If you already have it, contact the LDAP administrator to get the necessary information including connectivity inforamtion, organization structure, etc.
@@ -92,61 +92,84 @@ sudo service slapd start
 
 After the service is started, you can import some sample data.
 
-7．Create new file example.ldif
+7．Create new file example.ldif (three users and two groups are listed in this file)
 ```properties
+# example.com
 dn: dc=example,dc=com
 objectClass: dcObject
 objectClass: organization
-objectClass: top
-dc: example
 o: Example, Inc.
+dc: example
 
+# Manager, example.com
 dn: cn=Manager,dc=example,dc=com
-objectClass: organizationalRole
-objectClass: top
 cn: Manager
+objectClass: organizationalRole
 
+# People, example.com
 dn: ou=People,dc=example,dc=com
+ou: People
+cn: People
 objectClass: organizationalRole
 objectClass: top
-cn: People
-ou: People
 
-# user： johnny password：example123
+# johnny, People, example.com
 dn: cn=johnny,ou=People,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-cn: johnny
 mail: johnny@example.io
 ou: Manager
+cn: johnny
 sn: johnny wang
-userPassword:: ZXhhbXBsZTEyMw==
-
-# user： jenny password：example123
-dn: cn=jenny,ou=People,dc=example,dc=com
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
 objectClass: top
-cn: jenny
-mail: jenny@example.io
-ou: Analyst
-sn: jenny liu
 userPassword:: ZXhhbXBsZTEyMw==
 
+# jenny, People, example.com
+dn: cn=jenny,ou=People,dc=example,dc=com
+mail: jenny@example.io
+ou: Analyst
+cn: jenny
+sn: jenny liu
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+userPassword:: ZXhhbXBsZTEyMw==
+
+# oliver, People, example.com
+dn: cn=oliver,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: oliver
+sn: oliver wang
+mail: oliver@example.io
+ou: Modeler
+userPassword:: ZXhhbXBsZTEyMw==
+
+# Groups, example.com
 dn: ou=Groups,dc=example,dc=com
+ou: Groups
 objectClass: organizationalUnit
 objectClass: top
-ou: Groups
 
+# itpeople, Groups, example.com
 dn: cn=itpeople,ou=Groups,dc=example,dc=com
+cn: itpeople
 objectClass: groupOfNames
 objectClass: top
-cn: itpeople
 member: cn=johnny,ou=People,dc=example,dc=com
+member: cn=oliver,ou=People,dc=example,dc=com
+
+# admin, Groups, example.com
+dn: cn=admin,ou=Groups,dc=example,dc=com
+cn: admin
 member: cn=jenny,ou=People,dc=example,dc=com
+objectClass: groupOfNames
+objectClass: top
+
 ```
 
 8．Import it with command:
@@ -160,7 +183,7 @@ When prompt the password, enter the password of LDAP administrator. Then the imp
 
 #### Configure LDAP Information in KAP
 
-First, in `conf/kylin.properties`, configure the URL of the LDAP server, the necessary username and password (if the LDAP server is not anonymous). For security reason, the password here need be encrypted with AES, you can run code below to get the encrypted password: 
+First, in `conf/kylin.properties`, configure the URL of the LDAP server, the necessary username and password (if the LDAP server is not anonymous). For security reason, the password here need be encrypted with AES, you can run code below to get the encrypted password:
 ```shell
 ${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES *your_password*
 # ${crypted_password}
@@ -197,10 +220,10 @@ ldap.service.groupSearchBase=ou=Groups,dc=example,dc=com
 
 ### Configure Administrator Groups and Default Roles
 
-KAP allows mapping an LDAP group to the administrator role: In kylin.properties, set "acl.adminRole" to "ROLE_" + GROUP_NAME (The GROUP_NAME need be in upper case). For example, use the group "KAP-ADMIN-GROUP" to manage all KAP administrators, then this property should be set to
+KAP allows mapping an LDAP group to the administrator role: In kylin.properties, set "acl.adminRole" to "ROLE_" + GROUP_NAME (The GROUP_NAME need be in upper case). In this example, use the group "ADMIN" to manage all KAP administrators, then this property should be set to
 
 ```
-acl.adminRole=ROLE_KAP-ADMIN-GROUP
+acl.adminRole=ROLE_ADMIN
 acl.defaultRole=ROLE_ANALYST,ROLE_MODELER
 ```
 
@@ -210,5 +233,10 @@ The attribute "acl.defaultRole" defines the roles that granted to any logged-on 
 
 In conf/kylin.properties, set "kylin.security.profile=ldap"，and then restart KAP.
 
+If we login with jenny which belongs to group `admin`, `System` menu will be displayed in the top bar:
 
+![](images/ldap/login-with-jenny.png)
 
+Otherwise, if we login with johnny which belongs to group `itpeople`, `System` menu won't be displayed in the top bar since the group `itpoeple` isn't admin group.
+
+![](images/ldap/login-with-johnny.png)

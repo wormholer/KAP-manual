@@ -81,61 +81,83 @@ mkdir /etc/openldap/cacerts
 sudo service slapd start
 ```
 
-7．新建文件 example.ldif
+7．新建文件 example.ldif （包括三个用户，两个组）
 ```properties
+# example.com
 dn: dc=example,dc=com
 objectClass: dcObject
 objectClass: organization
-objectClass: top
-dc: example
 o: Example, Inc.
+dc: example
 
+# Manager, example.com
 dn: cn=Manager,dc=example,dc=com
-objectClass: organizationalRole
-objectClass: top
 cn: Manager
+objectClass: organizationalRole
 
+# People, example.com
 dn: ou=People,dc=example,dc=com
+ou: People
+cn: People
 objectClass: organizationalRole
 objectClass: top
-cn: People
-ou: People
 
-# 用户： johnny 密码：example123
+# johnny, People, example.com
 dn: cn=johnny,ou=People,dc=example,dc=com
-objectClass: inetOrgPerson
-objectClass: organizationalPerson
-objectClass: person
-objectClass: top
-cn: johnny
 mail: johnny@example.io
 ou: Manager
+cn: johnny
 sn: johnny wang
-userPassword:: ZXhhbXBsZTEyMw==
-
-# 用户： jenny 密码：example123
-dn: cn=jenny,ou=People,dc=example,dc=com
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
 objectClass: top
-cn: jenny
-mail: jenny@example.io
-ou: Analyst
-sn: jenny liu
 userPassword:: ZXhhbXBsZTEyMw==
 
+# jenny, People, example.com
+dn: cn=jenny,ou=People,dc=example,dc=com
+mail: jenny@example.io
+ou: Analyst
+cn: jenny
+sn: jenny liu
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+userPassword:: ZXhhbXBsZTEyMw==
+
+# oliver, People, example.com
+dn: cn=oliver,ou=People,dc=example,dc=com
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: oliver
+sn: oliver wang
+mail: oliver@example.io
+ou: Modeler
+userPassword:: ZXhhbXBsZTEyMw==
+
+# Groups, example.com
 dn: ou=Groups,dc=example,dc=com
+ou: Groups
 objectClass: organizationalUnit
 objectClass: top
-ou: Groups
 
+# itpeople, Groups, example.com
 dn: cn=itpeople,ou=Groups,dc=example,dc=com
+cn: itpeople
 objectClass: groupOfNames
 objectClass: top
-cn: itpeople
 member: cn=johnny,ou=People,dc=example,dc=com
+member: cn=oliver,ou=People,dc=example,dc=com
+
+# admin, Groups, example.com
+dn: cn=admin,ou=Groups,dc=example,dc=com
+cn: admin
 member: cn=jenny,ou=People,dc=example,dc=com
+objectClass: groupOfNames
+objectClass: top
 ```
 
 8．通过命令导入
@@ -184,10 +206,10 @@ ldap.service.groupSearchBase=ou=Groups,dc=example,dc=com
 
 ### 配置管理员群组和默认角色
 
-KAP允许您将一个LDAP群组映射成管理员角色：在kylin.properties中，将"acl.adminRole"设置为"ROLE_" + GROUP_NAME形式. 例如，在LDAP中使用群组"KAP-ADMIN-GROUP"来管理所有KAP管理员，那么这里应该设置为:
+KAP允许您将一个LDAP群组映射成管理员角色：在kylin.properties中，将"acl.adminRole"设置为"ROLE_" + GROUP_NAME形式. 在当前例子中，在LDAP中使用群组"ADMIN"来管理所有KAP管理员，那么这里应该设置为:
 
 ```
-acl.adminRole=ROLE_KAP-ADMIN-GROUP
+acl.adminRole=ROLE_ADMIN
 acl.defaultRole=ROLE_ANALYST,ROLE_MODELER
 ```
 
@@ -197,5 +219,9 @@ acl.defaultRole=ROLE_ANALYST,ROLE_MODELER
 
 在conf/kylin.properties中，设置"kylin.security.profile=ldap"，然后重启KAP。
 
+当使用 `admin` 组的 jenny 用户登录时，会显示 `系统` 菜单项。
+![](images/ldap/login-with-jenny-cn.png)
 
+当使用 `itpeople` 组的 johnny 登录时，因为该组并不是`管理员`组，则不会显示 `系统` 菜单项。
 
+![](images/ldap/login-with-johnny-cn.png)
