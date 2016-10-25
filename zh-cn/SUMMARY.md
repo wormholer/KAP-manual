@@ -25,6 +25,7 @@
  * [从Kylin升级](upgrade/upgrade_kylin.cn.md)
 * [KAP配置](config/README.md)
  * [配置参数](config/settings.cn.md)
+ * [Cube配置重定义](config/cube_override.cn.md)
  * [Spark配置参数](config/spark_settings.cn.md)
  * [启用任务引擎HA](config/jobengine_ha.cn.md)
 * [基本多维分析](molap/README.md)
