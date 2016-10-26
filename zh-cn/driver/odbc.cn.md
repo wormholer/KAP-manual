@@ -57,6 +57,7 @@ KAP提供了Windows系统下的ODBC驱动程序，支持ODBC接口的应用可�
 
 ## 配置Excel
 1.从Microsoft网站下载并安装Power Query
+
 2.打开Excel，切换到Power Query的FastTab，单击From Other Sources并展开菜单，选择From ODBC项
 
 ![](images/odbc_04.png)
