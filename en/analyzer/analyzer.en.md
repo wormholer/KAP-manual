@@ -31,8 +31,107 @@ Run start-saiku.sh under saiku-server to start KyAnalyzer, the default port is 8
 
 ![](images/server_dir.png)
 
-
 KyAnalyzer will save data under the directory *repository* and *data*, when you upgrade  KyAnalyzer, need to backup these two directories.
+
+###About KyAnalyzer,KAP,Mondrian-Kylin Version/Features
+<table>
+    <tr>
+    <th>KAP</th>
+    <th>KyAnalyzer</th>
+    <th>Mondrian-Kylin</th>
+    <th>COUNT_DISTINCT</th>
+    <th>TOP_N</th>
+    <th>Normal Query</th>
+    <th></th>
+    </tr>
+    <tr>
+        <td>2.0</td>
+        <td>2.1</td>
+        <td>1.0</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2.0</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2.1</td>
+        <td>2.1</td>
+        <td>1.0</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr> 
+    <tr>
+        <td>2.1</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>Recommended</td>
+    </tr>     
+</table>
+
+
+###About KyAnalyzer,Apache Kylin,Mondrian-Kylin Version/Features
+<table>
+    <tr>
+    <th>Apache Kylin</th>
+    <th>KyAnalyzer</th>
+    <th>Mondrian-Kylin</th>
+    <th>COUNT_DISTINCT</th>
+    <th>TOP_N</th>
+    <th>Normal Query</th>
+    <th></th>
+    </tr>
+    <tr>
+        <td>ALL</td>
+        <td>2.1</td>
+        <td>1.0</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>version earlier than1.5.4.1</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>1.5.4.1</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr> 
+    <tr>
+        <td>version later 1.5.4.1</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>Recommended</td>
+    </tr>         
+</table>
+
 
 ### Authentication
 KyAnalyzer authenticates user at KAP side, so you can use KAP user and password to login. Users with *Admin* Role in KAP are also *Admin* in KyAnalyzer.

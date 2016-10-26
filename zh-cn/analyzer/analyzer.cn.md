@@ -15,6 +15,7 @@ KyAnalyzer相对开源Saiku主要包含以下更新：
 * Apache Kylin版本需为1.5.4.1或之后版本
 * KyAnalyzer暂不支持*left join*查询，使用者构建Cube模型时需指定join关系为*inner join*
 
+
 ### 安装
 通过Kyligence公司获得定制版的KyAnalyzer安装包 KyAnalyzer-{version}.zip，同时需要下载对应KAP版本的Mondrian包，请下载mondrian-kylin-{version}.jar。对应Mondrian包可在GitHub kylin-mondrian 仓库: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/) 上获得。
 解压KyAnalyzer安装包，把下载的mondrian-kylin对应的jar包拷到 saiku-server/tomcat/webapps/saiku/WEB-INF/lib 目录下, 版本若有变动请下载最新版本。
@@ -29,6 +30,107 @@ KyAnalyzer相对开源Saiku主要包含以下更新：
 
 
 KyAnalyzer的数据信息主要存储在根目录下的repository和data目录下，如果需要进行升级，可备份这两个目录。
+
+###关于KyAnalyzer,KAP,Mondrian-Kylin 版本功能描述
+<table>
+    <tr>
+    <th>KAP</th>
+    <th>KyAnalyzer</th>
+    <th>Mondrian-Kylin</th>
+    <th>COUNT_DISTINCT</th>
+    <th>TOP_N</th>
+    <th>正常查询</th>
+    <th></th>
+    </tr>
+    <tr>
+        <td>2.0</td>
+        <td>2.1</td>
+        <td>1.0</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2.0</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2.1</td>
+        <td>2.1</td>
+        <td>1.0</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr> 
+    <tr>
+        <td>2.1</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>推荐</td>
+    </tr>     
+</table>
+
+
+###关于KyAnalyzer,Apache Kylin,Mondrian-Kylin 版本功能描述
+<table>
+    <tr>
+    <th>Apache Kylin</th>
+    <th>KyAnalyzer</th>
+    <th>Mondrian-Kylin</th>
+    <th>COUNT_DISTINCT</th>
+    <th>TOP_N</th>
+    <th>正常查询</th>
+    <th></th>
+    </tr>
+    <tr>
+        <td>ALL</td>
+        <td>2.1</td>
+        <td>1.0</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>小于1.5.4.1</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>❎</td>
+        <td>❎</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>1.5.4.1</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr> 
+    <tr>
+        <td>大于1.5.4.1</td>
+        <td>2.1</td>
+        <td>1.1</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>推荐</td>
+    </tr>         
+</table>
+
+
 
 ### 认证
 KyAnalyzer的用户认证是通过KAP认证，所以只需要输入KAP的账号密码即可登录。用户的管理也是通过KAP进行。KAP中的管理员在KyAnalyzer中同样具有Admin角色。
