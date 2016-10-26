@@ -24,7 +24,7 @@ Make sure the following services running in normal state, (login Ambari Portal  
 
 The following parameters should be updated, to meet the KAP resource requirement.
 
-1. For *HDP 2.2*, update *yarn.nodemanager.resource.memeory-mb* to *8192*, *yarn.scheduler.maximum-allocation-mb* to 4096; for *HDP 2.3/2.4*, update YARN-Configs->Settings->Memory Node to *8192*
+1. For *HDP 2.2*, update *yarn.nodemanager.resource.memory-mb* to *8192*, *yarn.scheduler.maximum-allocation-mb* to 4096; for *HDP 2.3/2.4*, update YARN-Configs->Settings->Memory Node to *8192*
 2. For *HDP 2.3/2.4*, update MapReduce2-Configs->Advanced->*MR Map Java Heap Size* and *MR Reduce Java Heap Size* to *-Xmx3072*
 3. If meet *org.apache.hadoop.hbase.security.AccessDeniedException: Insufficient permissions for user 'root (auth:SIMPLE)'*, that means no enough HBase write permission. If you want to disable HBase permission check, please update *hbase.coprocessor.region.classes* and *hbase.coprocessor.master.classes* to empty, and *hbase.security.authentication* to *simple*.
 

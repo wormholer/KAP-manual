@@ -1,41 +1,34 @@
----
-layout: docs15
-title:  Metadata Backup
-categories: howto
-permalink: /docs15/howto/howto_backup_metadata.html
----
-
 ## Metadata Backup
 
 Metadata is the most important data in KAP; Backup metadata is a regular task in daily operation. It is the only way to recover a KAP when the entire metadata is crashed causing KAP service is down due to some mishandling. In general, it is a good practice to backup metadata before each failover or system upgrade. This will ensure that the KAP service can roll back, and in the worst case still maintain the system's robustness.
 
 KAP provides a tool for metadata backup; the usage is as follows：
 
-```
+```shell
 $KYLIN_HOME/bin/metastore.sh backup
 ```
 When see the following message it means a successful backup is take:
 
-```
+```shell
 metadata store backed up to /usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50
 ```
 In the above example, this command will download all of the metadata to the local directory as local files (e.g:/usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50). The directory structure is shown in the following table:
 
-|Directory|Description|
-|:----|:----|
-|project|The basic information of the Projects|
-|model_desc|Description of the Data Models|
-|cube_desc|Description of the Cubes|
-|cube|Information of Cube Instances|
-|cube_statistics|Statistics information of Cube Instances|
-|table|Table definitions|
-|table_exd|Table extended information|
-|table_snapshot|Snapshots of lookup tables|
-|dict|Dictionary of dimension columns|
-|execute|Cube Job definitions|
-|execute_output|Cube Job outputs|
+| Directory       | Description                              |
+| :-------------- | :--------------------------------------- |
+| project         | The basic information of the Projects    |
+| model_desc      | Description of the Data Models           |
+| cube_desc       | Description of the Cubes                 |
+| cube            | Information of Cube Instances            |
+| cube_statistics | Statistics information of Cube Instances |
+| table           | Table definitions                        |
+| table_exd       | Table extended information               |
+| table_snapshot  | Snapshots of lookup tables               |
+| dict            | Dictionary of dimension columns          |
+| execute         | Cube Job definitions                     |
+| execute_output  | Cube Job outputs                         |
 In each directory, will see the metadata files in JSON format：
-```
+```shell
 ls -l /usr/local/kylin/meta_backups/meta_2016_06_10_20_24_50/cube
 -rw-r--r--. 1 root root  2550 Sep 26 07:58 kylin_sales_cube.json
 -rw-r--r--. 1 root root 16602 Sep 29 08:43 tweets_cube1.json
