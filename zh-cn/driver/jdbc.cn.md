@@ -20,7 +20,7 @@ jdbc:kylin://<hostname>:<port>/<project_name>
 
 以下给出一个建立Connection的例子：
 
-```
+```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
 Properties info = new Properties();
 info.put("user", "ADMIN");
@@ -30,7 +30,7 @@ Connection conn = driver.connect("jdbc:kylin://localhost:7070/kylin_project_name
 
 #### 基于Statement的查询
 这里给出一个直接基于Statement进行查询的例子：
-```
+```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
 Properties info = new Properties();
 info.put("user", "ADMIN");
@@ -49,7 +49,7 @@ while (resultSet.next()) {
 #### 基于PreparedStatement的查询
 这里给出一个基于PreparedStatement进行查询的例子：
 
-```
+```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
 Properties info = new Properties();
 info.put("user", "ADMIN");
