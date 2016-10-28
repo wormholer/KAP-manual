@@ -39,6 +39,7 @@
  * [Visualization](molap/visualization.en.md)
 * [Cube Optimization](cube/README)
 # * [TopN](cube/topn.en.md)
+# * [Raw Data](cube/raw_data.en.md)
 # * [Dictionary](cube/dictonary.en.md)
 #* [Advanced Analytics](sql/README.md)
 # * [SQL Window Operator](sql/window.en.md)
