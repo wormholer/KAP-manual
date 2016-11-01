@@ -1,22 +1,20 @@
 ## KAP 2.1 发行说明
+
 ### 下载地址
 
-http://kyligence.io/kyligence-analytics-platform/
+[http:\/\/kyligence.io\/kyligence-analytics-platform\/](http://kyligence.io/kyligence-analytics-platform/)
 
-
-### 新功能
+### KAP 2.1新功能
 
 下面的段落将介绍KAP 2.1新引进的功能
 
 #### Hadoop发行版支持
 
-产品认证：Cloudera CDH 5.7/5.8
+产品认证：Cloudera CDH 5.7\/5.8
 
-兼容性测试：Hortonworks HDP 2.2/2.3/2.4；Microsoft HDInsight；Amazon EMR
+兼容性测试：Hortonworks HDP 2.2\/2.3\/2.4；Microsoft HDInsight；Amazon EMR
 
 #### 升级列式存储引擎
-
-
 
 #### 明细记录查询
 
@@ -33,3 +31,4 @@ KAP基于自身列式存储引擎，及倒排索引等多种索引技术，突�
 #### 集成KyBot客户端
 
 KyBot是Kyligence提供的智能在线服务，提供KAP运行监控、性能优化、智能诊断服务，KyBot客户端简化运维人员收集运行状态信息，降低运维成本。
+
