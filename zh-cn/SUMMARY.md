@@ -12,8 +12,10 @@
  * [KAP 2.0 发行说明](release/KAP_2_0_notes.cn.md)
 * [KAP快速上手](quickstart/README.md)
  * [HDP Sandbox快速上手](quickstart/quickstart_hdp.cn.md)
+<!---
 # * [CDH Sandbox快速上手](quickstart/quickstart_cdh.cn.md)
 # * [Docker容器快速上手](quickstart/quickstart_docker.cn.md)
+-->
  * [Azure体验版快速上手](quickstart/quickstart_azure.cn.md) 
 * [KAP安装](install/README.md)
  * [必备条件](install/hadoop_env.cn.md)
@@ -37,6 +39,7 @@
  * [验证Cube](molap/query.cn.md)
  * [Web查询界面](molap/web.cn.md)
  * [数据展现](molap/visualization.cn.md)
+<!---
 #* [Cube优化](cube/README.md)
 # * [TopN](cube/topn.cn.md)
 # * [明细数据](cube/raw_data.cn.md)
@@ -44,6 +47,7 @@
 #* [高级分析支持](adv/README.md)
 # * [SQL Window操作](sql/window.cn.md)
 # * [SQL Grouping操作](sql/grouping.cn.md)
+-->
 * [REST API](rest/README.md)
  * [访问及安全验证](rest/authentication.cn.md)
  * [查询 API](rest/query_api.cn.md)
@@ -71,14 +75,18 @@
  * [日志](troubleshooting/logging.cn.md)
  * [任务报警](troubleshooting/alerting.cn.md)
  * [技术支持和诊断](troubleshooting/diag.cn.md)
+<!---
 # * [Metrics监控](troubleshooting/metrics.cn.md)
+-->
 * [日常维护](operation/README.md)
  * [基本运维](operation/basic_ops.cn.md)
  * [元数据备份](operation/metadata_backup.cn.md)
  * [元数据恢复](operation/metadata_restore.cn.md)
  * [垃圾清理](operation/storage_cleanup.cn.md)
+<!---
 #* [实践](practice/README.md)
 # * [在AWS上运行Kylin](practice/aws.cn.md)
+-->
 * [常见问题](faq/README.md)
 * [KAP词汇表](GLOSSARY.cn.md)
 * [联系我们](contact/README.md)

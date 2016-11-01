@@ -4,7 +4,7 @@
 
 * [KAP Introduction](introduction/README.md)
  * [KAP Overview](introduction/overview.en.md)
- * [Apache Kylin Introduction](introduction/kylin.en.md)
+ * [Apache Kylin](introduction/kylin.en.md)
  * [Glossary](introduction/concepts.en.md)
  * [Get Support](introduction/get_support.en.md)
 * [KAP Release Notes](release/README.md)
@@ -13,8 +13,10 @@
 * [KAP Quick Start](quickstart/README.md)
  * [Quick Start on HDP](quickstart/quickstart_hdp.en.md)
  * [Quick Start on CDH](quickstart/quickstart_cdh.en.md)
+<!---
 # * [Quick Start on Docker](quickstart/quickstart_docker.en.md)
 # * [Quick Start on Azure Marketplace](quickstart/quickstart_azure.en.md) 
+-->
 * [KAP Installation](install/README.md) 
  * [Requirement](install/hadoop_env.en.md)
  * [Install and Start](install/install_guide.en.md)
@@ -37,7 +39,8 @@
  * [SQL Query](molap/query.en.md)
  * [Query](molap/web.en.md)
  * [Visualization](molap/visualization.en.md)
-* [Cube Optimization](cube/README)
+<!---
+#* [Cube Optimization](cube/README.md)
 # * [TopN](cube/topn.en.md)
 # * [Raw Data](cube/raw_data.en.md)
 # * [Dictionary](cube/dictonary.en.md)
@@ -55,15 +58,20 @@
 #* (TODO) Data Access Drivers
 # * [JDBC Driver](driver/jdbc.cn.md)
 # * [ODBC Driver](driver/odbc.cn.md)
+-->
 * [KyAnalyzer](analyzer/README.md)
  * [How to use KyAnalyzer](analyzer/analyzer.en.md)
+<!---
 #* [BI Integration](integration/README.md)
 # * [PowerBI Integration](integration/powerbi.en.md)
 # * [Tableau8.x Integration](integration/tableau_8.en.md)
 # * [Tableau9.x Integration](integration/tableau_9.en.md)
 # * [Apache Zeppelin Integration](integration/zeppelin.en.md)
+-->
 * [Security Controll](security/README.md)
+<!---
 # * [Manage User](security/user.en.md)
+-->
  * [Integrate with LDAP](security/ldap.en.md)
  * [Manage ACL](security/acl.en.md)
  * [Cell Level Security](security/cell.en.md)
@@ -71,13 +79,19 @@
  * [Logging](troubleshooting/logging.en.md)
  * [Alert](troubleshooting/alerting.en.md)
  * [Techinal Support & Diagnosis](troubleshooting/diag.en.md)
- * [Metrics Monitor](troubleshooting/metrics.en.md)
+<!---
+# * [Metrics Monitor](troubleshooting/metrics.en.md)
+-->
 * [Daily Operation](operation/README.md)
+<!---
 # * [Basic Operations](operation/basic_ops.en.md)
+-->
  * [Metadata Backup](operation/metadata_backup.en.md)
  * [Metadata Restore](operation/metadata_restore.en.md)
+<!---
 # * [Garbage Collection](operation/storage_cleanup.en.md)
 #* [Practice](practice/README.md)
 # * [Kylin on AWS](practice/aws.en.md)
+-->
 * [FAQ](faq/README.md)
 * [Contacts](contact/README.md)

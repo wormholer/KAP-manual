@@ -2,25 +2,25 @@
 
 ### 下载地址
 
+http://kyligence.io/kyligence-analytics-platform/
 
+### KAP 2.0新功能
 
-### 新功能
-
-下面的段落将介绍KAP 2.0 新引进的功能
+下面的段落将介绍KAP 2.0新引进的功能
 
 #### Hadoop发行版支持
 
-产品相互认证：CDH 5.7
+产品认证：Cloudera CDH 5.7
 
-兼容性测试：HDP 2.2/2.3/2.4
+兼容性测试：Hortonworks HDP 2.2/2.3/2.4；Microsoft HDInsight；Amazon EMR
 
-#### 优化的列式存储引擎
+#### 全新的列式存储引擎
 
-采用了全新的基于HDFS的列式存储引擎，不再利用HBase存储索引数据。支持多路复合索引，针对超高基数维度、复杂过滤条件等的场景进行了专门优化，相对*Apache Kylin*，查询性能有几倍到几十倍的提升，在存储空间上也有超过50％的节省。
+采用了全新的基于HDFS的列式存储引擎，不再依赖HBase存储索引数据。支持多路复合索引，针对超高基数维度、复杂过滤条件等的场景进行了专门优化，相对*Apache Kylin*，查询性能有几倍到几十倍的提升，在存储空间上也有超过50％的节省。
 
 #### 集成Saiku
 
-Saiku是一款易用的开源的敏捷BI工具，KAP提供了元数据编辑器，允许向Saiku导入KAP的Cube定义。Saiku是面向MDX查询语言设计的OLAP分析工具，配合mondrian插件，可以将MDX转换为SQL。
+Saiku是一款易用的开源的敏捷BI工具，KAP提供了元数据编辑器，允许导入KAP的Cube定义。Saiku是面向MDX查询语言设计的OLAP分析工具，配合mondrian插件，可以将MDX转换为SQL。
 
 #### 开箱即用的用户管理
 
