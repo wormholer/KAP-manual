@@ -22,7 +22,7 @@
 ### 清理存储器
 第二个工具是存储器清理工具。顾名思义，就是对HBase和HDFS上的资源进行清理。同样的，该工具也有一个delete参数，默认是false。当且仅当delete参数的值是true，工具才会对存储器中的资源真正执行删除操作。该工具的执行方式如下：
 
-```$KYLIN_HOME/bin/kylin.sh org.apache.kylin.storage.hbase.util.StorageCleanupJob [--delete true] [--force true]```
+```$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapStorageCleanupCLI [--delete true] [--force true]```
 第一次执行该工具时建议省去delete参数，这样会只列出所有可以被清理的资源供用户核对，而并不实际进行删除操作。当用户确认无误后，再添加delete参数并执行命令，才会进行实际的删除操作。默认情况下，该工具会清理的资源列表如下：
 
 - 创建时间在2天前，且已无效的HTable
