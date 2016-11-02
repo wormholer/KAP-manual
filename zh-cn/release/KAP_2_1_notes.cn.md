@@ -1,9 +1,5 @@
 ## KAP 2.1 发行说明
 
-### 下载地址
-
-[http:\/\/kyligence.io\/kyligence-analytics-platform\/](http://kyligence.io/kyligence-analytics-platform/)
-
 ### KAP 2.1新功能
 
 下面的段落将介绍KAP 2.1新引进的功能
@@ -12,35 +8,43 @@
 
 产品认证：Cloudera CDH 5.7\/5.8
 
-兼容性测试：Hortonworks HDP 2.2\/2.3\/2.4；Microsoft HDInsight；Amazon EMR
+兼容性测试：Hortonworks HDP 2.2\/2.3\/2.4；Microsoft HDInsight；Amazon EMR；Huawei FusionInsight C50\/C60
 
-#### 基于Apache Kylin 1.5.4.1+
+#### Apache Kylin Core
 
-支持SQL窗口操作、Grouping操作、优化TopN度量等，完整Apache Kylin发布公告请见[链接](http://kylin.apache.org/docs15/release_notes.html)
+KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.4.1+版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。主要新功能如下：
 
-#### 明细记录查询
+1. 支持SQL窗口操作
+2. 支持Grouping操作
+3. 优化TopN度量
 
-KAP基于自身列式存储引擎，及倒排索引等多种索引技术，突破了传统OLAP引擎仅能查询聚合数据的局限，全面地支持了明细数据的查询，优化了对宽表的支持，降低了数据建模的难度，更好地服务数据探索式分析场景。
+#### KyStorage
 
-#### 内置敏捷BI工具KyAnalyzer
+KyStorage是基于HDFS的全新研发的拥有自主知识产权的列式存储引擎，本次更新主要功能如下：
 
-优化了Saiku元数据同步的流程，实现了数据模型自动同步，修复了大量Saiku与KAP SQL不匹配的问题，并将Saiku重命名为KyAnalyzer，作为KAP的内置BI工具。
+1. 支持明细数据查询。KyStorage突破了传统OLAP引擎仅能查询聚合数据的局限，全面地支持了明细数据的查询。
+2. 优化了对宽表的支持。降低了数据建模的难度，更好地服务数据探索式分析场景。
+3. 针对稀疏列等场景优化了编码算法。
 
-#### 单元格级别访问控制
+#### KyAnalyzer
 
-突破传统Kylin只能支持项目和Cube级别的访问权限控制，提供单元格级别的访问控制能力，允许与用户已有账号、权限、组织结构系统深度集成，从而实现对行、列、单元格的访问权限管理。
+本次主要更新如下：
 
-#### 集成KyBot客户端
+1. 优化了元数据同步的流程，实现了数据模型一键同步，不再需要重新定义Data Source
+2. 支持Distinct Count／TopN的查询
+3. 支持报表分享和导出
 
-KyBot是Kyligence提供的智能在线服务，提供KAP运行监控、性能优化、智能诊断服务，KyBot客户端简化运维人员收集运行状态信息，降低运维成本。
+#### KyBot
 
-#### 升级列式存储引擎
+KyBot是Kyligence提供的在线智能自助服务，提供KAP运行监控、性能优化、智能诊断服务，KyBot客户端简化运维人员收集运行状态信息，降低运维成本。KAP 2.1开始集成了KyBot客户端。
 
-针对稀疏列等场景优化编码算法，支持自动选择编码类型。
+#### 安全性、稳定性等其它更新
 
-#### 更多的分析函数
+1. 支持单元格级别访问控制。突破传统Kylin只能支持项目和Cube级别的访问权限控制，提供单元格级别的访问控制能力，允许与用户已有账号、权限、组织结构系统深度集成，从而实现对行、列、单元格的访问权限管理。
+2. 支持Percentile等高级分析函数
 
-支持Percentile等高级分析函数
+### 下载地址
 
+[http:\/\/kyligence.io\/kyligence-analytics-platform\/](http://kyligence.io/kyligence-analytics-platform/)
 
 

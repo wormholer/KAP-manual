@@ -1,9 +1,5 @@
 ## KAP 2.0 发行说明
 
-### 下载地址
-
-http://kyligence.io/kyligence-analytics-platform/
-
 ### KAP 2.0新功能
 
 下面的段落将介绍KAP 2.0新引进的功能
@@ -14,28 +10,39 @@ http://kyligence.io/kyligence-analytics-platform/
 
 兼容性测试：Hortonworks HDP 2.2/2.3/2.4；Microsoft HDInsight；Amazon EMR
 
-#### 基于Apache Kylin 1.5.3
+#### Apache Kylin Core
 
-主要包括支持精确去重度量、全局字典编码、Cube级别配置重写、精简JDBC依赖、改进Hadoop任务状态获取API等，完整Apache Kylin发布公告请见[链接](http://kylin.apache.org/docs15/release_notes.html)
+KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.3版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。主要新功能如下：
 
-#### 全新的列式存储引擎*
+1. 支持精确去重度量
+2. 支持全局字典编码
+3. 支持Cube级别配置重写
+4. 精简JDBC依赖
+5. 通过标准Hadoop API获取任务状态
 
-采用了全新的基于HDFS的列式存储引擎，不再依赖HBase存储索引数据。支持多路复合索引，针对超高基数维度、复杂过滤条件等的场景进行了专门优化，相对*Apache Kylin*，查询性能有几倍到几十倍的提升，在存储空间上也有超过50％的节省。
+#### KyStorage
 
-#### 集成Saiku
+KyStorage是基于HDFS的全新研发的拥有自主知识产权的列式存储引擎，不再依赖HBase存储索引数据。主要新功能如下：
 
-Saiku是一款易用的开源的敏捷BI工具，KAP提供了元数据编辑器，允许导入KAP的Cube定义。Saiku是面向MDX查询语言设计的OLAP分析工具，配合mondrian插件，可以将MDX转换为SQL。
+1. 将存储引擎从HBase透明替换为KyStorage，相对*Apache Kylin*查询性能有几倍到几十倍的提升，存储空间节省超过50%
+2. 支持多路复合索引，针对超高基数维度、复杂过滤条件等的场景进行了专门优化。
 
-#### 开箱即用的用户管理
+#### KyAnalyzer
 
-内置用户友好的管理界面，快速配置用户账号和权限，实现开箱即用。
+KyAnalyzer是基于开源软件Saiku二次开发的敏捷BI工具，Saiku仅支持MDX查询语言，需要配合mondrian创建，将MDX转换为SQL。主要新功能如下：
 
-#### 支持多国语言
+1. 支持导入KAP中的Cube定义
+2. 提供元数据编辑器，允许在线编辑所导入的Cube定义
+3. 发布KAP兼容的kylin-mondrian插件
+4. 集成了KAP用户认证系统
 
-支持中英两种语言，支持可扩展语言包。
+#### 安全性、稳定性及其它更新
 
-#### Job引擎高可用
+1. 开箱即用的用户管理。内置用户友好的管理界面，快速配置用户账号和权限，实现开箱即用。
+2. 支持多国语言。支持中英两种语言，支持可扩展语言包。
+3. Job引擎高可用。支持基于ZooKeeper的Job引擎高可用，自动恢复。
 
-支持基于ZooKeeper的Job引擎高可用，自动恢复。
 
-\* 为KAP Plus版功能
+### 下载地址
+
+http://kyligence.io/kyligence-analytics-platform/
