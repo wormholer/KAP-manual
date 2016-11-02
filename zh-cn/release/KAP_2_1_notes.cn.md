@@ -14,7 +14,9 @@
 
 兼容性测试：Hortonworks HDP 2.2\/2.3\/2.4；Microsoft HDInsight；Amazon EMR
 
-#### 升级列式存储引擎
+#### 基于Apache Kylin 1.5.4.1+
+
+支持SQL窗口操作、Grouping操作、优化TopN度量等，完整Apache Kylin发布公告请见[链接](http://kylin.apache.org/docs15/release_notes.html)
 
 #### 明细记录查询
 
@@ -31,4 +33,14 @@ KAP基于自身列式存储引擎，及倒排索引等多种索引技术，突�
 #### 集成KyBot客户端
 
 KyBot是Kyligence提供的智能在线服务，提供KAP运行监控、性能优化、智能诊断服务，KyBot客户端简化运维人员收集运行状态信息，降低运维成本。
+
+#### 升级列式存储引擎
+
+针对稀疏列等场景优化编码算法，支持自动选择编码类型。
+
+#### 更多的分析函数
+
+支持Percentile等高级分析函数
+
+
 

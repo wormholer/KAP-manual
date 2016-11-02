@@ -14,7 +14,11 @@ http://kyligence.io/kyligence-analytics-platform/
 
 兼容性测试：Hortonworks HDP 2.2/2.3/2.4；Microsoft HDInsight；Amazon EMR
 
-#### 全新的列式存储引擎
+#### 基于Apache Kylin 1.5.3
+
+主要包括支持精确去重度量、全局字典编码、Cube级别配置重写、精简JDBC依赖、改进Hadoop任务状态获取API等，完整Apache Kylin发布公告请见[链接](http://kylin.apache.org/docs15/release_notes.html)
+
+#### 全新的列式存储引擎*
 
 采用了全新的基于HDFS的列式存储引擎，不再依赖HBase存储索引数据。支持多路复合索引，针对超高基数维度、复杂过滤条件等的场景进行了专门优化，相对*Apache Kylin*，查询性能有几倍到几十倍的提升，在存储空间上也有超过50％的节省。
 
@@ -33,3 +37,5 @@ Saiku是一款易用的开源的敏捷BI工具，KAP提供了元数据编辑器�
 #### Job引擎高可用
 
 支持基于ZooKeeper的Job引擎高可用，自动恢复。
+
+\* 为KAP Plus版功能
