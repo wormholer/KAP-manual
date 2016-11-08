@@ -24,5 +24,5 @@ KAP使得分析师及用户能以简洁而快速的方式分析海量数据。�
 
 KAP的部署不需要在现有Hadoop集群上安装任何新的组件，更不需要在数据节点或其他节点上安装Agent等，所有与集群的操作都通过标准API完成，从而使得对现有集群的影响最小化，也为快速部署带来了可能。
 
-更多信息，请访问Kyligence网站: [http:\/\/kyligence.io\/](http://kyligence.io/)
+更多信息，请访问Kyligence网站: [http://kyligence.io/](http://kyligence.io/)
 

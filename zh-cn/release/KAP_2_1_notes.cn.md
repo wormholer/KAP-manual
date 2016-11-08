@@ -8,17 +8,17 @@
 
 产品认证：Cloudera CDH 5.7/5.8
 
-兼容性测试：Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+；Hortonworks HDP 2.2/2.3/2.4；Microsoft HDInsight；Amazon EMR；Huawei FusionInsight C50/C60
+兼容性测试：Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+；Hortonworks HDP 2.2/2.3/2.4；Microsoft HDInsight；Amazon EMR；Huawei FusionInsight C50/C60；亚信 OCDP 2.4
 
-#### Apache Kylin Core
+#### Apache Kylin Core 升级
 
-KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.4.1+版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。主要新功能如下：
+KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.4.1版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。主要新功能如下：
 
 1. 支持SQL Window操作
 2. 支持SQL Grouping操作
 3. 优化TopN度量
 
-#### KyStorage
+#### KyStorage 列式存储引擎
 
 KyStorage是Kyligence基于HDFS全新研发的拥有自主知识产权的列式存储引擎。
 
@@ -28,7 +28,7 @@ KyStorage是Kyligence基于HDFS全新研发的拥有自主知识产权的列式�
 2. 优化了对宽表的支持。降低了数据建模的难度，更好地服务数据探索式分析场景。
 3. 针对稀疏列等场景优化了编码算法。
 
-#### KyAnalyzer
+#### KyAnalyzer 敏捷BI工具
 
 KyAnalyzer是Kyligence研发的敏捷BI工具。
 
@@ -40,11 +40,11 @@ KyAnalyzer是Kyligence研发的敏捷BI工具。
 
 #### KyBot整合
 
-KyBot是Kyligence提供的在线智能自助服务，为Apache Kylin和KAP系统提供监控、性能优化、智能诊断服务。
+KyBot是Kyligence提供的在线智能诊断和优化服务，为Apache Kylin和KAP系统提供监控、性能优化、智能诊断服务。
 
 KyBot客户端简化运维人员收集运行状态信息，降低运维成本。KAP 2.1集成了KyBot客户端。
 
-#### 安全性、稳定性等其它更新
+#### 更多高级企业版功能更新
 
 1. 支持单元格级别访问控制。突破传统Kylin只能支持项目和Cube级别的访问权限控制，提供单元格级别的访问控制能力，允许与用户已有账号、权限、组织结构系统深度集成，从而实现对行、列、单元格的访问权限管理。
 2. 支持Percentile等高级分析函数

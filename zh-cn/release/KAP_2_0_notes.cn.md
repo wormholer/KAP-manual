@@ -10,7 +10,7 @@
 
 兼容性测试：Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+；Hortonworks HDP 2.2/2.3/2.4；Microsoft HDInsight；Amazon EMR
 
-#### Apache Kylin Core
+#### Apache Kylin Core 升级
 
 KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布基于1.5.3版本，完整发布公告参见[链接](http://kylin.apache.org/docs15/release_notes.html)。
 
@@ -22,7 +22,7 @@ KAP基于Apache Kylin内核引擎，与Apache Kylin完全兼容，本次发布�
 4. 精简JDBC依赖
 5. 通过标准Hadoop API获取任务状态
 
-#### KyStorage
+#### KyStorage 列式存储引擎
 
 KyStorage是Kyligence基于HDFS全新研发的拥有自主知识产权的列式存储引擎。
 
@@ -31,9 +31,9 @@ KyStorage是Kyligence基于HDFS全新研发的拥有自主知识产权的列式�
 1. 将存储引擎从HBase透明替换为KyStorage，相对*Apache Kylin*查询性能有几倍到几十倍的提升，存储空间节省超过50%
 2. 支持多路复合索引，针对超高基数维度、复杂过滤条件等的场景进行了专门优化。
 
-#### KyAnalyzer
+#### KyAnalyzer 敏捷BI工具
 
-KyAnalyzer是Kyligence研发的敏捷BI工具。
+KyAnalyzer是Kyligence研发的敏捷BI自助多维分析工具。
 
 主要新功能如下：
 
@@ -43,7 +43,7 @@ KyAnalyzer是Kyligence研发的敏捷BI工具。
 4. 集成了KAP用户认证系统
 5. 支持MDX语法
 
-#### 安全性、稳定性及其它更新
+#### 更多高级企业版功能更新
 
 1. 开箱即用的用户管理。内置用户友好的管理界面，快速配置用户账号和权限，实现开箱即用。
 2. 支持多国语言。支持中英两种语言，支持可扩展语言包。
