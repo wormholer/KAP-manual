@@ -1,18 +1,9 @@
 ## KyAnalyzer Self-service Agile BI Tools
 
-KyAnalyzer is developed based on open source MOLAP Tools [Saiku](https://github.com/OSBI/saiku). KyAnalyzer has integrated with KAP(Kylin) seemlessly, to make user analyze data easier and quicker.
+KyAnalyzer allow user analyze data easier and quicker.
 
-Compared with Saiku, KyAnalyzer has included the following enhancements and bug fixes:
-
-- Support sync cube from KAP
-- Support online editing Schema
-- Support integrate KAP user authentication
-- Support Distinct Count
-- Support embed report into third-party dashboard
-- Fix many Saiku bugs
 
 ###Pre-Condition
-
 * KAP should be version 2.1 or later
 * Apache Kylin version should be 1.5.4.1 or later.
 * KyAnalyzer does not supprt *left join*, you should use *inner join* when create cube mode in KAP.

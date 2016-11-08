@@ -1,14 +1,7 @@
 ## KyAnalyzer 自助式敏捷BI工具
 
-KyAnalyzer是基于开源多维分析工具[Saiku](https://github.com/OSBI/saiku)进行二次开发，无缝集成KAP（Kylin），让用户以最简单快捷的方式访问KAP的数据。
-KyAnalyzer相对开源Saiku主要包含以下更新：
+KyAnalyzer无缝集成KAP（Kylin），让用户以最简单快捷的方式访问KAP的数据。
 
-- 支持KAP数据模型同步到Saiku
-- 支持在线编辑Schema文档
-- 支持Saiku集成KAP的用户访问验证机制
-- 支持Distinct Count
-- 支持报表嵌入到第三方平台
-- 修复了若干Saiku Bug
 
 ###使用KyAnalyzer的前提条件
 * KAP版本需为2.1或之后版本
