@@ -1,4 +1,4 @@
-## 	KAP 2.1 发行说明
+## KAP 2.1 发行说明
 
 ### KAP 2.1新功能
 
@@ -12,15 +12,15 @@
 
 兼容性测试：
 
-​	Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
+​	Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+；
 
-​	Hortonworks HDP 2.2/2.3/2.4
+​	Hortonworks HDP 2.2/2.3/2.4；
 
-​	Microsoft HDInsight
+​	Microsoft HDInsight；
 
-​	Amazon EMR
+​	Amazon EMR；
 
-​	华为 FusionInsight C50/C60
+​	Huawei FusionInsight C50/C60；
 
 ​	亚信 OCDP 2.4
 
