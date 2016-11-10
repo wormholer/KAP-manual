@@ -12,7 +12,7 @@ KAP introduces new columnar storage engine *KyStorage*, supports multiplexed ind
 
 KAP which is built on *KyStorage* and inverted index technologies, breaks the traditional OLAP engine‘s limitations which query aggregation data only. It supports raw data query, optimizes the support for super wide table, reduces the difficulties of data modeling, provides better service for data exploration and analyses.
 
-**KyAnalyzer: Agile self-serve OLAP BI tool**
+**KyAnalyzer: Agile Self-serve OLAP BI Tool**
 
 Kyligence Analyzer as the built in its agile BI tool *KyAnalyzer*, users can explore multiple data sources interactively, and design report by familiar drag-and-drop style. Supports multidimensional analysis methods such as drilling, rolling, slicing, rotating, and so on. Provides dozens of reporting charts, simplifies multi-format data sharing, improvies big data analysis productivitity greatly.
 
@@ -32,7 +32,7 @@ KAP is compatible with open source Hadoop and mainstream commercial Hadoop distr
 
 ### KAP vs. Apache Kylin
 
-|                            | Apache Kylin                      | KAP企业版                                | KAP高级企业版                                 |
+|                            | Apache Kylin                      | KAP                                   | KAP Plus                                 |
 | -------------------------- | --------------------------------- | ------------------------------------- | ---------------------------------------- |
 | **Position**               | OLAP on Hadoop                    | Data Warehouse on Hadoop              | Data Warehouse on Hadoop                 |
 | **Core**                   | Apache Kylin                      | Apache Kylin                          | Apache Kylin                             |
@@ -44,7 +44,7 @@ KAP is compatible with open source Hadoop and mainstream commercial Hadoop distr
 | **Wide Table**             | Limited                           | Limited                               | **Efficiently Support**                  |
 | **Raw Data Query**         | Limited                           | Limited                               | **Efficiently Support**                  |
 | **Security**               | Limited                           | **LDAP/Kerberos/Cell Level Security** | **LDAP/Kerberos/Cell Level Security**    |
-| **BI Tool**                | No built-in                       | **Built-in Agile BI tool：KyAnalyzer** | **Built-in Agile BI tool：KyAnalyzer**    |
+| **BI Tool**                | No built-in                       | **Built-in Agile BI：KyAnalyzer**      | **Built-in Agile BI：KyAnalyzer**         |
 | **Technical Support**      | Open source community, no SLA     | SLA with 5*8 or 7\*24                 | SLA with 5\*8 or 7\*24                   |
 | **KyBot Service**          | Not included, Purchase seperately | Included                              | Included                                 |
 
