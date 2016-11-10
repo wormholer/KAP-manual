@@ -8,18 +8,18 @@ KAP需要一个状态良好的Hadoop集群做为运行环境。为获得更好�
 * 创建和操作HBase表
 * 递交MapReduce任务
 
-## 认证的和已测试的Hadoop企业版
+### 认证的和已测试的Hadoop企业版
 * Cloudera CDH 5.7 / 5.8
 * Hortonworks HDP 2.2 / 2.3 / 2.4 
 
 
-## 兼容的Hadoop版本
+### 兼容的Hadoop版本
 * Hadoop: 2.4 - 2.7
 * Hive: 0.13 - 1.2
 * HBase: 0.98/0.99, 1.1.x
 * JDK: 1.7+
 
-## YARN和MapReduce配置
+### YARN和MapReduce配置
 KAP提交任务到Hadoop集群进行计算，需一定的内存资源。请保证YARN的配置满足如下最小条件：
 
 - Node Memory Resource (yarn.nodemanager.resource.memory-mb) >= 8192 MB
@@ -30,12 +30,19 @@ KAP提交任务到Hadoop集群进行计算，需一定的内存资源。请保�
 - 虚拟机分配至少10GB内存和2个处理器
 - Container Virtual CPU Cores (yarn.nodemanager.resource.cpu-vcores) >= 8
 
-## 推荐硬件配置
+### Hive配置
+
+对于使用*Beeline*作为Hive客户端的情况，需要赋予KAP一定的操作权限，请配置hive，增加
+
+```hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join.noconditionaltask.*|mapred.output.compression.type|mapreduce.job.split.metainfo.maxsize```
+
+### 推荐硬件配置
+
 - 两路Intel至强处理器，6核（或8核）CPU, 主频2.3GHz或以上
 - 64GB ECC DDR3以上
 - 至少1个1TB的SAS硬盘(3.5寸), 7200RPM，RAID1
 - 至少两个1GbE以太网电口
 
-## 推荐的Linux发行版
+### 推荐的Linux发行版
 * Red Hat Enterprise Linux 6.4, 6.5
 * CentOS 6.4, 6.5
