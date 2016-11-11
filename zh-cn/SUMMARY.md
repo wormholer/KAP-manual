@@ -67,6 +67,8 @@
     * [元数据恢复](operation/metadata_restore.cn.md)
     * [垃圾清理](operation/storage_cleanup.cn.md)
 * [常见问题](faq/README.md)
+    * [Apache Kylin FAQ](faq/kylin_faq.cn.md)
+    * [KAP FAQ](faq/kap_faq.cn.md)
 * [KAP词汇表](GLOSSARY.cn.md)
 * [联系我们](contact/README.md)
 
