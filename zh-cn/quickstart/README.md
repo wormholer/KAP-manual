@@ -8,6 +8,4 @@
 
 [CDH Sandbox快速上手](quickstart_cdh.cn.md)
 
-[Docker容器快速上手](quickstart_docker.cn.md)
-
 [Azure体验版快速上手](quickstart_azure.cn.md)
