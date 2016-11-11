@@ -93,7 +93,7 @@ cd kap-{version}-{hbase}
 bin/kylin.sh start
 ```
 
-如果KAP能够顺利地启动，则门户已可以访问。默认地址为 http://{hostname}:7070/kylin，默认用户名为 “ADMIN”，初始密码为 “KYLIN”。
+如果KAP能够顺利地启动，则门户已可以访问。默认地址为 [http://{hostname}:7070/kylin](http://{hostname}:7070/kylin)，默认用户名为 “ADMIN”，初始密码为 “KYLIN”。
 
 ## 构建Cube
 
