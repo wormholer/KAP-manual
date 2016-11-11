@@ -39,7 +39,7 @@ KAP is compatible with open source Hadoop and mainstream commercial Hadoop distr
 | **Query Performance**      | Sub-second query latency          | Same with Apache Kylin                | **Faster 3 ~ 40 times than Apache Kylin** |
 | **Parallel Computing**     | Coprocessor                       | Coprocessor                           | **Spark**                                |
 | **Storage Engine**         | HBase                             | HBase                                 | **Columnar Storage Engine：KyStorage**    |
-| **Index**                  | Single Index                      | 单索引                                   | **Efficiently Support**                  |
+| **Index**                  | Single Index                      | Single Index                          | **Efficiently Support**                  |
 | **Ultra High Cardinality** | Limited                           | Limited                               | **Efficiently Support**                  |
 | **Wide Table**             | Limited                           | Limited                               | **Efficiently Support**                  |
 | **Raw Data Query**         | Limited                           | Limited                               | **Efficiently Support**                  |

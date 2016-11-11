@@ -25,13 +25,13 @@ Make sure the following services running in normal state, (login Ambari Portal  
 The following parameters should be updated, to meet the KAP resource requirement.
 
 1. For *CDH 5.7/5.8*, update *yarn.nodemanager.resource.memory-mb* to 8192 (or 8 GB on *cloudera manager*), *yarn.scheduler.maximum-allocation-mb* to 4096 (or 4 GB on *cloudera manager*), *mapreduce.reduce.memory.mb* to 700, *mapreduce.reduce.java.opts* to 512.
-2. If meet *org.apache.hadoop.hbase.security.AccessDeniedException: Insufficient permissions for user 'root (auth:SIMPLE)'*, that means no enough HBase write permission. If you want to disable HBase permission check, please update *hbase.coprocessor.region.classes* and *hbase.coprocessor.master.classes* to empty, and *hbase.security.authentication* to *simple*.
+2. If meet *org.apache.hadoop.hbase.security.AccessDeniedException: Insufficient permissions for user 'root (auth:SIMPLE)'*, that means no enough HBase write permission. If you want to disable HBase permission check, please update *hbase.coprocessor.region.classes* and *hbase.coprocessor.master.classes* to *empty*, and *hbase.security.authentication* to *simple*.
 
 
 
 ### Install KAP
 
-To obtain KAP package, please refer to [KAP release notes]((../release/README.md)). There may some minor differences between KAP and KAP plus. 
+To obtain KAP package, please refer to [KAP release notes]((../release/README.md)). There may have some minor differences between KAP and KAP plus. 
 
 Copy KAP binary package into the server mentioned above, and decompress to /usr/local
 
@@ -101,7 +101,7 @@ Logon KAP web, select project *learn_kylin* in the project dropdown list(left up
 
 ![](images/kap_learn_kylin.jpg)
 
-At the **Model** page, select the sample cube Cube *kylin_sales_cube*, click *Action* -> *Build*, pick up a end date later than *2014-01-01*(to cover all 10000 sample records), and submmit the build job.
+At the **Model** page, select the sample Cube *kylin_sales_cube*, click **Action -> Build**, pick up a end date later than **2014-01-01**(to cover all 10000 sample records), and submmit the build job.
 
 ![](images/kap_build_cube.jpg)
 
@@ -109,7 +109,7 @@ At the **Monitor** page, click *Refresh* to check the build progress, until 100%
 
 ## Execute SQL
 
-When the cube is built successfully, at the **Insight** page, thress sample hive tables would be shown at the left panel. User could input query statements against these tables. For example: 
+When the cube is built successfully, at the **Insight** page, three sample hive tables would be shown at the left panel. User could input query statements against these tables. For example: 
 
 ```sql
 select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt

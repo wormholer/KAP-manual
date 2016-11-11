@@ -128,7 +128,7 @@ At the **Monitor** page, click *Refresh* to check the build progress, until 100%
 
 ## Execute SQL
 
-When the cube is built successfully, at the **Insight** page, thress sample hive tables would be shown at the left panel. User could input query statements against these tables. For example: 
+When the cube is built successfully, at the **Insight** page, three sample hive tables would be shown at the left panel. User could input query statements against these tables. For example: 
 
 ```sql
 select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt
