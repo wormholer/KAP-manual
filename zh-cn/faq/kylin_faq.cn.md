@@ -2,7 +2,7 @@
 
 以下收集了用户在学习使用Apache Kylin过程中经常遇到的一些问题，大部分原理类问题也适用于KAP。
 
-### 原理类
+### 原理方面
 
 **Q：Kylin的核心思想空间换时间是怎么工作的，如何做到大数据O(1)的查询复杂度？**
 
@@ -28,7 +28,7 @@
 
 **Q：Kylin高级功能还开源吗？**
 
-### 设计类
+### 设计方面
 
 **Q: Kylin最大能支持的维度有多少？**
 
@@ -71,7 +71,29 @@ A：使用工具(如sqoop)先将数据从RDBMS导入到Hive
 
 A: 未来版本将会支持
 
-### 整合类
+### 查询方面
+
+**Q：Kylin支持MDX吗？**
+
+A：暂时不支持，Kylin倾向于提供标准的SQL接口，可以通过开源的modrain组件将MDX转换为SQL。
+
+**Q：怎么查看Kylin的执行计划？**
+
+A：可以在查询的前面添加``explain plan for``以获得执行计划，例如```explain plan for select count(*) from airline```。但是执行计划的结果的展示并没有被优化，可以通过前端的``导出结果``功能查看。
+
+**Q：Kylin支持模糊查询吗？**
+
+A：Kylin支持like做为过滤条件。
+
+**Q：支持的SQL标准是什么？有哪些函数？**
+
+A：kylin使用*Apache Calcite*做为SQL parser，因此kylin的sql标准可以参考https://calcite.apache.org/docs/reference.html。
+
+**Q：支持Distinct Count吗？**
+
+支持，kylin内置特殊的Distinct Count度量来处理超大规模数据下的Distinct Count问题。
+
+### 整合方面
 
 **Q：Kylin可以和Pentaho整合吗？**
 
@@ -87,7 +109,7 @@ KAP已经内置了敏捷BI平台KyAnalyzer，不再需要另外开发或购买BI
 
 A：需要对Mondrian进行二次开发，网上已经有很多分享，很简单。具体内容搜一下。
 
-### 对比类
+### 对比方面
 
 **Q：Kylin与Spark、Impala有什么区别？**
 
@@ -101,7 +123,7 @@ A：从业内的使用经验来看，目前Hadoop平台上可用于查询分析�
 
 ![复杂度](images/complexity.png)
 
-### 其它
+### 其它方面
 
 **Q：Kylin可以跑TPCH吗？**
 
