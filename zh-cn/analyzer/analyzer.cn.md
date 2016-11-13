@@ -11,10 +11,10 @@ KyAnalyzer无缝集成KAP（Kylin），让用户以最简单快捷的方式访�
 
 ### 安装
 通过Kyligence公司获得定制版的KyAnalyzer安装包 KyAnalyzer-{version}.zip，同时需要下载对应KAP版本的Mondrian包，请下载mondrian-kylin-{version}.jar。对应Mondrian包可在GitHub kylin-mondrian 仓库: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/) 上获得。
-解压KyAnalyzer安装包，把下载的mondrian-kylin对应的jar包拷到 saiku-server/tomcat/webapps/saiku/WEB-INF/lib 目录下, 版本若有变动请下载最新版本。
+解压KyAnalyzer安装包，把下载的mondrian-kylin对应的jar包拷到 server/tomcat/webapps/saiku/WEB-INF/lib 目录下, 版本若有变动请下载最新版本。
 在WEB-INF目录下有个配置文件*kyanalyzer-beans.properties*， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，*kap.port*为KAP REST API的端口，默认7070。
 
-通过saiku-server 目录下的 start-saiku.sh启动KyAnalyzer，默认端口为8080,可通过 http://{hostname}:8080 访问页面。如果要停掉应用执行stop-saiku.sh即可。如果在启动过程中遇到问题页面打不开，可以到tomcat/logs目录下查看具体出错信息。
+通过server 目录下的 start-analyzer.sh启动KyAnalyzer，默认端口为8080,可通过 http://{hostname}:8080 访问页面。如果要停掉应用执行stop-analyzer.sh即可。如果在启动过程中遇到问题页面打不开，可以到tomcat/logs目录下查看具体出错信息。
 
 
 根目录下文件信息
@@ -131,11 +131,11 @@ KyAnalyzer的用户认证是通过KAP认证，所以只需要输入KAP的账号�
 
 ### 管理控制台
 该页面仅管理员可见。
-为了同步KAP中的Cube，针对每一个Cube，Saiku中都必须创建一个对应的schema文件，同时配置对应的数据源(data source)。Saiku将通过这些配置信息组成SQL发送给KAP。KyAnalyzer将这一块自动化掉，用户不需要手动创建schema以及数据源。只需要点击页面左侧的`Sync Cubes From Kylin`，右侧下拉框会列出KAP中所有的Project。
+为了同步KAP中的Cube，针对每一个Cube，KyAnalyzer中都必须创建一个对应的schema文件，同时配置对应的数据源(data source)。KyAnalyzer将通过这些配置信息组成SQL发送给KAP。KyAnalyzer将这一块自动化掉，用户不需要手动创建schema以及数据源。只需要点击页面左侧的`同步Cube信息`，右侧下拉框会列出KAP中所有的Project。
 
 ![](images/admin_sync.png)
 
-选中项目后，点击绿色的按钮`Sync Cubes From Kylin`，KAP中该项目下所有状态为*READY*的Cube信息将会被同步到过来。
+选中项目后，点击绿色的按钮`同步Cube信息`，KAP中该项目下所有状态为*READY*的Cube信息将会被同步到过来。
 
 ![](images/sync_done_tip.png)
 

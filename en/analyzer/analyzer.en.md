@@ -10,10 +10,10 @@ KyAnalyzer allow user analyze data easier and quicker.
 
 ### Install
 Get the package KyAnalyzer-{version}.zip from Kyligence Inc, and download the customized mondrian mondrian-kylin-{version}.jar from GitHub kylin-mondrian repository: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/), if the version is updated, please use the latest jar.
-Unzip KyAnalyzer package, copy mondrian-kylin-{version}.jar into saiku-server/tomcat/webapps/saiku/WEB-INF/lib.
+Unzip KyAnalyzer package, copy mondrian-kylin-{version}.jar into server/tomcat/webapps/saiku/WEB-INF/lib.
 Edit kyanalyzer-beans.properties in WEB-INF, update KAP host and port to KAP server. The key *kap.host* is the IP address of KAP, and key *kap.port* is the port of KAP REST API, default port is 7070.
 
-Run start-saiku.sh under saiku-server to start KyAnalyzer, the default port is 8080. When the server is started, please visit http://{hostname}:8080. If you want to stop the server, please run stop-saiku.sh.
+Run start-analyzer.sh under server to start KyAnalyzer, the default port is 8080. When the server is started, please visit http://{hostname}:8080. If you want to stop the server, please run stop-analyzer.sh.
 
  If the server is not started normally, please check the logs under tomcat/logs for details.
 
@@ -130,7 +130,7 @@ KyAnalyzer authenticates user at KAP side, so you can use KAP user and password 
 
 ### Admin Page
 Only the admin could visit this page.
-To import the Cube from KAP, Saiku needs to create schema and datasource for each cube in KAP by default. KyAnalyzer automatize the flow, user don't have to write schema by themeselves.
+To import the Cube from KAP, KyAnalyzer needs to create schema and datasource for each cube in KAP by default. KyAnalyzer automatize the flow, user don't have to write schema by themeselves.
 Click `Sync Cubes From Kylin` on the left side, the right panel will list all projects from KAP.
 
 ![](images/admin_sync.png)
