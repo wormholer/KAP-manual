@@ -75,7 +75,7 @@ A: 未来版本将会支持
 
 **Q：Kylin支持MDX吗？**
 
-A：暂时不支持，Kylin倾向于提供标准的SQL接口，可以通过开源的modrain组件将MDX转换为SQL。
+A：Kylin通过第三方Mondrian提供MDX支持，可以参考Kylin官方网站的相关文档。
 
 **Q：怎么查看Kylin的执行计划？**
 
@@ -87,11 +87,11 @@ A：Kylin支持like做为过滤条件。
 
 **Q：支持的SQL标准是什么？有哪些函数？**
 
-A：kylin使用*Apache Calcite*做为SQL parser，因此kylin的sql标准可以参考https://calcite.apache.org/docs/reference.html。
+A：Kylin支持SQL92标准，使用Apache Calcite做为sql parser，因此kylin的sql标准可以参考https://calcite.apache.org/docs/reference.html
 
 **Q：支持Distinct Count吗？**
 
-支持，kylin内置特殊的Distinct Count度量来处理超大规模数据下的Distinct Count问题。
+支持，kylin提供两种统计去重（count distinct）指标的方式：基于HyperLogLog算法的模糊去重和基于Bitmap的精确去重。两种方式进行计算时需要的资源和性能不一样，用户可以根据需要选择使用。具体使用方式及说明参见http://kylin.apache.org/blog/2016/08/01/count-distinct-in-kylin 
 
 ### 整合方面
 
@@ -122,6 +122,10 @@ A：从业内的使用经验来看，目前Hadoop平台上可用于查询分析�
 各种技术的计算时间复杂度对比如下图所示。从大数据背景来看，网络日志、系统日志、物联网等各种数据在飞速而持续的产生着，从而对于大数据查询分析来说，其面对的数据量将是一个爆发式的增长模式，因此，预计算这种能够屏蔽数据量爆发增长带来的计算压力，保持计算时间复杂度O(1)的技术将是最理想也是最合适的技术。而Apache Kylin，是目前Hadoop生态系统里唯一采用预计算这种技术的查询分析引擎，开源之后迅速成为Apache开源社区的顶级项目，并且在全球众多大型互联网、电信、金融企业里得到了广泛应用。
 
 ![复杂度](images/complexity.png)
+
+**Q：Kylin与Druid有什么区别？**
+
+A：Druid最初的设计是为了实时分析，Kyiln更关注解决OLAP问题；最初Druid可以支持实时流Kafka，现在Kylin也支持直接从Kafka读取消息，具备实时构建Cube的能力，提供近实时的分析处理能力；Druid使用位图索引作为内部数据结构，Kylin也使用位图为Cube建立索引；Druid使用自己定义的查询语言，而Kylin支持ANSI SQL；Druid在支持表连接方面有限制；Kylin支持星型模型；Druid与先用的BI工具集成不够友好，Kylin可以很好地支持大部分BI工具，如Tableau，Excel；由于Kylin支持MOLAP Cube，在超大规模数据集上的复杂查询具备极高的性能。而Druid需要扫描全部索引，如果数据集太大，或者查询范围太大，则性能损失更大；Kylin依赖于Hadoop构建Cube和HBase存储索引，Druid采用了自己的计算和存储技术，对于已经部署了Hadoop和HBase的情况，Kyiln的部署只是很小的额外工作，而Druid需要重新部署完整的集群。
 
 ### 其它方面
 
