@@ -51,6 +51,8 @@
 * [与第三方系统集成](integration/readme.md)
     * [Tableau8.x集成](integration/tableau_8.cn.md)
     * [Tableau9.x集成](integration/tableau_9.cn.md)
+    * [Tableau10.x集成](integration/tableau_10.cn.md)
+    * [Excel 2016集成](integration/Excel 2016.cn.md)
     * [PowerBI集成](integration/powerbi.cn.md)
     * [Apache Zeppelin集成](integration/zeppelin.cn.md)
 * [安全控制](security/README.md)
