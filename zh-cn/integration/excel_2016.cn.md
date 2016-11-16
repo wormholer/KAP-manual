@@ -9,7 +9,7 @@ Microsoft Excel 是当今Windows平台上最流行的数据处理软件之一，
 1. 从微软官网下载（Excel 2016 内置了Power Query），单击`从其他`下拉按钮，并选择`从 ODBC`项。
    ![](images/excel_2016/excel_1.PNG)
 
-2. 在弹出的`从 ODBC`数据连接向导中选择数据源名称`kylin` ，也可以点击`高级选项`在SQL文本框中输入您想要执行的SQL语句，单击`确定`，SQL的执行结果就会立即加载到Excel的数据表中。
+2. 在弹出的`从 ODBC`数据连接向导中选择数据源名称`kylin` （请注意：DSN指向固定的数据库，如需更换连接的数据库请重建ODBC连接）；也可以点击`高级选项`，在连接字符串文本框中输入所需数据库的对应信息。此外，还可以在SQL文本框中输入您想要执行的SQL语句，单击`确定`，SQL的执行结果就会立即加载到Excel的数据表中。
 
    ![](images/excel_2016/excel_3.png)
    ![](images/excel_2016/excel_4.PNG)
