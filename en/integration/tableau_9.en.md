@@ -1,18 +1,10 @@
----
-layout: docs15
-title:  Tableau 9
-categories: tutorial
-permalink: /docs15/tutorial/tableau_91.html
----
+# Integration with Tableau 9.x 
 
 Tableau 9.x has been released a while, there are many users are asking about support this version with Apache Kylin. With updated Kylin ODBC Driver, now user could interactive with Kylin service through Tableau 9.x.
 
-### For Tableau 8.x User
-Please refer to [Kylin and Tableau Tutorial](./tableau.html) for detail guide.
-
 ### Install Kylin ODBC Driver
 Refer to this guide: [Kylin ODBC Driver Tutorial](./odbc.html).
-Please make sure to download and install Kylin ODBC Driver __v1.2__. If you already installed ODBC Driver in your system, please uninstall it first. 
+Please make sure to download and install Kylin ODBC Driver __v1.5__. If you already installed ODBC Driver in your system, please uninstall it first. 
 
 ### Connect to Kylin Server
 Connect Using Driver: Start Tableau 9.1 desktop, click `Other Database(ODBC)` in the left panel and choose KylinODBCDriver in the pop-up window. 

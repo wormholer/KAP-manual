@@ -1,24 +1,18 @@
----
-layout: docs15
-title:  Tableau 8
-categories: tutorial
-permalink: /docs15/tutorial/tableau.html
----
+# Integration with Tableau 8.x
 
 > There are some limitations of Kylin ODBC driver with Tableau, please read carefully this instruction before you try it.
-> 
+>
 > * Only support "managed" analysis path, Kylin engine will raise exception for unexpected dimension or metric
 > * Please always select Fact Table first, then add lookup tables with correct join condition (defined join type in cube)
 > * Do not try to join between fact tables or lookup tables;
 > * You can try to use high cardinality dimensions like seller id as Tableau Filter, but the engine will only return limited seller id in Tableau's filter now.
 
-### For Tableau 9.x User
-Please refer to [Tableau 9.x Tutorial](./tableau_91.html) for detail guide.
-
-### Step 1. Install Kylin ODBC Driver
+### Install Kylin ODBC Driver
 Refer to this guide: [Kylin ODBC Driver Tutorial](./odbc.html).
 
-### Step 2. Connect to Kylin Server
+Please make sure to download and install Kylin ODBC Driver __v1.5__. If you already installed ODBC Driver in your system, please uninstall it first.
+
+### Connect to Kylin Server
 > We recommended to use Connect Using Driver instead of Using DSN.
 
 Connect Using Driver: Select "Other Database(ODBC)" in the left panel and choose KylinODBCDriver in the pop-up window. 
@@ -37,11 +31,11 @@ Click "Done" to complete the connection.
 
 ![](images/tableau_8//4 done.jpg)
 
-### Step 3. Using Single Table or Multiple Tables
+### Using Single Table or Multiple Tables
 > Limitation
-> 
->    * Must select FACT table first
->    * Do not support select from lookup table only
+>
+> * Must select FACT table first
+> * Do not support select from lookup table only
 >    * The join condition must match within cube definition
 
 **Select Fact Table**
@@ -86,12 +80,12 @@ Click `Data` in the top menu bar, select `Edit Tables...` to update the look-up 
 
 ![](images/tableau_8/12 edit tables.jpg)
 
-### Step 4. Using Customized SQL
+### Using Customized SQL
 To use customized SQL resembles using Single Table/Multiple Tables, except that you just need to paste your SQL in `Custom SQL` tab and take the same instruction as above.
 
 ![](images/tableau_8/19 custom.jpg)
 
-### Step 5. Publish to Tableau Server
+### Publish to Tableau Server
 Suppose you have finished making a dashboard with Tableau, you can publish it to Tableau Server.
 Click `Server` in the top menu bar, select `Publish Workbook...`. 
 
