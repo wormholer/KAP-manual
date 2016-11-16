@@ -1,0 +1,66 @@
+{
+	"title" : "KAP 手册",
+	"description" : "Kyligence智能大数据分析平台(Kyligence Analytics Platform, KAP)是基于Apache Kylin的，在超大规模数据集上提供亚秒级分析能力的企业级产品，为业务用户、分析师及工程师提供简单、快捷的大数据分析服务。",
+	"links" : {
+		"sidebar" : {
+			"Home" : "https://kyligence.io"
+		}
+	},
+   "plugins": [
+        "-disqus",
+        "search",
+        "-search-pro@1.0.7",
+        "github",
+        "ace",
+        "emphasize",
+        "anchors",
+        "include-codeblock",
+        "tbfed-pagefooter",
+        "sectionx",
+        "expandable-chapters",
+        "codeblock-filename",
+        "baidu",
+        "edit-link"
+    ],
+    "pluginsConfig": {
+        "disqus": {
+            "shortName": "kap-manual"
+        },
+        "github": {
+            "url": "https://github.com/Kyligence/kap-manual"
+        },
+        "search-pro": {
+            "cutWordLib": "nodejieba",
+            "defineWord": ["kap manual"]
+         },
+        
+        "sharing": {
+            "weibo": true,
+            "facebook": true,
+            "twitter": true,
+            "google": false,
+            "instapaper": false,
+             "vk": false,
+            "all": [
+                "facebook", "google", "twitter",
+                "weibo", "instapaper"
+            ]
+        },
+        
+        "tbfed-pagefooter": {
+            "copyright":"Copyright &copy Kyligence Inc.",
+            "modify_label": "Last Modified：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        
+        "baidu": {
+            "token" : ""
+        },
+        
+         "edit-link": {
+                "base": "https://github.com/Kyligence/kap-manual/edit/master",
+                "label": "Edit This Page"
+         }
+        
+    }
+}
