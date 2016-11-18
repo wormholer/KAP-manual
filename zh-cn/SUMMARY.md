@@ -53,7 +53,7 @@
     * [Tableau9.x集成](integration/tableau_9.cn.md)
     * [Tableau10.x集成](integration/tableau_10.cn.md)
     * [Excel 2016集成](integration/excel_2016.cn.md)
-    * [PowerBI集成](integration/powerbi.cn.md)
+    * [Power BI集成](integration/powerbi.cn.md)
     * [Apache Zeppelin集成](integration/zeppelin.cn.md)
 * [安全控制](security/README.md)
     * [管理用户](security/user.cn.md)
