@@ -1,9 +1,9 @@
 ## 介绍
-在默认情况下，KAP将所有的cube都以一种列式存储格式保存在HDFS上。在查询时，KAP使用Spark (http://spark.apache.org, 具体来说我们使用Spark on yarn模式)来读取cube，并做可能的存储层预聚合。一个或者多个Spark executor作为长进程启动，用来接收可能的cube访问。对于生产环境部署，您应当仔细阅读本文档并保证您的executors被正确配置。
+KAP Plus将所有的cube都保存在KyStorage上，一种基于HDFS的列式存储。在查询时，KAP使用Spark (http://spark.apache.org, 具体来说我们使用Spark on yarn模式)来读取cube，并做可能的存储层预聚合。一个或者多个Spark executor作为长进程启动，用来接收可能的cube访问。对于生产环境部署，您应当仔细阅读本文档并保证您的executors被正确配置。
 
 ## 调整参数
 
-KAP打包了所有spark的二进制包和配置文件，这些都位于KAP_HOME/spark目录。KAP使用spark-submit脚本来启动所有的executor，因此在理论上您可以直接到KAP_HOME/spark/conf并按照 http://spark.apache.org/docs/latest/configuration.html 来修改spark自带的所有配置。但是这并不是我们推荐的方式，因为从运维的便捷性考虑我们推荐所有的KAP相关的设置都应该在KAP_HOME/conf目录中。
+KAP Plus打包了所有spark的二进制包和配置文件，这些都位于KAP_HOME/spark目录。KAP使用spark-submit脚本来启动所有的executor，因此在理论上您可以直接到KAP_HOME/spark/conf并按照 http://spark.apache.org/docs/latest/configuration.html 来修改spark自带的所有配置。但是这并不是我们推荐的方式，因为从运维的便捷性考虑我们推荐所有的KAP相关的设置都应该在KAP_HOME/conf目录中。
 
 
 
@@ -24,6 +24,13 @@ KAP打包了所有spark的二进制包和配置文件，这些都位于KAP_HOME/
 > ```
 
 这个配置项告诉Spark应当为KAP启动4个executor。如这个例子所示，只要在Spark属性前面加上`kap.storage.columnar.conf`，我们就能够在`kylin.properties`中指定一个Spark属性。
+
+| Property Name                            | Default | Meaning                                  |
+| ---------------------------------------- | ------- | ---------------------------------------- |
+| kap.storage.columnar.conf.spark.driver.memory | 1G      | Amount of memory to use for the driver process, i.e. where SparkContext is initialized. (e.g. `1g`, `2g`). *Note:* In client mode, this config must not be set through the `SparkConf` directly in your application, because the driver JVM has already started at that point. Instead, please set this through the `--driver-memory` command line option or in your default properties file. |
+| kap.storage.columnar.conf.spark.executor.memory | 1G      | Amount of memory to use per executor process (e.g. `2g`, `8g`). |
+| kap.storage.columnar.conf.spark.executor.cores | 1       | The number of cores to use on each executor. In standalone and Mesos coarse-grained modes, setting this parameter allows an application to run multiple executors on the same worker, provided that there are enough cores on that worker. Otherwise, only one executor per application will run on each worker. |
+| kap.storage.columnar.conf.spark.executor.instances | 2       | The number of executors for static allocation. With `spark.dynamicAllocation.enabled`, the initial set of executors will be at least this large. |
 
 ## 配置建议
 

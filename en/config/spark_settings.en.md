@@ -27,6 +27,13 @@ This categoy relates to SPARK_HOME/conf/spark-defaults.conf, there's detailed ex
 
 The config entry tells Spark to launch 4 executors for KAP. As the example illustrates, by prefixing the Spark property with `kap.storage.columnar.conf` we can specify any Spark property in `kylin.properties`
 
+| Property Name                            | Default | Meaning                                  |
+| ---------------------------------------- | ------- | ---------------------------------------- |
+| kap.storage.columnar.conf.spark.driver.memory | 1G      | Amount of memory to use for the driver process, i.e. where SparkContext is initialized. (e.g. `1g`, `2g`). *Note:* In client mode, this config must not be set through the `SparkConf` directly in your application, because the driver JVM has already started at that point. Instead, please set this through the `--driver-memory` command line option or in your default properties file. |
+| kap.storage.columnar.conf.spark.executor.memory | 1G      | Amount of memory to use per executor process (e.g. `2g`, `8g`). |
+| kap.storage.columnar.conf.spark.executor.cores | 1       | The number of cores to use on each executor. In standalone and Mesos coarse-grained modes, setting this parameter allows an application to run multiple executors on the same worker, provided that there are enough cores on that worker. Otherwise, only one executor per application will run on each worker. |
+| kap.storage.columnar.conf.spark.executor.instances | 2       | The number of executors for static allocation. With `spark.dynamicAllocation.enabled`, the initial set of executors will be at least this large. |
+
 ## Advices on configurations
 
 By Spark's default configuration, the number of executors to start (`spark.executor.instances`) is 2, the number of cores for each executor (`spark.executor.cores`) is 1, the memory per executor (`spark.executor.memory`) is 1G, the memory for driver (`spark.driver.memory`) is 1G. Obviously it's not enough for serious KAP deployments. 
