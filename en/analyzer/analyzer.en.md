@@ -9,13 +9,14 @@ KyAnalyzer allow user analyze data easier and quicker.
 * KyAnalyzer does not supprt *left join*, you should use *inner join* when create cube mode in KAP.
 
 ### Install
-Get the package KyAnalyzer-{version}.zip from Kyligence Inc, and download the customized mondrian mondrian-kylin-{version}.jar from GitHub kylin-mondrian repository: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/), if the version is updated, please use the latest jar.
-Unzip KyAnalyzer package, copy mondrian-kylin-{version}.jar into server/tomcat/webapps/saiku/WEB-INF/lib.
-Edit kyanalyzer-beans.properties in WEB-INF, update KAP host and port to KAP server. The key *kap.host* is the IP address of KAP, and key *kap.port* is the port of KAP REST API, default port is 7070.
+Get the package KyAnalyzer-{version}.tar.gz from Kyligence Inc, and download the customized mondrian mondrian-kylin-{version}.jar from GitHub kylin-mondrian repository: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/), if the version is updated, please use the latest jar.
+Uncompress KyAnalyzer package, copy mondrian-kylin-{version}.jar into server/tomcat/webapps/saiku/WEB-INF/lib.
+
+Edit kyanalyzer.properties under kyanalyzer-server/conf，set KAP host and KAP port, *kap.host* represents KAP IP(default value localhost), and *kap.port* represents KAP app port(default value 7070). And you can edit mondrian.properties refer to conf/mondrian.properties.template.（Note: we have moved 'kap.host' and 'kap.port' to kyanalyzer.properties since kap2.2, and also add mondrian.properties to kyanalyzer-server/conf/）
 
 Run start-analyzer.sh under server to start KyAnalyzer, the default port is 8080. When the server is started, please visit http://{hostname}:8080. If you want to stop the server, please run stop-analyzer.sh.
 
- If the server is not started normally, please check the logs under tomcat/logs for details.
+ If the server is not started normally, please check the logs under tomcat/logs for details. Make sure there's no port conflict, you can check it in tomcat/logs/catalina.out, and update to new port in tomcat/conf/server.xml.
 
 
 #### Files under home directory

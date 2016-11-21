@@ -10,12 +10,16 @@ KyAnalyzer无缝集成KAP（Kylin），让用户以最简单快捷的方式访�
 
 
 ### 安装
-通过Kyligence公司获得定制版的KyAnalyzer安装包 KyAnalyzer-{version}.zip，同时需要下载对应KAP版本的Mondrian包，请下载mondrian-kylin-{version}.jar。对应Mondrian包可在GitHub kylin-mondrian 仓库: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/) 上获得。
-解压KyAnalyzer安装包，把下载的mondrian-kylin对应的jar包拷到 server/tomcat/webapps/saiku/WEB-INF/lib 目录下, 版本若有变动请下载最新版本。
-在WEB-INF目录下有个配置文件*kyanalyzer-beans.properties*， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，*kap.port*为KAP REST API的端口，默认7070。
+通过Kyligence公司获得定制版的KyAnalyzer安装包 KyAnalyzer-{version}.tar.gz，同时需要下载对应KAP版本的Mondrian包，请下载mondrian-kylin-{version}.jar。对应Mondrian包可在GitHub kylin-mondrian 仓库: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/) 上获得。
+解压KyAnalyzer安装包，把下载的mondrian-kylin对应的jar包拷到 kyanalyzer-server/tomcat/webapps/saiku/WEB-INF/lib 目录下, 版本若有变动请下载最新版本。
 
-通过server 目录下的 start-analyzer.sh启动KyAnalyzer，默认端口为8080,可通过 http://{hostname}:8080 访问页面。如果要停掉应用执行stop-analyzer.sh即可。如果在启动过程中遇到问题页面打不开，可以到tomcat/logs目录下查看具体出错信息。
+在kyanalyzer-server/conf目录下有个配置文件kyanalyzer.properties， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，默认为localhost，*kap.port*为KAP REST API的端口，默认7070。
+同时，关于mondrian的所有配置可以参考conf/mondrian.properties.template 配置到mondrian.properties中。
+（注，在kap2.2之后，我们将kap.host及kap.port配置移到kyanalyzer.properties中，同时在conf下引入了mondrian.properties）
 
+通过server 目录下的 start-analyzer.sh启动KyAnalyzer，默认端口为8080,可通过 http://{hostname}:8080 访问页面。如果要停掉应用执行stop-analyzer.sh即可。
+如果在启动过程中遇到问题页面打不开，可以到tomcat/logs目录下查看具体出错信息。
+启动时通过tomcat/logs/catalina.out可以监控到启动时是否有错，如果端口冲突，请修改tomcat/conf/server.xml, 找到对应的关键字port="8080"，将端口改为可用的端口即可。
 
 根目录下文件信息
 
@@ -37,7 +41,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
     </tr>
     <tr>
         <td>2.0</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.0</td>
         <td>❎</td>
         <td>❎</td>
@@ -46,7 +50,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
     </tr>
     <tr>
         <td>2.0</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
         <td>✅</td>
         <td>❎</td>
@@ -54,8 +58,8 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td></td>
     </tr>
     <tr>
-        <td>2.1</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.0</td>
         <td>❎</td>
         <td>❎</td>
@@ -63,8 +67,8 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td></td>
     </tr> 
     <tr>
-        <td>2.1</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
         <td>✅</td>
         <td>✅</td>
@@ -87,7 +91,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
     </tr>
     <tr>
         <td>ALL</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.0</td>
         <td>❎</td>
         <td>❎</td>
@@ -95,8 +99,8 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td></td>
     </tr>
     <tr>
-        <td>小于1.5.4.1</td>
-        <td>2.1</td>
+        <td>&lt;1.5.4.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
         <td>✅</td>
         <td>❎</td>
@@ -105,7 +109,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
     </tr>
     <tr>
         <td>1.5.4.1</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
         <td>✅</td>
         <td>❎</td>
@@ -113,8 +117,8 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td></td>
     </tr> 
     <tr>
-        <td>大于1.5.4.1</td>
-        <td>2.1</td>
+        <td>&gt;1.5.4.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
         <td>✅</td>
         <td>✅</td>
