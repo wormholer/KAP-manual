@@ -4,13 +4,13 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 
 以下推荐配置将按照集群的规模分类，系统性能可能受其它外部系统参数影响，这里推荐仅作为经验值。
 
-其中*Sandbox*表示用于单机sandbox虚拟机测试的环境
+*Sandbox*表示用于单机sandbox虚拟机测试的环境，2核，10GB内存，10GB硬盘
 
-Small Cluster表示5个节点组成的小型Hadoop集群。
+Small Cluster表示5个节点组成的小型Hadoop集群，单机32核，64GB内存，10TB硬盘。
 
-Medium Cluster表示20个节点组成的中型Hadoop集群。
+Medium Cluster表示10个节点组成的中型Hadoop集群，单机32核，128GB内存，20TB硬盘。
 
-Large Cluster表示50个节点组成的大型Hadoop集群。
+Large Cluster表示20个节点组成的大型Hadoop集群，单机32核，128GB内存，20TB硬盘。
 
 ### kylin.properties
 
@@ -47,11 +47,11 @@ Large Cluster表示50个节点组成的大型Hadoop集群。
 
 | Properties Name                          | Sandbox | Small Cluster | Medium Cluster | Large Cluster |
 | ---------------------------------------- | ------- | ------------- | -------------- | ------------- |
-| kap.storage.columnar.conf.spark.driver.memory | 512m    |               |                |               |
-| kap.storage.columnar.conf.spark.executor.memory | 512m    |               |                |               |
-| kap.storage.columnar.conf.spark.yarn.am.memory | 512m    |               |                |               |
-| kap.storage.columnar.conf.spark.executor.cores | 1       |               |                |               |
-| kap.storage.columnar.conf.spark.executor.instances | 1       |               |                |               |
+| kap.storage.columnar.conf.spark.driver.memory | 512m    | 8192m         |                |               |
+| kap.storage.columnar.conf.spark.executor.memory | 512m    | 4096m         |                |               |
+| kap.storage.columnar.conf.spark.yarn.am.memory | 512m    | 4096m         |                |               |
+| kap.storage.columnar.conf.spark.executor.cores | 1       | 5             | 10             | 10            |
+| kap.storage.columnar.conf.spark.executor.instances | 1       | 4             | 9              | 19            |
 |                                          |         |               |                |               |
 |                                          |         |               |                |               |
 |                                          |         |               |                |               |
