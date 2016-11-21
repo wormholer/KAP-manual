@@ -3,14 +3,14 @@
 Apache Zeppelin, an open source data analysis platform, is a top program of Apache； its back-end has multiple components to support a variety of data processing engine, such as Spark, Flink, Lens and so on; and provide notebook type UI to process visualization related operations. KAP has developed  corresponding Zeppelin modules and merged them with Zeppelin's major branches.  Correspondingly KAP is accessible with Zeppelin 0.5.6 and subsequent version.
 
 ### Zeppelin Architecture Introduction
-As following charts show, Zeppelin client is capable to interact  with servers through both HTTP Rest and Websocket. On the servers, Interpreter is supported by Zeppelin. For Kylin, users only need to develop Kylin-Interpreter and enable it integrate with Zeppelin, then users can correspond with Kylin server via Zeppelin's client, and visit related data on Kylin.
+As the following diagram shows, Zeppelin client is capable to interact  with servers through both HTTP Rest and Websocket. On the servers, Interpreter is supported by Zeppelin. For Kylin, users only need to develop Kylin-Interpreter and enable it integrate with Zeppelin, then users can correspond with Kylin server via Zeppelin's client, and visit related data on Kylin.
 
 ![](images/zeppelin/zeppelin_arc.png)
 
 ### Kylin-Interpreter Operational Principle
 Kylin-Interpreter is based on Rest API of AP, so it is a classic using scenario for KAP API. Kylin-Interpreter would read front-end configuration of Zeppelin for KAP, such as URL, user, password, and  query corresponding project, limit, offset and ispartial. Combined with the previous queried API Rest, you probably know that the key issue is the joint of query request parameters. Besides, combining with configuration parameter, users could input SQL in front-end and obtain data through sending HTTP POST type request to KAP. 
 
-The following is part of the Kylin-Interpreter code. With notes, it would be obvious to see how does Kylin-Interpreter visit KAP API. 
+The following is part of the Kylin-Interpreter code. With notes, it would be clear to see how does Kylin-Interpreter visit KAP API. 
 
 ```
   public HttpResponse prepareRequest(String sql) throws IOException {
@@ -20,7 +20,7 @@ The following is part of the Kylin-Interpreter code. With notes, it would be obv
 //Read account password from the configuration item and code base on Base64 
     byte[] encodeBytes = Base64.encodeBase64(new String(getProperty(KYLIN_USERNAME)
         + ":" + getProperty(KYLIN_PASSWORD)).getBytes("UTF-8"));
-    //设置请求参数
+    //Set request parameter
     String postContent = new String("{\"project\":" + "\"" + KYLIN_PROJECT + "\""
         + "," + "\"sql\":" + "\"" + sql + "\""
         + "," + "\"acceptPartial\":" + "\"" + getProperty(KYLIN_QUERY_ACCEPT_PARTIAL) + "\""
