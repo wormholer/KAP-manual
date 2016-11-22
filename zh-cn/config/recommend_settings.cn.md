@@ -17,8 +17,8 @@ Large Cluster表示20个节点组成的大型Hadoop集群，单机32核，128GB�
 | Properties Name                          | Sandbox    | Small Cluster | Medium Cluster | Large Cluster |
 | ---------------------------------------- | ---------- | ------------- | -------------- | ------------- |
 | kylin.hbase.default.compression.codec    | none       | snappy        | snappy         | snappy        |
-| kylin.hbase.region.cut                   | 5          |               |                |               |
-| kylin.hbase.hfile.size.gb                | 2          |               |                |               |
+| kylin.hbase.region.cut                   | 5          | 1             | 2              | 5             |
+| kylin.hbase.hfile.size.gb                | 2          | 0.5           | 1              | 2              |
 | kylin.hbase.region.count.min             | 1          |               |                |               |
 | kylin.hbase.region.count.max             | 500        |               |                |               |
 | kylin.job.concurrent.max.limit           | 10         |               |                |               |
