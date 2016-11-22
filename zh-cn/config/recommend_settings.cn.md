@@ -14,25 +14,25 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 | ---------------------------------------- | ---------- | ------ |
 | kylin.hbase.default.compression.codec    | none       | snappy |
 | kylin.hbase.region.cut                   | 1          | 5      |
-| kylin.hbase.hfile.size.gb                | 0.5        | 2      |
-| kylin.hbase.region.count.min             | 1          |        |
-| kylin.hbase.region.count.max             | 500        |        |
-| kylin.job.concurrent.max.limit           | 10         |        |
-| kylin.job.yarn.app.rest.check.interval.seconds | 10         |        |
+| kylin.hbase.hfile.size.gb                | 1        | 2      |
+| kylin.hbase.region.count.min             | 1          |  1     |
+| kylin.hbase.region.count.max             | 100        | 500     |
+| kylin.job.concurrent.max.limit           | 10         | 20      |
+| kylin.job.yarn.app.rest.check.interval.seconds | 10   |        |
 | kylin.job.cubing.inmem.sampling.percent  | 100        |        |
-| kylin.job.mapreduce.default.reduce.input.mb | 500        |        |
-| kylin.job.mapreduce.max.reducer.number   | 500        |        |
-| kylin.job.mapreduce.mapper.input.rows    | 1000000    |        |
+| kylin.job.mapreduce.default.reduce.input.mb | 100     | 500       |
+| kylin.job.mapreduce.max.reducer.number   | 100        | 500       |
+| kylin.job.mapreduce.mapper.input.rows    | 200000    | 1000000       |
 | kylin.job.step.timeout                   | 7200       |        |
 | kylin.cube.algorithm                     | auto       |        |
 | kylin.cube.algorithm.auto.threshold      | 8          |        |
 | kylin.cube.aggrgroup.max.combination     | 4096       |        |
-| kylin.dictionary.max.cardinality         | 5000000    |        |
+| kylin.dictionary.max.cardinality         | 5000000    |       |
 | kylin.table.snapshot.max_mb              | 300        |        |
 | kylin.query.scan.threshold               | 10000000   |        |
-| kylin.query.mem.budget                   | 3221225472 |        |
-| kylin.query.coprocessor.mem.gb           | 3          |        |
-| kylin.query.filter.derived_in.max        | 100        |        |
+| kylin.query.mem.budget                   | 3221225472 |         |
+| kylin.query.coprocessor.mem.gb           | 3          |         |
+| kylin.query.filter.derived_in.max        | 100        |          |
 
 
 ### kylin.properties for KAP Plus
@@ -53,7 +53,7 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 
 | Properties Name                          | Sandbox   | Prod                                     |
 | ---------------------------------------- | --------- | ---------------------------------------- |
-| dfs.replication                          | 2         |                                          |
+| dfs.replication                          | 2         |                                         |
 | hive.exec.compress.output                | true      |                                          |
 | hive.auto.convert.join.noconditionaltask | true      |                                          |
 | hive.auto.convert.join.noconditionaltask.size | 100000000 |                                          |
@@ -90,6 +90,9 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 | mapreduce.job.max.split.locations        | 2000    |                                          |
 | dfs.replication                          | 2       |                                          |
 | mapreduce.task.timeout                   | 7200000 |                                          |
+| mapreduce.map.memory.mb                  | 3072    | 4096                                     |
+| mapreduce.map.java.opts                  | -Xmx2700m | -Xmx3700m                              |
+| mapreduce.task.io.sort.mb                 | 200 | 200                                         |
 
 
 
