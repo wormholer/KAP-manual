@@ -1,39 +1,43 @@
-## 用户管理
+## User management
 
-登录KAP后，点击导航栏的‘系统’按钮，进入系统管理页面，点击左侧的用户栏进入用户管理页面。只有Admin能看到该页面。
-KAP默认会初始化三个用户，对应帐号信息为 管理员(ADMIN/KYLIN), 建模人员(MODELER/MODELER), 分析人员(ANALYST/ANALYST)
+Login on KAP, users can click `system button` on navigation bar to enter system management page. Then click user bar on the left side to enter users management page. Only administrator could get the access to the user management page. 
+
+KAP is set to initial three users, and corresponding account information would be admin (ADMIN/KYLIN), modeler(MODELER/MODELER), analyst(ANALYST/ANALYST).
 
 ![](images/users/user.png)
 
-#### 角色
-系统默认有三个角色，管理人员、建模人员和分析师。
-分析师主要权限为查询功能，可以查看有权限的实体信息(项目，模型，Cube 等),可以查询构建的数据。
-建模人员可以创建模型, Cube，并可以进行各类操作（构建，编辑，删除，清理，启用，禁用等，包含所有分析师具有的权限）。
-管理人员具有系统所有相关的权限。
+#### Characters
+The KAP system defaults to three characters: administrator, modeler and analyst.
+Administrator has whole authority related to system. 
 
-#### 添加用户
-管理员可以添加新的用户， 需要填写用户名，密码，角色信息。
+Analyst has main authority to query, such as checking authorized entity information(project, model, Cube and so on) and querying built data.
+
+Modeler is capable to build model, Cube, and other actions(such as building, editing, deleting, cleaning, enabling, disabling, which including all authorities of the analyst).
+
+
+#### Add users
+Administrator could add new users and input user name, password and character information. 
 
 ![](images/users/add_user.png)
 
-#### 编辑用户
-用户添加完成后, 管理员可以编辑用户角色信息。
+#### Edit user information
+Once users are added, administrator would be able to edit user's character information.
 
 ![](images/users/edit_user.png)
 
-#### 更改密码
-管理员可以更改密码信息，需重复输入两次新密码。
+#### Change password
+Administrator is able to change password and only needs to input twice the new password. 
 
 ![](images/users/update_password.png)
 
-#### 删除用户
-管理员可以在此页面删除用户，删除后将不能恢复。
+#### Delete users
+Administrator could delete users within the page. Please be noticed that deleted users cannot be restored. 
 
-#### 启用/禁用用户
-管理员可以启用或禁用用户，用户被禁用后将不可再登录系统。
+#### Enable/disable users
+Administrator could enable or disable users and disabled users cannot login the system. 
 
-#### 普通用户修改密码
-点击导航栏最右侧的欢迎标签，可以看到'设置'选项，点击进入个人更改密码页面。
+#### Change password as normal users
+Click the `welcome tag` on the far right side of navigation bar, then users could choose the `setting` option and click it to enter the personal change password page.      
 
 ![](images/users/setting_update_password.png)
 

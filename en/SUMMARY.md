@@ -43,6 +43,7 @@
     * [Power BI](integration/powerbi.en.md)
     * [Zeppelin](integration/zeppelin.en.md)
 * [Security Controll](security/README.md)
+    * [User management](security/user.en.md)
     * [Integrate with LDAP](security/ldap.en.md)
     * [Manage ACL](security/acl.en.md)
     * [Cell Level Security](security/cell.en.md)
