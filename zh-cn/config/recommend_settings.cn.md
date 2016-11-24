@@ -44,6 +44,7 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 | kap.storage.columnar.conf.spark.yarn.am.memory | 512m    | 4096m |
 | kap.storage.columnar.conf.spark.executor.cores | 1       | 5     |
 | kap.storage.columnar.conf.spark.executor.instances | 1       | 4     |
+| kap.storage.columnar.page.compression |         | SNAPPY     |
 |                                          |         |       |
 
 
