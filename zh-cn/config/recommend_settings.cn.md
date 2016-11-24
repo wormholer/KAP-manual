@@ -45,6 +45,7 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 | kap.storage.columnar.conf.spark.executor.cores | 1       | 5     |
 | kap.storage.columnar.conf.spark.executor.instances | 1       | 4     |
 | kap.storage.columnar.page.compression |         | SNAPPY     |
+| kap.storage.columnar.ii.spill.threshold.mb |128         | 512     |
 
 
 
@@ -61,7 +62,6 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 | mapreduce.output.fileoutputformat.compress.codec | N/A       | org.apache.hadoop.io.compress.SnappyCodec |
 | mapreduce.output.fileoutputformat.compress.type | BLOCK     |                                          |
 | mapreduce.job.split.metainfo.maxsize     | -1        |                                          |
-|                                          |           |                                          |
 
 ### kylin_job_conf.xml
 
