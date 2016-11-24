@@ -1,12 +1,12 @@
-## 生产环境推荐配置(适用于v2.2.x及之后版本)
+## Recommended Configurations for KAP v2.2
 
-KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml*，*kylin_job_conf.xml*，*kylin_job_conf_inmem.xml*。其中*kylin.properties*是KAP的主要配置参数，控制KAP的运行时行为，*kylin_hive_conf.xml*用于配置KAP与Hive交互的参数，*kylin_job_conf.xml*用于配置KAP与Hadoop集群交互的参数，其中*kylin_job_conf_inmem.xml*用在in-memory构建算法，*kylin_job_conf.xml*用在layer构建算法。
+The configuration files of KAP include following files: *kylin.properties*, *kylin_hive_conf.xml*, *kylin_job_conf.xml*, *kylin_job_conf_inmem.xml*. Among those files, *kylin.properties* is a major configuration parameter to control KAP's running behavior; *kylin_hive_conf.xml* is applied to configure parameters of interaction between KAP and Hive; *kylin_job_conf.xml* is applied to configure parameters of interaction between KAP and Hadoop cluster; *kylin_job_conf_inmem.xml is applied on in-memory* algorithm, *kylin_job_conf.xml* is applied on layer algorithm.
 
-以下推荐配置将按照集群的规模分类，系统性能可能受其它外部系统参数影响，这里推荐仅作为经验值。
+The following recommended configurations are classified according to the size of the cluster, system performance could be influenced by other external system parameters. Here our recommending configurations are based on experience. 
 
-*Sandbox*表示用于单机sandbox虚拟机测试的环境，2核，10GB内存，10GB硬盘
+*Sandbox* refers the testing environment for single machine sandbox virtual machine, dual core, 10GB internal storage, 10GB hard disk.
 
-*Prod*表示生产环境推荐配置，通常至少由5个节点组成的Hadoop集群，单机32核，128GB内存，20TB硬盘。
+*Prod* represents recommended configuration for the production environment, usually, the Hadoop cluster consisting of at least 5 nodes, single machine 32 core, 128GB internal storage, 20TB hard disk.
 
 ### kylin.properties
 

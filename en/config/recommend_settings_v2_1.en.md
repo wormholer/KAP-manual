@@ -1,51 +1,51 @@
-## 生产环境推荐配置(适用于v2.2.x及之后版本)
+## Recommended Configurations for KAP v2.1
 
-KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml*，*kylin_job_conf.xml*，*kylin_job_conf_inmem.xml*。其中*kylin.properties*是KAP的主要配置参数，控制KAP的运行时行为，*kylin_hive_conf.xml*用于配置KAP与Hive交互的参数，*kylin_job_conf.xml*用于配置KAP与Hadoop集群交互的参数，其中*kylin_job_conf_inmem.xml*用在in-memory构建算法，*kylin_job_conf.xml*用在layer构建算法。
+The configuration files of KAP include following files: *kylin.properties*, *kylin_hive_conf.xml*, *kylin_job_conf.xml*, *kylin_job_conf_inmem.xml*. Among those files, *kylin.properties* is a major configuration parameter to control KAP's running behavior; *kylin_hive_conf.xml* is applied to configure parameters of interaction between KAP and Hive; *kylin_job_conf.xml* is applied to configure parameters of interaction between KAP and Hadoop cluster; *kylin_job_conf_inmem.xml is applied on in-memory* algorithm, *kylin_job_conf.xml* is applied on layer algorithm.
 
-以下推荐配置将按照集群的规模分类，系统性能可能受其它外部系统参数影响，这里推荐仅作为经验值。
+The following recommended configurations are classified according to the size of the cluster, system performance could be influenced by other external system parameters. Here our recommending configurations are based on experience. 
 
-*Sandbox*表示用于单机sandbox虚拟机测试的环境，2核，10GB内存，10GB硬盘
+*Sandbox* refers the testing environment for single machine sandbox virtual machine, dual core, 10GB internal storage, 10GB hard disk.
 
-*Prod*表示生产环境推荐配置，通常至少由5个节点组成的Hadoop集群，单机32核，128GB内存，20TB硬盘。
+*Prod* represents recommended configuration for the production environment, usually, the Hadoop cluster consisting of at least 5 nodes, single machine 32 core, 128GB internal storage, 20TB hard disk.
 
 ### kylin.properties
 
 | Properties Name                          | Sandbox    | Prod    |
 | ---------------------------------------- | ---------- | ------- |
-| kylin.storage.hbase.compression-codec    | none       | snappy  |
-| kylin.storage.hbase.region-cut-gb        | 1          | 5       |
-| kylin.storage.hbase.hfile-size-gb        | 1          | 2       |
-| kylin.storage.hbase.min-region-count     | 1          | 1       |
-| kylin.storage.hbase.max-region-count     | 100        | 500     |
-| kylin.job.max-concurrent-jobs            | 10         | 20      |
-| kylin.engine.mr.yarn-check-interval-seconds | 10         |         |
-| kylin.job.sampling-percentage            | 100        |         |
-| kylin.engine.mr.reduce-input-mb          | 100        | 500     |
-| kylin.engine.mr.max-reducer-number       | 100        | 500     |
-| kylin.engine.mr.mapper-input-rows        | 200000     | 1000000 |
+| kylin.hbase.default.compression.codec    | none       | snappy  |
+| kylin.hbase.region.cut                   | 1          | 5       |
+| kylin.hbase.hfile.size.gb                | 1          | 2       |
+| kylin.hbase.region.count.min             | 1          | 1       |
+| kylin.hbase.region.count.max             | 100        | 500     |
+| kylin.job.concurrent.max.limit           | 10         | 20      |
+| kylin.job.yarn.app.rest.check.interval.seconds | 10         |         |
+| kylin.job.cubing.inmem.sampling.percent  | 100        |         |
+| kylin.job.mapreduce.default.reduce.input.mb | 100        | 500     |
+| kylin.job.mapreduce.max.reducer.number   | 100        | 500     |
+| kylin.job.mapreduce.mapper.input.rows    | 200000     | 1000000 |
 | kylin.job.step.timeout                   | 7200       |         |
 | kylin.cube.algorithm                     | auto       |         |
-| kylin.cube.algorithm.layer-or-inmem-threshold | 8          |         |
-| kylin.cube.aggrgroup.max-combination     | 4096       |         |
+| kylin.cube.algorithm.auto.threshold      | 8          |         |
+| kylin.cube.aggrgroup.max.combination     | 4096       |         |
 | kylin.dictionary.max.cardinality         | 5000000    |         |
-| kylin.snapshot.max-mb                    | 300        |         |
-| kylin.query.scan-threshold               | 10000000   |         |
-| kylin.query.memory-budget-bytes          | 3221225472 |         |
-| kylin.storage.hbase.coprocessor-mem-gb   | 3          |         |
-| kylin.query.derived-filter-translation-threshold | 100        |         |
+| kylin.table.snapshot.max_mb              | 300        |         |
+| kylin.query.scan.threshold               | 10000000   |         |
+| kylin.query.mem.budget                   | 3221225472 |         |
+| kylin.query.coprocessor.mem.gb           | 3          |         |
+| kylin.query.filter.derived_in.max        | 100        |         |
 
 
 ### kylin.properties for KAP Plus
 
 | Properties Name                          | Sandbox | Prod   |
 | ---------------------------------------- | ------- | ------ |
-| kap.storage.columnar.spark-conf.spark.driver.memory | 512m    | 8192m  |
-| kap.storage.columnar.spark-conf.spark.executor.memory | 512m    | 4096m  |
-| kap.storage.columnar.spark-conf.spark.yarn.am.memory | 512m    | 4096m  |
-| kap.storage.columnar.spark-conf.spark.executor.cores | 1       | 5      |
-| kap.storage.columnar.spark-conf.spark.executor.instances | 1       | 4      |
-| kap.storage.columnar.page-compression    |         | SNAPPY |
-| kap.storage.columnar.ii-spill-threshold-mb | 128     | 512    |
+| kap.storage.columnar.conf.spark.driver.memory | 512m    | 8192m  |
+| kap.storage.columnar.conf.spark.executor.memory | 512m    | 4096m  |
+| kap.storage.columnar.conf.spark.yarn.am.memory | 512m    | 4096m  |
+| kap.storage.columnar.conf.spark.executor.cores | 1       | 5      |
+| kap.storage.columnar.conf.spark.executor.instances | 1       | 4      |
+| kap.storage.columnar.page.compression    |         | SNAPPY |
+| kap.storage.columnar.ii.spill.threshold.mb | 128     | 512    |
 
 
 
