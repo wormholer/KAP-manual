@@ -51,7 +51,7 @@
 * [驱动程序](driver/README.md)
     * [JDBC驱动](driver/jdbc.cn.md)
     * [ODBC驱动](driver/odbc.cn.md)
-* [与第三方系统集成](integration/readme.md)
+* [与第三方系统集成](integration/README.md)
     * [Tableau8.x集成](integration/tableau_8.cn.md)
     * [Tableau9.x集成](integration/tableau_9.cn.md)
     * [Tableau10.x集成](integration/tableau_10.cn.md)
