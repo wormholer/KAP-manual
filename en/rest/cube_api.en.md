@@ -1,34 +1,34 @@
 ## Cube REST API
 
-> **提示**
-> 
-> 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+> **Tip**
+>
+> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+>
 
 
-   * [返回多个Cube](#list-cubes)
-   * [返回指定cube](#get-cube)
-   * [返回Cube描述信息(维度, 度量，等)](#get-cube-descriptor)
-   * [返回数据模型 (事实表及维度表等信息)](#get-data-model)
-   * [构建 cube](#build-cube)
-   * [克隆 cube](#clone-cube)
-   * [禁用 cube](#disable-cube)
-   * [清理 cube](#purge-cube)
-   * [启用 cube](#enable-cube)
+* [List Cubes](#list-cubes)
+* [Get Cube](#get-cube)
+   * [Get Cube Descriptor(dimensions, measures, ...)](#get-cube-descriptor)
+   * [Get data model(fact tables, vlookup tables, ...)](#get-data-model)
+   * [Build Cube](#build-cube)
+   * [Clone Cube](#clone-cube)
+   * [Disable Cube](#disable-cube)
+   * [Purge Cube](#purge-cube)
+   * [Enable Cube](#enable-cube)
 
-### <span id="list-cubes">返回多个Cube</span>
-`请求方式 GET`
+### List Cubes 
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/cubes`
+`Access Path http://host:port/kylin/api/cubes`
 
-#### 请求主体
-* offset - `必选` `int` 返回数据起始下标
-* limit - `必选` `int ` 分页返回对应每页返回多少
-* cubeName - `可选` `string` 返回名称等于该关键字的Cube
-* modelName - `可选` `string` 返回对应模型名称等于该关键字的Cube
-* projectName - `可选` `string` 指定返回该项目下Cube
+#### Request Body
+* offset -`optional` `int` get data start subscript
+* limit -  `required` `int ` how many lines would be included in each returned page
+* cubeName - `optional` `string` returned name is the keyword related Cube
+* modelName - `optional` `string` returned name is the keyword related model
+* projectName - `optional` `string` specify the returned project
 
-#### 响应示例
+#### Response Example
 ```sh
 [  
    {  
@@ -50,23 +50,23 @@
 ]
 ```
 
-### <span id="get-cube">返回指定cube</span>
-`请求方式 GET`
+### Get the Cube 
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/cubes/{cubeName}`
+`Access Path http://host:port/kylin/api/cubes/{cubeName}`
 
-#### 路径变量
-* cubeName - `必选` `string` 要获取的Cube 名称.
+#### Path variable
+* cubeName - `required` `string` Obtained Cube's name.
 
-### <span id="get-cube-descriptor">返回Cube描述信息(维度, 度量，等)</span>
-`请求方式 GET`
+### Get Cube Descriptor(dimensions, measures, ...) 
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/cube_desc/{cubeName}/desc`
+`Access Path http://host:port/kylin/api/cube_desc/{cubeName}/desc`
 
-#### 路径变量
-* cubeName - `必选` `string` Cube 名称.
+#### Path Variable
+* cubeName - `optional` `string` Cube's name.
 
-#### 响应示例
+#### Response Example
 ```sh
     {
   "uuid" : "a24ca905-1fc6-4f67-985c-38fa5aeafd92",
@@ -242,15 +242,15 @@
 }
 ```
 
-### <span id="get-data-model">返回数据模型 (事实表及维度表等信息)</span>
-`请求方式 GET`
+### Get data model(fact tables, vlookup tables, ...)
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/model/{modelName}`
+`Access Path http://host:port/kylin/api/model/{modelName}`
 
-#### 路径变量
-* modelName - `必选` `string` 数据模型名称.
+#### Path Variable
+* modelName - `required` `string` data model's name.
 
-#### 响应示例
+#### Response Example
 ```sh
 {
  
@@ -351,22 +351,20 @@
 }
 ```
 
-### <span id="build-cube">构建 cube</span>
-`请求方式 PUT`
+### Build Cube
+`Request Mode PUT`
 
-`访问路径 http://host:port/kylin/api/cubes/{cubeName}/rebuild`
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/rebuild`
 
-#### 路径变量
-* cubeName - `必选` `string` Cube 名称.
+#### Path Variable
+* cubeName - `required` `string` Cube's name.
 
-#### 请求主体
-* startTime - `必选` `long` 要计算的数据对应起始时间对应的timestamp，应为GMT0格式的
-timestamp , e.g. 1388563200000 for 2014-1-1
-* endTime - `必选` `long` 要计算的数据对应起始时间对应的timestamp，应为GMT0格式的
-timestamp
-* buildType - `必选` `string` 支持的计算类型: 'BUILD', 'MERGE', 'REFRESH'
+#### Request Mode
+* startTime - `optional` `long` the timestamp refers to start time corresponding to the data to be calculated, it should be a GMT0 form timestamp, e.g. 1388563200000 for 2014-1-1
+* endTime - `required` `long` the timestamp refers to start time corresponding to the data to be calculated, it should be a GMT0 form timestamp.
+* buildType - `required` `string` supported calculation types: 'BUILD', 'MERGE', 'REFRESH'
 
-#### 响应示例
+#### Response Example
 ```
 {  
    "uuid":"c143e0e4-ac5f-434d-acf3-46b0d15e3dc6",
@@ -428,31 +426,31 @@ timestamp
 }
 ```
 
-### <span id="clone-cube">克隆Cube</span>
-`请求方式 PUT`
+### Clone Cube
+`Request Mode PUT`
 
-`访问路径 http://host:port/kylin/api/cubes/{cubeName}/clone`
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/clone`
 
-#### 路径变量
-* cubeName - `必选` `string` 被克隆Cube名称.
+#### Path Variable
+* cubeName - `required` `string` The name of cloned Cube.
 
-#### 请求主体
-* cubeName - `必选` `string` 新Cube名称.
-* project - `必选` `string` 新项目名称 
+#### Request Body
+* cubeName - `required` `string` New Cube's name.
+* project - `required` `string` New project's name. 
 
 
-#### 响应示例
-(同 "启用 Cube")
+#### Response Example
+(same as "Enable Cube")
 
-### <span id="enable-cube">启用 Cube</span>
-`请求方式 PUT`
+### Enable Cube
+`Request Mode PUT`
 
-`访问路径 http://host:port/kylin/api/cubes/{cubeName}/enable`
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/enable`
 
-#### 路径变量
-* cubeName - `必选` `string` Cube 名称.
+#### Path Variable
+* cubeName - `required` `string` Cube 's name.
 
-#### 响应示例
+#### Response Example
 ```sh
 {  
    "uuid":"1eaca32a-a33e-4b69-83dd-0bb8b1f8c53b",
@@ -500,24 +498,24 @@ timestamp
 }
 ```
 
-### <span id="disable-cube">禁用 Cube</span>
-`请求方式 PUT`
+### Disable Cube
+`Request Mode PUT`
 
-`访问路径 http://host:port/kylin/api/cubes/{cubeName}/disable`
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/disable`
 
-#### 路径变量
-* cubeName - `必选` `string` Cube 名称.
+#### Path Variable
+* cubeName - `required` `string` Cube's name.
 
-#### 响应示例
-(同 "启用 Cube")
+#### Response Example
+(same as "Enable Cube")
 
-### <span id="purge-cube">清理 Cube</span>
-`请求方式 PUT`
+### Purge Cube
+`Reuest Mode PUT`
 
-`访问路径 http://host:port/kylin/api/cubes/{cubeName}/purge`
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/purge`
 
-#### 路径变量
-* cubeName - `必选` `string` Cube 名称.
+#### Path Variable
+* cubeName - `required` `string` Cube's name.
 
-#### 响应示例
-(同 "启用 Cube")
+#### Response Example
+(same as "Enable Cube")

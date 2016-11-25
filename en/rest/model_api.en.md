@@ -1,28 +1,28 @@
-## 模型 REST API
+## Model REST API
 
-> **提示**
-> 
-> 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+> **Tip**
+>
+> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+>
 
 
-   * [返回多个模型](#list-models)
-   * [返回指定模型](#get-model)
-   * [克隆模型](#clone-model)
-   * [删除模型](#drop-model)
+* [List models](#list-models)
+* [Get the model](#get-model)
+   * [Clone model](#clone-model)
+   * [Drop model](#drop-model)
 
-### <span id="list-models">返回多个模型</span>
-`请求方式 GET`
+### Return Models
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/models`
+`Access Path http://host:port/kylin/api/models`
 
-#### 请求主体
-* offset - `必选` `int` 返回数据起始下标
-* limit - `必选` `int ` 分页返回对应每页返回多少
-* modelName - `可选` `string` 返回名称等于该关键字的Model
-* projectName - `可选` `string` 指定返回该项目下
+#### Request Body
+* offset - `optional` `int` get data start subscript
+* limit - `required` `int ` how many lines would be included in each returned page
+* modelName - `optional` `string` returned name is the keyword related model
+* projectName - `optional` `string` specify the returned project
 
-#### 响应示例
+#### Response Example
 ```sh
 ［
   {
@@ -125,28 +125,28 @@
   ］
 ```
 
-### <span id="get-model">返回指定模型</span>
-`请求方式 GET`
+### Get the Model
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/model/{modelName}`
+`Access Path http://host:port/kylin/api/model/{modelName}`
 
-#### 路径变量
-* modelName - `必选` `string` 要获取的model 名称.
+#### Path Variable
+* modelName - `required` `string` Obtained models' name.
 
-### <span id="clone-model">克隆模型</span>
-`请求方式 PUT`
+### Clone Model
+`Request Mode PUT`
 
-`访问路径 http://host:port/kylin/api/models/{modelName}/clone`
+`Access Path http://host:port/kylin/api/models/{modelName}/clone`
 
-#### 路径变量
-* modelName - `必选` `string` 被克隆模型名称.
+#### Path Variable
+* modelName - `required` `string` The name of the cloned model.
 
-#### 请求主体
-* modelName - `必选` `string` 新模型名称.
-* project - `必选` `string` 新项目名称 
+#### Request Body
+* modelName - `required` `string` New models' name.
+* project - `required` `string` New projects' name. 
 
 
-#### 响应示例
+#### Response Example
 ```sh
   {
     message:null,
@@ -158,10 +158,10 @@
 }
 ```
 
-### <span id="drop-model">删除数据模型</span>
-`请求方式 DELETE`
+### Drop Data Model 
+`Request Mode DELETE`
 
-`访问路径 http://host:port/kylin/api/model/{modelName}`
+`Access Path http://host:port/kylin/api/model/{modelName}`
 
-#### 路径变量
-* modelName - `必选` `string` 数据模型名称.
+#### Path Variable
+* modelName - `required` `string` Data models' name.

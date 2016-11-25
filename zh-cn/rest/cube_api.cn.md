@@ -360,10 +360,10 @@
 * cubeName - `必选` `string` Cube 名称.
 
 #### 请求主体
-* startTime - `必选` `long` 要计算的数据对应起始时间对应的timestamp，应为GMT0格式的
-  timestamp , e.g. 1388563200000 for 2014-1-1
-* endTime - `必选` `long` 要计算的数据对应起始时间对应的timestamp，应为GMT0格式的
-  timestamp
+* startTime - `必选` `long` 要计算的数据对应起始时间的时间戳，应为GMT0格式的
+  时间戳 , e.g. 1388563200000 for 2014-1-1
+* endTime - `必选` `long` 要计算的数据对应终止时间的时间戳，应为GMT0格式的
+  时间戳
 * buildType - `必选` `string` 支持的计算类型: 'BUILD', 'MERGE', 'REFRESH'
 
 #### 响应示例

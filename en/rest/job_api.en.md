@@ -1,25 +1,25 @@
 ## Job REST API
 
-> **提示**
-> 
-> 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+> **Tip**
+>
+> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+>
 
 
-   * [恢复 job](#resume-job)
-   * [抛弃 job](#discard-job)
-   * [返回 job 信息](#get-job-status)
-   * [返回 job 每步输出](#get-job-step-output)
+* [Resume job](#resume-job)
+* [Discard job](#discard-job)
+* [Get job status](#get-job-status)
+* [Get job step output](#get-job-step-output)
 
-### <span id="resume-job">恢复 job</span>
-`请求方式 PUT`
+### <span id="resume-job">Resume Job</span>
+`Rquest Mode PUT`
 
-`访问路径 http://host:port/kylin/api/jobs/{jobId}/resume`
+`Access Path http://host:port/kylin/api/jobs/{jobId}/resume`
 
-#### 路径变量
-* jobId - `必选` `string` Job id.
+#### Path Variable
+* jobId - `required` `string` job id.
 
-#### 响应示例
+#### Response Example
 ```
 {  
    "uuid":"c143e0e4-ac5f-434d-acf3-46b0d15e3dc6",
@@ -81,34 +81,34 @@
 }
 ```
 
-### <span id="discard-job">抛弃 job</span>
-`请求方式 PUT`
+### <span id="discard-job">Discard Job</span>
+`Request Mode PUT`
 
-`访问路径 http://host:port/kylin/api/jobs/{jobId}/cancel`
+`Access Path http://host:port/kylin/api/jobs/{jobId}/cancel`
 
-#### 路径变量
-* jobId - `必选` `string` Job id.
+#### Path Variable
+* jobId - `required` `string` Job id.
 
-#### 响应示例
-(同 "恢复 job")
+#### Response Example
+(same as "Resume Job")
 
-### <span id="get-job-status">返回 job 信息</span>
+### <span id="get-job-status">Get Job Status</span>
 `GET /jobs/{jobId}`
 
-#### 路径变量
-* jobId - `必选` `string` Job id.
+#### Path Variable
+* jobId - `required` `string` job id.
 
-#### 响应示例
-(同 "恢复 Job")
+#### Response Example
+(same as "Resume Job")
 
-### <span id="get-job-step-output">返回 Job 每步输出</span>
+### <span id="get-job-step-output">Return Job Each Step Output</span>
 `GET /{jobId}/steps/{stepId}/output`
 
-#### 路径变量
-* jobId - `必选` `string` Job id.
-* stepId - `必选` `string` 步骤 id;  步骤id由Job id和步骤序列id组成; 例如, jobId 是 "fb479e54-837f-49a2-b457-651fc50be110", 第三步 步骤 id 是 "fb479e54-837f-49a2-b457-651fc50be110-3", 
+#### Path Variable
+* jobId - `required` `string` job id.
+* stepId - `required` `string` step id;  step id is consist of Job id and step sequence id. For example, job id is "fb479e54-837f-49a2-b457-651fc50be110", then step id of the third step is "fb479e54-837f-49a2-b457-651fc50be110-3".
 
-#### 响应示例
+#### Response Example
 ```
 {  
    "cmd_output":"log string"

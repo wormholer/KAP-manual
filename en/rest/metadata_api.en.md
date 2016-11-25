@@ -1,24 +1,24 @@
-## 数据源 REST API
-> **提示**
-> 
-> 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+## Metadata REST API
+> **Tip**
+>
+> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+>
 
 
-   * [返回 Hive 表信息](#get-hive-table)
-   * [返回 Hive 表扩展信息](#get-hive-table-extend-info)
-   * [返回多个 Hive 表](#get-hive-tables)
-   * [加载 Hive 表](#load-hive-tables)
+* [Get hive table information](#get-hive-table)
+* [Get hive table with extended information](#get-hive-table-extend-info)
+* [Get multiple hive tables](#get-hive-tables)
+* [Load hive tables](#load-hive-tables)
 
 ### <span id="get-hive-table">Get Hive Table</span>
-`请求方式 GET`
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/tables/{tableName}`
+`Access Path http://host:port/kylin/api/tables/{tableName}`
 
-#### 请求参数
-* tableName - `必选` `string` 表名.
+#### Request Parameter
+* tableName - `required` `string` table name
 
-#### 响应示例
+#### Response Example
 ```sh
 {
     uuid: "69cc92c0-fc42-4bb9-893f-bd1141c91dbe",
@@ -45,15 +45,15 @@
 }
 ```
 
-### <span id="get-hive-table-extend-info">返回 Hive 表扩展信息</span>
-`请求方式 GET`
+### <span id="get-hive-table-extend-info">Get Hive Table with Extended Information</span>
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/tables/{tableName}/exd-map`
+`Access Path http://host:port/kylin/api/tables/{tableName}/exd-map`
 
-#### 请求参数
-* tableName - `可选` `string` 表名.
+#### Request Parameter
+* tableName - `optional` `string` table name
 
-#### 响应示例
+#### Response Example
 ```
 {
     "minFileSize": "46055",
@@ -74,16 +74,16 @@
 }
 ```
 
-### <span id="get-hive-tables">返回多个 Hive 表</span>
-`请求方式 GET`
+### <span id="get-hive-tables">Get Multiple Hive Tables</span>
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/tables`
+`Access Path http://host:port/kylin/api/tables`
 
-#### 请求参数
-* project- `必选` `string` 返回该项目下所有表.
-* ext- `可选` `boolean`  要返回扩展信息设置该参数为true.
+#### Request Parameter
+* project- `required` `string` return to all tables included in the project
+* ext- `required` `boolean`  if users want to get extending information, then the parameter should be set as true
 
-#### 响应示例
+#### Response Example
 ```sh
 [
  {
@@ -130,16 +130,16 @@
 ]
 ```
 
-### <span id="load-hive-tables">加载 Hive 表</span>
-`请求方式 POST`
+### <span id="load-hive-tables">Load Hive Tables</span>
+`Request Mode POST`
 
-`访问路径 http://host:port/kylin/api/tables/{tables}/{project}`
+`Access Path http://host:port/kylin/api/tables/{tables}/{project}`
 
-#### 请求参数
-* tables - `必选` `string` 你想要加载的hive表, 用逗号分隔
-* project - `必选` `String`  指定hive表将要加载到哪个项目
+#### Request Parameter
+* tables - `required` `string` tables to be loaded, please use "," to part them
+* project - `required` `String`  specifies to which project the hive table will be loaded
 
-#### 响应示例
+#### Response Example
 ```
 {
     "result.loaded": ["DEFAULT.SAMPLE_07"],

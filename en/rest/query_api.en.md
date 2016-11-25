@@ -1,33 +1,43 @@
-## 查询 REST API
+## Query REST API
 
-> **提示**
-> 
-> 使用API前请确保已阅读前面的 访问及安全验证 章节，知道如何在API中添加认证信息
-> 
+> **Tip**
+>
+> Before using API, please make sure that you have read the Access and Authentication in advance and know how to add verification information. 
+>
 
-访问KAP构建的数据集，主要两个API，一个是直接查询Cube数据，一个是列出所有可以查询的表。
+If users access dataset built by KAP, mainly there are two API, one is querying data from Cube, another one is listing all available tables.
 
-* 查询
-   * [查询Cube数据](#query)
-   * [列出可查询的表](#list-queryable-tables)
-
-
-## <span id="query">查询Cube数据</span>
-`请求方式 POST`
-
-`访问路径 http://host:port/kylin/api/query`
-
-#### 请求主体
-* sql - `必选` `string` 查询的sql.
-* offset - `可选` `int` 查询默认从第一行返回结果，可以设置改参数设置返回数据从哪一行开始往后返回
-* limit - `可选` `int` •  加上limit参数后会从offset开始返回对应的行数，不足limt以实际行数为准
-* acceptPartial - `可选` `bool` 
-默认是“true”，如果为true，那么当前实际最多会返回一百万行数据，如果要返回超过一百万行的结果集，那该参数需要设置为“false”
-* project - `可选` `string` 
-默认为 ‘DEFAULT’，在实际使用时，如果对应查询的项目不是“DEFAULT”，需要设置为自己的项目
+* Query
+   * [Query Cube](#query)
+   * [List queryable tables](#list-queryable-tables)
 
 
-#### 请求示例
+## Query Data from Cube
+`Request Mode POST`
+
+`Access Path http://host:port/kylin/api/query`
+
+#### Request Body
+* sql - `required` `string` 
+
+  Sql query sentences.
+
+* offset - `optional` `int` 
+
+  Query defaults to send results back from the first line, which could be changed to return from any line desired.
+
+* limit - `optional` `int` 
+
+  If limit parameter is chosen, query results would turn with corresponding lines from offset; if actual lines are less than limit set, then results would be just as actual lines.
+
+* acceptPartial - `optional` `bool` 
+  Mandatory is "true". If let it be true, then query results turned would be one billion lines at most; if users need more than one billion lines, then this parameter should be set as "false".
+
+* project - `optional` `string` 
+  Mandatory setting is "DEFAULT". In practice, if the query project is not "DEFAULT", then users need to set it as the project desired.
+
+
+#### Request Example
 ```sh
 {  
    "sql":"select * from TEST_KYLIN_FACT",
@@ -38,17 +48,17 @@
 }
 ```
 
-#### 响应信息
-* columnMetas - 每个列的元数据信息.
-* results - 返回的结果集.
-* cube - 这个查询对应使用的CUBE.
-* affectedRowCount - 这个查询关系到的总行树.
-* isException - 这个查询返回是否是异常.
-* ExceptionMessage - 返回异常对应的内容.
-* Duration - 查询消耗时间
-* Partial - 这个查询结果是否为部分返回，这个取决于请求参数中的 acceptPartial 为true或者false.
+#### Response Information
+* columnMetas - metadata information for each column
+* results - turned result set
+* cube - the Cube corresponding to query
+* affectedRowCount -  the total number of rows related to this query 
+* isException - whether the query result is exceptional
+* ExceptionMessage - turned corresponding exception information
+* Duration - query consumed time
+* Partial - whether query results are partial return depends on acceptPartial is true or false
 
-#### 响应示例
+#### Response Example
 ```sh
 {  
    "columnMetas":[  
@@ -130,21 +140,21 @@
 }
 ```
 
-#### Curl 访问示例
+#### Curl Access Example
 ```
 curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/json" -d '{ "sql":"select count(*) from TEST_KYLIN_FACT", "project":"learn_kylin" }' http://YOUR_HOST:7070/kylin/api/query
 ```
 
 
-## <span id="list-queryable-tables">列出可查询的表</span>
-`请求方式 GET`
+## List Queryable Table
+`Request Mode GET`
 
-`访问路径 http://host:port/kylin/api/tables_and_columns`
+`Access Path http://host:port/kylin/api/tables_and_columns`
 
-#### 请求参数
-* project - `必选` `string` 说明对应要列出哪个Project下的表 
+#### Request Parameter
+* project - `required` `string` indicates desired tables are from which project 
 
-#### 响应示例
+#### Response Example
 ```sh
 [  
    {  
