@@ -4,6 +4,7 @@
 * [KAP Introduction](introduction/README.md)
     * [KAP Overview](introduction/overview.en.md)
     * [Apache Kylin](introduction/kylin.en.md)
+    * [KyBot Overview](introduction/kybot.en.md)
     * [Glossary](introduction/concepts.en.md)
     * [Get Support](introduction/get_support.en.md)
 * [KAP Release Notes](release/README.md)
