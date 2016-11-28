@@ -23,7 +23,7 @@
 
 ### 1. 登录注册
 
-KyBot默认访问地址： [https://kybot.io](https://kybot.io)，根据提示完成注册。
+KyBot默认访问地址：[https://kybot.io](https://kybot.io)，根据提示完成注册。
 
 ### 2. 如何混淆敏感信息
 
