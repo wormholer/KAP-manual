@@ -16,7 +16,7 @@ Selecting `Config Raw Table` shows the default Raw Table definition.
 
 ### Encoding
 
-Click `Encoding` dropdown on each row, user can select encoding for each column. The default encoding is `orderedbytes`.
+Click `Encoding` dropdown on each row, user can select encoding for each line. The default encoding is `orderedbytes`.
 
 ![](images/createrawtable_3.jpg)
 
@@ -33,10 +33,10 @@ Click `Encoding` dropdown on each row, user can select encoding for each column.
 
 ### Index
 
-Click `Index` dropdown on each row, user can select index type for each column. The default encoding is `discrete`.
+Click `Index` dropdown on each row, user can select index type for each line. The default encoding is `discrete`.
 
 ![](images/createrawtable_4.jpg)
 
-1. `discrete` index is the default index, it means only equal index is build for this column.
+1. `discrete` index is the default index, it means only equal index is build for this line.
 2. `fuzzy` index is for query with `Like` filter. If the column will in `Like` filter, please set the index as `fuzzy`.
-3. `sorted` index means the column is sorted and currently there must be one and only one column set as `sorted` in a table. By default, the partition column in data model is picked as `sorted` column.
+3. `sorted` index means the row is sorted and currently there must be one and only one column set as `sorted` in a table. By default, the partition line in data model is picked as `sorted` line.

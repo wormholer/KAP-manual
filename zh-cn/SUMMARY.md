@@ -37,6 +37,7 @@
     * [数据导入](molap/import.cn.md)
     * [创建数据模型](molap/datamodel.cn.md)
     * [创建Cube](molap/create_cube.cn.md)
+    * [创建明细表](molap/create_rawtable.cn.md)
     * [构建Cube](molap/build_cube.cn.md)
     * [验证Cube](molap/query.cn.md)
     * [Web查询界面](molap/web.cn.md)
