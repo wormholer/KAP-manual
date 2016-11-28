@@ -4,15 +4,15 @@ KAP提供了JDBC驱动程序，支持JDBC接口的应用可以通过该驱动程
 用户可以在KAP安装目录的lib子目录下，找到名称为kylin-jdbc-kap-*.jar的jar包，这就是KAP的JDBC驱动。
 
 #### 连接
-KAP JDBC驱动程序遵循了JDBC标准接口，用户可通过URL制定JDBC所连接的KAP服务，这个URL格式为：
+KAP JDBC驱动程序遵循了JDBC标准接口，用户可通过URL指定JDBC所连接的KAP服务，这个URL格式为：
 ```
 jdbc:kylin://<hostname>:<port>/<project_name>
 ```
 * 如果KAP服务启用了SSL，则端口号应该使用KAP服务的HTTPS端口
 * 如果端口未指定，则JDBC驱动将使用HTTP和HTTPS的默认端口
-* project_name必须制定，用户必须保证该项目在KAP服务中存在
+* project_name必须指定，用户必须保证该项目在KAP服务中存在
 
-此外，用户需要为连接制定登陆的用户名、密码，以及SSL是否开启的标志，这些属性是：
+此外，用户需要为连接指定登陆的用户名、密码，以及SSL是否开启的标志，这些属性是：
 
 * user: 登陆KAP服务的用户名
 * password: 登陆KAP服务的密码
@@ -47,7 +47,7 @@ while (resultSet.next()) {
 
 
 #### 基于PreparedStatement的查询
-这里给出一个基于PreparedStatement进行查询的例子：
+这里给出一个基于Prepared Statement进行查询的例子：
 
 ```java
 Driver driver = (Driver) Class.forName("org.apache.kylin.jdbc.Driver").newInstance();
@@ -65,7 +65,7 @@ while (resultSet.next()) {
 }
 ```
 
-其中，对PreparedStatement支持对以下类型的赋值操作：
+其中，Prepared Statement支持对以下类型的赋值操作：
 
 * setString
 * setInt

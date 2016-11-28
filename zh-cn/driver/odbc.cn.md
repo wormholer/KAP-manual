@@ -11,8 +11,8 @@ KAP提供了Windows系统下的ODBC驱动程序，支持ODBC接口的应用可�
 
 1. 安装Microsoft Visual C++ 2012（Redistributable）
 
-  * 32位：下载：[32bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe) 
-  * 64位：下载：[64bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
+* 32位：下载 [32bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe) 
+* 64位：下载 [64bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
 
 2. ODBC驱动程序会调用KAP的Rest服务器，请提前确保KAP服务已正常运行。
 
@@ -21,8 +21,8 @@ KAP提供了Windows系统下的ODBC驱动程序，支持ODBC接口的应用可�
 
 1. 如果你已经安装过KAP ODBC驱动，首先卸载已存在的Apache Kylin或KAP ODBC驱动。
 2. 从[下载链接](http://kylin.apache.org/download)下载附件驱动安装程序，并运行。
-  * 32位Microsoft Office Excel：请安装KylinODBCDriver \(x86\).exe
-  * 64位Microsoft Office Excel：请安装KylinODBCDriver \(x64\).exe
+* 32位Microsoft Office Excel：请安装KylinODBCDriver \(x86\).exe
+* 64位Microsoft Office Excel：请安装KylinODBCDriver \(x64\).exe
 
 
 ## 配置DSN
@@ -53,25 +53,9 @@ KAP提供了Windows系统下的ODBC驱动程序，支持ODBC接口的应用可�
 
 4.单击Done按钮
 
-## 配置Excel
-
-1.从Microsoft网站下载并安装Power Query
-
-2.打开Excel，切换到Power Query的FastTab，单击From Other Sources并展开菜单，选择From ODBC项
-
-![](images/odbc_04.png)
-
-3.在弹出的“从ODBC”输入框中，首先选择前面创建的DSN作为数据源（如kylin），然后在下方输入希望执行的SQL语句
-
-![](images/odbc_05.png)
-
-4.这时，SQL的查询结果就显示到Excel表格中了。
-
-![](images/odbc_06.png)
-
-5.如果KAP中有数据更新，用户可以直接单击Excel上的Refresh按钮对表格中的数据进行刷新。
+ 
 
 ## 特别提醒
 
-如果用户希望使用ODBC驱动连接其他客户端应用，配置方式和该例类似。如果用户希望使用Tableau，可以访问Apache Kylin官网查看相关文档。
+如果用户希望使用ODBC驱动连接其他客户端应用，配置方式和该例类似。更多产品信息，请访问本书[与第三方BI工具集成](integration/README.md)章节或 Apache Kylin官网。
 
