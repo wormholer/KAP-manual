@@ -7,7 +7,7 @@
     * [KyBot Overview](introduction/kybot.en.md)
     * [Glossary](introduction/concepts.en.md)
     * [Get Support](introduction/get_support.en.md)
-* [KyBot Introduction](kybot/README.md)
+* [KyBot](kybot/README.md)
     * [KyBot Overview and Quick Start](kybot/kybot.en.md)
 * [KyAnalyzer](analyzer/README.md)
     - [How to use KyAnalyzer](analyzer/analyzer.en.md)

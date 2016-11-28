@@ -6,7 +6,7 @@
     * [Apache Kylin简介](introduction/kylin.cn.md)
     * [概念](introduction/concepts.cn.md)
     * [获取支持](introduction/get_support.cn.md)
-* [KyBot简介](kybot/README.md)
+* [KyBot](kybot/README.md)
     * [KyBot简介及快速入门](kybot/kybot.cn.md)
 * [KyAnalyzer](analyzer/README.md)
     - [自助式敏捷BI工具KyAnalyzer简介](analyzer/analyzer.cn.md)
