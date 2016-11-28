@@ -25,11 +25,11 @@ Click `Encoding` dropdown on each row, user can select encoding for each column.
 1. `date` encoding is for date string, such as "20160101" or "2016-01-02". It only stores the day information excluding hour, minute and second, which means 4pm or 6am is the same in this encoding. The data is stored as Long type in storage.
 2. `boolean` encoding is for boolean data, such as "true" or "false". The data is stored as Boolean type in storage.
 3. `fixed_length` encoding is for string and the `Length` is required to tell how many charactors are stored there. Strings longer than that Length will be cut down to fit that length. `Length` is defined in the next column to `Encoding`.
-4. `time` encoding is for time string. It's different from date encoding for it's stored the information of day, hour, minute, second and even millisecond. The data is stored as Long type in storage.
-5. `integer` encoding is only for integer and long type. The `Length` is also required in this encoding and it supports up to 8 width. You can always set the width to 8, it's safe for all possible long values. Smaller length value helps save storage. For instance,  if your data's range is from -2 to 89, only one byte is enough, so set length to 1 is the best choise in this case.
+4. `time` encoding is for time string. It's different from date encoding for it stores the information of day, hour, minute, second. However, millisecond part is not persistent. The maximum time supported is 2038/01/19 03:14:07. The data is stored as int32 type in storage.
+5. `integer` encoding is only for integer and long type. The `Length` is also required in this encoding and it supports up to 8 width. You can always set the width to 8, it's safe for all possible long values. Smaller length value helps save storage. For instance,  if your data's range is from -2 to 89, only one byte is enough, so set length to 1 is the best choice in this case.
 6. `int` encoding is deprecated. For new user, please select `integer` encoding.  
-7. `var` encoding is a special encoding. System will pick up one encoding for this column according to its hive column type.
-8. `orderedbytes` encoding is for all types. It keeps data's order when encoding. It's the default encoding type and is required if the column is set as `sorted` in index. The index explanation is in next section.
+7. `orderedbytes` encoding is designed for all types. It keeps data's order when encoding. It's the default encoding type in most cases.
+8. `var` encoding is similar to orderedbytes except it does not preserve order. It's not suggested any more, please use orderedbytes where applies.
 
 ### Index
 
