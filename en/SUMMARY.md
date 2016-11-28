@@ -7,6 +7,8 @@
     * [KyBot Overview](introduction/kybot.en.md)
     * [Glossary](introduction/concepts.en.md)
     * [Get Support](introduction/get_support.en.md)
+* [KyBot Introduction](kybot/README.md)
+    * [KyBot Overview and Quick Start](kybot/kybot.en.md)
 * [KAP Release Notes](release/README.md)
     * [KAP 2.1 Release Notes](release/KAP_2_1_notes.en.md)
     * [KAP 2.0 Release Notes](release/KAP_2_0_notes.en.md)
