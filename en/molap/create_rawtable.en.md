@@ -39,8 +39,4 @@ Click `Index` dropdown on each row, user can select index type for each line. Th
 
 1. `discrete` index is the default index, it means only equal index is build for this line.
 2. `fuzzy` index is for query with `Like` filter. If the column will in `Like` filter, please set the index as `fuzzy`.
-<<<<<<< HEAD
-3. `sorted` index means the row is sorted and currently there must be one and only one column set as `sorted` in a table. By default, the partition line in data model is picked as `sorted` line.
-=======
 3. `sorted` index means the column is sorted and currently there must be one and only one column set as `sorted` in a table. By default, the partition column in data model is picked as `sorted` column.
->>>>>>> origin/master
