@@ -19,8 +19,8 @@
         "sectionx",
         "expandable-chapters",
         "codeblock-filename",
-        "baidu",
-        "edit-link"
+        "edit-link",
+        "header"
     ],
     "pluginsConfig": {
         "disqus": {
@@ -53,14 +53,14 @@
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },
         
-        "baidu": {
-            "token" : "f5d21f62cf8fc5ec688aebcc9ab3aba9"
-        },
-        
-         "edit-link": {
+        "edit-link": {
                 "base": "https://github.com/Kyligence/kap-manual/edit/master",
                 "label": "Edit This Page"
-         }
+        },
+ 
+        "layout": {
+             "headerPath" : "layouts/header.html"
+        }
         
     }
 }
