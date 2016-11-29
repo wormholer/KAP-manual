@@ -46,3 +46,4 @@ When using *Beeline* as Hive client, KAP needs more privileges. Please update Hi
 ### Recommended Linux Distribution
 - Red Hat Enterprise Linux 6.4, 6.5
 - CentOS 6.4, 6.5
+- *Ubuntu has known issues*
