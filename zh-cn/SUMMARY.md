@@ -8,6 +8,7 @@
     * [获取支持](introduction/get_support.cn.md)
 * [KyBot](kybot/README.md)
     * [KyBot简介及快速入门](kybot/kybot.cn.md)
+    * [KyBot案例分析](kybot/case.cn.md)
 * [KyAnalyzer](analyzer/README.md)
     - [自助式敏捷BI工具KyAnalyzer简介](analyzer/analyzer.cn.md)
 * [KAP发行说明](release/README.md)

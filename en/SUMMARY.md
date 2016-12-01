@@ -9,6 +9,7 @@
     * [Get Support](introduction/get_support.en.md)
 * [KyBot](kybot/README.md)
     * [KyBot Overview and Quick Start](kybot/kybot.en.md)
+    * [KyBot Case Analysis](kybot/case.en.md)
 * [KyAnalyzer](analyzer/README.md)
     - [How to use KyAnalyzer](analyzer/analyzer.en.md)
 * [KAP Release Notes](release/README.md)
