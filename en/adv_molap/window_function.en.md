@@ -10,9 +10,9 @@ Window Functions query supported by KAP is list as follow:
 
 | Operator syntax                      | Description                              |
 | ------------------------------------ | ---------------------------------------- |
+| ROW_NUMBER() OVER ()                 | Returns the number of the current row within its partition, counting from 1 |
 | RANK() OVER (order by)               | Returns the rank of the current row with gaps; same as ROW_NUMBER of its first peer |
 | DENSE_RANK() OVER (order by )        | Returns the rank of the current row without gaps; this function counts peer groups |
-| ROW_NUMBER() OVER ()                 | Returns the number of the current row within its partition, counting from 1 |
 | FIRST_VALUE(value) OVER ()           | Returns *value* evaluated at the row that is the first row of the window frame |
 | LAST_VALUE(value) OVER ()            | Returns *value* evaluated at the row that is the last row of the window frame |
 | LEAD(value, offset, default) OVER () | Returns *value* evaluated at the row that is *offset* rows after the current row within the partition; if there is no such row, instead returns *default*. Both *offset* and *default* are evaluated with respect to the current row. If omitted, *offset* defaults to 1 and *default* to NULL |
@@ -33,7 +33,7 @@ Select a default **Data Source** named as `learn_kylin`, then the table structur
 
 
 
-#### Rank Function (rank, dense_rank, row_number, ntile)
+#### Rank Function (row_number, rank, dense_rank, ntile)
 
 Though we have the row column in this table, for most data analysts, generating row number is essential to get some particular results by different partitions. For instance: `select price, LSTG_FORMAT_NAME, row_number() over(partition by LSTG_FORMAT_NAME) as format_id from kylin_sales`
 
