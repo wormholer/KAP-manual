@@ -43,6 +43,8 @@
     * [SQL Query](molap/query.en.md)
     * [Query](molap/web.en.md)
     * [Visualization](molap/visualization.en.md)
+* [Advanced MOLAP](adv molap/README.md)
+    * [Window Function](adv molap/window function.en.md)
 * [REST API](rest/README.md)
     - [Access and authentication](rest/authentication.en.md)
     - [Query API](rest/query_api.en.md)
