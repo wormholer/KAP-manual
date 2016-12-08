@@ -44,7 +44,7 @@
     * [Web查询界面](molap/web.cn.md)
     * [数据展现](molap/visualization.cn.md)
 * [高级多维分析](adv molap/README.md)
-    - [窗口函数](adv molap/window function.cn.md)
+    - [窗口函数](adv molap/window_function.cn.md)
 * [REST API](rest/README.md)
     * [访问及安全验证](rest/authentication.cn.md)
     * [查询 API](rest/query_api.cn.md)

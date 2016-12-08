@@ -27,7 +27,7 @@
 
 #### 数据源
 
-登录 [KAP在线站点](http://demokap1.chinacloudapp.cn:7070/kylin/login) 并选择一个名为 `learn_kylin` 的数据源。点击该数据源，数据源中的表和表结构将陈列开：此数据源中有一张事实表（`KYLIN_SALES`）和两张查询表（`KYLIN_CAL_DT` 和 `KYLIN_CATEGORY_GROUPINGS`）。请认真了解 `KYLIN_SALES` 的表结构以便后文理解。
+笔者使用了一个名为 `learn_kylin` 的数据源。点击该数据源，数据源中的表和表结构将陈列开：此数据源中有一张事实表（`KYLIN_SALES`）和两张查询表（`KYLIN_CAL_DT` 和 `KYLIN_CATEGORY_GROUPINGS`）。请认真了解 `KYLIN_SALES` 的表结构以便后文理解。
 
 ![](image/wd_datasample.png)
 

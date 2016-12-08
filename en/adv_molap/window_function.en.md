@@ -27,7 +27,7 @@ In this section, we would take a dataset defaulted in KAP as data source to prac
 
 #### Dataset
 
-Log on [KAP online site](http://demokap1.chinacloudapp.cn:7070/kylin/login) and select a default **Data Source** named as `learn_kylin` . Then the table structure would present below: there are one fact table (`KYLIN_SALES`) and two lookup tables (`KYLIN_CAL_DT` and `KYLIN_CATEGORY_GROUPINGS`). Take a minute to check the `KYLIN_SALES` as well as its sample data, and we'll use it later.
+Select a default **Data Source** named as `learn_kylin`, then the table structure would present below: there are one fact table (`KYLIN_SALES`) and two lookup tables (`KYLIN_CAL_DT` and `KYLIN_CATEGORY_GROUPINGS`). Take a minute to check the `KYLIN_SALES` as well as its sample data, and we'll use it later.
 
 ![](image/wd_datasample.png)
 
@@ -47,7 +47,7 @@ Then result returns like:
 
 Similar with rank function, offset function would provide access to a row at a given physical offset beyond that position. To get to know the closest date recorded within the table, then you can input: `select price, part_dt, lead(part_dt,1) over(partition by LSTG_FORMAT_NAME) as latest_dt from kylin_sales`
 
-Result would be as:
+Result would be:
 
 ![](image/wd_lead_date.png)
 

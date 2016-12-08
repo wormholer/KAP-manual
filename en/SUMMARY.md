@@ -44,7 +44,7 @@
     * [Query](molap/web.en.md)
     * [Visualization](molap/visualization.en.md)
 * [Advanced MOLAP](adv molap/README.md)
-    * [Window Function](adv molap/window function.en.md)
+    * [Window Function](adv molap/window_function.en.md)
 * [REST API](rest/README.md)
     - [Access and authentication](rest/authentication.en.md)
     - [Query API](rest/query_api.en.md)
