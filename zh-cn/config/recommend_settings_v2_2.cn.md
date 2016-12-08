@@ -14,10 +14,10 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 > cd $KYLIN_HOME/conf
 >
 > # Use sandbox(min) profile
-> ln -sf profile_min profile
+> ln -sfn profile_min profile
 >
 > # Or use production(prod) profile
-> ln -sf profile_prod profile
+> ln -sfn profile_prod profile
 > ```
 
 ### kylin.properties

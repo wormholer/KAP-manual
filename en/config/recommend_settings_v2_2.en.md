@@ -14,10 +14,10 @@ The following recommended configurations are classified according to the size of
 > cd $KYLIN_HOME/conf
 >
 > # Use sandbox(min) profile
-> ln -sf profile_min profile
+> ln -sfn profile_min profile
 >
 > # Or use production(prod) profile
-> ln -sf profile_prod profile
+> ln -sfn profile_prod profile
 > ```
 
 ### kylin.properties
