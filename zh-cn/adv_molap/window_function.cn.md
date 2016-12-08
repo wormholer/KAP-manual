@@ -27,13 +27,13 @@
 
 #### 数据源
 
-笔者使用了一个名为 `learn_kylin` 的数据源。点击该数据源，数据源中的表和表结构将陈列开：此数据源中有一张事实表（`KYLIN_SALES`）和两张查询表（`KYLIN_CAL_DT` 和 `KYLIN_CATEGORY_GROUPINGS`）。请认真了解 `KYLIN_SALES` 的表结构以便后文理解。
+笔者使用了一个名为 `learn_kylin` 的数据源。点击该数据源，数据源中的表和表结构将陈列开：此数据源中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 和 `KYLIN_CATEGORY_GROUPINGS`）。请认真了解 `KYLIN_SALES` 的表结构以便后文理解。
 
 ![](image/wd_datasample.png)
 
 
 
-#### 登记函数（rank，dense_rank，row_number，ntile）
+#### 排名函数（row_number，rank，dense_rank，ntile）
 
 在本表中，我们虽然已经具有ROW这列来标记行序列数，但对于数据分析师来说，在一般的表中获得不同分区下的行序列非常重要，可以方便了解当前行在分区中的位置。例如： `select price, LSTG_FORMAT_NAME, row_number() over(partition by LSTG_FORMAT_NAME) as format_id from kylin_sales` ，则结果返回了不同的LSTG_FORMAT_NAME下，产品价格高低的相对关系。
 
@@ -45,7 +45,7 @@
 
 #### 偏移函数（first_value，last_value，lead，lag）
 
-类似于分级函数，偏移行书可以提供对当前行的偏移定量的偏移值。比如，要获得离当前日期最近的下一个日期，则可以输入：`select price, part_dt, lead(part_dt,1) over(partition by LSTG_FORMAT_NAME) as latest_dt from kylin_sales`，返回的结果为日期行中偏移一行后的偏移值。
+类似于排名函数，偏移行可以提供对当前行的一定偏移量的偏移值。比如，要获得离当前日期最近的下一个日期，则可以输入：`select price, part_dt, lead(part_dt,1) over(partition by LSTG_FORMAT_NAME) as latest_dt from kylin_sales`，返回的结果为日期行中偏移一行后的偏移值。
 
 结果（局部）返回如下：
 
