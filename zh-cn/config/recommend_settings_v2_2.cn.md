@@ -8,6 +8,18 @@ KAP的配置文件包括几个部分：*kylin.properties*，*kylin_hive_conf.xml
 
 *Prod*表示生产环境推荐配置，通常至少由5个节点组成的Hadoop集群，单机32核，128GB内存，20TB硬盘。
 
+> 提示：KAP v2.2 已经提供了*Sandbox*和*Prod*的推荐配置。其中默认配置为*Sandbox*，并可以通过修改profile的软连接指向来切换到*Prod*配置：
+>
+> ```bash
+> cd $KYLIN_HOME/conf
+>
+> # Use sandbox(min) profile
+> ln -sf profile_min profile
+>
+> # Or use production(prod) profile
+> ln -sf profile_prod profile
+> ```
+
 ### kylin.properties
 
 | Properties Name                          | Sandbox    | Prod    |

@@ -2,11 +2,23 @@
 
 The configuration files of KAP include following files: *kylin.properties*, *kylin_hive_conf.xml*, *kylin_job_conf.xml*, *kylin_job_conf_inmem.xml*. Among those files, *kylin.properties* is a major configuration parameter to control KAP's running behavior; *kylin_hive_conf.xml* is applied to configure parameters of interaction between KAP and Hive; *kylin_job_conf.xml* is applied to configure parameters of interaction between KAP and Hadoop cluster; *kylin_job_conf_inmem.xml is applied on in-memory* algorithm, *kylin_job_conf.xml* is applied on layer algorithm.
 
-The following recommended configurations are classified according to the size of the cluster, system performance could be influenced by other external system parameters. Here our recommending configurations are based on experience. 
+The following recommended configurations are classified according to the size of the cluster, system performance could be influenced by other external system parameters. Here our recommending configurations are based on experience.
 
 *Sandbox* refers the testing environment for single machine sandbox virtual machine, dual core, 10GB internal storage, 10GB hard disk.
 
 *Prod* represents recommended configuration for the production environment, usually, the Hadoop cluster consisting of at least 5 nodes, single machine 32 core, 128GB internal storage, 20TB hard disk.
+
+> Tip: KAP v2.2 provides sample configurations of *Sandbox* and *Prod* profiles. *Sandbox* is used as default profile and can be switched by rebuild soft link:
+>
+> ```bash
+> cd $KYLIN_HOME/conf
+>
+> # Use sandbox(min) profile
+> ln -sf profile_min profile
+>
+> # Or use production(prod) profile
+> ln -sf profile_prod profile
+> ```
 
 ### kylin.properties
 
@@ -93,6 +105,3 @@ The following recommended configurations are classified according to the size of
 | mapreduce.map.memory.mb                  | 3072      | 4096                                     |
 | mapreduce.map.java.opts                  | -Xmx2700m | -Xmx3700m                                |
 | mapreduce.task.io.sort.mb                | 200       | 200                                      |
-
-
-
