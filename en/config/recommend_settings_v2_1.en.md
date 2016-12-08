@@ -18,21 +18,21 @@ The following recommended configurations are classified according to the size of
 | kylin.hbase.region.count.min             | 1          | 1       |
 | kylin.hbase.region.count.max             | 100        | 500     |
 | kylin.job.concurrent.max.limit           | 10         | 20      |
-| kylin.job.yarn.app.rest.check.interval.seconds | 10         |         |
-| kylin.job.cubing.inmem.sampling.percent  | 100        |         |
+| kylin.job.yarn.app.rest.check.interval.seconds | 10         | 10        |
+| kylin.job.cubing.inmem.sampling.percent  | 100        | 100        |
 | kylin.job.mapreduce.default.reduce.input.mb | 100        | 500     |
 | kylin.job.mapreduce.max.reducer.number   | 100        | 500     |
 | kylin.job.mapreduce.mapper.input.rows    | 200000     | 1000000 |
-| kylin.job.step.timeout                   | 7200       |         |
-| kylin.cube.algorithm                     | auto       |         |
-| kylin.cube.algorithm.auto.threshold      | 8          |         |
-| kylin.cube.aggrgroup.max.combination     | 4096       |         |
-| kylin.dictionary.max.cardinality         | 5000000    |         |
-| kylin.table.snapshot.max_mb              | 300        |         |
-| kylin.query.scan.threshold               | 10000000   |         |
-| kylin.query.mem.budget                   | 3221225472 |         |
-| kylin.query.coprocessor.mem.gb           | 3          |         |
-| kylin.query.filter.derived_in.max        | 100        |         |
+| kylin.job.step.timeout                   | 7200       | 7200        |
+| kylin.cube.algorithm                     | auto       | auto        |
+| kylin.cube.algorithm.auto.threshold      | 8          | 8        |
+| kylin.cube.aggrgroup.max.combination     | 4096       | 4096        |
+| kylin.dictionary.max.cardinality         | 5000000    | 5000000        |
+| kylin.table.snapshot.max_mb              | 300        | 300        |
+| kylin.query.scan.threshold               | 10000000   | 10000000        |
+| kylin.query.mem.budget                   | 3221225472 | 3221225472        |
+| kylin.query.coprocessor.mem.gb           | 3          | 3        |
+| kylin.query.filter.derived_in.max        | 100        | 100        |
 
 
 ### kylin.properties for KAP Plus
@@ -54,42 +54,42 @@ The following recommended configurations are classified according to the size of
 
 | Properties Name                          | Sandbox   | Prod                                     |
 | ---------------------------------------- | --------- | ---------------------------------------- |
-| dfs.replication                          | 2         |                                          |
-| hive.exec.compress.output                | true      |                                          |
-| hive.auto.convert.join.noconditionaltask | true      |                                          |
-| hive.auto.convert.join.noconditionaltask.size | 100000000 |                                          |
+| dfs.replication                          | 2         | 2                                         |
+| hive.exec.compress.output                | true      | true                                         |
+| hive.auto.convert.join.noconditionaltask | true      | true                                         |
+| hive.auto.convert.join.noconditionaltask.size | 100000000 | 100000000                                         |
 | mapreduce.map.output.compress.codec      | N/A       | org.apache.hadoop.io.compress.SnappyCodec |
 | mapreduce.output.fileoutputformat.compress.codec | N/A       | org.apache.hadoop.io.compress.SnappyCodec |
-| mapreduce.output.fileoutputformat.compress.type | BLOCK     |                                          |
-| mapreduce.job.split.metainfo.maxsize     | -1        |                                          |
+| mapreduce.output.fileoutputformat.compress.type | BLOCK     | BLOCK                                         |
+| mapreduce.job.split.metainfo.maxsize     | -1        | -1                                         |
 
 ### kylin_job_conf.xml
 
 | Properties Name                          | Sandbox | Prod                                     |
 | ---------------------------------------- | ------- | ---------------------------------------- |
-| mapreduce.job.split.metainfo.maxsize     | -1      |                                          |
-| mapreduce.map.output.compress            | true    |                                          |
+| mapreduce.job.split.metainfo.maxsize     | -1      | -1                                         |
+| mapreduce.map.output.compress            | true    | true                                         |
 | mapreduce.map.output.compress.codec      | N/A     | org.apache.hadoop.io.compress.SnappyCodec |
-| mapreduce.output.fileoutputformat.compress | true    |                                          |
+| mapreduce.output.fileoutputformat.compress | true    | true                                         |
 | mapreduce.output.fileoutputformat.compress.codec | N/A     | org.apache.hadoop.io.compress.SnappyCodec |
-| mapreduce.output.fileoutputformat.compress.type | BLOCK   |                                          |
-| mapreduce.job.max.split.locations        | 2000    |                                          |
-| dfs.replication                          | 2       |                                          |
-| mapreduce.task.timeout                   | 3600000 |                                          |
+| mapreduce.output.fileoutputformat.compress.type | BLOCK   | BLOCK                                         |
+| mapreduce.job.max.split.locations        | 2000    | 2000                                         |
+| dfs.replication                          | 2       | 2                                         |
+| mapreduce.task.timeout                   | 3600000 | 3600000                                         |
 
 ### kylin_job_conf_inmem.xml
 
 | Properties Name                          | Sandbox   | Prod                                     |
 | ---------------------------------------- | --------- | ---------------------------------------- |
-| mapreduce.job.split.metainfo.maxsize     | -1        |                                          |
-| mapreduce.map.output.compress            | true      |                                          |
+| mapreduce.job.split.metainfo.maxsize     | -1        | -1                                        |
+| mapreduce.map.output.compress            | true      | true                                         |
 | mapreduce.map.output.compress.codec      | N/A       | org.apache.hadoop.io.compress.SnappyCodec |
-| mapreduce.output.fileoutputformat.compress | true      |                                          |
+| mapreduce.output.fileoutputformat.compress | true      | true                                         |
 | mapreduce.output.fileoutputformat.compress.codec | N/A       | org.apache.hadoop.io.compress.SnappyCodec |
-| mapreduce.output.fileoutputformat.compress.type | BLOCK     |                                          |
-| mapreduce.job.max.split.locations        | 2000      |                                          |
-| dfs.replication                          | 2         |                                          |
-| mapreduce.task.timeout                   | 7200000   |                                          |
+| mapreduce.output.fileoutputformat.compress.type | BLOCK     | BLOCK                                         |
+| mapreduce.job.max.split.locations        | 2000      | 2000                                         |
+| dfs.replication                          | 2         | 2                                         |
+| mapreduce.task.timeout                   | 7200000   | 7200000                                         |
 | mapreduce.map.memory.mb                  | 3072      | 4096                                     |
 | mapreduce.map.java.opts                  | -Xmx2700m | -Xmx3700m                                |
 | mapreduce.task.io.sort.mb                | 200       | 200                                      |
