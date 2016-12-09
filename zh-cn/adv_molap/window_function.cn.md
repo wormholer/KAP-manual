@@ -45,7 +45,7 @@
 
 #### 偏移函数（first_value，last_value，lead，lag）
 
-类似于排名函数，偏移行可以提供对当前行的一定偏移量的偏移值。比如，要获得离当前日期最近的下一个日期，则可以输入：`select price, part_dt, lead(part_dt,1) over(partition by LSTG_FORMAT_NAME) as latest_dt from kylin_sales`，返回的结果为日期行中偏移一行后的偏移值。
+类似于排名函数，偏移函数可以提供对当前行的一定偏移量的偏移值。比如，要获得离当前日期最近的下一个日期，则可以输入：`select price, part_dt, lead(part_dt,1) over(partition by LSTG_FORMAT_NAME) as latest_dt from kylin_sales`，返回的结果为日期行中偏移一行后的偏移值。
 
 结果（局部）返回如下：
 

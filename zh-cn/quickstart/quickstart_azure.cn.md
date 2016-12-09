@@ -103,7 +103,7 @@ KAP默认访问地址：HOSTNAME:7070/kylin/，默认用户名：ADMIN  密码:K
 
 ### 体验Cube操作
 
-如用户想进一步体验模型，Cube的设计和构建，也可以根据样例数据来尝试创建与构建Cube。具体操作步骤可参考本手册中的[创建数据模型](https://kyligence-git.gitbooks.io/kap-manual/content/zh-cn/molap/datamodel.cn.html)，[创建Cube](https://kyligence-git.gitbooks.io/kap-manual/content/zh-cn/molap/create_cube.cn.html) 和[构建Cube章节](https://kyligence-git.gitbooks.io/kap-manual/content/zh-cn/molap/build_cube.cn.html)。
+如用户想进一步体验模型，Cube的设计和构建，也可以根据样例数据来尝试创建与构建Cube。具体操作步骤可参考本手册中的[创建数据模型](molap/datamodel.cn.md)，[创建Cube](molap/create_cube.cn.md) 和[构建Cube](molap/build_cube.cn.md)章节。
 
 更多意见与建议，欢迎与我们联系：support@kyligence.io
 

@@ -175,7 +175,8 @@ objectClass: top
 ${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES *your_password*
 # ${crypted_password}
 ```
-然后填写在kylin.properties中，如下：
+> 然后填写在kylin.properties中(*请注意此处“=”后所指的用户名、服务器、密码都不需要用双引号*)，如下：
+>
 
 ```properties
 # ldap.server=ldap://<your_ldap_host>:<port>

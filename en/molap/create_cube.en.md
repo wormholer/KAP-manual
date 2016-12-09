@@ -25,7 +25,7 @@ The result is shown in following figure:
 
 ![](images/createcube_3.png)
 
-Step 3: Define Cube measure types according to aggregation requirements in analysis. A COUNT measure is created automatically, which counts the number of orders. In this case, `PRICE` is also a important in sales measurement. For example, total sales `SUM(PRICE)`, highest price `MAX(PRICE)` and lowest price `MIN(PRICE)`. They're all added manually as measures in this step.
+Step 3: Define Cube measure types according to aggregation requirements in analysis. COUNT measure and SUM measure could be created automatically, which depend on data type, to demonstrate order amount and over all amount of item sold. Of course these defaulted measures can be modified or delete later manually. In this case, `PRICE` is also a important in sales measurement. For example, total sales `SUM(PRICE)`, highest price `MAX(PRICE)` and lowest price `MIN(PRICE)`. They're all added manually as measures in this step.
 
 ![](images/createcube_4.png)
 
