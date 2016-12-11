@@ -35,21 +35,21 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 GROUP BY SELLER_ID 
 ORDER BY SUM(PRICE)
 ```
-因此，我们创建一个TOP-N的度量，选择PRICE字段作为SUM/OPDERBY字段，选择SELLER_ID字段作为GROUP BY字段，并选择TOPN(100)作为度量的精度。
+因此，我们创建一个TOP-N的度量，选择PRICE字段作为SUM/OPDER BY字段，选择SELLER_ID字段作为GROUP BY字段，并选择TOPN(100)作为度量的精度。
 
 ![](images/createcube_6.png)
 最终添加的度量如下图所示：
 
 ![](images/createcube_7.png)
-第四步，我们对Cube的构建和维护进行配置。一般的，一个销售统计的SQL查询往往会按月、周进行过滤和聚合，所以我们可以设置Cube自动按周、月进行自动合并，即每7天进行一次合并，每4周（28天）进行一次合并，设置“触发自动合并的时间阀值”如下所示：
+第四步，我们对Cube的构建和维护进行配置。一般的，一个销售统计的SQL查询往往会按月、周进行过滤和聚合，所以我们可以设置Cube自动按周、月进行自动合并，即每7天进行一次合并，每4周（28天）进行一次合并，设置“触发自动合并的时间阈值”如下所示：
 
 ![](images/createcube_8.png)
-因为存在对于历史订单的查询需求，我们在此不对Cube做自动清理，所以需要设置“保留时间阀值”为0。
+因为存在对于历史订单的查询需求，我们在此不对Cube做自动清理，所以需要设置“保留时间阈值”为0。
 
 在创建数据模型的时候我们提到，我们希望采用增量构建方式对Cube进行构建，并选择了PART_DT字段作为分区时间列。在创建Cube时，我们需要指定Cube构建的起始时间，在这个例子中，根据样例数据中的时间条件，我们选择2012-01-01 00:00:00作为分区起始时间。
 
 
-第五步，通过对Cube进行高级设置优化Cube的存储大小和查询速度，主要包括聚合组和Rowkey。在第六章我们提到，添加聚合组可以利用字段间的层级关系和包含关系有效地降低Cuboid的数量。在这个案例当中，与商品分类相关的三个字段（META_CATEG_NAME、CATEG_LVL2_NAME、CATEG_LVL3_NAME）实际上具有层级关系，如一级类别（META_CATEG_NAME）包含多个二级类别（CATEG_LVL2_NAME），二级类别又包含多个三级类别（CATEG_LVL3_NAME），所以，我们可以为它们创建层级结构的组合（Hierarchy Dimensions）。最终，聚合组的设计如下图所示：
+第五步，通过对Cube进行高级设置优化Cube的存储大小和查询速度，主要包括聚合组和Rowkey。在前文我们提到，添加聚合组可以利用字段间的层级关系和包含关系有效地降低Cuboid的数量。在这个案例当中，与商品分类相关的三个字段（META_CATEG_NAME、CATEG_LVL2_NAME、CATEG_LVL3_NAME）实际上具有层级关系，如一级类别（META_CATEG_NAME）包含多个二级类别（CATEG_LVL2_NAME），二级类别又包含多个三级类别（CATEG_LVL3_NAME），所以，我们可以为它们创建层级结构的组合（Hierarchy Dimensions）。最终，聚合组的设计如下图所示：
 
 ![](images/createcube_9.png)
 

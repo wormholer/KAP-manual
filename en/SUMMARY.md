@@ -45,6 +45,8 @@
     * [Visualization](molap/visualization.en.md)
 * [Advanced MOLAP](adv_molap/README.md)
     * [Window Function](adv_molap/window_function.en.md)
+    * [Precise Count Distinct](adv_molap/count_distinct_bitmap.en.md)
+    * [Approximate Count Distinct](adv_molap/count_distinct_hllc.en.md)
 * [REST API](rest/README.md)
     - [Access and authentication](rest/authentication.en.md)
     - [Query API](rest/query_api.en.md)
