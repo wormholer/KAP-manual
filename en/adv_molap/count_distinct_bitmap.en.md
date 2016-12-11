@@ -18,13 +18,11 @@ Firstly, after creating a new Cube and ensure all dimensions selected, then clic
 
 Next, choose the column desired from `Param Value` and COUNT_DISTINCT from `Expression`. Here be careful to select accuracy requirement from `Return Type`.  KAP offers both approximate count distinct function and precise count distinct function. To get the pre-calculated precise count distinct value, you should select  `Return Type: Precisely` based on bitmap, which would return a no error result if storage resource is sufficient enough. For instance, one result size might be hundreds of MB, when the count distinct value over millions.
 
-KAP implements approximately count distinct using *HyperLogLog* algorithm, offered serveral precision, with the error rates from 9.75% to 1.22%. It would be perfectly fit if you don't require a particularly precise result and have limited storage resource. 
-
 ![](image/cd_measures_add.2.png)
 
-There is another little setting difference on`Advanced Setting`. To complete precise count distinct setting, which means to get correct results from precise count distinct function not only within a segment, but also across several segments when it is roll-up. So we need to add a global dictionary within `Advanced Dictionaries`. 
 
- ![](image/cd_measures_add.5.png)
+
+There is another little setting difference on`Advanced Setting`. To complete precise count distinct setting, which means to get correct results from precise count distinct function not only within a segment, but also across several segments when it is roll-up. So we need to add a global dictionary within `Advanced Dictionaries`.   ![](image/cd_measures_add.5.png)
 
 Select `Dictionaries+` , then choose desired columns as Column and the global dictionary shown below as its `Builder Class` . Follow the [Create Cube](molap/create_cube.en.md) introduction for rest steps, the Cube would be ready after you set segments during the [Build Cube](molap/build_cube.en.md) section.
 

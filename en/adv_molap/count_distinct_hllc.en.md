@@ -1,6 +1,6 @@
 # Use Approximate Count Distinct in KAP
 
-Count distinct is a frequent-used function for most data analysts. Since KAP v2.1, KAP implements approximately count distinct using HyperLogLog algorithm, offered serveral precision, with the error rates from 9.75% to 1.22%. The result of measure has theorically upper limit in size, as 2^N bytes. For the max precision N=16, the upper limit is 64KB, and the max error rate is 1.22%. It would be perfectly fit if you don't require a particularly precise result and have limited storage resource. 
+Count distinct is a frequent-used function for most data analysts. Since KAP v2.1, KAP implements approximately count distinct using [HyperLogLog](https://hal.inria.fr/hal-00406166/document) algorithm, offered serveral precision, with the error rates from 9.75% to 1.22%. The result of measure has theorically upper limit in size, as 2^N bytes. For the max precision N=16, the upper limit is 64KB, and the max error rate is 1.22%. It would be perfectly fit if you don't require a particularly precise result and have limited storage resource. 
 
 
 
