@@ -39,6 +39,7 @@
     * [Create Data Model](molap/datamodel.en.md)
     * [Create Cube](molap/create_cube.en.md)
     * [Create Raw Table](molap/create_rawtable.en.md)
+    * [Create Streaming Cube](molap/streaming_cube.en.md)
     * [Build Cube](molap/build_cube.en.md)
     * [SQL Query](molap/query.en.md)
     * [Query](molap/web.en.md)
