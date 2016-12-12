@@ -228,4 +228,13 @@ If the result is an empty arrary, means there is no hole; Otherwise, trigger Kyl
 curl -X PUT --user ADMINN:KYLIN -H "Content-Type: application/json;charset=utf-8" http://localhost:7070/kylin/api/cubes/{your_cube_name}/holes
 ```
 
-
+
+
+### Reference
+
+[Scalable Cubing from Kafka (beta)](http://kylin.apache.org/docs16/tutorial/cube_streaming.html) (Shaofeng Shi)
+
+[New NRT Streaming in Apache Kylin](http://kylin.apache.org/blog/2016/10/18/new-nrt-streaming/) (Shaofeng Shi) 
+
+
+
