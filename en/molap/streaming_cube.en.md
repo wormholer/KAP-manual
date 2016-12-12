@@ -1,18 +1,16 @@
 # Streaming Cube
 
-# Scalable Cubing from Kafka (beta)
-
-Kylin v1.6 releases the scalable streaming cubing function, it leverages Hadoop to consume the data from Kafka to build the cube, you can check [this blog](http://kylin.apache.org/blog/2016/10/18/new-nrt-streaming/) for the high level design. This doc is a step by step tutorial, illustrating how to create and build a sample cube;
+Kylin v1.6 releases the scalable streaming cubing function, it leverages Hadoop to consume the data from Kafka to build the cube, you can check [this blog](http://kylin.apache.org/blog/2016/10/18/new-nrt-streaming/) for the high level design. This doc is a step by step tutorial, illustrating how to create and build a sample cube within KAP.
 
 ## Preparation
 
-To finish this tutorial, you need a Hadoop environment which has kylin v1.6.0 or above installed, and also have a Kafka (v0.10.0 or above) running; Previous Kylin version has a couple issues so please upgrade your Kylin instance at first.
+To finish this tutorial, you need a Hadoop environment which has kylin v1.6.0 or above installed, and also have a Kafka (v0.10.0 or above) running; previous Kylin version has several issues, so please upgrade your Kylin instance at first.
 
-In this tutorial, we will use Hortonworks HDP 2.2.4 Sandbox VM + Kafka v0.10.0(Scala 2.10) as the environment.
+In this tutorial, we will use **Hortonworks HDP 2.2.4 Sandbox VM** + **Kafka v0.10.0(Scala 2.10)** as the environment.
 
 ## Install Kafka 0.10.0.0 and Kylin
 
-Don’t use HDP 2.2.4’s build-in Kafka as it is too old, stop it first if it is running.
+Don’t use HDP 2.2.4's build-in Kafka as it is too old, stop it first if it is running.
 
 ```
 curl -s http://mirrors.tuna.tsinghua.edu.cn/apache/kafka/0.10.0.0/kafka_2.10-0.10.0.0.tgz | tar -xz -C /usr/hdp/current/
@@ -22,7 +20,9 @@ cd /usr/hdp/current/kafka_2.10-0.10.0.0/
 bin/kafka-server-start.sh config/server.properties &
 ```
 
-Download the Kylin v1.6 from download page, expand the tar ball in /root/ folder.
+Download the Kylin v1.6 from download page, expand the tar ball in **/root/ folder**.
+
+
 
 ## Create sample Kafka topic and populate data
 
@@ -33,7 +33,7 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 -
 Created topic "kylindemo".
 ```
 
-Put sample data to this topic; Kylin has an utility class which can do this;
+Input sample data to this topic; Kylin has an utility class which can do this;
 
 ```
 export KAFKA_HOME=/usr/hdp/current/kafka_2.10-0.10.0.0
@@ -52,85 +52,88 @@ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --bootstrap-server loca
 {"amount":22.806058795736583,"category":"ELECTRONIC","order_time":1477415932591,"device":"Andriod","qty":1,"user":{"id":"00283efe-027e-4ec1-bbed-c2bbda873f1d","age":27,"gender":"Female"},"currency":"USD","country":"INDIA"}
 ```
 
+
+
 ## Define a table from streaming
 
-Start Kylin server with “$KYLIN_HOME/bin/kylin.sh start”, login Kylin Web GUI at http://sandbox:7070/kylin/, select an existing project or create a new project; Click “Model” -> “Data Source”, then click the icon “Add Streaming Table”;
+Here we will illustrate how to create and build streaming cube via [KAP Web GUI](http://demokap1.chinacloudapp.cn:7070/kylin/login). Select an existing project or create a new project then click “**Model**” --> “**Data Source**”--> “**Add Streaming Table**”.
 
-![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/1_Add_streaming_table.png)
+![](images/stream_table.png)
 
-In the pop-up dialogue, enter a sample record which you got from the kafka-console-consumer, click the “»” button, Kylin parses the JSON message and listS all the properties;
+**STEP1**: In the pop-up dialogue, enter a sample record which you got from the kafka-console-consumer, click the “**»**” button, KAP parses the JSON message and listS all the properties. You need give a logic table name for this streaming data source; The name will be used for SQL query later; here enter “STREAMING_SALES_TABLE” as an example in the “**Table Name**” field.
 
-You need give a logic table name for this streaming data source; The name will be used for SQL query later; here enter “STREAMING_SALES_TABLE” as an example in the “Table Name” field.
+![](images/stream_table.1.png)
 
-You need select a timestamp field which will be used to identify the time of a message; Kylin can derive other time values like “year_start”, “quarter_start” from this time column, which can give your more flexibility on building and querying the cube. Here check “order_time”. You can deselect those properties which are not needed for cube. Here let’s keep all fields.
 
-Notice that Kylin supports structured (or say “embedded”) message from v1.6, it will convert them into a flat table structure. By default use “_” as the separator of the structed properties.
 
-![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/2_Define_streaming_table.png)
+You need to select a timestamp field which will be used to identify the time of a message. KAP can derive other time values like “year_start”, “quarter_start” from this time column, which can give your more flexibility on building and querying the cube. Check “order_time” a little while, you can deselect those properties which are not needed for Cube. Also, if you feel bothered to change them, let them be is fine as well. You can click “**Next**” to move on.
 
-Click “Next”. On this page, provide the Kafka cluster information; Enter “kylindemo” as “Topic” name; The cluster has 1 broker, whose host name is “sandbox”, port is “9092”, click “Save”.
+Notice that KAP supports structured (or say “embedded”) message from v2.1, it will convert them into a flat table structure. By default use “_” as the separator of the structed properties.
 
-![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/3_Kafka_setting.png)
 
-In “Advanced setting” section, the “timeout” and “buffer size” are the configurations for connecting with Kafka, keep them.
 
-In “Parser Setting”, by default Kylin assumes your message is JSON format, and each record’s timestamp column (specified by “tsColName”) is a bigint (epoch time) value; in this case, you just need set the “tsColumn” to “order_time”;
+**STEP2**: On the setting page, Kafka cluster information is offered: you can enter “kylindemo” as “**Topic**” name. The cluster has 1 broker, whose host name is “sandbox”, port is “9092”, then click “**Save**” .
 
-![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/3_Paser_setting.png)
+![](images/stream_table.2.png)
 
-In real case if the timestamp value is a string valued timestamp like “Jul 20, 2016 9:59:17 AM”, you need specify the parser class with “tsParser” and the time pattern with “tsPattern” like this:
+In “**Advanced setting**” section, the “timeout” and “buffer size” are the configurations for connecting with Kafka, just keep them.
+
+![](images/stream_table.4.png)
+
+In “**Parser Setting**”, by default Kylin assumes your message is JSON format, and each record's timestamp column (specified by “tsColName”) is a bigint (epoch time) value. In this case, you just need to set the “tsColumn” to “order_time”. Click “**Submit**” to save the configurations. Now a “Streaming” table is created as shown below.![](images/stream_table.3.png)
+
+![](images/stream_table.5.png)
+
+**Notice**: In real case if the timestamp value is a string valued timestamp like “Jul 20, 2016 9:59:17 AM”, you need specify the parser class with “tsParser” and the time pattern with “tsPattern” like this:
 
 ![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/3_Paser_time.png)
 
-Click “Submit” to save the configurations. Now a “Streaming” table is created.
 
-![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/4_Streaming_table.png)
 
-## Define data model
+## Create data model
 
-With the table defined in previous step, now we can create the data model. The step is almost the same as you create a normal data model, but it has two requirement:
+With the table defined in previous steps, now we can create the data model. Creating a streaming data model is almost the same as creating a normal data model, but it has **a little difference**, so we would introduce key steps below.
 
-- Streaming Cube doesn’t support join with lookup tables; When define the data model, only select fact table, no lookup table;
-- Streaming Cube must be partitioned; If you’re going to build the Cube incrementally at minutes level, select “MINUTE_START” as the cube’s partition date column. If at hours level, select “HOUR_START”.
+**STEP1**: Streaming Cube doesn’t support to join with lookup tables. So when you create the data model, please only select fact table, don't add lookup table. ![](images/stream_table.6.png)
 
-Here we pick 13 dimension and 2 measure columns:
 
-![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/5_Data_model_dimension.png)
 
-![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/6_Data_model_measure.png)
-Save the data model.
+**STEP2**: You need to pick dimension and measure columns.
+
+![](images/stream_table.7.png)
+
+![](images/stream_table.8.png)
+**STEP3**: Streaming Cube must be partitioned. If you would like to build the Cube incrementally at minutes level, select “MINUTE_START” as the cube’s partition date column. If hours level is desired, you should select “HOUR_START”. Don’t use “order_time” as partition column as it is too fine-grained to aggregate. Please be noticed that partition columns have to be as dimensions in Cube creating. Finally, "**save**" the data model.
+
+![](images/stream_table.9.png)
 
 ## Create Cube
 
-The streaming Cube is almost the same as a normal cube. a couple of points need get your attention:
+The streaming Cube is almost the same as a normal cube, except some difference within several key steps which need you to pay attention to:
 
-- The partition time column should be a dimension of the Cube. In Streaming OLAP the time is always a query condition, and Kylin will leverage this to narrow down the scanned partitions.
+**STEP1**: The partition time column should be a dimension of the Cube. In Streaming OLAP the time is always a query condition, and Kylin will leverage this to narrow down the scanned partitions. Don’t use "order_time” as dimension for it is too fine-grained. We suggest to use “mintue_start”, “hour_start” or others, mainly depends on how you would like to inspect the data. ![](images/stream_table.11.png)
 
-- Don’t use “order_time” as dimension as that is pretty fine-grained; suggest to use “mintue_start”, “hour_start” or other, depends on how you will inspect the data.
+**STEP2**: In the “**refresh setting**”, you can create more merge ranges, which help to control the cube segment number. For instance, 0.5 hour, 4 hours, 1 day, and then 7 days. 
 
-- Define “year_start”, “quarter_start”, “month_start”, “day_start”, “hour_start”, “minute_start” as a hierarchy to reduce the combinations to calculate.
+![](images/stream_table.13.png)
 
-- In the “refersh setting” step, create more merge ranges, like 0.5 hour, 4 hours, 1 day, and then 7 days; This will help to control the cube segment number.
+**STEP3**: In the "**Aggregation group**" section, define “year_start”, “quarter_start”, “month_start”, “day_start”, “hour_start”, “minute_start” as a hierarchy to reduce the combinations to calculate. ![img](images/stream_table.14.png)
 
-- In the “rowkeys” section, drag&drop the “minute_start” to the head position, as for streaming queries, the time condition is always appeared; putting it to head will help to narrow down the scan range.
+**STEP4**: In the “**Rowkeys**” section, drag and drop the “minute_start” to the head position, as for streaming queries, the time condition is always appeared; putting it to head will help to narrow down the scan range.
 
-  ![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/8_Cube_dimension.png)
+![img](images/stream_table.15.png)
 
-  ![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/9_Cube_measure.png)
 
-  ![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/10_agg_group.png)
 
-  ![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/11_Rowkey.png)
+## Build Cube
 
-Save the cube.
-
-## Run a build
-
-You can trigger the build from web GUI, by clicking “Actions” -> “Build”, or sending a request to Kylin RESTful API with ‘curl’ command:
+You can trigger the build from web GUI, by clicking “**Actions**” --> “**Build**”, or sending a request to Kylin RESTful API with ‘curl’ command:
 
 ```
 curl -X PUT --user ADMIN:KYLIN -H "Content-Type: application/json;charset=utf-8" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/build2
 ```
+
+![img](images/stream_table.16.png)
 
 Please note the API endpoint is different from a normal cube (this URL end with “build2”).
 
@@ -138,18 +141,22 @@ Here 0 means from the last position, and 9223372036854775807 (Long.MAX_VALUE) me
 
 In the “Monitor” page, a new job is generated; Wait it 100% finished.
 
+
+
 ## Click the “Insight” tab, compose a SQL to run, e.g:
 
 ```
-select minute_start, count(*), sum(amount), sum(qty) from streaming_sales_table group by minute_start order by minute_start
+select minute_start, count(*), sum(amount), sum(qty) from stream_sales_table group by minute_start order by minute_start
 ```
 
 The result looks like below.
-![img](http://kylin.apache.org/images/tutorial/1.6/Kylin-Cube-Streaming-Tutorial/13_Query_result.png)
+![](images/stream_table.17.png)
+
+
 
 ## Automate the build
 
-Once the first build and query got successfully, you can schedule incremental builds at a certain frequency. Kylin will record the offsets of each build; when receive a build request, it will start from the last end position, and then seek the latest offsets from Kafka. With the REST API you can trigger it with any scheduler tools like Linux cron:
+Once the first build and query got successfully, you can schedule incremental builds at a certain frequency. KAP will record the offsets of each build. When receiving a build request, it will start from the last end position, and then seek the latest offsets from Kafka. You can redo the build Cube job manually; or with the REST API, you can trigger it with any scheduler tools like Linux cron:
 
 ```
 crontab -e
