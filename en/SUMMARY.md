@@ -28,7 +28,7 @@
     * [Upgrade from Kylin](upgrade/upgrade_kylin.en.md)
 * [KAP Configuration](config/README.md)
     * [Configuration Properties](config/settings.en.md)
-    * [Configuration Properties for Spark](config/kystorage_settings.en.md)
+    * [Configuration Properties for KyStorage](config/kystorage_settings.en.md)
     * [Recommended Configurations for KAP v2.1 ](config/recommend_settings_v2_1.en.md)
     * [Recommended Configurations for KAP v2.2 ](config/recommend_settings_v2_2.en.md)
     * [Job Engine HA](config/jobengine_ha.en.md)
