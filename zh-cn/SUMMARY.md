@@ -28,7 +28,7 @@
     * [从Apache Kylin升级](upgrade/upgrade_kylin.cn.md)
 * [KAP配置](config/README.md)
     * [配置参数](config/settings.cn.md)
-    * [Spark配置参数](config/kystorage_settings.cn.md)
+    * [KyStorage配置参数](config/kystorage_settings.cn.md)
     * [KAP 2.1 生产环境推荐配置](config/recommend_settings_v2_1.cn.md)
     * [KAP 2.2 生产环境推荐配置](config/recommend_settings_v2_2.cn.md)
     * [启用任务引擎HA](config/jobengine_ha.cn.md)
