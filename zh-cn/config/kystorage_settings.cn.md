@@ -46,6 +46,9 @@ KAP Plus打包了所有spark的二进制包和配置文件，这些都位于KAP_
 > ```
 
 ## 调整grpc参数
+
+### 修改最大返回大小 （从KAP 2.2开始）
+
 由于https://github.com/grpc/grpc-java/issues/1676， grpc默认的最大的返回结果的大小被减小到了4。为了避免类似“Caused by: io.grpc.StatusRuntimeException: INTERNAL: Frame size 108427384 exceeds maximum: 104857600”这样的异常，在KAP的默认配置中，我们把这个值增加到了128M。如果这个配置还是不够大，可以考虑在`kylin.properties`中设置
 
 
