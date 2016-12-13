@@ -1,5 +1,5 @@
 ## Introduction
-By default, KAP stores all cubes in a columar format on HDFS. When querying, KAP uses Spark (http://spark.apache.org, specifically we use Spark on yarn mode) for cube reading and possibly storage pre-aggregations.  One or more Spark executors are started as long-running processes to receive any cube visit requests. For production deployments you should go through this page to make sure your spark executors are well configured.
+By default, KAP stores all cubes KyStorage, which is a columar store on HDFS. When querying, KAP uses Spark (http://spark.apache.org, specifically we use Spark on yarn mode) for cube reading and possibly storage pre-aggregations.  One or more Spark executors are started as long-running processes to receive any cube visit requests. For production deployments you should go through this page to make sure your spark executors are well configured. Additionally we use grpc (http://www.grpc.io/) to bridge KAP query server with Spark. When necessary, you need to add configs for grpc as well.
 
 ## Tune spark parameters
 
@@ -34,7 +34,7 @@ The config entry tells Spark to launch 4 executors for KAP. As the example illus
 | kap.storage.columnar.conf.spark.executor.cores | 1       | The number of cores to use on each executor. In standalone and Mesos coarse-grained modes, setting this parameter allows an application to run multiple executors on the same worker, provided that there are enough cores on that worker. Otherwise, only one executor per application will run on each worker. |
 | kap.storage.columnar.conf.spark.executor.instances | 2       | The number of executors for static allocation. With `spark.dynamicAllocation.enabled`, the initial set of executors will be at least this large. |
 
-## Advices on configurations
+### Advices on configurations
 
 By Spark's default configuration, the number of executors to start (`spark.executor.instances`) is 2, the number of cores for each executor (`spark.executor.cores`) is 1, the memory per executor (`spark.executor.memory`) is 1G, the memory for driver (`spark.driver.memory`) is 1G. Obviously it's not enough for serious KAP deployments. 
 
@@ -47,3 +47,14 @@ The optimal configuration depends on your cluster hardware specifications. In mo
 > kap.storage.columnar.conf.spark.executor.instances=4
 > ```
 
+## Tune grpc parameters 
+
+### Change max response size (starting from KAP 2.2)
+
+Due to https://github.com/grpc/grpc-java/issues/1676, the default max response size for grpc is reduced to 4M. In KAP's default configuration, we change it to 128M to avoid exceptions like "Caused by: io.grpc.StatusRuntimeException: INTERNAL: Frame size 108427384 exceeds maximum: 104857600". If 128M is still not large enough,  we have a config entry in `kylin.properties`:
+
+> ```
+> kap.storage.columnar.grpc-max-response-size=SIZE_IN_BYTES
+> ```
+
+to workaround
