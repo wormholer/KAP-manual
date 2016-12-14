@@ -71,6 +71,10 @@ A：使用工具(如sqoop)先将数据从RDBMS导入到Hive
 
 A: 未来版本将会支持
 
+**Q：TopN支持多个维度吗？**
+
+**Q：Streaming情况下，分区的日期字段如何选择？**
+
 ### 查询方面
 
 **Q：Kylin支持MDX吗？**
@@ -109,6 +113,10 @@ KAP已经内置了敏捷BI平台KyAnalyzer，不再需要另外开发或购买BI
 
 A：需要对Mondrian进行二次开发，网上已经有很多分享，很简单。具体内容搜一下。
 
+**Q：如何新增用户**
+
+
+
 ### 对比方面
 
 **Q：Kylin与Spark、Impala有什么区别？**
@@ -126,6 +134,10 @@ A：从业内的使用经验来看，目前Hadoop平台上可用于查询分析�
 **Q：Kylin与Druid有什么区别？**
 
 A：Druid最初的设计是为了实时分析，Kyiln更关注解决OLAP问题；最初Druid可以支持实时流Kafka，现在Kylin也支持直接从Kafka读取消息，具备实时构建Cube的能力，提供近实时的分析处理能力；Druid使用位图索引作为内部数据结构，Kylin也使用位图为Cube建立索引；Druid使用自己定义的查询语言，而Kylin支持ANSI SQL；Druid在支持表连接方面有限制；Kylin支持星型模型；Druid与先用的BI工具集成不够友好，Kylin可以很好地支持大部分BI工具，如Tableau，Excel；由于Kylin支持MOLAP Cube，在超大规模数据集上的复杂查询具备极高的性能。而Druid需要扫描全部索引，如果数据集太大，或者查询范围太大，则性能损失更大；Kylin依赖于Hadoop构建Cube和HBase存储索引，Druid采用了自己的计算和存储技术，对于已经部署了Hadoop和HBase的情况，Kyiln的部署只是很小的额外工作，而Druid需要重新部署完整的集群。
+
+### 可靠性
+
+**Q：Kylin支持Job节点HA吗？怎么配置？**
 
 ### 其它方面
 
