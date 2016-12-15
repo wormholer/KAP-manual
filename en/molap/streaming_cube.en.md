@@ -1,10 +1,9 @@
 # Streaming Cube
 
-Kylin v1.6 releases the scalable streaming cubing function, it leverages Hadoop to consume the data from Kafka to build the cube, you can check [this blog](http://kylin.apache.org/blog/2016/10/18/new-nrt-streaming/) for the high level design. This doc is a step by step tutorial, illustrating how to create and build a sample cube within KAP.
 
 ## Preparation
 
-To finish this tutorial, you need a Hadoop environment which has kylin v1.6.0 or above installed, and also have a Kafka (v0.10.0 or above) running; previous Kylin version has several issues, so please upgrade your Kylin instance at first.
+To finish this tutorial, you need a Hadoop environment which has kylin v1.6.0 (KAP V2.2.0) or above installed, and also have a Kafka (v0.10.0 or above) running; previous Kylin version has several issues, so please upgrade your Kylin instance at first.
 
 In this tutorial, we will use **Hortonworks HDP 2.2.4 Sandbox VM** + **Kafka v0.10.0(Scala 2.10)** as the environment.
 
@@ -33,7 +32,7 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 -
 Created topic "kylindemo".
 ```
 
-Input sample data to this topic; Kylin has an utility class which can do this;
+Input sample data to this topic, Kylin has an utility class which can do this.
 
 ```
 export KAFKA_HOME=/usr/hdp/current/kafka_2.10-0.10.0.0
@@ -60,7 +59,7 @@ Here we will illustrate how to create and build streaming cube via [KAP Web GUI]
 
 ![](images/stream_table.png)
 
-**STEP1**: In the pop-up dialogue, enter a sample record which you got from the kafka-console-consumer, click the “**»**” button, KAP parses the JSON message and listS all the properties. You need give a logic table name for this streaming data source; The name will be used for SQL query later; here enter “STREAMING_SALES_TABLE” as an example in the “**Table Name**” field.
+**STEP1**: In the pop-up dialogue, enter a sample record which you got from the kafka-console-consumer, click the “**»**” button, KAP parses the JSON message and listS all the properties. You need give a logic table name for this streaming data source; The name will be used for SQL query later; here enter “STREAM_SALES_TABLE” as an example in the “**Table Name**” field.
 
 ![](images/stream_table.1.png)
 
@@ -137,9 +136,9 @@ curl -X PUT --user ADMIN:KYLIN -H "Content-Type: application/json;charset=utf-8"
 
 Please note the API endpoint is different from a normal cube (this URL end with “build2”).
 
-Here 0 means from the last position, and 9223372036854775807 (Long.MAX_VALUE) means to the end position on Kafka topic. If it is the first time to build (no previous segment), Kylin will seek to beginning of the topics as the start position.
+Here **0** means from the last position, and 9223372036854775807 (Long.MAX_VALUE) means at the end position on Kafka topic. If it is the first time to build (no previous segment), Kylin will seek to beginning of the topics as the start position.
 
-In the “Monitor” page, a new job is generated; Wait it 100% finished.
+In the “Monitor” page, a new job is generated. Wait it 100% finished.
 
 
 
@@ -149,7 +148,7 @@ In the “Monitor” page, a new job is generated; Wait it 100% finished.
 select minute_start, count(*), sum(amount), sum(qty) from stream_sales_table group by minute_start order by minute_start
 ```
 
-The result looks like below.
+The result would look like below:
 ![](images/stream_table.17.png)
 
 
@@ -164,6 +163,8 @@ crontab -e
 ```
 
 Now you can site down and watch the cube be automatically built from streaming. And when the cube segments accumulate to bigger time range, Kylin will automatically merge them into a bigger segment.
+
+
 
 ## Trouble shootings
 
@@ -188,7 +189,7 @@ Caused by: java.lang.ClassNotFoundException: org.apache.kafka.clients.producer.P
 	... 6 more
 ```
 
-The reason is Kylin wasn’t able to find the proper Kafka client jars; Make sure you have properly set “KAFKA_HOME” environment variable.
+The reason is Kylin wasn’t able to find the proper Kafka client jars. Make sure you have properly set “KAFKA_HOME” environment variable.
 
 - Get “killed by admin” error in the “Build Cube” step
 
@@ -222,7 +223,7 @@ Check holes:
 curl -X GET --user ADMINN:KYLIN -H "Content-Type: application/json;charset=utf-8" http://localhost:7070/kylin/api/cubes/{your_cube_name}/holes
 ```
 
-If the result is an empty arrary, means there is no hole; Otherwise, trigger Kylin to fill them:
+If the result is an empty arrary, means there is no hole. Otherwise, trigger Kylin to fill them:
 
 ```
 curl -X PUT --user ADMINN:KYLIN -H "Content-Type: application/json;charset=utf-8" http://localhost:7070/kylin/api/cubes/{your_cube_name}/holes

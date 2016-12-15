@@ -10,3 +10,9 @@ Continue reading:
 
 [Approximate Count Distinct](adv_molap/count_distinct_hllc.en.md)
 
+[Approximate TopN](adv_molap/approximate_topN.en.md)
+
+[Grouping Sets](adv_molap/grouping_sets.en.md)
+
+[Intersect Count](adv_molap/intersect_count.en.md)
+
