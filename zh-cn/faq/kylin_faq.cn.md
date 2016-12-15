@@ -51,6 +51,14 @@ A：OOM需要看具体在哪一步发生，采取不同措施；如果是在“B
 
 A：参见第一个问题的回答
 
+**Q：Derived维度和Normal维度是什么意思**
+
+A：Derived维度相对于Normal来说，他并不参与维度的组合计算，他的FK参与维度组合计算，从而降低维度组合数，在查询时，对Dervied维度的查询会首先转换为对FK维度的查询，因此会牺牲少数性能。
+
+**Q：Hierachy Dimension有顺序关系吗？**
+
+A：有关系，要从大到小的顺序声明
+
 **Q: 如果有多张事实表，该如何使用Kylin？**
 
 A: 可以为每个事实表定义一个Cube，然后使用sub query来组合这几张表的查询。或者使用Hive view将多张事实表join成一张宽表，然后用这张宽表定义模型和Cube，查询按宽表进行。
@@ -75,6 +83,14 @@ A: 未来版本将会支持
 
 **Q：Streaming情况下，分区的日期字段如何选择？**
 
+**Q：定义多个Aggregation Group，查询条件可以跨Aggregation Group吗**
+
+A：Aggreation Group目的是降维，最好查询的条件只在一个Aggregation Group中，如果跨越了Aggregation Group，则需要从Base Cuboid进行Post Processing，会影响查询的性能。
+
+**Q：使用Hive创建大平表性能会比星型模型更好吗？**
+
+A：性能没有区别，但星型模型的维度可以使用derived dimension，存储上更紧凑。
+
 ### 查询方面
 
 **Q：Kylin支持MDX吗？**
@@ -92,6 +108,10 @@ A：Kylin支持like做为过滤条件。
 **Q：支持的SQL标准是什么？有哪些函数？**
 
 A：Kylin支持SQL92标准，使用Apache Calcite做为sql parser，因此kylin的sql标准可以参考https://calcite.apache.org/docs/reference.html
+
+**Q：是否Calcite支持的SQL，Kylin都可以支持？**
+
+A：还不能说100%支持，Calcite支持的SQL，Kylin会比较容易支持。
 
 **Q：支持Distinct Count吗？**
 
