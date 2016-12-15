@@ -1,32 +1,41 @@
 ## Single Node Deployment
 In general KAP deployed on single node can serve small-scale (QPS<50) query and deployment process is easy and quick. The guide of single node KAP deployment is in [previous section](./install_guide.en.md). The architecture of this deployment is shown in following figure.
 
-![]( images/single_node.png)
+![](images/single_node.png)
 
 Please take care of following configurations in Single Node Deployment especially deployed in Sandbox. `yarn.nodemanager.resource.cpu-vcores` relates to CPU resources, and others are memory related configurations. Please refer to [Hadoop official site](https://hadoop.apache.org/docs/r2.7.3/hadoop-yarn/hadoop-yarn-common/yarn-default.xml) for detailed info.
 
- * yarn.nodemanager.resource.cpu-vcores
- * yarn.scheduler.maximum-allocation-mb
- * yarn.nodemanager.resource.memory-mb
- * mapreduce.map.memory.mb
- * mapreduce.reduce.memory.mb
- * mapreduce.map.java.opts
- * mapreduce.reduce.java.opts
+* yarn.nodemanager.resource.cpu-vcores
+* yarn.scheduler.maximum-allocation-mb
+* yarn.nodemanager.resource.memory-mb
+* mapreduce.map.memory.mb
+* mapreduce.reduce.memory.mb
+* mapreduce.map.java.opts
+* mapreduce.reduce.java.opts
+
+## Multi-Instance on Single Node Deployment
+
+KAP support running multiple query engine on a single node for better load balance.
+
+Several points deserve attention:
+
++ Run KAP instance in query engine mode (`kylin.server.mode＝query`). Please refer to next chapter [Configuration](../config/jobengine_ha.en.md).
++ No port conflict. Reconfigure the ports in file `${KYLIN_HOME}/tomcat/conf/server.xml` and make sure different instances don't affect each other.
 
 ## Multi-Node (Cluster) Deployment
 KAP instance is stateless as all state information is stored in HBase. So running KAP on multiple node in a cluster is a good practice for better load balance and higher availability.
 
 To organize multiple KAP nodes in a cluster, please pay attention on following points:
 
- * Share the same Hadoop cluster and HBase cluster.
- * No port conflict. Better to deploy on separated server to make sure they don't affect each.
- * Use the same HBase metadata table, which means the same value of `kylin.metadata.url`
- * Only one KAP instance runs as job engine (`kylin.server.mode＝all`), all others run as query engine (`kylin.server.mode＝query`). Another option is turn on `High Availability` on job engine. Please refer to next chapter [Configuration](../config/jobengine_ha.en.md).
+* Share the same Hadoop cluster and HBase cluster.
+* No port conflict. Better to deploy on separated server to make sure they don't affect each.
+* Use the same HBase metadata table, which means the same value of `kylin.metadata.url`
+* Only one KAP instance runs as job engine (`kylin.server.mode＝all`), all others run as query engine (`kylin.server.mode＝query`). Another option is turn on `High Availability` on job engine. Please refer to next chapter [Configuration](../config/jobengine_ha.en.md).
 
 A Load Balancer, such as Apache HTTP Server and Nginx Server, is required to distribute requests in cluster. User sends requests to Load Balancer, then Load Balancer redirects requests to nodes according to some strategy. If the node handling the request fails Load Balancer will retry to send the request to other node. A good practice in this case is integrating LDAP in user and role management.
 
-![]( images/cluster.png)
-	
+![](images/cluster.png)
+​	
 ## Read/Write Separated Deployment
 In general KAP leverage all computing resource of Hadoop cluster (Hbase runs on the same cluster) for Cube building and querying. When these jobs run at the same time, they affect each other, causing performance degrading. It's not acceptable especially when user want low-latency query. Read/Write splitting deployment provides a solution in this case.
 
@@ -34,7 +43,7 @@ After deploying KAP in Read/Write Splitting mode, Cube building job is submitted
 
 The following figure shows the architecture of Read/Write splitting deployment.
 
-![]( images/rw_separated.png)
+![](images/rw_separated.png)
 
 Deployment usually includes following steps:
 

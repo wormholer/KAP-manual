@@ -13,6 +13,15 @@
 * mapreduce.map.java.opts
 * mapreduce.reduce.java.opts
 
+### 单节点多实例部署
+
+KAP支持在单节点上运行多个实例，实例运行查询引擎以实现更好的负载均衡。
+
+在此部署模式中，要关注以下几点：
+
++ 实例必须运行查询模式（`kylin.server.mode＝query`），参考下一章的[配置方法](../config/jobengine_ha.cn.md)。
++ 保证多个实例无端口冲突。为每个实例重新配置端口，配置文件位于`${KYLIN_HOME}/tomcat/conf/server.xml`。
+
 ### 多节点（集群）部署
 KAP实例是无状态的服务，所有的状态信息，都存储在HBase中；启用多个KAP节点的集群部署，让这些节点分担查询压力，互为备份，提供服务的高可用性。
 
