@@ -1,4 +1,4 @@
-# New Aggregation Group
+# Aggregation Group
 
 Curse of dimension is an infamous problem for all of the OLAP engines based on pre-calculation. In versions prior to v1.5, Kylin tried to address the problem by some simple techniques, which relieved the problem to some degree. During our open source practices, we found these techniques lack of systematic design thinking, and incapable of addressing lots of common issues. In Kylin v1.5 we redesigned the aggregation group mechanism to make it better server all kinds of cube design scenarios.
 
@@ -28,7 +28,7 @@ To illustrate the describing semantic issue, let’s imagine a transaction data 
 
 Unfortunately there is no way to express such pruning settings with the existing semantic tools prior to Kylin v1.5
 
-## New Aggregation Group Design
+## Aggregation Group Design
 
 In Kylin v1.5 we redesigned the aggregation group mechanism in the jira issue https://issues.apache.org/jira/browse/KYLIN-242. The issue was named “Kylin Cuboid Whitelist” because the new design even enables cube designer to specify expected cuboids by keeping a whitelist, imagine how expressive it can be!
 

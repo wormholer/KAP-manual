@@ -1,4 +1,4 @@
-# How to use Window Function in KAP
+# SQL Window Function
 
 Since KAP v2.1, we've provided window function in KAP to support more complicated query, keeping SQL query simple and work well. Here we are going to introduce how to use this function.
 
@@ -29,7 +29,7 @@ In this section, we would take a dataset defaulted in KAP as data source to prac
 
 Select a default **Data Source** named as `learn_kylin`, then the table structure would present below: there are one fact table (`KYLIN_SALES`) and two lookup tables (`KYLIN_CAL_DT` and `KYLIN_CATEGORY_GROUPINGS`). Take a minute to check the `KYLIN_SALES` as well as its sample data, and we'll use it later.
 
-![](image/wd_datasample.png)
+![](images/wd_datasample.png)
 
 
 
@@ -39,7 +39,7 @@ Though we have the row column in this table, for most data analysts, generating 
 
 Then result returns like:
 
-![](image/wd_row_number.png)
+![](images/wd_row_number.png)
 
 
 
@@ -49,5 +49,5 @@ Similar with rank function, offset function would provide access to a row at a g
 
 Result would be:
 
-![](image/wd_lead_date.png)
+![](images/wd_lead_date.png)
 

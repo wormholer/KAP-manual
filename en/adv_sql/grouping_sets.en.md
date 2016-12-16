@@ -1,4 +1,4 @@
-# How to use Grouping Sets Function in KAP
+# SQL Grouping Sets
 
 Since KAP v2.1, we've provided grouping sets function in KAP to support when we want aggregate data by different keys in one SQL statements. Here we are going to introduce how to use this function. 
 
@@ -24,13 +24,13 @@ In this section, we would take a dataset defaulted in KAP as data source to prac
 
 Select a default **Data Source** named as `learn_kylin`, then the table structure would present below: there are one fact table (`KYLIN_SALES`) and two lookup tables (`KYLIN_CAL_DT` and `KYLIN_CATEGORY_GROUPINGS`). Take a minute to check the `KYLIN_SALES` as well as its sample data, and we'll use it later.
 
-![](image/wd_datasample.png)
+![](images/wd_datasample.png)
 
 ## Group query
 
 To get sales of different brands(or products), input query as: `select LEAF_CATEG_ID, LSTG_FORMAT_NAME, sum(PRICE) as metric1 from kylin_sales group by LEAF_CATEG_ID, LSTG_FORMAT_NAME`, then results returned in 0.26sec would be as follow.
 
-![](image/grouping_sets.1.png)
+![](images/grouping_sets.1.png)
 
 
 
@@ -48,5 +48,5 @@ order by LEAF_CATEG_ID
 
  Then you would get results as below:
 
-![](image/grouping_sets.2.png)
+![](images/grouping_sets.2.png)
 
