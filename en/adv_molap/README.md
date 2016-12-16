@@ -16,3 +16,5 @@ Continue reading:
 
 [Intersect Count](adv_molap/intersect_count.en.md)
 
+[Cube Optimization(new aggregation group)](adv_molap/new_aggregation_group.md)
+
