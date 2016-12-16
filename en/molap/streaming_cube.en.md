@@ -1,5 +1,6 @@
 # Streaming Cube
 
+Kylin v1.6 releases the scalable streaming cubing function, it leverages Hadoop to consume the data from Kafka to build the cube, you can check [this blog](http://kylin.apache.org/blog/2016/10/18/new-nrt-streaming/) for the high level design. Meanwhile, this function is fully supported by KAP v2.2, and this doc is a step by step tutorial, illustrating how to create and build a sample cube within KAP.
 
 ## Preparation
 
