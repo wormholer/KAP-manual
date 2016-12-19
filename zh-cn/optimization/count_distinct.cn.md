@@ -1,48 +1,48 @@
-# Approximate Count Distinct
+# Count Distinct 近似查询
 
-Count distinct is a frequent-used function for most data analysts. Since KAP v2.1, KAP implements approximately count distinct using [HyperLogLog](https://hal.inria.fr/hal-00406166/document) algorithm, offered serveral precision, with the error rates from 9.75% to 1.22%. The result of measure has theorically upper limit in size, as 2^N bytes. For the max precision N=16, the upper limit is 64KB, and the max error rate is 1.22%. It would be perfectly fit if you don't require a particularly precise result and have limited storage resource. 
+Count distinct是一个对大多数数据分析师都很常用的函数。KAP 从版本v2.1以来通过 [HyperLogLog](https://hal.inria.fr/hal-00406166/document) 算法支持了Count distinct 查询，并提供了从9.75% 到 1.22%几种不同的误差率以支持不同的查询需求。查询结果具有理论上2^N b的存储体积上限，比如对于最大维度N=16的查询，结果上限为64KB，结果最低误差率为1.22%。 如果你不要求非常精准的查询结果，这种近似的Count Distinct查询就可以在有限的存储资源条件下，完美的得到你需要的结果。
 
 
 
-## Prerequisite
+## 查询前提
 
-Before using count distinct query, you need to clarify if the target column is ready for it. You can get measures information by checking `measures` of built `Cube`(as shown below). If the measure desired has been pre-calculated on approximate count distinct syntax(here requires both `Expression` to be count_distinct and `Return Type` to be hllc), and stored within the Cube information, then this measure is ready to do further count distinct query. Otherwise, you need to create a new Cube.
+在使用count distinct 查询之前，你需要确认目标列是否预存了count distinct的预计算结果。在Cube展示界面点击需要查看的Cube的名称，可以通过点击Cube Designer界面的 `度量（measures）` 来查看Cube中所有measure的预计算信息。如果目标列已经被进行过 count distinct的预计算（`表达式(Expression)`为count_distinct 并且 `返回类型(Return Type)`为 hllc）则意味着此列可以直接进行count distinct的近似查询。否则，你需要创建新Cube来存储目标列的count distinct预计算结果。
 
 ![](images/cd_measures.png)
 
 
 
-## Precise Count Distinct Setting 
+## Count Distinct 近似查询设置 
 
-Firstly, after creating a new Cube and ensure all dimensions selected, then click `Measures+` on the lower left corner to start measures setting.  
+首先在创建新Cube的界面，点击左下角`Measures+` 来开始新度量的设置。
 
 ![](images/cd_measures_add.1.png)
 
-Next, choose the column desired from `Param Value` and COUNT_DISTINCT from `Expression`. Here be careful to select accuracy requirement from `Return Type`.  KAP offers both approximate count distinct function and precise count distinct function. To get the pre-calculated approximate count distinct value, you should select  `Return Type: Error Rate<*%` based on HyperLogLog algorithm, which would return a nearly result if you don't require a particularly precise result and have limited storage resource. 
+然后，从 `Param Value`下拉列表中选择目标列，并从 `Expression`选择COUNT_DISTINCT。之后请谨慎选择 `Return Type` 中的误差率。KAP提供count distinct的近似查询和精确查询。如需要得到某列的近似查询预计算值，你应选择基于HyperLogLog算法的 `Return Type: Error Rate<*%` ，这种近似查询将会在有限的存储资源条件下，返回一个相对准确的查询结果。
 
 ![](images/cd_measures_add.2.png)
 
-Follow the [Create Cube](molap/create_cube.en.md) introduction for rest steps, the Cube would be ready after you setting segments on the [Build Cube](molap/build_cube.en.md) section.
+请参见 [创建 Cube](molap/create_cube.cn.md) 来继续创建Cube的后续步骤。当你依照  [构建 Cube](molap/build_cube.cn.md)的介绍，完成Cube的构建后，该Cube即准备完毕。
 
 
 
-## Example
+## 示例
 
-Select a default **Data Source** named as `learn_kylin`, then the table structure would present below: there are one fact table (`KYLIN_SALES`) and two lookup tables (`KYLIN_CAL_DT` and `KYLIN_CATEGORY_GROUPINGS`). Take a minute to check the `KYLIN_SALES` as well as its sample data, and we'll use it later.
+请选择默认**数据源** `learn_kylin`，其中表的结构如下：该数据集中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 、`KYLIN_CATEGORY_GROUPINGS`）。请通过**数据样例**来熟悉事实表的结构 `KYLIN_SALES` 以便之后查询使用。
 
 ![](images/wd_datasample.png)
 
 
 
-For instance, input `select count(distinct LSTG_FORMAT_NAME) as num from kylin_sales where part_dt = DATE '2012-01-02'` query in **Insight** dashboard, then result returned in 0.18sec.  
+比如，在 **Insight** 查询界面输入 `select count(distinct LSTG_FORMAT_NAME) as num from kylin_sales where part_dt = DATE '2012-01-02'` ，结果在0.18秒后返回如下：
 
 ![](images/cd_measures_add.9.png)
 
 
 
-Not only this result but also other testified results are right, which prove that approximate count distinct query works well. More information about precise count distinct function, please refer to [Precise Count Distinct](adv_molap/count_distinct_bitmap.en.md) Introduction.
+此结果被验证的同时也表明count distinct 近似查询执行良好。关于count distinct的精确查询信息请参见 [Count Distinct(精确)查询优化](optimization/count_distinct_precise.cn.md) 介绍。
 
-### Reference
+### 参考文献
 
 [Use Count Distinct in Apache Kylin](http://kylin.apache.org/blog/2016/08/01/count-distinct-in-kylin/) (Yerui Sun)
 

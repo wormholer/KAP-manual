@@ -12,7 +12,7 @@ Before using count distinct query, you need to clarify if the target column is r
 
 
 
-## Precise Count Distinct Setting 
+## Approximate Count Distinct Setting
 
 Firstly, after creating a new Cube and ensure all dimensions selected, then click `Measures+` on the lower left corner to start measures setting.  
 
