@@ -1,42 +1,42 @@
-# SQL Intersect Function
+# SQL 交集（Intersect）函数
 
-Retention or conversion rate is important in data analysis for most internet enterprises. In general, the value can be calculated based on the intersection of two data sets, with some same dimensions (city, category, or so on) and one varied dimension (date, or so forth). KAP has supported retention calculation based on the bitmap and UDAF **intersect_count**. This article would introduce you how to use this function.
+留存率和转化率在互联网的数据分析场景下非常常见。一般来说，留存率的计算需要的就是两个数据集的交集的值，它们具有一些相同的维度（城市，类别等）和一个变化的维度（日期等）。KAP支持的留存率类的计算就是通过基于位图算法和UDAF算法的**intersect_count** 函数。本节我们将向您介绍如何使用交集函数。
 
 
 
-## Intersect query
+## Intersect 查询语句
 
-The SQL **INTERSECT** clause/operator is used to combine two SELECT statements, but returns rows only from the first SELECT statement that are identical to a row in the second SELECT statement. This means 
-INTERSECT returns only common rows returned by the two SELECT statements.
+SQL **INTERSECT** 从句/操作符用来接合两个SELECT 语句，且返回的行来自第一个SELECT语句中且等同于第二个SELECT语句中某一行。也就是说INTERSECT只会返回两个SELECT语句的结果中共同的行。
 
-Moreover, detailed using rules of intersect_count could be described as below:
+对 intersect_count使用的具体规则描述如下：
 
 `intersect_count(column To Count, column To Filter, filter Value List)`
 
-`column To Count` refers to the column to be calculated and applied on distinct count;
+`column To Count` 指向将要计算和应用于distinct count函数的列；
 
-`column To Filter` refers to the varied dimension;
+`column To Filter` 指向可变的维度；
 
-`filter Value List` refers to the value of the varied dimension, and it should be listed in "array[ ]";
-
-
-
-## Precondition
-
-To apply retention calculation in KAP, sql query needs to meet requirements as below:
-
-- Only one dimension can be varied;
-- The measure to be calculated must have been defined as a precise count distinct measure(check [precise count distinct](adv_molap/count_distinct_bitmap.en.md) for help);
+`filter Value List` 指向可变维度中的值，且必须列在数组“array[ ]”中；
 
 
 
-## Example
+## 查询前提
 
-Select a default **Data Source** named as `learn_kylin`, then the table structure would present below: there are one fact table (`KYLIN_SALES`) and two lookup tables (`KYLIN_CAL_DT` and `KYLIN_CATEGORY_GROUPINGS`). Take a minute to check the `KYLIN_SALES` as well as its sample data, and we'll use it later.
+为了在KAP中应用留存率的计算，sql查询需要符合以下要求：
+
+- 有且只有一个可变维度；
+- 需要计算的测量值必须已经被设定为可以进行精确count distinct计算的度量值（具体方法请见[Count Distinct(精确)查询优化](optimization/count_distinct_bitmap.cn.md) ）；
+
+
+
+
+## 示例
+
+请选择默认**数据源** `learn_kylin`，其中表的结构如下：该数据集中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 、`KYLIN_CATEGORY_GROUPINGS`）。请通过**数据样例**来熟悉事实表的结构 `KYLIN_SALES` 以便之后查询使用。
 
 ![](images/wd_datasample.png)
 
-The  `KYLIN_SALES`  table is mocked an online transaction records table, which involves both sellers and users. So we could get a seller retention rate to illustrate how much percentile of sellers are trading on this online marketplace day by day for the New year period(2012.01.01-2012.01.03). Input the query like:
+事实表 `KYLIN_SALES`  模拟了在线交易数据的记录表，包括的交易双方为卖家和买家。由此，我们可以通过以下查询语句，获得有多少比例的卖家能在新年假期阶段（2012.01.01-2012.01.03）进行持续的在线交易。
 
 ```
 select LSTG_FORMAT_NAME,
@@ -50,6 +50,6 @@ where part_dt in (date'2012-01-01',date'2012-01-02',date'2012-01-03')
 group by LSTG_FORMAT_NAME
 ```
 
-Then it would return a result looks as below. The result shows that there is no seller keeps trading constantly within this period.
+如运行正确，则返回结果将如下。以下结果表示并没有卖家在新年阶段进行持续的在线交易。
 
 ![](images/intersect_count.1.png)
