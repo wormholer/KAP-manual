@@ -79,8 +79,10 @@
     * [Alert](troubleshooting/alerting.en.md)
     * [Techinal Support & Diagnosis](troubleshooting/diag.en.md)
 * [Daily Operation](operation/README.md)
+    * [Basic Operation](operation/basic_ops.en.md)
     * [Metadata Backup](operation/metadata_backup.en.md)
     * [Metadata Restore](operation/metadata_restore.en.md)
+    * [Storage Clean Up](operation/storage_cleanup.en.md)
 * [FAQ](faq/README.md)
 * [Contacts](contact/README.md)
 
