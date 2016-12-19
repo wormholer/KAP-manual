@@ -37,38 +37,16 @@ In the new design, aggregation group (abbr. AGG) is defined as a cluster of cubo
 If you look into the internal of AGG (https://github.com/apache/kylin/blob/kylin-1.5.0/core-cube/src/main/java/org/apache/kylin/cube/model/AggregationGroup.java) there’re two important properties defined: `@JsonProperty("includes")` and `@JsonProperty("select_rule")`.
 
 `@JsonProperty("includes")`
-This property is for specifying which dimensions are included in the 
-AGG. The value of the property must be a subset of the complete 
-dimensions. Keep the proper minimal by including only necessary 
-dimensions.
+This property is for specifying which dimensions are included in the AGG. The value of the property must be a subset of the complete dimensions. Keep the proper minimal by including only necessary dimensions.
 
 `@JsonProperty("select_rule")`
-Select rules are the rules that all valid cuboids in the AGG will 
-subject to. Here cube designers can define multiple rules to apply on 
-the included dimensions, currently there’re three types of rule:
+Select rules are the rules that all valid cuboids in the AGG will subject to. Here cube designers can define multiple rules to apply on the included dimensions, currently there’re three types of rule:
 
 - Hierarchy rules, described above
 - Mandatory rule, described above
-- Joint rules. This is a newly introduced rule. If two or more 
-  dimensions are “joint”, then any valid cuboid will either contain none 
-  of these dimensions, or contain them all. In other words, these 
-  dimensions will always be “together”. This is useful when the cube 
-  designer is sure some of the dimensions will always be queried together.
-   It is also a nuclear weapon for combination pruning on 
-  less-likely-to-use dimensions. Suppose you have 20 dimensions, the first
-   10 dimensions are frequently used and the latter 10 are less likely to 
-  be used. By joining the latter 10 dimensions as “joint”, you’re 
-  effectively reducing cuboid numbers from 2^20 to 2^11. Actually this is 
-  pretty much what the old “aggregation group” mechanism was for. If 
-  you’re using it prior Kylin v1.5, our metadata upgrade tool will 
-  automatically translate it to joint semantics.
-  By flexibly using the new aggregation group you can in theory control 
-  whatever cuboid to compute/skip. This could significant reduce the 
-  computation and storage overhead, especially when the cube is serving 
-  for a fixed dashboard, which will reproduce SQL queries that only 
-  require some specific cuboids. In extreme cases you can configure each 
-  AGG contain only one cuboid, and a handful of AGGs will consists of the 
-  cuboid whitelist that you’ll need.
+- Joint rules. This is a newly introduced rule. If two or more dimensions are “joint”, then any valid cuboid will either contain none of these dimensions, or contain them all. In other words, these dimensions will always be “together”. This is useful when the cube designer is sure some of the dimensions will always be queried together.
+  It is also a nuclear weapon for combination pruning on less-likely-to-use dimensions. Suppose you have 20 dimensions, the first 10 dimensions are frequently used and the latter 10 are less likely to be used. By joining the latter 10 dimensions as “joint”, you’re effectively reducing cuboid numbers from 2^20 to 2^11. Actually this is pretty much what the old “aggregation group” mechanism was for. If you’re using it prior Kylin v1.5, our metadata upgrade tool will automatically translate it to joint semantics.
+  By flexibly using the new aggregation group you can in theory control whatever cuboid to compute/skip. This could significant reduce the computation and storage overhead, especially when the cube is serving for a fixed dashboard, which will reproduce SQL queries that only require some specific cuboids. In extreme cases you can configure each AGG contain only one cuboid, and a handful of AGGs will consists of the cuboid whitelist that you’ll need.
 
 Kylin’s cuboid computation scheduler will arrange all the valid cuboids’ computation order based on AGG definition. You don’t need to care about how it’s implemented, because every cuboid will just got computed and computed only once. The only thing you need to keep in mind is: don’t abuse AGG. Leverage AGG’s select rules as much as possible, and avoid introducing a lot of “single cuboid AGG” unless it’s really necessary. Too many AGG is a burden for cuboid computation scheduler, as well as the query engine.
 
@@ -76,15 +54,11 @@ Kylin’s cuboid computation scheduler will arrange all the valid cuboids’ com
 
 Now that we have got the new AGG tool, the buyer_id issue can be revisited. What we need to do is to define two AGGs for the cube:
 
-- AGG1 includes: [cal_dt, city, buyer_id] select_rules:{joint:[cal_dt,city,buyer_id]}
-- AGG2 includes: [cal_dt,city] select rules:{}
-
-------
+- AGG1 includes: `[cal_dt, city, buyer_id] select_rules:{joint:[cal_dt,city,buyer_id]}`
+- AGG2 includes: `[cal_dt,city] select rules:{}`
 
 The first AGG will contribute the base cuboid only, and the second AGG will contribute all the cuboids without buyer_id.
 
 ## Start using it
 
-The new aggregation group mechanism should be available in Kylin v1.5. Up to today (2016.2.18) Kylin has not released v1.5 version yet. Use it at your own risk by compiling the latest master code branch.
-
-For legacy users you will need to upgrade your metadata store from Kylin v1.2 or v1.3 to Kylin v1.5.
+The new aggregation group mechanism should be available since Kylin v1.5 (KAP v2.1). For legacy users you will need to upgrade your metadata store from Kylin v1.2 or v1.3 to Kylin v1.5.
