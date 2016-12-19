@@ -28,7 +28,7 @@ Count distinct是一个对大多数数据分析师都很常用的函数。KAP �
 
 ## 示例
 
-请选择默认**数据源** `learn_kylin`，其中表的结构如下：该数据集中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 、`KYLIN_CATEGORY_GROUPINGS`）。请通过**数据样例**来熟悉事实表的结构 `KYLIN_SALES` 以便之后查询使用。
+请选择默认**数据源** `learn_kylin`，其中表的结构如下：该数据集中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 、`KYLIN_CATEGORY_GROUPINGS`）。请通过**采样数据（Sample Data）**来熟悉事实表的结构 `KYLIN_SALES` 以便之后查询使用。
 
 ![](images/wd_datasample.png)
 
