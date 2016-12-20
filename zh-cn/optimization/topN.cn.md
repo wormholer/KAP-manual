@@ -1,20 +1,16 @@
-# Approximate Top-N
+# Top-N 查询
 
-Find the Top-N (or Top-K) entities from a dataset is a frequent-using scenario and requirement in data minding. We often read the reports or news title like “Top 100 companies in the world”, “Most popular 20 electronics” and so forth. So it is common recognized that exploring and analyzing the top entities are quite valuable and essential for most analysis. 
+我们在生活中也总是看到“世界100强公司”、“最受欢迎的20大电子产品”等新闻标题的报道。分析Top-N也是数据分析场景中常常遇到的需求。因而易见，人们普遍认同分析顶级项对大多数数据分析都是很有价值也很有必要的。在大数据时代，这种需求显现得越来越强，因为明细数据集越来越大。在没有预计算的情况下，得到一个分布式大数据集的Top-N结果需要很长时间，导致点对点查询的效率很差。
 
-Within the era of big data, this need is getting stronger than ever before, as both the raw dataset and the number of entities are vast. Without pre-calculation, get the Top-K entities among a distributed big dataset may take a long time, leading the ad-hoc query inefficient.
-
-In v1.5.0, Apache Kylin introduces the “Top-N” measure, aiming to pre-calculate the top entities during the cube build phase; in the query phase,  Kylin can quickly fetch and return the top records. The performance would be much better than a cube without “Top-N”, giving the analyst more power to inspect data.
-
-**Notice**: this “Top-N” measure is an approximate realization, to use it smoothly you need to have a good     understanding with the algorithm as well as the data distribution.
+在Kylin v1.5.0（KAPv2.1），我们引入了“Top-N” 度量，旨在在Cube构建的时候预计算好需要的Top-N；在查询阶段，KAP就可以迅速的获取并返回Top-N记录。这样，查询性能就远远高于没有Top-N预计算结果的Cube，使得分析师对数据查询更有力。（**注意**：这里的“Top-N”度量是一个近似的实现，为了更好的应用它，你需要更多的了解Top-N背后的算法和数据分布的结构。）
 
 
 
-## Top-N query
+## Top-N 查询语句
 
-Let’s start with the default project `learn_kylin` that shipped in KAP binary package as well as pre-loaded in KAP Web GUI. We would use a sample fact table within this project called `kylin_sales`. If you haven’t done that before, follow this tutorial to create it: [Quick Start with Sample Cube](https://kylin.apache.org/docs15/tutorial/kylin_sample.html).
+让我们用KAP包中初始默认的项目 `learn_kylin`（在KAP Web中也已经提前上传好了）。我们将重点使用其中的事实表 `kylin_sales`。如果你还没有建立过Cube，请参见以下文档构建Cube： [Quick Start with Sample Cube](https://kylin.apache.org/docs15/tutorial/kylin_sample.html).
 
-The sample fact table “default.kylin_sales” mock the transactions happened in an online marketplace. It has a couple of dimension and measure columns. To be easy-understanding, here we only use four columns: “PART_DT”, “LSTG_SITE_ID”, “SELLER_ID” and “PRICE”. Below table is the description of these columns, with a rough cardinality, the “SELLER_ID” is a high cardinality column.
+这张样例表 “default.kylin_sales” 模拟了在线集市的交易数据，内含多个维度和度量列。这里我们仅用其中的四列即可：“PART_DT”，“LSTG_SITE_ID”，“SELLER_ID”和“PRICE”。下表为这些列的内容和基数简介，其中易见 “SELLER_ID”是一个高基列。
 
 | Column       | Description                | Cardinality       |
 | ------------ | -------------------------- | ----------------- |
@@ -23,7 +19,7 @@ The sample fact table “default.kylin_sales” mock the transactions happened i
 | SELLER_ID    | Seller ID                  | About one million |
 | PRICE        | Sold amount                | -                 |
 
-**Method1**: Very often this e-commerce company needs to identify the top sellers  (say top 100) in a given period in some countries. The query could be as following:
+**方法1**： 该电商公司需要查询卖家中特定时段内交易额最高的100位卖家。查询语句如下：
 
 ```
 SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
@@ -34,19 +30,19 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 	order by SUM(PRICE) DESC limit 100
 ```
 
-Suddenly, it return multiple records as below:
+结果返回迅速，如下所示：
 
  ![](images/topN_1.png)
 
-**Method2**: To get the same result, when you haven't had the Cube created, you can add **Top100** for the target measures and edit desired dimension columns as their group columns. These steps would happen when you add new measures to edit their Expression, which are in Cube create section. Yet if the target Cube was created before, then you need to use the first method mentioned above to reach the result. Measures editing page would look like below:
+**方法2**: 为了得到同样的查询结果。如果在创建Cube时，对需要的Top-N进行了预计算则查询会更加高效。在创建Cube时，对所需的度量进行如下编辑，则可以在Cube构建时完成对目标列的预计算。如果Cube已被建立且没有对目标列进行过Top-N预计算，则需要重新建立Cube。度量编辑界面如下：
 
 ![](images/topN_2.png)
 
 
 
-## Without Top-N pre-calculation
+## 无Top-N 预计算
 
-Before Kylin v1.5.0, only dimension columns could be applied in “group by” query, then we came up with a design that using PART_DT, LSTG_SITE_ID and SELLER_ID as dimensions, and defining SUM(PRICE) as the measure. After building, the basic cubiod of the cube would be like:
+在 Kylin v1.5.0之前，只有维度列可以用“group by”查询，于是我们设计如下：用 `PART_DT`、 `LSTG_SITE_ID` 、 `SELLER_ID` 作为维度，同时定义 SUM(PRICE) 作为度量。Cube构建之后，基本的Cuboid则如下所示：
 
 | Rowkey of base cuboid     | SUM(PRICE) |
 | ------------------------- | ---------- |
@@ -59,15 +55,15 @@ Before Kylin v1.5.0, only dimension columns could be applied in “group by” q
 | …                         | …          |
 | 20160318_49_seller0999999 | xx.xx      |
 
-Assume these dimensions are independent with each other. The number of rows in basic cuboid is $730*50*1million=36.5billion$. Other cuboids which include “SELLER_ID” will have millions of rows as well. At this moment you may notice that the cube expansion rate is high, the situation would be worse if there are more dimensions or with the higher cardinality. But the real challenge is not here.
+假设这些维度都是彼此独立的，则基本Cuboid中行数为：$730*50*1million=36.5billion$。其他包含`SELLER_ID` 字段的Cuboid也有百万行。现在你应该意识到这种处理方法会使得Cube的膨胀率很高，如果维度更多或基数更高，则情况更糟。但真正的挑战还不在这里。
 
-Soon you will find the Top-N query doesn't work, or cost unacceptable long time. Assume you wonder the top 100 sellers in past 30 days in US, it would read 30 million rows from storage, aggregate and sort, finally return the top 100 ones. Due to no pre-calculation, even the final result set is small, the memory footprint and I/Os in between is badly heavy.
+之后你还可能发现 Top-N查询并不能正常工作，或者话费特别长的时间。假设你想查30天内美国销售额排名最前的100名卖家，则查询引擎会从存储读取3000万记录行，然后聚合，分类，最终返回排名最前的100个卖家。由于没有进行预计算，即使最终结果很小，内存和其中的控制器都被严重耗用了。
 
 
 
-## With Top-N pre-calculation
+## Top-N 预计算
 
-With the Top-N measure, KAP will pre-calculate the top entities for each dimension combination duing the cube create section, saving the result (both entity ID and measure value) as a column in storage. The entity ID (“SELLER_ID” in this case) now can be moved from dimension to the measure, which doesn’t participate in the rowkey. For the sample scenario described above, the newly designed cube will have 2 dimensions (PART_DT, LSTG_SITE_ID), and 1 Top-N measure.
+如果在Cube创建时，设置了目标列Top-N的预计算，则当这个Cube被构建时，预计算结果会被存成一个新列。With the Top-N measure, KAP will pre-calculate the top entities for each dimension combination duing the cube create section, saving the result (both entity ID and measure value) as a column in storage. The entity ID (“SELLER_ID” in this case) now can be moved from dimension to the measure, which doesn’t participate in the rowkey. For the sample scenario described above, the newly designed cube will have 2 dimensions (PART_DT, LSTG_SITE_ID), and 1 Top-N measure.
 
 | Rowkey of base cuboid | Top-N measure                            |
 | --------------------- | ---------------------------------------- |
@@ -82,7 +78,7 @@ For the same query, “Top sellers in past 30 days in US” now only need to rea
 
 
 
-## Algorithm
+## 算法
 
 Kylin’s Top-N implementation referred to [stream-lib](https://github.com/addthis/stream-lib/blob/master/src/main/java/com/clearspring/analytics/stream/StreamSummary.java), which is based on the Space-Saving algorithm and the Stream-Summary data structure as described in *[1]Efficient Computation of Frequent and Top-k Elements in Data Streams* by Metwally, Agrawal, and Abbadi.
 
@@ -96,7 +92,7 @@ Besides, in order to run SpaceSaving in parallel on Hadoop, we make it mergable 
 
 
 
-## Accuracy
+## 准确度
 
 Although the experiments in paper"Efficient Computation of Frequent and Top-k Elements in Data Streams" **[1]** has proved SpaceSaving’s efficiency and accuracy for realistic Zipfian data, it doesn’t ensure 100% accuracy for all scenarios. SpaceSaving uses a fixed space to put the most frequent candidates;  when the entities exceeds the space size, the tail entities will be truncated, causing data loss. The parallel algorithm merges multiple SpaceSavings into one, at that moment for the entities appeared in one but not in the other it had some assumptions, this will also cause some data distortion. Finally, the result from Top-N measure may have minor difference with the real result.
 
@@ -120,7 +116,7 @@ Error ratio from a big dataset is less than from a small dataset. The same for T
 
 
 
-## Test Statistics
+## 测试结果
 
 We designed a test case to calculate the top 100 elements using the **parallel SpaceSaving** among a generated data set (with commons-math3’s ZipfianDistribution). The entity’s occurancy follows the Zipfian distribution, adjusting the parameters of Zipfian exponent, space, entity cardinality and dataset size time to times, compare the result with the accurate result (using mergesort) to collect the statistics, we get a rough accuracy report in below.
 
@@ -186,7 +182,7 @@ This feature is developed as a basic version, which may solve over 80% cases. Wh
 
 
 
-## Reference
+## 参考文献
 
 **[1]**[Efficient Computation of Frequent and Top-k Elements in Data Streams](https://dl.acm.org/citation.cfm?id=2131596)
 
