@@ -6,11 +6,11 @@
 
 **1.kylin.properties**
 
-```kylin.cell.level.security.enable=``` 是行列安全配置的开关，```true```表示打开，```false```表示关闭，默认值是```false```
+```kap.security.cell-level-acl-enabled``` 是行列安全配置的开关，```true```表示打开，```false```表示关闭，默认值是```false```
 
-```kylin.cell.level.security.acl.config=``` 指定安全控制文件名，KAP Sample里默认名为```userctrl.acl```。用户指定完安全配置文件名后，同时需要在```$KYLIN_HOME/conf```下新建一个同名文件。
+```kap.security.cell-level-acl-config``` 指定安全控制文件名，KAP Sample里默认名为```userctrl.acl```。用户指定完安全配置文件名后，同时需要在```$KYLIN_HOME/conf```下新建一个同名文件。
 
-```kylin.query.access.controller=``` 指定实现安全控制的接口
+```kylin.query.access.controller``` 指定实现安全控制的接口，当前只有一个实现```io.kyligence.kap.query.security.KapAccessDecisionMaker```
 
 **2.用户安全控制文件**
 
@@ -37,9 +37,9 @@ b.目前安全配置文件里的值支持两种表达式：
 
 *一些准备工作*
 
-1. ```kylin.cell.level.security.enable=true```
+1. ```kap.security.cell-level-acl-enabled=true```
 
-2. ```kylin.cell.level.security.acl.config=userctrl.acl```
+2. ```kap.security.cell-level-acl-config=userctrl.acl```
 
 3. ```kylin.query.access.controller=io.kyligence.kap.query.security.KapAccessDecisionMaker```
 

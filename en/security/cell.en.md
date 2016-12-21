@@ -8,15 +8,15 @@ First of all, we need to compose a couple of configs:
 
 **1.kylin.properties**
 
-```kylin.cell.level.security.enable=``` is the switch，```true```: means on，```false```: means off，the default is:```false```
+To enable the cell level security, please turn on the ```kap.security.cell-level-acl-enabled```，the default is ```false```
 
-```kylin.cell.level.security.acl.config=``` specifies the name of access control file. In KAP Example, the default is: ```userctrl.acl```. Meanwhile, an access control file with the same name should exist in ```$KYLIN_HOME/conf```.
+```kap.security.cell-level-acl-config``` specifies the name of access control file. In KAP Example, the default is: ```userctrl.acl```. Meanwhile, an access control file with the same name should exist in ```$KYLIN_HOME/conf```.
 
-```kylin.query.access.controller=``` specifies the interface.
+```kylin.query.access.controller``` specifies the interface. Currently, we have only one implementation, ```io.kyligence.kap.query.security.KapAccessDecisionMaker```
 
 **2.User Access Control File**
 
-In access control file, it defines the specific conditions for restricting user behavior. Here is a KAP example file: **userctrl.acl** *(the default split is whitespace)*:
+In access control file, it defines the specific conditions for restricting filtering. Take an example: **userctrl.acl** *(the default split is whitespace)*:
 
 | **login_user** | **kylin_sales.user_id** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
 | :------------: | :---------------------: | :--------------------: | :-------------------: | :------------------------------: |
@@ -41,8 +41,8 @@ If value is evaluated as a string(non-Boolean), means the corresponding attribut
 
 *Some preparation*s
 
-1. ```kylin.cell.level.security.enable=true```
-2. ```kylin.cell.level.security.acl.config=userctrl.acl```
+1. ```kap.security.cell-level-acl-enabled=true```
+2. ```kap.security.cell-level-acl-config=userctrl.acl```
 3. ```kylin.query.access.controller=io.kyligence.kap.query.security.KapAccessDecisionMaker```
 4. `kylin_sales_cube is built`
 5. `Grant MODELER to access Cube`. On KAP GUI, click on the **project management**, then select the project **learn_kylin**, click **privilege**, add grant: **MODELER** , **Cube query**
