@@ -69,7 +69,7 @@
     * [Excel 2016](integration/excel_2016.en.md)
     * [Power BI](integration/powerbi.en.md)
     * [Zeppelin](integration/zeppelin.en.md)
-* [Security Controll](security/README.md)
+* [Security Control](security/README.md)
     * [User management](security/user.en.md)
     * [Integrate with LDAP](security/ldap.en.md)
     * [Manage ACL](security/acl.en.md)
