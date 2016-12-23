@@ -10,4 +10,8 @@ Continue Read:
 
 [Tableau9.x](integration/tableau_9.en.md)
 
+[Excel 2016](integration/excel_2016.en.md)
+
 [Power BI](integration/powerbi.en.md)
+
+[Zeppelin](integration/zeppelin.en.md)
