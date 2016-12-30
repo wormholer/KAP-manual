@@ -1,10 +1,12 @@
-## Tableau 10.x 集成
+## Integration with Tableau 9.x
 
-### 安装 ODBC Driver
-参考页面[KAP ODBC 驱动程序教程](../driver/odbc.cn.html)KAP ODBC Driver __v1.5__。如果你安装有早前版本，请卸载后再安装。 
+### Install ODBC Driver
+Refer to this guide: [Kylin ODBC Driver Tutorial](driver/odbc.en.md).
 
-### 连接 KAP Server
-在Tableau 10.1创建新的数据连接，单击左侧面板中的`其他数据库(ODBC)`，并在弹出窗口中选择`KylinODBCDriver` 
+Please make sure to download and install Kylin ODBC Driver v1.5. If you already installed ODBC Driver in your system, please uninstall it first.  
+
+### Connect to Kylin Server
+Connect Using Driver: Start Tableau 9.1 desktop, click `Other Database(ODBC)` in the left panel and choose KylinODBCDriver in the pop-up window. 
 
 
 ![](images/tableau_10/step1.PNG)
@@ -13,13 +15,13 @@
 
 
 
-输入你的服务器地址、端口、项目、用户名和密码，点击`Connect`可获取有权限访问的所有项目列表。
+Provide your Sever location, credentials and project. Clicking `Connect` button, you can get the list of projects that you have permission to access, see details at [Kylin Cube Permission Grant Tutorial](./acl.html).
 
 
 ![](images/tableau_10/step3.PNG)
 
-### 映射数据模型
-在左侧的列表中，选择数据库`defaultCatalog`并单击”搜索“按钮，将列出所有可查询的表。用鼠标把表拖拽到右侧区域，就可以添加表作为数据源，并创建好表与表的连接关系（映射信息如图）。
+### Mapping Data Model
+In left panel, select `defaultCatalog` as Database, click `Search` button in Table search box, and all tables get listed. Drag the table to right side, then you can add this table as your data source and edit relation between tables(mapping information is shown in figure).
 
 ![](images/tableau_10/step5.PNG)
 
@@ -30,22 +32,25 @@
 
 ![](images/tableau_10/step12.PNG)
 
-### 保持数据实时性
+### Connect Live
 
-Tableau 10.1中有两种数据源连接类型，选择 `连接`选项以确保使用`实时`模式。
+There are two types of Connection in Tableau 10.1, choose the Live option to make sure using Connect Live mode.
 
 ![](images/tableau_10/step9.PNG)
 
-### 自定义SQL
-如果需要使用自定义SQL，可以单击左侧`自定义SQL`并在弹窗中输入SQL语句，就可添加为数据源。
+### Custom SQL
+To use customized SQL, click `New Custom SQL` in left panel and type SQL statement in pop-up dialog.
 ![](images/tableau_10/step10.PNG)
 
-### 可视化
-现在你可以进一步使用Tableau进行可视化分析。
+
+
+### Visualization
+
+Now you can start to enjou analyzing with Tableau 10.1.
 ![](images/tableau_10/step13.PNG)
 
-### 发布到Tableau服务器
-如果希望发布到Tableau服务器, 点击`服务器`菜单并选择`发布工作簿`。
+### Publish to Tableau Server
+If you want to publish local dashboards to a Tableau Server, just expand `Server` menu and select `Publish Workbook`.
 ![](images/tableau_10/step14.PNG)
 
 
