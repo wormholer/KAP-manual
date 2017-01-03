@@ -12,6 +12,7 @@
 *   [KyAnalyzer](analyzer/README.md)
     - [How to use KyAnalyzer](analyzer/analyzer.en.md)
 *   [KAP Release Notes](release/README.md)
+    * [KAP 2.2 Release Notes](release/KAP_2_2_notes.en.md)
     * [KAP 2.1 Release Notes](release/KAP_2_1_notes.en.md)
     * [KAP 2.0 Release Notes](release/KAP_2_0_notes.en.md)
 *   [KAP Quick Start](quickstart/README.md)
