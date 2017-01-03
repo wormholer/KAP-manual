@@ -1,4 +1,4 @@
-## Integration with Tableau 9.x
+## Integration with Tableau 10.x
 
 ### Install ODBC Driver
 Refer to this guide: [Kylin ODBC Driver Tutorial](driver/odbc.en.md).

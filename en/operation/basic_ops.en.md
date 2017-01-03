@@ -1,5 +1,5 @@
 ## Basic Operations
-Every day, KAP server accepts multiple Cube building jobs submitted by different customers KAP, and often because of improper design or abnormal cluster environment, then Cube building jobs would cost unacceptable long time or goes to failure, which needs more attention from operation and maintain personnel. Additionally, after KAP service running for a period, some data on the HBase or HDFS would become useless, which needs regular cleaning for storage garbage.
+Every day, KAP server accepts multiple Cube building jobs submitted by different customers, and often because of improper design or abnormal cluster environment, then Cube building jobs would cost an unacceptable long time or be failed, which needs more attention from operation personnel. Additionally, after KAP service running for a period, some data on the HBase or HDFS would become useless, thus needs regular cleaning for these storage garbage.
 
 
 
