@@ -64,7 +64,6 @@
     * [JDBC driver](driver/jdbc.en.md)
     * [ODBC driver](driver/odbc.en.md)
 *   [Integration with The 3rd Party BI Tools](integration/README.md)
-
     * [Tableau10.x](integration/tableau_10.en.md)
     * [Tableau9.x](integration/tableau_9.en.md)
     * [Tableau8.x](integration/tableau_8.en.md)
