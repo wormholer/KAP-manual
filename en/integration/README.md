@@ -2,8 +2,6 @@
 
 This chapter includes multiple methods of integration between KAP and the 3rd party BI tools.
 
-
-
 Continue Read:
 
 [Tableau10.x](integration/tableau_10.en.md)

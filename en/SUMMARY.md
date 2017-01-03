@@ -1,38 +1,30 @@
 # Summary
 
 *   [KAP Manual](README.md)
-
 *   [KAP Introduction](introduction/README.md)
     * [KAP Overview](introduction/overview.en.md)
     * [Apache Kylin](introduction/kylin.en.md)
     * [Glossary](introduction/concepts.en.md)
     * [Get Support](introduction/get_support.en.md)
-
 *   [KyBot](kybot/README.md)
     * [KyBot Overview and Quick Start](kybot/kybot.en.md)
     * [KyBot Case Analysis](kybot/case.en.md)
-
 *   [KyAnalyzer](analyzer/README.md)
     - [How to use KyAnalyzer](analyzer/analyzer.en.md)
-
 *   [KAP Release Notes](release/README.md)
     * [KAP 2.1 Release Notes](release/KAP_2_1_notes.en.md)
     * [KAP 2.0 Release Notes](release/KAP_2_0_notes.en.md)
-
 *   [KAP Quick Start](quickstart/README.md)
     * [Quick Start on HDP](quickstart/quickstart_hdp.en.md)
     * [Quick Start on CDH](quickstart/quickstart_cdh.en.md)
-
 *   [KAP Installation](install/README.md)
     * [Requirement](install/hadoop_env.en.md)
     * [Install and Start](install/install_guide.en.md)
     * [Advanced Deployment](install/deploy.en.md)
     * [Uninstall KAP](install/uninstall.en.md)
-
 *   [KAP Upgrade](upgrade/README.md)
     * [Upgrade from KAP](upgrade/upgrade_kap.en.md)
     * [Upgrade from Kylin](upgrade/upgrade_kylin.en.md)
-
 *   [KAP Configuration](config/README.md)
     * [Configuration Properties](config/settings.en.md)
     * [Configuration Properties for KyStorage](config/kystorage_settings.en.md)
@@ -40,7 +32,6 @@
     * [Recommended Configurations for KAP v2.2 ](config/recommend_settings_v2_2.en.md)
     * [Job Engine HA](config/jobengine_ha.en.md)
     * [Cube Configuration Override](config/cube_override.en.md)
-
 *   [MOLAP](molap/README.md)
     * [Sample Data Set](molap/dataset.en.md)
     * [Import Data](molap/import.en.md)
@@ -52,18 +43,15 @@
     * [SQL Query](molap/query.en.md)
     * [Insight](molap/insight.en.md)
     * [Visualization](molap/visualization.en.md)
-
 *   [Cube Optimization](optimization/README.md)
     * [Aggregation Group](optimization/aggregation_group.en.md)
     * [TopN](optimization/topN.en.md)
     * [Count Distinct](optimization/count_distinct.en.md)
     * [Count Distinct(Precise)](optimization/count_distinct_precise.en.md)
-
 *   [Advanced SQL](adv_sql/README.md)
     * [Window Function](adv_sql/window_function.en.md)
     * [Grouping Sets](adv_sql/grouping_sets.en.md)
     * [Intersect Count](adv_sql/intersect_count.en.md)
-
 *   [REST API](rest/README.md)
     * [Access and authentication](rest/authentication.en.md)
     * [Query API](rest/query_api.en.md)
@@ -72,26 +60,22 @@
     * [Job API](rest/job_api.en.md)
     * [Metadata API](rest/metadata_api.en.md)
     * [Cache API](rest/cache_api.en.md)
-
 *   [Driver](driver/README.md)
     * [JDBC driver](driver/jdbc.en.md)
     * [ODBC driver](driver/odbc.en.md)
-
 *   [Integration with The 3rd Party BI Tools](integration/README.md)
-
     * [Tableau10.x](integration/tableau_10.en.md)
     * [Tableau9.x](integration/tableau_9.en.md)
     * [Tableau8.x](integration/tableau_8.en.md)
     * [Excel 2016](integration/excel_2016.en.md)
     * [Power BI](integration/powerbi.en.md)
     * [Zeppelin](integration/zeppelin.en.md)
-
-
 *   [Security Control](security/README.md)
-    * [User management](security/user.en.md)
-    * [Integrate with LDAP](security/ldap.en.md)
-    * [Manage ACL](security/acl.en.md)
-    * [Cell Level Security](security/cell.en.md)
+    *   [User management](security/user.en.md)
+    *   [Integrate with LDAP](security/ldap.en.md)
+    *   [Manage ACL](security/acl.en.md)
+    *   [Cell Level Security](security/cell.en.md)
+
 
 *   [Trouble Shooting](troubleshooting/README.md)
     * [Logging](troubleshooting/logging.en.md)
