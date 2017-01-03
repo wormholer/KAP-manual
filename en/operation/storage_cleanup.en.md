@@ -1,31 +1,36 @@
-## 垃圾清理
+## Clean Garbage
 
-在KAP运行一段时间之后，有很多数据因为不再使用而变成了垃圾数据，这些数据占据着大量HDFS、HBase等资源，当积累到一定规模会对集群性能产生影响。
-这些垃圾数据主要包括：
+While KAP running for a period of time, there are tons of data becoming useless, yet they still occupied a lot of HDFS/HBase source, accumulation of useless data would influence performance of cluster at some degree.  The garbage data mainly including: 
 
-- Purge之后原Cube的数据
-- Cube合并之后原Cube Segment的数据
-- 任务中未被正常清理的临时文件
-- 很久之前Cube构建的日志和任务历史
+- Original Cube data of purged Cube
+- Original Cube Segment data of merged Cube
+- Temporary files are not cleaned properly in the jobs
+- Cube build logs and job history occured long time ago
 
-为了对这些垃圾数据进行清理，KAP提供了两个常用的工具。请特别注意，数据一经删除将彻底无法恢复！建议使用前进行元数据备份，并对目标资源进行谨慎核对。
+KAP provides two common tools to clean garbage data. 
 
-### 清理元数据
-第一个是元数据清理工具，该工具有一个delete参数，默认是false。只有当delete参数为true，工具才会真正对无效的元数据进行删除。该工具的执行方式如下：
+```
+Please be noticed that data cannot be restored once removed. So it is essential to back up metadata and check the target resources carefully before using the tools. 
+```
+
+### Clean Metadata
+The first one is a metadata tool, it has a delete parameter, which defaults to be false. When delete parameter turns to be true, this tool would start to delete metadata. The executing method is shown as below:
 
 ```$KYLIN_HOME/bin/metastore.sh clean [--delete true]```
-第一次执行该工具时建议省去delete参数，这样会只列出所有可以被清理的资源供用户核对，而并不实际进行删除操作。当用户确认无误后，再添加delete参数并执行命令，才会进行实际的删除操作。默认情况下，该工具会清理的资源列表如下：
 
-- 2天前创建的已无效的Lookup表镜像、字典、Cube统计信息
-- 30天前结束的Cube构建任务的步骤信息、步骤输出
+During the first implementation of the tool, it is recommended to omit the delete parameter, which means only list all the resources need to be cleaned up for users to check, rather than actually start delete operation. After users confirm all listed resources are meant to be cleaned, then add the delete parameter and execute command. By default, the target resource list would be as following: 
 
-### 清理存储器
-第二个工具是存储器清理工具。顾名思义，就是对HBase和HDFS上的资源进行清理。同样的，该工具也有一个delete参数，默认是false。当且仅当delete参数的值是true，工具才会对存储器中的资源真正执行删除操作。该工具的执行方式如下：
+- Invalid lookup table mirror, dictionary, Cube statistics created 2 days ago
+- Action information and output of Cube build job had finished 30 days ago
+
+### Clean Storage
+The second tool is storage cleaning tool. As its name, this tool aims to clean HBase and HDFS to release more resource. Similarly, this tool has a delete parameter as well, which defaults to be false. Only when it becomes true, the tool would start to delete resource from storage devices. The executing method is as below: 
 
 ```$KYLIN_HOME/bin/kylin.sh io.kyligence.kap.tool.storage.KapStorageCleanupCLI [--delete true] [--force true]```
-第一次执行该工具时建议省去delete参数，这样会只列出所有可以被清理的资源供用户核对，而并不实际进行删除操作。当用户确认无误后，再添加delete参数并执行命令，才会进行实际的删除操作。默认情况下，该工具会清理的资源列表如下：
 
-- 创建时间在2天前，且已无效的HTable
-- 在Cube构建时创建的但未被正常清理的的Hive中间表、HDFS临时文件
+During the first implementation of the tool, it is recommended to omit the delete parameter, which means only list all the resources need to be cleaned up for users to check, rather than actually start delete operation. After users confirm all listed resources are meant to be cleaned, then add the delete parameter and execute command. By default, the target resource list would be as following: 
 
-如果force参数为true，则删除所有Hive中间表
+- Invalid HTable created 2 days ago
+- The Hive intermediate table, HDFS temporary file which were created in the Cube building period but were not cleaned properly
+
+If the force parameter is true, then all Hive tables are deleted.
