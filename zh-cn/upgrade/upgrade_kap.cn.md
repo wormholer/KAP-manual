@@ -1,12 +1,8 @@
 ## KAP 升级
 
-请参考不同的升级场景如下。
+### 从KAP 2.X升级到更高版本
 
-
-
-### 从KAP 2.0升级到KAP 2.1
-
-两版本元数据兼容，只需要覆盖安装包，更新配置文件，升级HBase Coprocessor即可。
+KAP 2.X 元数据兼容，只需要覆盖安装包，更新配置文件，升级HBase Coprocessor即可。
 
 1)	备份原来KAP安装
 
@@ -43,6 +39,8 @@
    bin/kylin.sh start
 ```
 
+
+
 ### 从KAP升级到KAP Plus版
 
 升级方法与普通的版本升级一样，覆盖安装包，更新配置文件，升级HBase Coprocessor即可。
@@ -50,6 +48,3 @@
 KAP Plus版的主要不同在于全新的存储引擎。新建的Cube，将自动使用新的存储引擎。
 
 老的Cube将继续使用原来的HBase存储引擎。可以查询和继续更新Cube。
-
-
-
