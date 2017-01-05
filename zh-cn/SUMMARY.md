@@ -27,6 +27,7 @@
 * [KAP升级](upgrade/README.md)
     * [从KAP升级](upgrade/upgrade_kap.cn.md)
     * [从Apache Kylin升级](upgrade/upgrade_kylin.cn.md)
+    * [升级KyStorage引擎](upgrade/upgrade_kap_plus.cn.md)
 * [KAP配置](config/README.md)
     * [配置参数](config/settings.cn.md)
     * [KyStorage配置参数](config/kystorage_settings.cn.md)
