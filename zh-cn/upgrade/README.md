@@ -7,3 +7,5 @@
 [从KAP升级](upgrade_kap.cn.md)
 
 [从Apache Kylin升级](upgrade_kylin.cn.md)
+
+[更新存储引擎为KyStorage](upgrade_kap_plus.cn.md)

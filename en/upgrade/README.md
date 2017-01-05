@@ -7,3 +7,5 @@ Continue reading:
 [Upgrade from KAP](upgrade_kap.en.md)
 
 [Upgrade from Apache Kylin](upgrade_kylin.en.md)
+
+[Upgrade to KyStorage Engine](upgrade_kap_plus.en.md)

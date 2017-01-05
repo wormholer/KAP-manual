@@ -1,12 +1,8 @@
 ## KAP Upgrade
 
-See different upgrade scenarios below.
+### Upgrade from KAP 2.X to Higher KAP
 
-
-
-### Upgrade from KAP 2.0 to KAP 2.1
-
-The metadata of the two versions are compatible. Simply upgrade by overwrite the binary, update the config files, and redeploy the HBase coprocessor.
+The metadata of the KAP 2.X are compatible. Simply upgrade by overwrite the binary, update the config files, and redeploy the HBase coprocessor.
 
 1)	Backup the orignal installation
 
