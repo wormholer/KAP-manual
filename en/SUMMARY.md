@@ -26,6 +26,7 @@
 *   [KAP Upgrade](upgrade/README.md)
     * [Upgrade from KAP](upgrade/upgrade_kap.en.md)
     * [Upgrade from Kylin](upgrade/upgrade_kylin.en.md)
+    * [Upgrade to KyStorage Engine](upgrade/upgrade_kap_plus.en.md)
 *   [KAP Configuration](config/README.md)
     * [Configuration Properties](config/settings.en.md)
     * [Configuration Properties for KyStorage](config/kystorage_settings.en.md)
