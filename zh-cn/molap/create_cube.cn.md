@@ -16,7 +16,7 @@
 2. 针对每一个维度字段，首先在Name输入框中输入维度名称，在Table Name中选择KYLIN_CATEGORY_GROUPINGS表，然后在Column Name中选择相应的列名。
 
 此外，在查询中还经常把时间作为过滤或聚合的条件，如按周过滤、按周聚合等。这里我们以按周为例，需要用到KYLIN_CAL_DT中的WEEK_BEG_DT字段，但是该字段实际上可以由PART_DT字段决定，即根据每一个PART_DT值可以对应出一个WEEK_BEG_DT字段，因此，我们添加WEEK_BEG_DT字段为可推倒维度。
-同样的，KYLIN_CATEGORY_GROUPINGS表中还有一些可作为可推到维度的字段，如USER_DEFINED_FIELD1、USER_DEFINED_FIELD3、UPD_DATE、UPD_USER等。
+同样的，KYLIN_CATEGORY_GROUPINGS表中还有一些可作为可推导维度的字段，如USER_DEFINED_FIELD1、USER_DEFINED_FIELD3、UPD_DATE、UPD_USER等。
 
 在事实表上，表征交易类型的LSTG_FORMAT_NAME字段也会用于过滤或聚合条件，因此，我们再添加LSTG_FORMAT_NAME字段作为普通维度。
 最终，维度的设置结果如下图所示：
