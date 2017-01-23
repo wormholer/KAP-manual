@@ -36,11 +36,11 @@ The highlight features including:
 
 #### Enhanced Source Statistic
 
-Support Hive View, collects metadata from data source, including column cardinality, character value and sample data, used for assisting modeling.
+Introduced Source Statistic. KAP collects statistic information from data source, including column cardinality, Null number, min/max value, character value and sample data, and it supports for Hive table and view.
 
 #### Enhanced Modeling Assistant
 
-Support designing dimension and measure in batch, and display the cuboid combination number interactively to avoid the cuboid explosion.
+Enable dimensions and measures auto generationand provide cuboid combination number suggestion to avoid explosion.
 
 #### Optimized KyStorage
 
