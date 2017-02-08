@@ -1,3 +1,5 @@
+## Logging
+
 KAP users may face some hard work such as cube building failed, SQL executing failed, query latency timeout etc. OPS team need to dump related information for trouble shooting. Besides, users have the needs to ask experts for help, in which situation user could leverage Kyligence's online support service -- KyBot, based on exports knowledge base, to diagnose/tune their KAP instances and ask technical support.
 
 # Diagnosis

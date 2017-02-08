@@ -1,9 +1,5 @@
----
-layout: docs15
-title:  Kylin Cube from Streaming (Kafka)
-categories: tutorial
-permalink: /docs15/tutorial/cube_streaming.html
----
+## Kylin Cube from Streaming (Kafka)
+
 Kylin v1.5 releases the experimental streaming cubing feature. This is a step by step tutorial, illustrating how to create and build a cube from streaming; 
 
 ## Preparation
