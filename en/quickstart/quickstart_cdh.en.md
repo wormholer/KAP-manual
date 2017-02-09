@@ -12,7 +12,7 @@ KAP need run in a Hadoop node, to get better stability, we suggest you to deploy
 >
 > Please use CDH distribution on *CDH 5.7/5.8*
 
-To avoid permission issue in the sandbox, you can use its *root* account through SSH . The password for *Hortonworks Sandbox 2.2* is *hadoop*, password for *Horonworks Sandbox 2.3/2.4*, please refer to the [Hortonworks Documents]((http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)). for *Cloudera QuickStart VM 5.7/5.8* is *cloudera*. 
+To avoid permission issue in the sandbox, you can use its *root* account through SSH . The password for *Hortonworks Sandbox 2.2* is *hadoop*, password for *Horonworks Sandbox 2.3/2.4*, please refer to the [Hortonworks Documents](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/). for *Cloudera QuickStart VM 5.7/5.8* is *cloudera*. 
 
 This guide uses *cloudera* as example. 
 
@@ -31,7 +31,7 @@ The following parameters should be updated, to meet the KAP resource requirement
 
 ### Install KAP
 
-To obtain KAP package, please refer to [KAP release notes]((../release/README.md)). There may have some minor differences between KAP and KAP plus. 
+To obtain KAP package, please refer to [KAP release notes](../release/README.md). There may have some minor differences between KAP and KAP plus. 
 
 Copy KAP binary package into the server mentioned above, and decompress to /usr/local
 

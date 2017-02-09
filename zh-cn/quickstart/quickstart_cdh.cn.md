@@ -14,7 +14,7 @@ KAP需要在Hadoop节点上运行，为了获得更好的稳定性，我们建�
 >
 > 在*CDH 5.7/5.8*上，请使用*CDH*配置；
 
-为了避免沙盒软件中的权限问题，你可以使用它的*root*帐户通过SSH。*Hortonworks Sandbox 2.2* 的密码为“*hadoop*”。*Horonworks Sandbox 2.3/2.4*的密码参见 [Hortonworks Documents]((http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/))。*Cloudera QuickStart VM 5.7/5.8* 的密码为 “*cloudera*”。
+为了避免沙盒软件中的权限问题，你可以使用它的*root*帐户通过SSH。*Hortonworks Sandbox 2.2* 的密码为“*hadoop*”。*Horonworks Sandbox 2.3/2.4*的密码参见 [Hortonworks Documents](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)。*Cloudera QuickStart VM 5.7/5.8* 的密码为 “*cloudera*”。
 
 本指南将用*cloudera*作为案例. 
 
@@ -31,7 +31,7 @@ KAP需要在Hadoop节点上运行，为了获得更好的稳定性，我们建�
 
 ### 安装KAP
 
-请访问 [KAP release notes]((../release/README.md))获取KAP软件包。KAP与KAP plus之前存在少量差别。
+请访问 [KAP release notes](../release/README.md)获取KAP软件包。KAP与KAP plus之前存在少量差别。
 
 请将KAP二进制包复制入上文所述的服务器中，然后在本地/usr/（即用户文件）中解压。
 
