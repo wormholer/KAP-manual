@@ -20,9 +20,13 @@
         "expandable-chapters",
         "codeblock-filename",
         "edit-link",
-        "header"
+        "header",
+        "versions" 
     ],
     "pluginsConfig": {
+        "versions": {
+            "type": "branches"
+        },
         "disqus": {
             "shortName": "kap-manual"
         },
