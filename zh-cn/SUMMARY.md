@@ -38,6 +38,7 @@
 * [基本多维分析](molap/README.md)
     * [样例数据集](molap/dataset.cn.md)
     * [数据导入](molap/import.cn.md)
+    * [表格统计信息收集](molap/collect_statistics.cn.md)
     * [创建数据模型](molap/datamodel.cn.md)
     * [创建Cube](molap/create_cube.cn.md)
     * [明细表](molap/rawtable.cn.md)

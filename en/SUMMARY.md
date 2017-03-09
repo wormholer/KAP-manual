@@ -37,6 +37,7 @@
 *   [MOLAP](molap/README.md)
     * [Sample Data Set](molap/dataset.en.md)
     * [Import Data](molap/import.en.md)
+    * [Collect Table Statistics](molap/collect_statistics.en.md)
     * [Create Data Model](molap/datamodel.en.md)
     * [Create Cube](molap/create_cube.en.md)
     * [Raw Table](molap/rawtable.en.md)
