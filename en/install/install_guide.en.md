@@ -27,6 +27,11 @@ ${KYLIN_HOME}/bin/check-env.sh
 
 > **Optional**：If want to install multiple KAP instances in a Hadoop cluster, you must specify different metadata URL for each instance. In `conf/kylin.properties`, set `kylin.metadata.url` to different values for each instance, for example `kylin_metadata@hbase` (the default value), or `kylin_prod@hbase`, or `kylin_qa@hbase` etc.
 
+## Run Setup Script
+	{KYLIN_HOME}/bin/setup.sh 
+	#Enter available vcore number of your cluster. Setup script will config kylin.engine.spark-conf.spark.executor.cores and kylin.engine.spark-conf.spark.executor.instances automatically.
+
+
 ## Start KAP
 
 Execute command `bin/kylin.sh start`, KAP will start in background. You can track starting progress by watching file `logs/kylin.log` with `tail` command.
