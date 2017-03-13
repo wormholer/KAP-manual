@@ -33,13 +33,13 @@ KyBot默认访问地址：[https://kybot.io](https://kybot.io)，根据提示完
 
 ### 3. 生成诊断包
 
-- #### KAP用户
+#### KAP用户
 
 登录每一个KAP节点的WEB UI,点击系统页面的"诊断"按钮,生成诊断包
 
 ![](images/Picture2.png)
 
-- #### Kylin 用户
+#### Kylin 用户
 
 ① 下载KyBot Client (支持Apache Kylin1.5.0以上及KAP全部版本)下载路径：登录KyBot 官网https://kybot.io，在首页点击上传，然后点击"打包工具: KyBot Client 1.0.1"即可下载。
 
