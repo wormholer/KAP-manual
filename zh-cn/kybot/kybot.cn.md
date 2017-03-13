@@ -35,6 +35,32 @@ KyBot默认访问地址：[https://kybot.io](https://kybot.io)，根据提示完
 
 #### KAP用户
 
+如果您使用的是KAP 2.3及以上版本，支持一键上传诊断包到KyBot，操作步骤是：
+
+1.在kylin.properties中配置登陆KyBot的用户名和密码：
+
+```
+kap.kyaccount.username // 用户名
+kap.kyaccount.password // 密码
+```
+
+如果您的KAP服务器需要通过代理才可访问外网，还需添加一下配置项：
+
+```
+kap.external.http-proxy-host // http代理服务器地址
+kap.external.http-proxy-port // http代理服务器端口
+```
+
+2.登陆KAP WEB UI，单击系统页面的"诊断"按钮，弹出以下提示框
+![](images/Picture12.png)
+
+3.单击“一键生成诊断包至KyBot”；如果您的KAP节点无法访问外网，也可以单击“下载诊断包”将诊断包下载到本地，然后手动上传到KyBot。（上传步骤见下文）
+
+4.稍等片刻，待诊断包上传成功，访问[KyBot网站](https://kybot.io)即可查看 
+
+5.如果您的KAP时集群部署方式，需要对每个KAP节点分别上传诊断包
+
+如果您使用的是KAP 2.3以下版本，需要下载诊断包并手动上传到KyBot，操作步骤是：
 登录每一个KAP节点的WEB UI,点击系统页面的"诊断"按钮,生成诊断包
 
 ![](images/Picture2.png)

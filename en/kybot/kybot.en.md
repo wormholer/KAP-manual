@@ -40,15 +40,41 @@ Default access address of KyBot: [https://kybot.io](https://kybot.io). Please co
 
 - #### KAP Users
 
-Log on to each KAP node of the UI WEB, then click "diagnose" button on the system page to generate diagnose package.
+If you are using KAP 2.3 or subsequent versions, which supports one-click uploading to KyBot. Check on following steps:
+
+1.Set your KyBot username and password in kylin.properties:
+
+```
+kap.kyaccount.username // username
+kap.kyaccount.password // password
+```
+
+If your KAP server needs proxy server to access the Internet, following configurations are required:
+
+```
+kap.external.http-proxy-host // http proxy server
+kap.external.http-proxy-port // http proxy port
+```
+
+2.Login to KAP Web UI, click "Diagnosis" on System page.
+![](images/Picture12.png)
+
+3.Click "One click to sync diagnostic package to KyBot". If your KAP does not have access to Internet, you can also download the diagnostic package to local with clicking "Download diagnostic package" and manually upload to KyBot. (Check following steps for uploading)
+
+4.Until uploading succeeds, you can navigate to [KyBot](https://kybot.io) to see the results.
+
+5.If you have multiple KAP nodes, you need to upload diagnostics packages for each nodes.
+
+If you are using KAP 2.2 or the past KAP versisons, you need to manually download diagnotic package and uplaod it to KyBot, the steps are:
+
+Login to each KAP node of the UI WEB, then click "diagnose" button on the system page to generate diagnose packages.
 
 ![](images/Picture2.png)
 
 
-
 - #### Kylin Users
 
-① Down load KyBot Client (support Apache Kylin1.5.0 and following version as well as all KAP versions) download path：Log on KyBot official website: https://kybot.io, click "upload" on the first page then click "packing tool": KyBot Client 1.0.1" is available for download.
+① Download KyBot Client (support Apache Kylin1.5.0 and following version as well as all KAP versions) in advance, download path：Log on KyBot official website: https://kybot.io, click "upload" on the first page then click "packing tool": KyBot Client 1.0.1" is available for download.
 
 ② Extract to $KYLIN\_HOME/kybot directory of each Kylin node. 
 
@@ -60,7 +86,7 @@ Log on to each KAP node of the UI WEB, then click "diagnose" button on the syste
 
 ### 4. Upload diagnose package
 
-Log on KyBot website, click the "Upload" button at the top of the page to open the upload page; then click "upload diagnose package" button, and select a generated KyBot diagnostic package. If the diagnose package get uploaded, it will join analysis queue soon. Users could check the analyzing speed on the upload page, and use further functions after analysis completed.
+Log on KyBot website, click the "Upload" button at the top of the page to access upload page, then click "upload diagnose package" button, and select a desired KyBot diagnostic package. If the diagnose package get uploaded, it will join analysis queue soon. Users could check the analyzing speed on the upload page, and use further functions after analysis completed.
 
 ![](images/Picture4.png)
 
