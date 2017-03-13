@@ -1,157 +1,158 @@
-## Kylin Cube from Streaming (Kafka)
-
-Kylin v1.5 releases the experimental streaming cubing feature. This is a step by step tutorial, illustrating how to create and build a cube from streaming; 
-
-## Preparation
-To finish this tutorial, you need a Hadoop environment which has kylin v1.5.2 installed, and also have Kafka be ready to use; Previous Kylin version has a couple issues so please upgrade your Kylin instance at first.
-
-In this tutorial, we will use Hortonworks HDP 2.2.4 Sandbox VM as the Hadoop environment.
-
-## Create sample Kafka topic and populate data
-
-Firstly, we need a Kafka topic for the incoming data; A sample topic "kylin_demo" will be created here:
-
-{% highlight Groff markup %}
-/usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kylin_demo
-Created topic "kylin_demo".
-{% endhighlight %}
-
-Secondly, we need put sample data to this topic; Kylin has a utility class which can do this; Assume Kylin is installed in /root/apache-kylin-1.5.2-bin:
-
-{% highlight Groff markup %}
-export KYLIN_HOME='/root/apache-kylin-1.5.2-bin'
-
-cd $KYLINN_HOME
-./bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylin_demo --broker sandbox:6667 —delay 0
-{% endhighlight %}
-
-It will send 1 record to Kafka every 2 second, with "delay" be 0, the "order_time" will be the same as the timestamp that the message be created. Please don't press CTRL+C before finishing this tutorial, otherwise the streaming will be stopped.
-
-Thirdly, you can check the sample message with kafka-console-consumer.sh, with another shell session:
-
-{% highlight Groff markup %}
-/usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper sandbox.hortonworks.com:2181 --topic kylin_demo --from-beginning
-{"amount":4.036149489293339,"category":"ELECTRONIC","order_time":1462465632689,"device":"Windows","qty":4,"currency":"USD","country":"AUSTRALIA"}
-{"amount":83.74699855368388,"category":"CLOTH","order_time":1462465635214,"device":"iOS","qty":8,"currency":"USD","country":"INDIA"}
-
- {% endhighlight %}
-
-## Define a table from streaming
-Start Kylin server, login Kylin web GUI, select or create a project; Click "Model" -> "Data Source", then click the icon "Add Streaming Table"; 
-
-   ![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/1 Add streaming table.png)
-
-In the pop-up dialogue, enter a sample record which you got from the kafka-console-consumer, click the ">>" button, Kylin parses the JSON message and list all the properties; 
-
-You need give a logic table name for this streaming data source; The name will be used for SQL query later; here please enter "STREAMING_SALES_TABLE" in the "Table Name" field. 
-
-You also need select a timestamp property which will be used to identify the time of a message; Kylin can derive other time columns like "year_start", "quarter_start" from this time column, which can give your more flexibility on build and query the cube. Here let's check "order_time". You can deselect those properties which not need be built into cube. In this tutorial let's keep all columns. 
-
-   ![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/2 Define streaming table.png)
+## 以Kafka为数据源流式构建cube
 
 
-Click "Next". On this page, you need provide the Kafka cluster information; Enter "kylin_demo" for "Topic"; The cluster has 1 broker, whose host is "sandbox", port is "6667", click "Save".
+KAP 2.3 提供了流式构建的功能，用户能够以Kafka为数据源，根据时间间隔进行流式构建cube．本文档提供了一个简单的教程，向用户展示如何一步步流式构建cube
 
-   ![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/3 Kafka setting.png)
+## 环境准备
+在开始本教程前，请确保您已准备好Hadoop环境并且已经安装了KAP 2.3及Kafka。在本教程中，我们使用Hortonworks HDP 2.4 Sandbox虚拟机作为Hadoop环境。
 
-In "Advanced setting" section, the "timeout" and "buffer size" are the configurations for connecting with Kafka. The "Margin" is the window margin that Kylin will fetch data from Kafaka, as the message may arrive earlier or later than expected, Kylin can fetch more data and then do a filtering to allow such advance or latency. Default margin is 5 minutes, you can customize if needed.
+## 创建Kafka topic并导入数据
+
+首先，我们需要启动Kafka服务器，并且创建一个名为"kylin_demo"的topic
+
+	curl -s http://mirrors.tuna.tsinghua.edu.cn/apache/kafka/0.10.0.0/kafka_2.10-0.10.0.0.tgz | tar -xz -C /usr/local/
+	cd /usr/local/kafka_2.10-0.10.0.0/
+	./bin/kafka-server-start.sh config/server.properties &
+
+接着，我们需要启动一个生产者，持续往topic中导入数据。KAP提供了一个简单的Producer用于产生数据．这里假设KAP安装在${KYLIN_HOME}目录
+
+	bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic kylindemo
+	Created topic "kylindemo"
+	export KAFKA_HOME=/usr/local/kafka_2.10-0.10.0.0
+	cd $KYLIN_HOME
+	./bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker localhost:9092
+
+以下这个工具类每秒会向Kafka中发送100条消息。在学习本教程的过程中，请保持本程序持续运行。同时，你可以使用Kafka自带的消费者控制台来检查消息是否成功导入
+
+	cd $KAFKA_HOME
+	bin/kafka-console-consumer.sh --zookeeper localhost:2181 --bootstrap-server localhost:9092 --topic kylindemo --from-beginning
 
 
-Click "Submit" to save the configurations. Now a "streaming" table is created in Kylin.
+## 从流式数据中定义事实表
+   
+1. 启动KAP, 登录KAP web GUI, 新建一个project或者选择一个已有的project。点击 "Model" -> "Data Source"，点击"Add Streaming Table"按钮。
+   ![](pictures/s1.png)
+
+2. 输入Broker集群信息
+   ![](pictures/s2.png)
 
 
-![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/4 Streaming table.png)
+3. 点击 sandbox->kylindemo,Kafka的采样消息会出现在右边
+   ![](pictures/s3.png)
 
 
-## Create data model
-With the table defined in previous step, let's create the data model. The step is pretty the same as you create a common data model, but please note:
+4. 接着，您需要为流式数据源定义一个表名．定义的表名会用于后续的 SQL 查询． 假设我们将表命名为 "KAFKA_TABLE_1" 
+   ![](pictures/s4.png)
 
-* for a streaming cube, it doesn't support join with lookup tables. So when define the data model, only select "DEFAULT.STREAMING_SALES_TABLE " as the fact table, no lookups;
-* Select "MINUTE_START" as the cube's partition date column, as we will do incremental build at minutes level.
+5. 检查表结构是否正确，如果正确，请点击"提交"
 
-Here we pick 8 dimension and 2 measure columns:
+   ![](pictures/s5.png)
+
+
+## 创建model
+定义好事实表以后，我们就可以开始定义数据模型了。这一步和定义一个普通的数据模型没有太大不同，不过，您可能需要留意如下两点：
+
+* 对于流式Cube，KAP暂时还不支持查找表，因此，在定义model的时候请不要引入查找表。
+* 请选择 "MINUTE_START" 属性作为partition column, 这样KAP可以以分钟为间隔构建Cube。不要直接选择ORDER_TIME属性（因为其粒度太小）。
+
+这里，我们选择８个属性作为dimension，２个属性作为measure。
  
-![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/5 Data model dimension.png)
+![](pictures/s6.png)
  	
-![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/6 Data model measure.png)
+![](pictures/s7.png)
  	
 	
-Save the data model.
+保存数据模型。
 
-## Create cube
+## 创建cube
 
-The streaming cube is almost the same as a normal cube. a couple of points need get your attention:
+流式Cube与常规Cube在大部分情况下都十分相似，不过，您需要特别留意如下几点：
 
-* don't use "order\_time" as dimension as that is pretty fine-grained; suggest to use "mintue\_start", "hour\_start" or other, depends on how you will inspect the data.
-* In the "refersh setting" step, create more merge ranges, like 0.5 hour, 4 hours, 1 day, and then 7 days; This will help to control the cube segment number.
-* In the "rowkeys" section, drag the "minute\_start" to the head position, as for streaming queries, the time condition is always appeared; putting it to head will help to narrow down the scan range.
+* 不要使用"order\_time"作为dimension，因为这个属性是一个十分细粒度的属性。这里，我们建议您使用"mintue\_start", "hour\_start" 等时间属性。
+* 在"refersh setting" 步骤，您可以定义更多的构建间隔时间，例如0.5小时，4小时，１天，７天等。这有助于Segment的自动合并。
+* 在选择"rowkeys" 的环节, 请将"minute\_start" 拖拽到所有属性的最顶部. 对于基于流式Cube的查询，时间维度会是一个经常被用到的维度，因此，将其放在rowkeys前面有助于快速过滤。
 
-	![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/8 Cube dimension.png)
+	![](pictures/s8.png)
 	
-	![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/9 Cube measure.png)
+	![](pictures/s9.png)
 		
-	![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/10 Auto merge.png)
+	![](pictures/s10.png)
 
-	![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/11 Rowkey.png)
+	![](pictures/s11.png)
 
-Save the cube.
+保存Cube。
 
-## Run a micro-batch build
+## 触发Cube构建
 
-Now the cube is created. The streaming cube's build is different with a normal cube which uses Hive as source. To trigger a build, we need run a micro-batch command:
+你可以直接在WebUI中，点击“Actions” -> “Build”来触发Cube构建，当然，你也可以通过curl指令结合KAP的RESTfulAPI触发cube构建
 
- {% highlight Groff markup %}
- $KYLIN_HOME/bin/streaming_build.sh STREAMING_CUBE 300000 0
-streaming started name: STREAMING_CUBE id: 1462471500000_1462471800000
-  {% endhighlight %}
+	curl -X PUT --user ADMIN:KYLIN -H "Content-Type: application/json;charset=utf-8" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/build2
 
-The build is triggered, a separate log file will be created in $KYLIN_HOME/logs/ folder, e.g, streaming_STREAMING_CUBE_1462471500000_1462471800000.log; As the delay is 0, margin is 5 minutes, the build will take a while as most of time is waiting for message to arrive. After about 7 to 10 mintues, the build will finish. 
+请特别注意，API是以"build2"结尾的，这跟常规构建中以"build"结尾不同。
+同时，语句中的数字０指的是Cube开始构建的偏移量，而9223372036854775807指的是Long.MAX_VALUE的值，指的是KAP的构建会用到Topic中目前为止拥有的所有消息。
 
-Go to Kylin web GUI, refresh the page, and then click the cube, you should see its "source records" is a positive number now (usually be 150; 30 records per minute); Click the "HBase" tab you should see a segment is created, with a start time and end time (range is 5 mintues).
+在触发了Cube构建以后，在“Monitor” 页面，我们可以观察到一个新的构建任务，接下来，我们只需耐心等待Cube构建完成。
 
-![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/12 One micro batch.png)
+在Cube构建完成后，点击 “Insight” 按钮, 并执行sql语句，确认流式Cube可用
+
+	select minute_start, count(*), sum(amount), sum(qty) from streaming_sales_table group by minute_start order by minute_start
+
+## 自动触发Cube定期构建
+
+在第一次构建完成以后，你可以以一定周期定时触发构建任务。KAP会自动记录每次构建的偏移量，每次触发构建的时候，KAP都会自动从上次结束的位置开始构建。您可以使用Linux上的crontab指令定期触发构建任务:
+
+	crontab -e　*/5 * * * * curl -X PUT --user ADMIN:KYLIN -H "Content-Type: application/json;charset=utf-8" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/build2
+
+现在，您可以看到Cube已经可以自动定期构建了。同时，当累积的segments超过一定阀值时，KAP会自动触发segments合并。
+
+##一些常见问题
+
+1. 在运行“kylin.sh”的时候，您可能会遇到如下错误:
+
+       Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/kafka/clients/producer/Producer
+       at java.lang.Class.getDeclaredMethods0(Native Method)
+       at java.lang.Class.privateGetDeclaredMethods(Class.java:2615)
+       at java.lang.Class.getMethod0(Class.java:2856)
+       at java.lang.Class.getMethod(Class.java:1668)
+       at sun.launcher.LauncherHelper.getMainMethod(LauncherHelper.java:494)
+       at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:486)
+       Caused by: java.lang.ClassNotFoundException: org.apache.kafka.clients.producer.Producer
+       at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+       at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+       at java.security.AccessController.doPrivileged(Native Method)
+       at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+       at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+       at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+       at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+       ... 6 more
+
+这是由于KAP无法找到 Kafka客户端的jar包导致的。请确认您是否已经正确设置了 “KAFKA_HOME”。 
+
+2. 在构建Cube时，遇到 “killed by admin” 错误
+
+这个问题主要是由于在使用Sandbo时，MR任务请求的内存过多，从而被YARN拒绝导致的。您可以通过修改“conf/kylin_job_conf_inmem.xml”配置，调低请求的内存大小来解决这个问题
 	
-As the streaming micro-batch will not automatically enable the cube. You need click "Action -> Enable" to enable it manually.
+	<property>
+		<name>mapreduce.map.memory.mb</name>
+		<value>1072</value>
+		<description></description>
+	</property>
+	
+        <property>
+                <name>mapreduce.map.java.opts</name>
+                <value>-Xmx800m</value>
+                <description></description>
+        </property>
 
-Click the "Insight" tab, write a SQL to run, e.g:
+如果topic中已经有大量的消息，您最好不要从头开始构建，建议您选择队列的尾部作为构建的起始点。如下所示：
 
- {% highlight Groff markup %}
-select minute_start, count(*), sum(amount), sum(qty) from streaming_sales_table group by minute_start 
- {% endhighlight %}
- 
- You would see the result as below.
- 
- 	![](/images/tutorial/1.5/Kylin-Cube-Streaming-Tutorial/13 Query result.png)
- 
-## Automate the micro-batch
+	curl -X PUT --user ADMIN:KYLIN -H "Content-Type: application/json;charset=utf-8" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/init_start_offsets
 
-Once the micro-batch build and query are successfully, you can schedule the build at a fixed frequency. In this case, as the interval is 5 minutes, we need schedule the build every 5 minute. It can be implemented easily with Linux crontab or other scheduling services; 
+3. 如果某次构建发生了错误，并且您丢弃了这次构建，则Cube中会由于缺失了这次构建的segment而产生一个"空洞"。由于KAP的自动构建总是从最后的位置开始，正常的构建将无法填补这些空洞。您需要使用KAP提供的工具找出这些"空洞"并且重新触发构建将其填补。
 
-As the kylin.sh need "KYLIN_HOME" env variable be set, we need set it in somewhere like /etc/profile or ~/.bash_profile; 
+	   curl -X GET --user ADMINN:KYLIN -H "Content-Type: application/json;charset=utf-8" http://localhost:7070/kylin/api/cubes/{your_cube_name}/holes
 
-{% highlight Groff markup %}
- vi ~/.bash_profile
- ## add the KYLIN_HOME here
- export KYLIN_HOME="/root/apache-kylin-1.5.2-bin"
-{% endhighlight %}
- 
- Then add a cron job for your cube:
-  {% highlight Groff markup %}
-crontab -e
-*/5 * * * * sh /root/apache-kylin-1.5.2-bin/bin/streaming_build.sh STREAMING_CUBE 300000 0
- {% endhighlight %}
+如果curl结果为空数组，则表示没有任何空洞，否则，我们则需要手动触发KAP的构建来填补这些空洞：
 
-Now you can site down and watch the cube be automatically built from streaming. And when the cube segments accumulates, Kylin will automatically run job to merge them into a bigger one. The merge jobs are MapReduce jobs, which can be checked from Kylin's "Monitor" page.
-
-### Furthermore
-
-Something you need know about streaming cubing:
-
-* If a merge job is failed, the auto-merge for that cube will stop; You need check and fix that failure and then resume the job to make auto-merge back to working; 
-* Some error like system shutdown may cause segment gaps left in the cube. For example, we have segment A which is from 1:00 AM to 1:05 AM; But at 1:06 the system is unavailable until 1:12, then we have next segment B from 1:10 to 1:15; So there is a gap for 1:05 to 1:10 AM because the Linux cron doesn't check the execution history; For such case Kylin provide a shell script to check and then fill the gaps, you can schedule it with a lower frequency like every 2 hours:
- 
-  {% highlight Groff markup %}
-0 */2 * * * sh /root/apache-kylin-1.5.2-bin/bin/streaming_fillgap.sh STREAMING_CUBE 300000 0
- {% endhighlight %}
-
+	curl -X PUT --user ADMINN:KYLIN -H "Content-Type: application/json;charset=utf-8" http://localhost:7070/kylin/api/cubes/{your_cube_name}/holes
 
