@@ -8,7 +8,7 @@
 	},
    "plugins": [
         "-disqus",
-        "search",
+        "-search",
         "-search-pro@1.0.7",
         "github",
 	"include-codeblock",
@@ -20,13 +20,9 @@
         "expandable-chapters",
         "codeblock-filename",
         "edit-link",
-        "header",
-        "versions" 
+        "header"
     ],
     "pluginsConfig": {
-        "versions": {
-            "type": "tags"
-        },
         "disqus": {
             "shortName": "kap-manual"
         },
