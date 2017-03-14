@@ -8,7 +8,7 @@
 	},
    "plugins": [
         "-disqus",
-        "-search",
+        "search",
         "-search-pro@1.0.7",
         "github",
 	"include-codeblock",
