@@ -1,0 +1,69 @@
+.nav{
+	width:100%;
+	height: 60px;
+	background-color: #20A0FF;
+}
+.big_box{
+	width: 450px;
+	margin:0 auto;
+	margin-top:60px;
+}
+.main_title{
+	color: #333333;
+	font-size:24px
+}
+.one_box{
+	border:1px solid #D3DCE6;
+	width: 450px;
+	height:210px;
+	margin-top: 50px;
+}
+.first_box{
+	margin-top: 10%;
+	margin-left: 60px;
+}
+.second_box{
+	margin-left: 60px;
+}
+.choose_button{
+	color:#333333;
+	font-size:24px;
+}
+.CE_change{
+	margin-left: 130px;
+}
+.character{
+	font-size: 14px;
+}
+.one_line{
+	height: 1px;
+	width: 400px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	color: #E5E9F2;
+}
+.foot_box{
+	width: 100%;
+	height:50px;
+	position:fixed;
+	bottom:0;
+	margin-bottom: 40px;
+}
+.two_line{
+	height:1px #C2CEDB;
+	width:920px;
+	margin-bottom: 20px;
+}
+.tip{
+	color: #ABB1BA;
+	font-size: 14px;
+	line-height: 14px;
+	text-align: center;
+}
+a:link{ 
+color: #475669; 
+text-decoration:none;/用于去除下划线/ 
+}
+a:hover{ 
+color: #20A0FF; 
+}
