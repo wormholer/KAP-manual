@@ -9,23 +9,17 @@ If the exiting Cube data should be reserved, and build new cube by KyStorage onl
 Take an example,  projecct name *learn_kylin*, model name *kylin_sales_model*, cube name *kylin_sales_cube*. Please follow the instructions:
 1. In KAP Plus, clone *kylin_sales_cube*  to *kylin_sales_cube_plus*, the new cloned cube will use KyStorage by default.
 
-2. run `<KYLIN_HOME>/bin/metastore.sh backup-cube kylin_sales_cube_plus metadir`. This command backup the metadata of cube *kylin_sales_cube_plus* to `metadir` directory.
+2. Build new Cube, *kylin_sales_cube_plus*. Attention: No time range overlap between old and new cubes is allowed. 
 
-3. run `<KYLIN_HOME>/bin/metastore.sh promote metadir`. This command upgrade metadata in `metadir` to fit Kystorage.
-
-4. run `<KYLIN_HOME>/bin/metastore.sh restore-cube learn_kylin metadir`. This command restore the cube's medadata to project *learn_kylin*.
-
-5. Build new Cube, *kylin_sales_cube_plus*. Attention: No time range overlap between old and new cubes is allowed. 
-
-6. Create new Hybrid Cube, to merge the above two Cube by metadata.
+3. Create new Hybrid Cube, to merge the above two Cube by metadata.
 
         bin/kylin.sh org.apache.kylin.tool.HybridCubeCLI -action create -name kylin_sales_hybrid -project learn_kylin -model kylin_sales_model -cubes kylin_sales_cube,kylin_sales_cube_plus
 
    If the build success, the log would show ```HybridInstance was created at: /hybrid/kylin_sales_hybrid.json```
 
-7. Reload KAP metadata 
+4. Reload KAP metadata 
 
-8. The sequent build will be based on *kylin_sales_cube_plus*, the old *kylin_sales_cube* should not build any new segment.
+5. The sequent build will be based on *kylin_sales_cube_plus*, the old *kylin_sales_cube* should not build any new segment.
 
 
 
@@ -35,9 +29,9 @@ If the exiting Cube could be rebuilt, or the exiting Cube is not built by increm
 
 Follow the steps to upgrade:
 
-1. run `<KYLIN_HOME>/bin/metastore.sh backup`. This command back up the whole metadata to `meta_backups\<metadir>` directory.
-2. run `<KYLIN_HOME>/bin/metastore.sh promote meta_backups\<metadir>` . This command upgrade metadata to fit KyStorage.
-3. run `<KYLIN_HOME>/bin/metastore.sh restore meta_backups\<metadir>`. This command restore the updated metadata.
+1. run `<KYLIN_HOME>/bin/metastore.sh backup --noSeg`. This command back up the whole metadata to `meta_backups` directory.
+2. run `<KYLIN_HOME>/bin/metastore.sh promote meta_backups` . This command upgrade metadata to fit KyStorage.
+3. run `<KYLIN_HOME>/bin/metastore.sh restore meta_backups`. This command restore the updated metadata.
 4. Disable and purge the cubes and rebuild them.
 
 

@@ -10,23 +10,17 @@ KAP Plus采用了全新的KyStorage存储引擎，同时也兼容Apache Kylin及
 
 1. 在KAP Plus中，克隆*kylin_sales_cube* 为*kylin_sales_cube_plus*，被克隆的cube自动使用KyStorage存储引擎。
 
-2. 运行指令 `<KYLIN_HOME>/bin/metastore.sh backup-cube kylin_sales_cube_plus metadir`。该指令将Cube *kylin_sales_cube_plus*的元数据保存到 `metadir`目录下。
+2. 构建新的Cube，*kylin_sales_cube_plus*。注意新老Cube的时间区间不可以有重叠，否则会造成查询数据错误。
 
-3. 运行指令`<KYLIN_HOME>/bin/metastore.sh promote metadir`。该指令升级`metadir`目录中的元数据以适应KyStorage。
-
-4. 运行指令`<KYLIN_HOME>/bin/metastore.sh restore-cube learn_kylin metadir`。该指令将`metadir`目录中的元数据恢复到*learn_kylin*项目下。
-
-5. 构建新的Cube，*kylin_sales_cube_plus*。注意新老Cube的时间区间不可以有重叠，否则会造成查询数据错误。
-
-6. 创建Hybrid Cube，合并以上两个Cube，控制台执行命令
+3. 创建Hybrid Cube，合并以上两个Cube，控制台执行命令
 
           bin/kylin.sh org.apache.kylin.tool.HybridCubeCLI -action create -name kylin_sales_hybrid -project learn_kylin -model    kylin_sales_model -cubes kylin_sales_cube,kylin_sales_cube_plus
 
    创建成功后，日志会提示```HybridInstance was created at: /hybrid/kylin_sales_hybrid.json```
 
-7. 重载KAP元数据。
+4. 重载KAP元数据。
 
-8. 后续新的构建，都基于*kylin_sales_cube_plus*，原有的*kylin_sales_cube*不再构建新的segment。
+5. 后续新的构建，都基于*kylin_sales_cube_plus*，原有的*kylin_sales_cube*不再构建新的segment。
 
 
 
@@ -36,7 +30,7 @@ KAP Plus采用了全新的KyStorage存储引擎，同时也兼容Apache Kylin及
 
 按照以下步骤进行升级：
 
-1. 运行指令`<KYLIN_HOME>/bin/metastore.sh backup`。该指令将所有的元数据保存到`meta_backups\<metadir>`目录下。
-2. 运行指令`<KYLIN_HOME>/bin/metastore.sh promote meta_backups\<metadir>`。该指令升级目录中的元数据以适应KyStorage。
-3. 运行指令`<KYLIN_HOME>/bin/metastore.sh restore meta_backups\<metadir>`。 该指令将目录中的元数据恢复，覆盖原始的元数据。
+1. 运行指令`<KYLIN_HOME>/bin/metastore.sh backup --noSeg`。该指令将所有的元数据保存到`meta_backups`目录下。
+2. 运行指令`<KYLIN_HOME>/bin/metastore.sh promote meta_backups`。该指令升级目录中的元数据以适应KyStorage。
+3. 运行指令`<KYLIN_HOME>/bin/metastore.sh restore meta_backups`。 该指令将目录中的元数据恢复，覆盖原始的元数据。
 4. 禁用并清理所有的Cube。重新构建所有Cube。
