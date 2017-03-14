@@ -36,11 +36,12 @@
 	font-size: 14px;
 }
 .one_line{
+	border: none;
 	height: 1px;
 	width: 400px;
 	margin-top: 25px;
 	margin-bottom: 25px;
-	color: #E5E9F2;
+	background-color: #E5E9F2;
 }
 .foot_box{
 	width: 100%;
@@ -50,7 +51,9 @@
 	margin-bottom: 40px;
 }
 .two_line{
-	height:1px #C2CEDB;
+	border:none;
+	height: 1px;
+	background-color:#C2CEDB ;
 	width:920px;
 	margin-bottom: 20px;
 }
