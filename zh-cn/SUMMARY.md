@@ -45,6 +45,7 @@
     * [流数据Cube](molap/streaming_cube.cn.md)
     * [构建Cube](molap/build_cube.cn.md)
     * [SQL查询](molap/query.cn.md)
+    * [异步查询](molap/async_query.cn.md)
     * [Insight查询界面](molap/insight.cn.md)
     * [数据可视化](molap/visualization.cn.md)
 * [Cube优化](optimization/README.md)
