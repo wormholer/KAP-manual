@@ -21,15 +21,17 @@ Click `Encoding` dropdown on each row, user can select encoding for each line. T
 ![](images/createrawtable_3.jpg)
 
 
+1. `orderedbytes` encoding is designed for all types and the default choice. It keeps data's order when encoding. It's the default encoding type in most cases.
+2. `var` encoding is similar to orderedbytes except it does not preserve order. It's not suggested any more, please use orderedbytes where applies.
+3. `boolean` Use 1 byte to encode boolean values, valid value include: true, false, TRUE, FALSE, True, False, t, f, T, F, yes, no, YES, NO, Yes, No, y, n, Y, N, 1, 0
+4. `integer` Use N bytes to encode integer values, where N equals the length parameter and ranges from 1 to 8. [ -2^(8*N-1), 2^(8*N-1)) is supported for integer encoding with length of N. 
+5. `int` Deprecated, use latest integer encoding instead. 
+6. `date` Use 3 bytes to encode date dimension values. 
+7. `time` Use 4 bytes to encode timestamps, supporting from 1970-01-01 00:00:00 to 2038/01/19 03:14:07. Millisecond is ignored. 
+8. `fix_length` Use a fixed-length("length" parameter) byte array to encode integer dimension values, with potential value truncations. 
+9. `fixed_length_hex` Use a fixed-length("length" parameter) byte array to encode the hex string dimension values, like 1A2BFF or FF00FF, with potential value truncations. Assign one length parameter for every two hex codes.
 
-1. `date` encoding is for date string, such as "20160101" or "2016-01-02". It only stores the day information excluding hour, minute and second, which means 4pm or 6am is the same in this encoding. The data is stored as Long type in storage.
-2. `boolean` encoding is for boolean data, such as "true" or "false". The data is stored as Boolean type in storage.
-3. `fixed_length` encoding is for string and the `Length` is required to tell how many charactors are stored there. Strings longer than that Length will be cut down to fit that length. `Length` is defined in the next column to `Encoding`.
-4. `time` encoding is for time string. It's different from date encoding for it stores the information of day, hour, minute, second. However, millisecond part is not persistent. The maximum time supported is 2038/01/19 03:14:07. The data is stored as int32 type in storage.
-5. `integer` encoding is only for integer and long type. The `Length` is also required in this encoding and it supports up to 8 width. You can always set the width to 8, it's safe for all possible long values. Smaller length value helps save storage. For instance,  if your data's range is from -2 to 89, only one byte is enough, so set length to 1 is the best choice in this case.
-6. `int` encoding is deprecated. For new user, please select `integer` encoding.  
-7. `orderedbytes` encoding is designed for all types. It keeps data's order when encoding. It's the default encoding type in most cases.
-8. `var` encoding is similar to orderedbytes except it does not preserve order. It's not suggested any more, please use orderedbytes where applies.
+Notice `dict` encoding is NOT supported.
 
 ### Index
 

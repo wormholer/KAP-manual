@@ -53,8 +53,20 @@ ORDER BY SUM(PRICE)
 
 ![](images/createcube_9.png)
 
-由于参与Cuboid生成的维度都会作为Rowkey，因此我们需要把这些列添加为Rowkey当中。在这个案例中，总共需要添加7个Rowkey。在每个Rowkey上，还需要为列值设置编码方法。在这个案例中，我们除了把LSTG_FORMAT_NAME设置为fixed_length类型（长度为12）外，将其余的Rowkey都设置为dict编码。 
-Rowkey的顺序对于查询性能来说至关重要，如第六章所讲，一般把最经常出现在过滤条件中的列放置在Rowkey的前面，在这个案例中，我们首先把PART_DT放在Rowkey的第一位。接下来，按照层级把商品分类的字段跟随其后。最终，Rowkey的设置如下图所示：
+由于参与Cuboid生成的维度都会作为Rowkey，因此我们需要把这些列添加为Rowkey当中。在这个案例中，总共需要添加7个Rowkey。在每个Rowkey上，还需要为列值设置编码方法。目前KAP支持以下编码方法：
+
+1. "dict" 适用于大部分字段, 默认推荐使用, 但在超高基情况下, 可能引起内存不足的问题.  
+2. "boolean" 适用于字段值为: true, false, TRUE, FALSE, True, False, t, f, T, F, yes, no, YES, NO, Yes, No, y, n, Y, N, 1, 0
+3. "integer" 适用于字段值为整数字符, 支持的整数区间为[ -2^(8*N-1), 2^(8*N-1)] . 
+4. "int" 已弃用, 请使用最新的integer编码. 
+5. "date" 适用于字段值为日期字符, 支持的格式包括yyyyMMdd、yyyy-MM-dd、yyyy-MM-dd HH:mm:ss、yyyy-MM-dd HH:mm:ss.SSS, 其中如果包含时间戳部分会被截断. 
+6. "time" 适用于字段值为时间戳字符, 支持范围为[ 1970-01-01 00:00:00, 2038/01/19 03:14:07] , 毫秒部分会被忽略.  time编码适用于time, datetime, timestamp等类型. 
+7. "fix_length" 适用于超高基场景, 将选取字段的前N个字节作为编码值, 当N小于字段长度, 会造成字段截断, 当N较大时, 造成RowKey过长, 查询性能下降.  只适用于varchar或nvarchar类型.
+8. "fixed_length_hex" 适用于字段值为十六进制字符, 比如1A2BFF或者FF00FF, 每两个字符需要一个字节.  只适用于varchar或nvarchar类型. 
+
+在这个案例中，我们除了把LSTG_FORMAT_NAME设置为fixed_length类型（长度为12）外，将其余的Rowkey都设置为dict编码。 
+
+Rowkey的顺序对于查询性能来说至关重要，一般把最经常出现在过滤条件中的列放置在Rowkey的前面，在这个案例中，我们首先把PART_DT放在Rowkey的第一位。接下来，按照层级把商品分类的字段跟随其后。最终，Rowkey的设置如下图所示：
 
 ![](images/createcube_10.png)
 

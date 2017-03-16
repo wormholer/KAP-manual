@@ -56,11 +56,22 @@ As there's need to query orders histories, Cube auto cleanup is not turned on. P
 
 In previous section, we mentioned that we want to build Cube incrementally and choose column `PART_DT` as the partition column. The start time of the Cube is required in creation process, we choose "2012-01-01 00:00:00" as the start time in this case.
 
-Step 5: Optimize Cube's storage size and query speed through Cube's advanced settings, including aggregation group and Rowkey. In chapter 6, we mention that Cuboid number can be reduce by adding aggregation groups, leveraging the hierarchy and containing relationships. In this case, three columns （`META_CATEG_NAME`,`CATEG_LVL2_NAME`,`CATEG_LVL3_NAME`）are in hierarchy relationship, such as first level `META_CATEG_NAME` contains multiple second level `CATEG_LVL2_NAME` and second level contains multiple third level `CATEG_LVL3_NAME`. Let's create Hierarchy Dimensions for them. The design result is shown in following figure:
+Step 5: Optimize Cube's storage size and query speed through Cube's advanced settings, including aggregation group and Rowkey. The number of cuboids can be reduced by adding aggregation groups, leveraging the hierarchy and containing relationships. In this case, three columns （`META_CATEG_NAME`,`CATEG_LVL2_NAME`,`CATEG_LVL3_NAME`）are in hierarchy relationship, such as first level `META_CATEG_NAME` contains multiple second level `CATEG_LVL2_NAME` and second level contains multiple third level `CATEG_LVL3_NAME`. Let's create Hierarchy Dimensions for them. The design result is shown in following figure:
 
 ![](images/createcube_9.png)
 
-Because all dimensions are included in Rowkey of Cuboid, they should be added in Rowkey field. In this case, total 7 dimensions are added. We need set encoding type for each Rowkey. In this case, all Rowkeys are dict encoding except of `LSTG_FORMAT_NAME`, which is fixed_length (length 12) encoding. The order of Rowkeys is important for query speed. In general the order of Rowkeys is organized according to its frequency used in filter condition. The first rowkeys has the highest frequency, it's `PART_DT` in this case.
+Rowkey specifies how dimensions are organized together. Each dimension in the cube has a corresponding placeholder in the rowkey: For normal dimensions the placeholder is the column itself, and for derived dimensions on lookup table the placeholder could be the lookup table's corresponding FK in the fact table. Each placeholder of the rowkey has an encoding:  
+
+1. `dict` Use dictionary to encode dimension values. dict encoding is very compact but vulnerable for ultra high cardinality dimensions.
+2. `boolean` Use 1 byte to encode boolean values, valid value include: true, false, TRUE, FALSE, True, False, t, f, T, F, yes, no, YES, NO, Yes, No, y, n, Y, N, 1, 0
+3. `integer` Use N bytes to encode integer values, where N equals the length parameter and ranges from 1 to 8. [ -2^(8*N-1), 2^(8*N-1)) is supported for integer encoding with length of N. 
+4. `int` Deprecated, use latest integer encoding instead. 
+5. `date` Use 3 bytes to encode date dimension values. 
+6. `time` Use 4 bytes to encode timestamps, supporting from 1970-01-01 00:00:00 to 2038/01/19 03:14:07. Millisecond is ignored. 
+7. `fix_length` Use a fixed-length("length" parameter) byte array to encode integer dimension values, with potential value truncations. 
+8. `fixed_length_hex` Use a fixed-length("length" parameter) byte array to encode the hex string dimension values, like 1A2BFF or FF00FF, with potential value truncations. Assign one length parameter for every two hex codes.
+ 
+There're seven dimensions in our example, and we need to set encoding type for each column(placeholder). We use dict encoding for all of the dimensions except `LSTG_FORMAT_NAME`, which uses fixed_length (length 12) encoding. The order of Rowkeys is important for query speed. In general the order of Rowkeys is organized according to its frequency used in filter condition. The first rowkeys has the highest frequency, it's `PART_DT` in this case.
 
 The Rowkey setting result is shown in following figure:
 
