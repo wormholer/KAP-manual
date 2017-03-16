@@ -44,6 +44,7 @@
     * [Streaming Cube](molap/streaming_cube.en.md)
     * [Build Cube](molap/build_cube.en.md)
     * [SQL Query](molap/query.en.md)
+    * [Async Query](molap/async_query.en.md)
     * [Insight](molap/insight.en.md)
     * [Visualization](molap/visualization.en.md)
 *   [Cube Optimization](optimization/README.md)
