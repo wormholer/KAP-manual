@@ -59,7 +59,7 @@ Before Kylin v1.5.0, only dimension columns could be applied in “group by” q
 | …                         | …          |
 | 20160318_49_seller0999999 | xx.xx      |
 
-Assume these dimensions are independent with each other. The number of rows in basic cuboid is $730*50*1million=36.5billion$. Other cuboids which include “SELLER_ID” will have millions of rows as well. At this moment you may notice that the cube expansion rate is high, the situation would be worse if there are more dimensions or with the higher cardinality. But the real challenge is not here.
+Assume these dimensions are independent with each other. The number of rows in basic cuboid is $730 * 50 * 1million=36.5billion$. Other cuboids which include “SELLER_ID” will have millions of rows as well. At this moment you may notice that the cube expansion rate is high, the situation would be worse if there are more dimensions or with the higher cardinality. But the real challenge is not here.
 
 Soon you will find the Top-N query doesn't work, or cost unacceptable long time. Assume you wonder the top 100 sellers in past 30 days in US, it would read 30 million rows from storage, aggregate and sort, finally return the top 100 ones. Due to no pre-calculation, even the final result set is small, the memory footprint and I/Os in between is badly heavy.
 

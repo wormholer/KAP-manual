@@ -10,11 +10,6 @@ Click *Insight* on KAP navigation header, all query-able tables will be listed o
 
 * **FACT** - Fact Table 
 * **LOOKUP** - Dimension Table
-* **D** - Dimension Column
-* **M** - Measure Column
-* **D&M** - Dimension&Measure Column
-* **PK** - Primary Key
-* **FK** - Foreign Key
 
 ![](images/web/query_list_table.png)
 

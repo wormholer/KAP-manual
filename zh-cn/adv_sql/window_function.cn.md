@@ -29,7 +29,7 @@
 
 笔者使用了一个名为 `learn_kylin` 的数据源。点击该数据源，数据源中的表和表结构将陈列开：此数据源中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 和 `KYLIN_CATEGORY_GROUPINGS`）。请认真了解 `KYLIN_SALES` 的表结构以便后文理解。
 
-![](image/wd_datasample.png)
+![](images/wd_datasample.png)
 
 
 
@@ -39,7 +39,7 @@
 
 结果（局部）返回如下：
 
-![](image/wd_row_number.png)
+![](images/wd_row_number.png)
 
 
 
@@ -49,5 +49,5 @@
 
 结果（局部）返回如下：
 
-![](image/wd_lead_date.png)
+![](images/wd_lead_date.png)
 
