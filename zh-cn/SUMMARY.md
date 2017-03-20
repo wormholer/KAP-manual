@@ -12,6 +12,7 @@
 * [KyAnalyzer](analyzer/README.md)
     - [自助式敏捷BI工具KyAnalyzer简介](analyzer/analyzer.cn.md)
 * [KAP发行说明](release/README.md)
+    * [KAP 2.3 发行说明](release/KAP_2_3_notes.cn.md)
     * [KAP 2.2 发行说明](release/KAP_2_2_notes.cn.md)
     * [KAP 2.1 发行说明](release/KAP_2_1_notes.cn.md)
     * [KAP 2.0 发行说明](release/KAP_2_0_notes.cn.md)
