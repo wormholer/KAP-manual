@@ -46,15 +46,22 @@ Support asynchronous query request, check query progress and export 10 million l
 #### Hadoop Distribution Support
 
   Certificated distributions:
-  	Cloudera CDH 5.7/5.8/5.9
+
+    Cloudera CDH 5.7/5.8/5.9
 
   Compatible distributions:
+    
     Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
-  	Hortonworks HDP 2.2/2.3/2.4/2.5
-  	Microsoft HDInsight
+  	
+    Hortonworks HDP 2.2/2.3/2.4/2.5
+  	
+    Microsoft HDInsight
+    
     Amazon EMR
-  	Huawei FusionInsight C50/C60
-  	AsiaInfo OCDP 2.4
+  	
+    Huawei FusionInsight C50/C60
+  	
+    AsiaInfo OCDP 2.4
 
 ### Download link
 
