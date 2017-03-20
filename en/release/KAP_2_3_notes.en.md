@@ -6,7 +6,7 @@ The highlight features introduced by KAP 2.3 are as follow:
 
 #### Apache Kylin Core Upgrade: Support Snowflake Model
 
-KAP2.3 is based on core engine of the Apache Kylin 2.0 Beta, including its new features and bug fixes. Please find the complete release announcement via the [Link](http://kylin.apache.org/blog/2017/02/25/v2.0.0-beta-ready/). 
+KAP2.3 is based on core engine of the Apache Kylin 2.0, including its new features and bug fixes. Please find the complete release announcement via the [Link](http://kylin.apache.org/blog/2017/02/25/v2.0.0-beta-ready/). 
 
 The highlight features including:
 
@@ -21,7 +21,7 @@ The highlight features including:
 #### Fully Optimized Storage Engine KyStorage
 
 1. Built-in tuning tools, which can automatically suggest optimal allocation according to cluster environment, so as to utilize cluster resource and improve query efficiency.
-2. Enable snappy compression in storage 4by default, saving more storage space.
+2. Enable snappy compression in storage by default, saving more storage space.
 3. Push down filter to enhance filtering query efficiency by 20%.
 4. Dynamic allocating of query node(Spark node) and computing resource, support self-adaptive resource allocation according to query request load level.
 
