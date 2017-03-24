@@ -28,7 +28,6 @@ Support asynchronous query request, check query progress and export 10 million l
 #### Other updates including
 
 - Optimize diagnostic package generating and support one-click upload KyBot diagnostic package.
-- One-click migration from Kylin to KAP.
 - Better Cube expansion ratio computing method.
 - Integration accessibility to users' own Spark clusters and simplified cluster management.
 
