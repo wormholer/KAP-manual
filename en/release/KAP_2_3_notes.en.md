@@ -4,15 +4,6 @@
 
 The highlight features introduced by KAP 2.3 are as follow:
 
-#### Apache Kylin Core Upgrade: Support Snowflake Model
-
-KAP2.3 is based on core engine of the Apache Kylin 2.0, including its new features and bug fixes. Please find the complete release announcement via the [Link](http://kylin.apache.org/blog/2017/02/25/v2.0.0-beta-ready/). 
-
-The highlight features including:
-
-1. **Support Snowflake Model.** Snowflake model is generally applied in the data warehouse field, and this release can totally allow users to load existing snowflake data model so as to reduce workload of model adaptation. It could enhance modeling efficiency and work on complex data model scenarios. 
-2. **Pass TPC-H test.** TPC-H, a wildly used database performance test, simulates frequently applied analysis scenarios for decision support system. Passing TPC-H test, KAP & Kylin are qualified in most data analysis scenes.
-
 #### Intelligent Modeling Assistant
 
 1. In the modeling phase, KAP could provide users with proper dimension/measure settings according to the source data structure in order to simplify modeling process and improve system usability. 
@@ -50,17 +41,17 @@ Support asynchronous query request, check query progress and export 10 million l
     Cloudera CDH 5.7/5.8/5.9
 
   Compatible distributions:
-    
+​    
     Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
-  	
+
     Hortonworks HDP 2.2/2.3/2.4/2.5
-  	
+
     Microsoft HDInsight
-    
+
     Amazon EMR
-  	
+
     Huawei FusionInsight C50/C60
-  	
+
     AsiaInfo OCDP 2.4
 
 ### Download link
