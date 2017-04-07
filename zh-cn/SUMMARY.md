@@ -31,9 +31,7 @@
         * [Cube配置重定义](config/cube_override.cn.md)
 
 * [建模场景](molap/README.md)
-    * [数据导入]()
-        * [样例数据集](molap/dataset.cn.md)
-        * [数据导入](molap/import.cn.md)
+    * [样例数据与数据导入](molap/dataset.cn.md)
     * [创建模型](molap/datamodel.cn.md)
     * [创建Cube](molap/create_cube.cn.md)
     * [构建Cube](molap/build_cube.cn.md)
