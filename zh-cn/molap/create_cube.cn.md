@@ -49,7 +49,7 @@ ORDER BY SUM(PRICE)
 在创建数据模型的时候我们提到，我们希望采用增量构建方式对Cube进行构建，并选择了PART_DT字段作为分区时间列。在创建Cube时，我们需要指定Cube构建的起始时间，在这个例子中，根据样例数据中的时间条件，我们选择2012-01-01 00:00:00作为分区起始时间。
 
 
-第五步，通过对Cube进行高级设置优化Cube的存储大小和查询速度，主要包括聚合组和Rowkey。在前文我们提到，添加聚合组可以利用字段间的层级关系和包含关系有效地降低Cuboid的数量。在这个案例当中，与商品分类相关的三个字段（META_CATEG_NAME、CATEG_LVL2_NAME、CATEG_LVL3_NAME）实际上具有层级关系，如一级类别（META_CATEG_NAME）包含多个二级类别（CATEG_LVL2_NAME），二级类别又包含多个三级类别（CATEG_LVL3_NAME），所以，我们可以为它们创建层级结构的组合（Hierarchy Dimensions）。最终，聚合组的设计如下图所示：
+第五步，通过对Cube进行高级设置优化Cube的存储大小和查询速度，主要包括聚合组和Rowkey。在前文我们提到，添加聚合组可以利用字段间的层级关系和包含关系有效地降低Cuboid的数量。在这个案例当中，与商品分类相关的三个字段（META_CATEG_NAME、CATEG_LVL2_NAME、CATEG_LVL3NAME）实际上具有层级关系，如一级类别（META_CATEG_NAME）包含多个二级类别（CATEG_LVL2NAME），二级类别又包含多个三级类别（CATEG_LVL3NAME），所以，我们可以为它们创建层级结构的组合（Hierarchy Dimensions）。最终，聚合组的设计如下图所示：
 
 ![](images/createcube_9.png)
 
@@ -63,14 +63,14 @@ ORDER BY SUM(PRICE)
 6. "time" 适用于字段值为时间戳字符，支持范围为[ 1970-01-01 00:00:00, 2038/01/19 03:14:07]，毫秒部分会被忽略。time编码适用于time, datetime, timestamp等类型。
 7. "fix_length" 适用于超高基场景，将选取字段的前N个字节作为编码值，当N小于字段长度，会造成字段截断，当N较大时，造成RowKey过长，查询性能下降。只适用于varchar或nvarchar类型。
 8. "fixed_length_hex" 适用于字段值为十六进制字符，比如1A2BFF或者FF00FF，每两个字符需要一个字节。只适用于varchar或nvarchar类型。
-在这个案例中，我们除了把LSTG_FORMAT_NAME设置为fixed_length类型（长度为12）外，将其余的Rowkey都设置为dict编码。 
+   在这个案例中，我们除了把LSTG_FORMAT_NAME设置为fixed_length类型（长度为12）外，将其余的Rowkey都设置为dict编码。 
 
 Rowkey的顺序对于查询性能来说至关重要，一般把最经常出现在过滤条件中的列放置在Rowkey的前面，在这个案例中，我们首先把PART_DT放在Rowkey的第一位。接下来，按照层级把商品分类的字段跟随其后。最终，Rowkey的设置如下图所示：
 
 ![](images/createcube_10.png)
 
 
-> **对Plus版本**：Raw Table是Plus版本的特有功能。如果启用，KAP将在构建Cube之外也保存所有的原始记录，支持高速的明细查询。Raw Table还处于beta测试阶段，仅支持最简单的启用或者不启用。其他的Raw Table配置参数暂时不起作用。
+> **Plus版本**：Raw Table是Plus版本的特有功能。如果启用，KAP将在构建Cube之外也保存所有的原始记录，支持高速的明细查询。Raw Table还处于beta测试阶段，仅支持最简单的启用或者不启用。其他的Raw Table配置参数暂时不起作用。
 
 第六步，设置Cube的配置覆盖。在这里添加的配置项可以在Cube级别覆盖从kylin.properties配置文件读取出来的全局配置。在这个案例中，我们可以直接采用默认配置，在此不做任何修改。
 ​	

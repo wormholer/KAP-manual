@@ -38,7 +38,7 @@
     * [明细表](molap/rawtable.cn.md)
     * [流数据Cube](molap/streaming_cube.cn.md)
     * [异步查询](molap/async_query.cn.md)
-    * [智能辅助建模](数据源统计信息／cube suggestion)
+    * [智能辅助建模*](数据源统计信息／cube suggestion)
     * [建模优化](optimization/README.md)
         * [聚合组优化](optimization/aggregation_group.cn.md)
         * [TopN查询优化](optimization/topN.cn.md)
@@ -49,7 +49,7 @@
 * [查询与可视化]()
 
     * [Insight查询界面](molap/insight.cn.md)
-    * [基本SQL支持]()
+    * [基本SQL支持*]()
     * [SQL查询](molap/query.cn.md)
     * [数据可视化](molap/visualization.cn.md)
     * [高级SQL查询](adv_sql/README.md)
