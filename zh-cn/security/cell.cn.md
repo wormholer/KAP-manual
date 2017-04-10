@@ -14,23 +14,23 @@
 
 **2.用户安全控制文件**
 
-a.在安全控制文件里，定义了限制用户行为的具体条件，下面是KAP Sample里userctrl.acl文件内容（默认分隔符为空格）：
+在安全控制文件里，定义了限制用户行为的具体条件，下面是KAP Sample里userctrl.acl文件内容（**默认分隔符为空格**）：
 
-| **login_user** | **kylin_sales.user_id** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
-| :------------: | :---------------------: | :--------------------: | :-------------------: | :------------------------------: |
-|     ADMIN      |          ADMIN          |        Shanghai        |          yes          |               yes                |
-|    ANALYST     |         ANALYST         |        Beijing         |          no           |               yes                |
-|    MODELER     |         MODELER         |        Hongkong        |          yes          |                no                |
+| **login_user** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
+| :------------: | :--------------------: | :-------------------: | :------------------------------: |
+|    *ADMIN*     |        Shanghai        |          yes          |               yes                |
+|   *ANALYST*    |        Beijing         |          no           |               yes                |
+|   *MODELER*    |        Hongkong        |          yes          |                no                |
 
-*内容说明：1.第一列是KAP用户登录名。2.剩余列是隶属于该用户的属性，可以进一步限制该用户访问权限。*
+*内容说明：*
 
-b.目前安全配置文件里的值支持两种表达式：
+* 第一列是KAP用户登录名。
 
-**布尔**
-值标记为yes的表示对应的用户对该列有权限访问，no表示无权限，主要用于列级别的安全控制,如: ```kylin_sales.lstg_format_name```。
+* 剩余列是隶属于该用户的属性，可以进一步定义该用户访问权限。
 
-**等于**
-值标记为非布尔型，表示此列用于行级别的安全控制，如: ```kylin_sales.region```。
+  值标记为yes的表示对应的用户对该列有访问权限，no表示无访问权限，主要用于**列级别**的安全控制,如: ```kylin_sales.lstg_format_name＝yes```表示*ADMIN*用户可以访问列：```kylin_sales.lstg_format_name```。
+
+  值标记为特定值，表示此列用于**行级别**的安全控制，如: ```kylin_sales.region＝Shanghai```表示*ADMIN*用户只能看到```kylin_sales.region```为```Shanghai```的记录。
 
 
 #### KAP Sample测试

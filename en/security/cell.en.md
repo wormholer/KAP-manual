@@ -16,26 +16,24 @@ To enable the cell level security, please turn on the ```kap.security.cell-level
 
 **2.User Access Control File**
 
-In access control file, it defines the specific conditions for restricting filtering. Take an example: **userctrl.acl** *(the default split is whitespace)*:
+In access control file, it defines the specific conditions for restricting filtering. Take an example: **userctrl.acl** *(**the default split is whitespace**)*:
 
-| **login_user** | **kylin_sales.user_id** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
-| :------------: | :---------------------: | :--------------------: | :-------------------: | :------------------------------: |
-|     ADMIN      |          ADMIN          |        Shanghai        |          yes          |               yes                |
-|    ANALYST     |         ANALYST         |        Beijing         |          no           |               yes                |
-|    MODELER     |         MODELER         |        Hongkong        |          yes          |                no                |
+| **login_user** | **kylin_sales.region** | **kylin_sales.price** | **kylin_sales.lstg_format_name** |
+| :------------: | :--------------------: | :-------------------: | :------------------------------: |
+|    *ADMIN*     |        Shanghai        |          yes          |               yes                |
+|   *ANALYST*    |        Beijing         |          no           |               yes                |
+|   *MODELER*    |        Hongkong        |          yes          |                no                |
+
+**Description**: 
+
+- The first column is the user login name. 
 
 
-**Description**: *1. The first column is the user login name. 2. The remaining columns are attributes that belong to the user, will restrict the user's access in addition.*
+- The remaining columns are attributes that belong to the user, will restrict the user's access in addition.
 
-At present, the access control file only supports two expressions, i.e. *boolean* and *equal*.
+  *A boolean value of **yes** indicates that the corresponding user can access the column, otherwise not. It  		is always used for column-level security, such as: kylin_sales.lstg_format_name.*
 
-
-**Boolean**
-
-A boolean value of yes indicates that the corresponding user can access the column, otherwise not. It  is always used for column-level security, such as: *kylin_sales.lstg_format_name*.
-
-**Equal**
-If value is evaluated as a string(non-Boolean), means the corresponding attribute will be used for row level security, for example: *kylin_sales.region*.
+  *If value is evaluated as a string(non-Boolean), means the corresponding attribute will be used for row level security, for example: kylin_sales.region.*
 
 #### KAP Sample Test
 
