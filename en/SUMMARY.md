@@ -76,13 +76,13 @@
     * [Power BI](integration/powerbi.en.md)
     * [Zeppelin](integration/zeppelin.en.md)
 *   [Security Control](security/README.md)
-    *   [User management](security/user.en.md)
-    *   [Integrate with LDAP](security/ldap.en.md)
-    *   [Manage ACL](security/acl.en.md)
-    *   [Cell Level Security](security/cell.en.md)
-
+    * [User management](security/user.en.md)
+    * [Integrate with LDAP](security/ldap.en.md)
+    * [Manage ACL](security/acl.en.md)
+    * [Cell Level Security](security/cell.en.md)
 
 *   [Trouble Shooting](troubleshooting/README.md)
+    * [Diagnosis](troubleshooting/diag.en.md)
     * [Logging](troubleshooting/logging.en.md)
     * [Alert](troubleshooting/alerting.en.md)
     * [Techinal Support & Diagnosis](troubleshooting/diag.en.md)
