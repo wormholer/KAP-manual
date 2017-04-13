@@ -1,9 +1,9 @@
 ## KAP Azure镜像使用方法
 > Azure镜像使用方法仅针对Azure中国镜像市场上发行的KAP有效。
 
-KAP Enterprise在[Azure中国镜像市场](https://market.azure.cn/)上线，用户可以方便地使用该镜像，快速创建一个基于Azure HDInsight的Hadoop集群，以及运行在此集群上的KAP实例。所有部署、安装和配置工作都为您自动完成。
+很高兴地告诉您，KAP Enterprise已在[Azure中国镜像市场](https://market.azure.cn/)上线，用户可以方便地使用该镜像，快速创建一个基于Azure HDInsight的Hadoop集群，并运行在此集群上的KAP实例。其中所有的部署、安装和配置工作都已为您自动完成。
 
-通过此镜像创建的KAP，提供不少于一个月的试用license，试用期内KAP免费，您只需为使用的Azure资源(包括HDInsight)付费；试用期结束，请联系Kyligence公司购买正式license。
+通过此镜像创建的KAP，提供不少于一个月的试用许可证，试用期内可以免费使用KAP，您只需为使用的Azure资源(包括HDInsight)付费；试用期结束后，请联系Kyligence公司购买正式的产品许可证。
 
 ### 登录Azure镜像市场
 
@@ -38,19 +38,19 @@ KAP Enterprise在[Azure中国镜像市场](https://market.azure.cn/)上线，用
 | edgeNodeSize |   运行KAP的节点的大小      |   Standard\_D3 或 Standard\_D4      |
 | appType |  选择要安装的KAP组件       |   KAP+KyAnalyzer         |
 
-在输入完上述信息后，请检查并确认Azure以及服务商的服务条款，确认无误后，点击“立即部署”开始集群创建。
+在输入完上述信息后，请检查并确认Azure以及服务商的服务条款，确认无误后，点击“立即部署”开始创建集群。
 
 
 ![](images/azure_term.png)
 
 ### 开始部署
 
-整个集群的创建大约花费30分钟左右，取决于集群的规模等多种因素。在此过程中，会先创建HDInsight集群，随后创建Edge Node并自动安装和配置KAP。创建结束后，会显示“部署成功”的画面，如下图所示：
+整个集群的创建大约需要30分钟左右，耗时取决于集群的规模等多种因素。在此过程中，会先创建HDInsight集群，随后创建Edge Node并自动安装和配置KAP。创建结束后，会显示“部署成功”的画面，如下图所示：
 
 
 ![](images/azure_success.png)
 
-在创建过程中，您也可以通过Azure的门户预览查看此资源组内的资源创建情况；如果失败，会在门户中显示相关信息。如果要删除，在Azure门户预览中删除对应的资源组即可；如要重试，在删除完资源组后，重复前面的操作即可。
+在创建过程中，您也可以通过Azure的门户预览查看此资源组内的资源创建情况；如果创建失败，也会在门户中显示相关信息。如果要删除，请在Azure门户预览中删除对应的资源组即可；如要重试，在删除完资源组后，重复前面的操作即可。
 
 
 ### 查看集群信息
@@ -67,9 +67,9 @@ KAP Enterprise在[Azure中国镜像市场](https://market.azure.cn/)上线，用
 
 ![](images/azure_application.png)
 
-这里分别有两个web页和一个SSH的地址；两个web页分别是KAP和KyAnalyzer的web界面，SSH地址供管理员以远程SSH的方法直接登录到KAP运行节点内进行管理操作。
+这里分别有两个Web页和一个SSH的地址；两个Web页分别是KAP和KyAnalyzer的web界面，SSH地址供管理员以远程SSH的方法直接登录到KAP运行节点内进行管理操作。
 
-通过点击这两个web page，并输入在创建集群时候指定的“clusterLoginUserName”账号及密码，即可访问KAP以及KyAnalyzer。
+通过点击这两个Web页，并输入在创建集群时候指定的“clusterLoginUserName”账号及密码，即可访问KAP以及KyAnalyzer。
 
 
 ### 快速使用示例Cube
@@ -78,19 +78,19 @@ KAP在初次启动时，自动创建一个示例Cube以及它所使用的Hive表
 
 ![](images/azure_kap.png)
 
-构建完成的Cube是处于“READY”状态，代表可以进行查询。您可以在“分析”页面，手动输入一条SQL语言如“SELECT COUINT(*) FROM KYLIN_SALES”进行验证。随后您可以使用KyAnalyzer对此Cube进行更全面的分析。
+构建完成的Cube是处于“READY”状态，代表可以进行查询。在“分析”页面，可以手动输入一条SQL语言如“SELECT COUINT(*) FROM KYLIN_SALES”进行验证。随后您可以使用KyAnalyzer对此Cube进行更全面的分析。
 
-在KyAnalyzer中，点击“管理控制台”， “同步Cube信息”， 选择"learn\_kylin"项目的“kylin\_sales\_cube”，随后点击“新建查询”， 点击刷新图标后，可在“多维数据”下拉框中选择“kylin\_sales\_cube”加载模型，选择指标和维度即时生成汇总报告，如下图所示：
+在KyAnalyzer中，点击“管理控制台”， “同步Cube信息”， 选择"learn\_kylin"项目的“kylin\_sales\_cube”。随后点击“新建查询”， 点击刷新图标后，可在“多维数据”下拉框中选择“kylin\_sales\_cube”加载模型，选择指标和维度即时生成汇总报告，如下图所示：
 
 ![](images/azure_kyanalyzer.png)
 
-至此，您便拥有了一个在云上的、可动态伸缩、支持超大数据集快速分析的计算平台。关于更多KAP和KyAnalyzer的使用方法，您可以参照KAP手册进行操作。
+至此，您已拥有了一个在云上的、可动态伸缩、支持超大数据集快速分析的计算平台。关于更多KAP和KyAnalyzer的使用方法，您可以参照KAP使用手册进行操作。
 
 ### 创建基于Bob Store的Hive表
 
 在使用KAP之前，您需要将数据文件上传到Hadoop，并使用Hive描述成数据表格（table）。HDInsight作为Azure云上的Hadoop平台，默认使用Azure Blob Store作为分布式文件系统，从而提供一种高可用、可伸缩的低成本存储方案。您只需要将数据文件使用Azure工具上传到Blob Store，即可使用HiveQL语句将其描述成表格，HDInsight以及KAP会直接从Blob Store读取文件。关于Azure Blob Store的使用，请参考Azure帮助文档。
 
-这里是一个使用azure命令行上传文件到Blob Store的范例：
+这里是一个使用Azure命令行上传文件到Blob Store的范例：
 
 ```
 export AZURE_STORAGE_ACCOUNT=<your storage account>
@@ -104,7 +104,7 @@ azure storage blob upload <path of a local file> <container> <name in container>
 
 ```
 
-注意，不同Hive表的文件，应使用不同目录存放。Blob Store虽不是普通的文件系统，但是可以在文件名中使用“／”模拟目录格式， 如下面的命令，会将本地文件airline\_2015\_01.csv上传到容器 mycontainer上，使用目标airline/2015/airline\_2015\_01.csv作为路径：
+请注意，不同Hive表的文件，应使用不同目录存放。Blob Store虽不是普通的文件系统，但是可以在文件名中使用“／”模拟目录格式， 如下面的命令，会将本地文件airline\_2015\_01.csv上传到容器 mycontainer上，使用目标airline/2015/airline\_2015\_01.csv作为路径：
 
 ```
 azure storage blob upload airline_2015_01.csv mycontainer airline/2015/airline_2015_01.csv
