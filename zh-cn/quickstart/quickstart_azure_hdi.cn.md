@@ -139,12 +139,18 @@ hive> select * from airline_data limit 100;
 
 至此，使用Azure Blob Store的Hive表格创建成功；您可以使用KAP同步表格的定义，创建模型和Cube，构建以及快速分析。
 
-### 构建任务查错
+### Hadoop任务追踪
 
 在Cube构建时，用户可以通过KAP界面跟踪每个任务的进度和状态；当任务出错时，需要查询Hadoop MapReduce日志进行排查。KAP界面的任务追踪URL，因为使用的是内网DNS地址，导致用户可能无法直接打开。此种情况下，您可以在集群仪表盘中通过YARN - Quick Links - Resource Manager UI寻找YARN资源管理器的地址，然后按运行状态“RUNNING”或“FINISHED”找到最近的任务。通常地址为 "https://\<clustername>.azurehdinsight.cn/yarnui/hn/cluster"
 
 ![](images/azure_yarn.png)
 
+### 集群伸缩
+
+当需要处理较大数据量时，增加集群节点可以增加并发性，减少处理时间；当计算结束后，减少集群节点可以节省资源，降低成本。HDInsight集群提供了动态伸缩的功能，为用户提供最大化的便利。您可以通过Azure门户，在HDInsight页面选择“Scale cluster”对集群大小进行调整：
+
+
+![](images/azure_scale.png)
 
 ### 管理员SSH操作
 
@@ -179,7 +185,6 @@ sudo su kylin
 /usr/local/kap/kyanalyzer-server/start-analyzer.sh
 /usr/local/kap/kyanalyzer-server/stop-analyzer.sh
 ```
-
 
 ### 卸载KAP
 
