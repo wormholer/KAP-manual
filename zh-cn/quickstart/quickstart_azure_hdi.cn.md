@@ -166,8 +166,8 @@ sudo su kylin
 
 程序安装和配置路径：
 
-|组建  | 安装路径   | 日志路径
-|:------------- |:---------------| -------------|
+|组件  | 安装路径   | 日志路径 |
+|:------------- |:---------------|:-------------|
 | KAP  | /usr/local/kap/kap-2.3.0-GA-hbase1.x   |  /usr/local/kap/kap-2.3.0-GA-hbase1.x/logs/kylin.log| 
 | KyAnalyzer  | /usr/local/kap/kyanalyzer-server   | /usr/local/kap/kyanalyzer-server/tomcat/logs/kyanalyzer.log | 
 
@@ -188,7 +188,7 @@ sudo su kylin
 
 ### 卸载KAP
 
-如果您需要停止使用KAP及HDInsight集群，请在Azure门户中删除相关的资源组即可。
+如果您需要停止使用KAP及HDInsight集群，请在Azure门户中删除相关的资源组即可。卸载前请备份必要的数据。
 
 
 更多意见与建议，欢迎与我们联系：support@kyligence.io
