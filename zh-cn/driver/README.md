@@ -4,6 +4,6 @@
 
 继续阅读：
 
-[JDBC驱动](driver/jdbc.cn.md)
+[JDBC驱动](jdbc.cn.md)
 
-[ODBC驱动](driver/odbc.cn.md)
+[ODBC驱动](odbc.cn.md)

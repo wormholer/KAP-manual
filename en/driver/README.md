@@ -4,6 +4,6 @@ This chapter introduced several drivers supported by both KAP and kylin.
 
 Continue reading:
 
-[JDBC Driver](driver/jdbc.en.md)
+[JDBC Driver](jdbc.en.md)
 
-[ODBC Driver](driver/odbc.en.md)
+[ODBC Driver](odbc.en.md)
