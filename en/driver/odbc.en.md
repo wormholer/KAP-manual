@@ -16,10 +16,10 @@ In this article, we take Windows 7 as an example to introduce ODBC driver's inst
 2. The ODBC driver would call KAP's Rest server, so make sure the KAP service is working properly.
 
 ## Installation
-1. 如果你已经安装过KAP ODBC驱动，首先卸载已存在的Apache Kylin或KAP ODBC驱动。
-2. 从[下载链接](http://kylin.apache.org/download)下载附件驱动安装程序，并运行。
-   * 32位Microsoft Office Excel：请安装KylinODBCDriver (x86).exe
-   * 64位Microsoft Office Excel：请安装KylinODBCDriver (x64).exe
+1. If you have installed ODBC driver, please uninstall ODBC driver first.
+2. [Download](http://kylin.apache.org/download) drivers, and run.
+   * 32 bit Microsoft Office Excel：Please install KylinODBCDriver (x86).exe
+   * 64 bit Microsoft Office Excel：Please install KylinODBCDriver (x64).exe
 
 ## Configure the DSN
 
