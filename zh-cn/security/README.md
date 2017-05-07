@@ -4,10 +4,10 @@
 
 继续阅读：
 
-[管理用户](security/user.cn.md)
+[管理用户](user.cn.md)
 
-[集成LDAP登录](security/ldap.cn.md)
+[集成LDAP登录](ldap.cn.md)
 
-[管理ACL](security/acl.cn.md)
+[管理ACL](acl.cn.md)
 
-[行列级别安全控制](security/cell.cn.md)
+[行列级别安全控制](cell.cn.md)
