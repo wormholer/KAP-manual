@@ -4,8 +4,8 @@
 
 继续阅读：
 
-[日志](troubleshooting/logging.cn.md)
+[日志](logging.cn.md)
 
-[任务报警](troubleshooting/alerting.cn.md)
+[任务报警](alerting.cn.md)
 
-[技术支持和诊断](troubleshooting/diag.cn.md)
+[技术支持和诊断](diag.cn.md)
