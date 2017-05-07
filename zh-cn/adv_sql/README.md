@@ -4,9 +4,9 @@
 
 继续阅读：
 
-[窗口函数](adv molap/window function.cn.md)
+[窗口函数](window function.cn.md)
 
-[分组函数](adv_sql/grouping_sets.cn.md)
+[分组函数](grouping_sets.cn.md)
 
-[交集函数](adv_sql/intersect_count.cn.md)
+[交集函数](intersect_count.cn.md)
 
