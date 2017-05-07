@@ -4,7 +4,7 @@
 
 继续阅读：
 
-[窗口函数](window function.cn.md)
+[窗口函数](window_function.cn.md)
 
 [分组函数](grouping_sets.cn.md)
 
