@@ -43,13 +43,13 @@ Support asynchronous query request, check query schedule and export 10 million l
 
   Compatible distributions:
 
-  ​	Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
+    Apache Hadoop 2.2+，HBase 0.98+，Hive 0.14+
 
   	Hortonworks HDP 2.2/2.3/2.4/2.5
 
   	Microsoft HDInsight
 
-  ​	Amazon EMR
+    Amazon EMR
 
   	Huawei FusionInsight C50/C60
 
