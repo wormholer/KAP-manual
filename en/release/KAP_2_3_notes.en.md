@@ -39,7 +39,7 @@ Support asynchronous query request, check query schedule and export 10 million l
 
   Certificated distributions:
 
-  	Cloudera CDH 5.7/5.8/5.9
+  	Cloudera CDH 5.7/5.8
 
   Compatible distributions:
 

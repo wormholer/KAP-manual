@@ -6,6 +6,8 @@ Release will including standard enterprise version(KAP) and advanced enterprise 
 
 Continue reading
 
+[KAP 2.3 release notes](KAP_2_3_notes.en.html)
+
 [KAP 2.2 release notes](KAP_2_2_notes.en.html)
 
 [KAP 2.1 release notes](KAP_2_1_notes.en.html)
