@@ -8,6 +8,7 @@
     * [获取支持](introduction/get_support.cn.md)
 * [KAP安装](install/README.md)
     * [必备条件](install/hadoop_env.cn.md)
+    * [环境检测](install/check_env.cn.md)
     * [安装和启动](install/install.cn.md)
     * [在FusionInsight上安装](install/install_on_fi.md)
     * [卸载](install/uninstall.cn.md)
