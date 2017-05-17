@@ -1,17 +1,17 @@
 ## Environment Check
 
-There are a couple of requirements for KAP running on Hadoop cluster, hence it is meaningful to have a environment check before running KAP.
+There are a couple of requirements for KAP running on Hadoop cluster, hence it is crutial to have a environment check before running KAP.
 
 ```
 cd $KYLIN_HOME
 bin/check-env.sh
 ```
 
-Normally check-env.sh will be triggered by running kylin.sh if check-env.sh hasn't been finished before, check-env.sh can also be triggered manually.
+Normally "check-env.sh" will be triggered by running "kylin.sh". If "check-env.sh" hasn't been finished before, it can be triggered manually as well.
 
 ### Explanation
 
-check-env.sh is composed of a series of child checks as followings:
+"check-env.sh" is composed of a series of child checks as follow:
 
 #### **check-hadoop-conf.sh**
 
@@ -23,7 +23,7 @@ Check HBase whether it is installed correctly or not.
 
 #### **check-hbase-create-table.sh**
 
-Test current user if  it possesses enough permission to operate HBase table, such as create/delete/update tables.
+Test current user if it possesses enough permission to operate HBase table(hTable), such as create/delete/update tables.
 
 #### **check-hbase-read-root.sh**
 
@@ -31,7 +31,7 @@ Have a test whether current user possesses permission to read`hbase.rootdir` or 
 
 #### **check-hdfs-working-dir.sh**
 
-Have a check if current user possesses enough permission to operate hdfs. Specifically, KAP needs to create hfs dir according to `kylin.env.hdfs-working-dir` defined in kylin.properties as well as create/delete files on this dir.
+Have a check if current user possesses enough permission to operate hdfs. Specifically, KAP needs to create HDFS dir according to `kylin.env.hdfs-working-dir` defined in kylin.properties as well as create/delete files on this dir.
 
 #### **check-hive-classpath.sh**
 
@@ -47,7 +47,7 @@ Run a couple of system commands to test if they are supported by current environ
 
 #### **check-ports.sh**
 
-Detect the ports used by KAP if they are available. 
+Detect the ports would be used by KAP if they are available. 
 
 #### **check-snappy.sh**
 
@@ -57,7 +57,7 @@ Check if snappy is supported in current environment.
 
 Check Spark's avaivability, there are two cases:
 
-1. If there is already a spark installed in the environment, and its version is higher than 1.6.0 (Please run `spark_shell —version` to get current spark version), it is available for KAP, i.e. 
+1. If there is an existing spark installed in the environment, and its version is higher than 1.6.0 (run `spark_shell —version` to get current spark version), it is useful for KAP, i.e. 
 
    export SPARK_HOME='SPARK_IN_ENV'
 
@@ -65,13 +65,13 @@ Check Spark's avaivability, there are two cases:
 
    export SPARK_HOME=$KYLIN_HOME/spark
 
-   Meanwhile if kerberos authentication is required, it needs to configure spark relevant items in kylin.properties. Basically there are two kerberos security items:
+   Meanwhile if kerberos authentication is required, it needs to configure spark relevant items in "kylin.properties". Basically there are two kerberos security items:
 
    `-Djava.security.auth.login.config`
 
    `-Djava.security.krb5.conf`
 
-   should be appended to those items in kylin.properties:
+   which should be appended to those items in the "kylin.properties":
 
    `kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
 
@@ -85,7 +85,7 @@ Check Spark's avaivability, there are two cases:
 
    `-Djava.security.auth.login.config` and append to
 
-   `kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions` in kylin.properties. It should look like:
+   `kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions` in "kylin.properties". It should look like:
 
    **kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions**=-Dhdp.version=current **-Djava.security.auth.login.config**=/opt/huawei/Bigdata/FusionInsight/spark/cfg/jaas-zk.conf-Dzookeeper.server.principal=zookeeper/hadoop.hadoop.com **-Djava.security.krb5.conf**=/opt/huawei/Bigdata/FusionInsight/spark/cfg/kdc.conf
 
@@ -99,7 +99,7 @@ Check Spark's avaivability, there are two cases:
 
 ​	`-Djava.security.krb5.conf`
 
-​	and append them to the items in kylin.properties：
+​	and append them to the items in "kylin.properties"：
 
 ​	`kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
 
@@ -107,4 +107,4 @@ Check Spark's avaivability, there are two cases:
 
 ​	`kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
 
-Finally, check-spark.sh will retrieve yarn resource manager's information, in order to inspect the spark executor's configurations in kylin.properties, also give the reasonable suggestions.
+Finally, "check-spark.sh" will retrieve yarn resource manager's information, in order to inspect the spark executor's configurations in kylin.properties, also give the reasonable suggestions.
