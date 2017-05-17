@@ -71,7 +71,9 @@ wget https://github.com/downloads/jcoleman/tomcat-redis-session-manager/tomcat-r
 ### 读写分离的部署
 通常，KAP连接一个Hadoop集群(HBase也运行在这个集群上)，所有的负载，包括Cube构建和Cube查询都在这个集群上进行，相互影响，容易导致性能不稳定，特别是及时性要求很高的查询负载，要尽可能地独立运行。
 
-采用Hadoop与HBase分开部署，将Cube运算递交到Hadoop集群，而Cube查询递交到HBase集群，可以完全隔离这两种工作负载。Cube构建过程中有很多写操作，而Cube查询则主要是只读操作，这样的部署也称为读写分离的部署。
+对于KAP企业版，采用Hadoop与HBase分开部署，将Cube运算递交到Hadoop集群，而Cube查询递交到HBase集群，可以完全隔离这两种工作负载。Cube构建过程中有很多写操作，而Cube查询则主要是只读操作，这样的部署也称为读写分离的部署。
+
+对于KAP Plus版，同样可以将构建和查询分开，保证相互之间没有因资源竞争而导致的效率下降。
 
 读写分离的部署架构，参考下图。
 
