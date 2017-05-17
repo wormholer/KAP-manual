@@ -76,7 +76,9 @@ host and port are to specify your Redis cluster.
 ## Read/Write Separated Deployment
 In general KAP leverages all computing resource of Hadoop cluster (Hbase runs on the same cluster) for Cube building and querying. While these jobs runing at the same time, they affect each other, causing performance degrading. It's not acceptable especially when users want low-latency query. Read/Write splitting deployment provides a solution in this case.
 
-After deploying KAP in Read/Write Splitting mode, Cube building job is submitted to Hadoop cluster and Cube query job is submitted to HBase cluster. They're two separated clusters, which can not affect each other any more. Hadoop cluster only handles write operations, and HBase cluster only handles read operations.
+For KAP enterprise, after deploying KAP in Read/Write Splitting mode, Cube building job is submitted to Hadoop cluster and Cube query job is submitted to HBase cluster. They're two separated clusters, which can not affect each other any more. Hadoop cluster only handles write operations, and HBase cluster only handles read operations.
+
+For KAP Plus, it is also meaningful to separate cube build and cube query，and make sure it will not reduce  efficiency by resource competition.
 
 The following figure shows the architecture of Read/Write splitting deployment.
 

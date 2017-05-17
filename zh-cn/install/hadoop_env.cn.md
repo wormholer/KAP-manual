@@ -16,7 +16,7 @@ KAP需要一个状态良好的Hadoop集群做为运行环境。为获得更好�
 ### 兼容的Hadoop版本
 * Hadoop: 2.4 - 2.7
 * Hive: 0.13 - 1.2
-* HBase: 0.98/0.99, 1.1.x
+* HBase: 0.98/0.99, 1.x
 * JDK: 1.7+
 
 ### YARN和MapReduce配置
