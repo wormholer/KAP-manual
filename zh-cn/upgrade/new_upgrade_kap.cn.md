@@ -70,13 +70,47 @@ KAP Plus与KAP升级中的主要区别在于引入了全新的存储引擎KyStor
    - 对`meta_backups/`路径下的元数据进行升级以使其适应KyStorage：
 
      ```shell
-     $KYLIN_HOME/bin/metastore.sh promote meta_backups
+     $KYLIN_HOME/bin/metastore.sh promote $KYLIN_HOME/meta_backups
      ```
 
    - 将`meta_backups/`路径下的元数据恢复以覆盖原先的元数据：
 
      ```shell
-     $KYLIN_HOME/bin/metastore.sh restore meta_backups
+     $KYLIN_HOME/bin/metastore.sh restore $KYLIN_HOME/meta_backups
      ```
 
-   - 在KAP GUI上重载元数据后，手动清理所有Cube中的数据并重新构建。
+   - 在KAP Plus GUI上重载元数据后，手动清理所有Cube中的数据并重新构建。
+
+5. 如果需要升级原有的Cube的存储引擎为KyStorage并保留原先构建好的Cube数据，需要使用混合(Hybrid)升级。假设需要混合升级的Cube为*kylin_sales_cube*，所在项目为*learn_kylin*，Model为*kylin_sales_model*，需要执行的操作如下：
+
+   - 在KAP Plus GUI中，克隆*kylin_sales_cube*，假设克隆得到的Cube为*kylin_sales_cube_plus*。
+
+   - 保存*kylin_sales_cube_plus*的Cube元数据至指定路径，假设将元数据保存至`cube_backups/`:
+
+     ```shell
+     $KYLIN_HOME/bin/metastore.sh backup-cube kylin_sales_cube_plus $KYLIN_HOME/cube_backups
+     ```
+
+   - 对该Cube的元数据进行升级以使其适应KyStorage：
+
+     ```shell
+     $KYLIN_HOME/bin/metastore.sh promote $KYLIN_HOME/cube_backups
+     ```
+
+   - 将升级后的元数据恢复以覆盖原先的元数据：
+
+     ```shell
+     $KYLIN_HOME/bin/metastore.sh restore-cube learn_kylin $KYLIN_HOME/cube_backups
+     ```
+
+   - 在KAP Plus GUI上重载元数据后，执行如下命令创建Hybrid Cube：
+
+     ```shell
+     $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.HybridCubeCLI -action create -name kylin_sales_hybrid -project learn_kylin -model kylin_sales_model -cubes kylin_sales_cube,kylin_sales_cube_plus
+     ```
+
+     如果日志中提示`HybridInstance was created at: /hybrid/kylin_sales_hybrid.json`，则表明创建成功。
+
+   - 重载元数据。
+
+   - 注意：后续构建请使用新建的Cube，即*kylin_sales_cube_plus*，请勿使用原先的Cube。
