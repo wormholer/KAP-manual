@@ -1,6 +1,6 @@
 ## 从Apache Kylin升级##
 
-KAP是基于Apache Kylin进行二次开发的产品，支持从Apache Kylin升级至KAP或KAP Plus。
+KAP是基于Apache Kylin的商业版产品，支持从Apache Kylin升级至KAP或KAP Plus。
 
 ### 从Apache Kylin 1.5.1+升级至KAP 2.X###
 
@@ -66,7 +66,7 @@ KAP 2.X与Kylin 1.5.1+版本兼容元数据。因此在Kylin升级至KAP时，�
 
 ### 从Apache Kylin 1.5.1+升级至KAP Plus
 
-KAP Plus与KAP的主要区别在于引入了全新的存储引擎KyStorage。因此在从Kylin升级至KAP Plus时，只需要按照从Kylin升级至KAP的方法执行，最后进行存储引擎相关的升级操作即可。具体升级步骤如下：
+KAP Plus与KAP在升级中的主要区别在于引入了全新的存储引擎KyStorage。因此在从Kylin升级至KAP Plus时，只需要按照从Kylin升级至KAP的方法执行，最后进行存储引擎相关的升级操作即可。具体升级步骤如下：
 
 1. 执行上一节“从Apache Kylin 1.5.1+升级至KAP 2.X”中的步骤1至7。其中KAP安装包用KAP Plus安装包替换。
 
