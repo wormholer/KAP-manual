@@ -4,10 +4,10 @@
 
 继续阅读：
 
-[从Apache Kylin升级](upgrade_kylin.cn.md)
+[Apache Kylin升级](upgrade_kylin.cn.md)
 
-[从KAP升级](upgrade_kap.cn.md)
+[KAP升级](upgrade_kap.cn.md)
 
-[从KAP Plus升级](upgrade_kapp.cn.md)
+[KAP Plus升级](upgrade_kapp.cn.md)
 
-[升级失败后回滚](rollback.cn.md)
+[升级失败的处理](rollback.cn.md)
