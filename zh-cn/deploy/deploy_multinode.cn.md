@@ -9,6 +9,7 @@ KAP实例是无状态的服务，所有的状态信息，都存储在HBase中；
 * 没有端口冲突; 最好分开在不同服务器上，以做到互不影响。
 * 使用同一张HBase metadata表，即`kylin.metadata.url`值相同
 * 只有一个KAP实例运行任务引擎（`kylin.server.mode＝all`)，其它KAP实例都是查询引擎(`kylin.server.mode=query`)模式。或者启用任务引擎High Availability，参考下一章的[配置方法](../config/jobengine_ha.cn.md).
+* 将所有KAP实例的地址和端口更新到kylin.server.cluster-servers，将被用于KAP多实例之间同步元数据状态，如`kylin.server.cluster-servers=sandbox1:7070,sandbox2:7070`
 
 为了将外部请求发给集群，而不是单个节点，需要部署一个负载均衡器（Load Balancer），如Apache HTTP Server或Nginx。负载均衡器通过一定策略决定将某个请求转给某个节点，并且在节点失效时重试其它节点。终端用户通过负载均衡器的地址来访问KAP。为了便于用户和角色的管理，通常此时会启用LDAP集成的安全验证。
 
