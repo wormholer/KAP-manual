@@ -1,7 +1,7 @@
 ## 以Kafka为数据源流式构建cube
 
 
-KAP 2.3 提供了流式构建的功能，用户能够以Kafka为数据源，根据时间间隔进行流式构建cube．本文档提供了一个简单的教程，向用户展示如何一步步流式构建cube
+KAP 2.3.x 提供了流式构建的功能，用户能够以Kafka为数据源，根据时间间隔进行流式构建cube．本文档提供了一个简单的教程，向用户展示如何一步步流式构建cube
 
 ## 环境准备
 在开始本教程前，请确保您已准备好Hadoop环境并且已经安装了KAP 2.3及Kafka。在本教程中，我们使用Hortonworks HDP 2.4 Sandbox虚拟机作为Hadoop环境。
@@ -29,24 +29,24 @@ KAP 2.3 提供了流式构建的功能，用户能够以Kafka为数据源，根�
 
 
 ## 从流式数据中定义事实表
-   
+
 1. 启动KAP, 登录KAP web GUI, 新建一个project或者选择一个已有的project。点击 "Model" -> "Data Source"，点击"Add Streaming Table"按钮。
-   ![](pictures/s1.png)
+     ![](images/s1.png)
 
 2. 输入Broker集群信息
-   ![](pictures/s2.png)
+   ![](images/s2.png)
 
 
 3. 点击 sandbox->kylindemo,Kafka的采样消息会出现在右边
-   ![](pictures/s3.png)
+   ![](images/s3.png)
 
 
 4. 接着，您需要为流式数据源定义一个表名．定义的表名会用于后续的 SQL 查询． 假设我们将表命名为 "KAFKA_TABLE_1" 
-   ![](pictures/s4.png)
+   ![](images/s4.png)
 
 5. 检查表结构是否正确，如果正确，请点击"提交"
 
-   ![](pictures/s5.png)
+   ![](images/s5.png)
 
 
 ## 创建model
@@ -56,12 +56,12 @@ KAP 2.3 提供了流式构建的功能，用户能够以Kafka为数据源，根�
 * 请选择 "MINUTE_START" 属性作为partition column, 这样KAP可以以分钟为间隔构建Cube。不要直接选择ORDER_TIME属性（因为其粒度太小）。
 
 这里，我们选择８个属性作为dimension，２个属性作为measure。
- 
-![](pictures/s6.png)
+
+![](images/s6.png)
  	
-![](pictures/s7.png)
+![](images/s7.png)
  	
-	
+​	
 保存数据模型。
 
 ## 创建cube
@@ -72,13 +72,13 @@ KAP 2.3 提供了流式构建的功能，用户能够以Kafka为数据源，根�
 * 在"refersh setting" 步骤，您可以定义更多的构建间隔时间，例如0.5小时，4小时，１天，７天等。这有助于Segment的自动合并。
 * 在选择"rowkeys" 的环节, 请将"minute\_start" 拖拽到所有属性的最顶部. 对于基于流式Cube的查询，时间维度会是一个经常被用到的维度，因此，将其放在rowkeys前面有助于快速过滤。
 
-	![](pictures/s8.png)
-	
-	![](pictures/s9.png)
-		
-	![](pictures/s10.png)
+ ![](images/s8.png)
 
-	![](pictures/s11.png)
+ ![](images/s9.png)
+ ​	
+ ![](images/s10.png)
+
+ ![](images/s11.png)
 
 保存Cube。
 
@@ -131,18 +131,18 @@ KAP 2.3 提供了流式构建的功能，用户能够以Kafka为数据源，根�
 2. 在构建Cube时，遇到 “killed by admin” 错误
 
 这个问题主要是由于在使用Sandbo时，MR任务请求的内存过多，从而被YARN拒绝导致的。您可以通过修改“conf/kylin_job_conf_inmem.xml”配置，调低请求的内存大小来解决这个问题
-	
+​	
 	<property>
 		<name>mapreduce.map.memory.mb</name>
 		<value>1072</value>
 		<description></description>
 	</property>
 	
-        <property>
-                <name>mapreduce.map.java.opts</name>
-                <value>-Xmx800m</value>
-                <description></description>
-        </property>
+	    <property>
+	            <name>mapreduce.map.java.opts</name>
+	            <value>-Xmx800m</value>
+	            <description></description>
+	    </property>
 
 如果topic中已经有大量的消息，您最好不要从头开始构建，建议您选择队列的尾部作为构建的起始点。如下所示：
 
@@ -150,7 +150,7 @@ KAP 2.3 提供了流式构建的功能，用户能够以Kafka为数据源，根�
 
 3. 如果某次构建发生了错误，并且您丢弃了这次构建，则Cube中会由于缺失了这次构建的segment而产生一个"空洞"。由于KAP的自动构建总是从最后的位置开始，正常的构建将无法填补这些空洞。您需要使用KAP提供的工具找出这些"空洞"并且重新触发构建将其填补。
 
-	   curl -X GET --user ADMINN:KYLIN -H "Content-Type: application/json;charset=utf-8" http://localhost:7070/kylin/api/cubes/{your_cube_name}/holes
+     curl -X GET --user ADMINN:KYLIN -H "Content-Type: application/json;charset=utf-8" http://localhost:7070/kylin/api/cubes/{your_cube_name}/holes
 
 如果curl结果为空数组，则表示没有任何空洞，否则，我们则需要手动触发KAP的构建来填补这些空洞：
 
