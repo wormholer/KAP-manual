@@ -1,6 +1,6 @@
 ## KAP Upgrade ##
 
-This chapter will introduce how to upgrade the system from KAP or KAP Plus to higher version, as well as how to upgrade it from open source Apache Kylin to its enterprise version KAP or KAP Plus. 
+This chapter will introduce how to upgrade the system from KAP or KAP Plus to a higher version, as well as how to upgrade it from open source Apache Kylin to its enterprise version KAP or KAP Plus. 
 
 Continue reading:
 
