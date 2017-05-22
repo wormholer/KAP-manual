@@ -25,7 +25,7 @@ KAP 2.X shares compatible metadata with other KAP 2.X versions. Thus you could u
 
 4. Update the configuration files: 
 
-  If you have modified any configuration files under `conf/` of the old version, please merge all of them to corresponding configuration files of the new version.  
+  If you have modified any configuration files under `$KYLIN_HOME/conf/` of the old version, please merge all of them to corresponding configuration files of the new version.  
 
 5. Upgrade and redeploy coprocessors: 
 
