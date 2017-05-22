@@ -1,11 +1,13 @@
-## KAP Upgrade
+## KAP Upgrade ##
 
-This chapter will introduce how to upgrade KAP to latest version, and also how to upgrade from open source Apache Kylin to the enterprise version KAP. 
+This chapter will introduce how to upgrade the system from KAP or KAP Plus to higher version, as well as how to upgrade it from open source Apache Kylin to its enterprise version KAP or KAP Plus. 
 
 Continue reading:
 
-[Upgrade from KAP](upgrade_kap.en.md)
+[Upgrading from Apache Kylin](upgrade_kylin.en.md)
 
-[Upgrade from Apache Kylin](upgrade_kylin.en.md)
+[Upgrading from KAP](upgrade_kap.en.md)
 
-[Upgrade to KyStorage Engine](upgrade_kap_plus.en.md)
+[Upgrading from KAP Plus](upgrade_kapp.en.md)
+
+[Rollback in case of upgrading failure](rollback.en.md)
