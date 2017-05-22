@@ -1,7 +1,7 @@
-## 基本SQL支持
-KAP支持ANSI SQL2003*，以下列举了支持的基本SQL语句。
+## Basic SQL
+KAP supports ANSI SQL 2003*, and its basic SQL gramma is listed as following.
 
-### 支持语法
+### SQL Gramma
 
 ##### statement:
 
