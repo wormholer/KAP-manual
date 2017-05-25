@@ -30,9 +30,14 @@ KAP instance is stateless as all state information is stored in HBase. So runnin
 To organize multiple KAP nodes in a cluster, please pay attention on following points:
 
 * Share the same Hadoop cluster and HBase cluster.
+
 * No port conflict. Better to deploy on separated server to make sure they don't affect each.
-* Use the same HBase metadata table, which means the same value of `kylin.metadata.url`
-* Only one KAP instance runs as job engine (`kylin.server.mode＝all`), all others run as query engines (`kylin.server.mode＝query`). Another option is to turn on `High Availability` on job engine. Please refer to the next chapter [Configuration](../config/jobengine_ha.en.md).
+
+Steps
+
+* Keep all nodes' ``kylin.metadata.url`` are same. 
+* Update one KAP instance to run as job engine (`kylin.server.mode＝all`), all other instances as query engines (`kylin.server.mode＝query`).  If to turn on `High Availability` on job engine. Please refer to the next chapter [Configuration](../config/jobengine_ha.en.md).
+* Update all instances' IP address and port to ``kylin.server.cluster-servers``, these are used to sync the metadata changes among the instances. For example, ``kylin.server.cluster-servers=127.0.0.1:7070,127.0.0.1:17010``
 
 A Load Balancer, such as Apache HTTP Server and Nginx Server, is required to distribute requests in cluster. User sends requests to Load Balancer, then Load Balancer redirects requests to nodes according to some strategy. If the node handling the request fails Load Balancer will retry to send the request to other node. A good practice in this case is integrating LDAP in user and role management.
 
