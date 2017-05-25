@@ -28,4 +28,4 @@ beeline -n root -u 'jdbc:hive2://localhost:10000' -f abc.sql
 kylin.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000' -f abc.sql
 ```
 ### deploy.env
-该参数指定KAP部署的用途，可以是*DEV*、*PROD*、*QA*。默认值为*QA*。在*DEV*模式下一些开发者功能将被启用；在*PROD*模式下禁止创建新Cube。
+该参数指定KAP部署的用途，可以是*DEV*、*PROD*、*QA*。出厂默认值为*PROD*。在*DEV*模式下一些开发者功能将被启用。
