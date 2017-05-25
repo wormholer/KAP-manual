@@ -23,7 +23,7 @@
     - [KyStorage配置参数](config/kystorage_settings.cn.md)
     - [生产环境推荐配置](config/recommend_settings_v2_2.cn.md)
     - [启用任务引擎HA](config/jobengine_ha.cn.md)
-    - [Cube配置重定义](config/cube_override.cn.md)
+    - [项目和Cube配置重写](config/config_override.cn.md)
 * [KAP升级](upgrade/README.md)
     * [Apache Kylin升级](upgrade/upgrade_kylin.cn.md)
     * [KAP升级](upgrade/upgrade_kap.cn.md)
