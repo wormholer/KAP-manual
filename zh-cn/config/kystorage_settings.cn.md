@@ -36,7 +36,7 @@ kap.storage.columnar.conf.spark.executor.instances=4
 
 在Spark的默认配置下，启动的executor数量(`spark.executor.instances`)为2，每个executor的CPU核数量(`spark.executor.cores`)为1，为每个executor分配的内存(`spark.executor.memory`)为1GB，为driver分配的内存(`spark.driver.memory`)为1GB。显然这样的配置对于严肃的KAP部署来说太小了。
 
-最佳的配置取决于具体的集群硬件配置。大多数情况下我们建议为每个HDFS或者Yarn结点上分配一个executor。每个executor的CPU核数量应该在2~5个之间。用户可以根据数据量的大小灵活地调节为executor和driver分配的内存大小。以下是一个示例集群上的配置，该集群有4个结点，每个结点有24个CPU核以及64GB的内存。
+最佳的配置取决于具体的集群硬件配置。大多数情况下我们建议为每个HDFS或者Yarn节点上分配一个executor。每个executor的CPU核数量应该在2~5个之间。用户可以根据数据量的大小灵活地调节为executor和driver分配的内存大小。以下是一个示例集群上的配置，该集群有4个节点，每个节点有24个CPU核以及64GB的内存。
 
   ```
 kap.storage.columnar.conf.spark.driver.memory=8192m
