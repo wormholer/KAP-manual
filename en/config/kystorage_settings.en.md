@@ -1,31 +1,31 @@
-## Introduction
-By default, KAP stores all cubes KyStorage, which is a columar store on HDFS. When querying, KAP uses Spark (http://spark.apache.org, specifically we use Spark on yarn mode) for cube reading and possibly storage pre-aggregations.  One or more Spark executors are started as long-running processes to receive any cube visit requests. For production deployments you should go through this page to make sure your spark executors are well configured. Additionally we use grpc (http://www.grpc.io/) to bridge KAP query server with Spark. When necessary, you need to add configs for grpc as well.
+## KyStorage configurations
+KAP Plus stores all cube data in KyStorage, a columnar storage system on HDFS. When processing queries, KAP Plus uses Spark (http://spark.apache.org, specifically we use Spark on Yarn mode) for cube accessing and possibly storage pre-aggregations.  One or more Spark executors are started as long-running processes to receive cube access requests. For deployments in production environment, please go through this page to make sure your Spark executors are well configured. Additionally we use grpc (http://www.grpc.io/) to bridge KAP query server with Spark. You need to add configurations for grpc as well, if necessary. 
 
-## Tune spark parameters
+### Tune spark parameters
 
-KAP ships with all necessary spark assemblies and configurations, which reside in KAP_HOME/spark folder. KAP uses the spark-submit script to launch all the executors, so theoridically you can directly go to KAP_HOME/spark/conf to make changes on spark-shipped configuration as http://spark.apache.org/docs/latest/configuration.html explains. However it's NOT the recommended way because for maintainence convenicence we suggest to keep all KAP configurations staying in KAP_HOME/conf. 
+KAP Plus ships with all necessary Spark assemblies and configurations, which reside in `KAP_HOME/spark/`. KAP Plus uses the spark-submit script to launch all the executors. Theoretically you can directly go to `KAP_HOME/spark/conf/` to make changes on spark-shipped configuration as http://spark.apache.org/docs/latest/configuration.html explains. However it's NOT the recommended way because for the purpose of maintenance convenience, we suggest you keep all KAP related configurations in `KAP_HOME/conf/`. 
 
-Our solution is to allow users to change spark configurations in `kylin.properties`.  Typically there're two major categories of configurations for Spark: environment variables and  Spark properties:
+A better way is to alter Spark configurations in kylin.properties. Typically there're two major categories of configurations for Spark: environment variables and  Spark properties:
 
-### environment variables
+### Environment variables
 
-This category relates to SPARK_HOME/conf/spark-env.sh, there's detailed explanation in http://spark.apache.org/docs/latest/configuration.html#environment-variables. A typical example is `HADOOP_CONF_DIR`, which tells Spark where the hadoop configurations reside. By default we have a config entry in `kylin.properties`:
+This category relates to properties in `SPARK_HOME/conf/spark-env.sh`, for which there are detailed explanations in http://spark.apache.org/docs/latest/configuration.html#environment-variables. A typical example is *HADOOP_CONF_DIR*, which tells Spark where the hadoop configurations reside in. By default we have a configuration entry in kylin.properties:
 
-> ```
-> kap.storage.columnar.env.HADOOP_CONF_DIR=/etc/hadoop/conf
-> ```
+```
+kap.storage.columnar.env.HADOOP_CONF_DIR=/etc/hadoop/conf
+```
 
-As the example illustrates, by prefixing the Spark environment variable with `kap.storage.columnar.env`, we can specify any Spark environment variable in `kylin.properties`.
+As the example illustrates, by prefixing the Spark environment variable with *kap.storage.columnar.env*, we can specify any Spark environment variable in kylin.properties.
 
 ### Spark properties
 
-This categoy relates to SPARK_HOME/conf/spark-defaults.conf, there's detailed explanation in http://spark.apache.org/docs/latest/configuration.html#spark-properties. A typical example is `spark.executor.instances`, which specifies how many executors should be there. By default we have (although it's commented out) a config entry in `kylin.properties`:
+This category relates to `SPARK_HOME/conf/spark-defaults.conf`, for which there are detailed explanations in http://spark.apache.org/docs/latest/configuration.html#spark-properties. A typical example is *spark.executor.instances*, which specifies how many executors should be launched. By default we have (although it's commented out) a configuration entry in kylin.properties:
 
-> ```
-> kap.storage.columnar.conf.spark.executor.instances=4
-> ```
+```
+kap.storage.columnar.conf.spark.executor.instances=4
+```
 
-The config entry tells Spark to launch 4 executors for KAP. As the example illustrates, by prefixing the Spark property with `kap.storage.columnar.conf` we can specify any Spark property in `kylin.properties`
+The configuration entry tells Spark to launch 4 executors for KAP. As the example illustrates, by prefixing the Spark property with *kap.storage.columnar.conf* we can specify any Spark property in kylin.properties.
 
 | Property Name                            | Default | Meaning                                  |
 | ---------------------------------------- | ------- | ---------------------------------------- |
@@ -36,25 +36,23 @@ The config entry tells Spark to launch 4 executors for KAP. As the example illus
 
 ### Advices on configurations
 
-By Spark's default configuration, the number of executors to start (`spark.executor.instances`) is 2, the number of cores for each executor (`spark.executor.cores`) is 1, the memory per executor (`spark.executor.memory`) is 1G, the memory for driver (`spark.driver.memory`) is 1G. Obviously it's not enough for serious KAP deployments. 
+By Spark's default configuration, the number of executors to be launched (*spark.executor.instances*) is 2, the number of cores for each executor (*spark.executor.cores*) is 1, the memory per executor (*spark.executor.memory*) is 1GB, the memory for driver (*spark.driver.memory*) is 1GB. Obviously it's not enough for serious KAP deployments. 
 
-The optimal configuration depends on your cluster hardware specifications. In most cases we suggest one executors per hdfs/yarn server. The number of cores for each executor could be somewhere between 2~5. Users can flexibly adjust memory for executor and memory depending on data scale. Here's a sample configuration for a 4-node cluster, where each server has 24 cores and 64G RAM:
+The optimal configuration depends on your cluster hardware specifications. In most cases we suggest one executors assigned per HDFS/Yarn server. The number of cores for each executor could be somewhere between 2~5. Users can flexibly adjust memory for executors and memory for the driver depending on data scale. Here's a sample configuration for a 4-node cluster, where each server has 24 cores and 64GB RAM:
 
-> ```
-> kap.storage.columnar.conf.spark.driver.memory=8192m
-> kap.storage.columnar.conf.spark.executor.memory=8192m
-> kap.storage.columnar.conf.spark.executor.cores=5
-> kap.storage.columnar.conf.spark.executor.instances=4
-> ```
+```
+kap.storage.columnar.conf.spark.driver.memory=8192m
+kap.storage.columnar.conf.spark.executor.memory=8192m
+kap.storage.columnar.conf.spark.executor.cores=5
+kap.storage.columnar.conf.spark.executor.instances=4
+```
 
 ## Tune grpc parameters 
 
 ### Change max response size (starting from KAP 2.2)
 
-Due to https://github.com/grpc/grpc-java/issues/1676, the default max response size for grpc is reduced to 4M. In KAP's default configuration, we change it to 128M to avoid exceptions like "Caused by: io.grpc.StatusRuntimeException: INTERNAL: Frame size 108427384 exceeds maximum: 104857600". If 128M is still not large enough,  we have a config entry in `kylin.properties`:
+Due to https://github.com/grpc/grpc-java/issues/1676, the default max response size for grpc is reduced to 4M. In KAP's default configuration, we change it to 128M to avoid exceptions like "Caused by: io.grpc.StatusRuntimeException: INTERNAL: Frame size 108427384 exceeds maximum: 104857600". If 128M is still not large enough,  we have a configuration entry in kylin.properties to workaround:
 
-> ```
-> kap.storage.columnar.grpc-max-response-size=SIZE_IN_BYTES
-> ```
-
-to workaround
+```
+kap.storage.columnar.grpc-max-response-size=SIZE_IN_BYTES
+```
