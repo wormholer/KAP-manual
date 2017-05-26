@@ -18,29 +18,29 @@ At the `Configuration Overwrites` phase in cube design, user could rewrite prope
 
 *kylin.hbase.default.compression.codec*, default is none, other valid values include snappy, lzo, gzip, lz4
 
-*kylin.hbase.region.cut*, default is 5
+*kylin.storage.hbase.region-cut-gb*, default is 5
 
-*kylin.hbase.hfile.size.gb*, default is 2
+*kylin.storage.hbase.hfile-size-gb*, default is 2
 
-*kylin.hbase.region.count.min*, default is 1
+*kylin.storage.hbase.min-region-count*, default is 1
 
-*kylin.hbase.region.count.max*, default is 500
+*kylin.storage.hbase.max-region-count*, default is 500
 
-*kylin.job.cubing.inmem.sampling.percent*, default is 100
+*kylin.job.sampling-percentage*, default is 100
 
-*kylin.job.mapreduce.default.reduce.input.mb*, default is 500
+*kylin.engine.mr.reduce-input-mb*, default is 500
 
-*kylin.job.mapreduce.max.reducer.number*, default is 500
+*kylin.engine.mr.max-reducer-number*, default is 500
 
-*kylin.job.mapreduce.mapper.input.rows*, default is 1000000
+*kylin.engine.mr.mapper-input-rows*, default is 1000000
 
 *kylin.cube.algorithm*, default is auto, other valid values include inmem, layer
 
-*kylin.cube.algorithm.auto.threshold*, default is 8
+*kylin.cube.algorithm.layer-or-inmem-threshold*, default is 8
 
-*kylin.cube.aggrgroup.max.combination*, default is 4096
+*kylin.cube.aggrgroup.max-combination*, default is 4096
 
-*kylin.table.snapshot.max_mb*, default is 300
+*kylin.table.snapshot.max-mb*, default is 300
 
 ### Overriding properties in kylin_hive_conf.xml
 
