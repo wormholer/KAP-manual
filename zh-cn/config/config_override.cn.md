@@ -1,8 +1,6 @@
 ## 配置重写
 
-`KAP_HOME/conf`下的部分配置项可以在KAP GUI中重写。配置重写有两个作用域，分别是project级别和cube级别。Project级别的配置继承于全局配置文件，cube级别的配置继承于project；而配置的覆盖优先级关系是：cube级别配置项 > project级别配置项 > 配置文件（kylin.properties）。
-
-
+`KAP_HOME/conf/`下的部分配置项可以在KAP GUI中重写。配置重写有两个作用域，分别是project级别和cube级别。Project级别的配置继承于全局配置文件，cube级别的配置继承于project；而配置的覆盖优先级关系是：cube级别配置项 > project级别配置项 > 配置文件（kylin.properties）。
 
 ### 项目配置重写
 
@@ -22,7 +20,7 @@
 
 目前kylin.properties中的下列配置项可以使用上述方法进行重定义：
 
-kylin.hbase.default.compression.codec*，默认值none，其他有效值包括snappy，lzo，gzip，lz4；
+*kylin.hbase.default.compression.codec*，默认值none，其他有效值包括snappy，lzo，gzip，lz4；
 
 *kylin.storage.hbase.region-cut-gb*，默认值5；
 
@@ -52,21 +50,21 @@ kylin.hbase.default.compression.codec*，默认值none，其他有效值包括sn
 
 ### 覆盖kylin_hive_conf.xml中参数
 
-KAP支持覆盖*kylin_hive_conf.xml*中的参数，以Key/Value的形式，按照如下格式替换：
+KAP支持通过KAP GUI覆盖kylin_hive_conf.xml中的参数，以Key/Value的形式，按照如下格式替换：
 
 kylin.hive.config.override.*key* = *value*
 
-**注意：需要在参数名之前加上前缀*kylin.hive.config.override**。
+**注意：需要在参数名之前加上前缀*kylin.hive.config.override* **。
 
 
 
 ### 覆盖kylin_job_conf.xml和kylin_job_conf_inmem.xml中参数
 
-KAP支持覆盖*kylin_job_conf.xml*和*kylin_job_conf_inmem.xml*中的参数，以Key/Value的形式，按照如下格式替换：
+KAP支持通过KAP GUI覆盖kylin_job_conf.xml和kylin_job_conf_inmem.xml中的参数，以Key/Value的形式，按照如下格式替换：
 
 kylin.job.mr.config.override.*key* = *value*
 
-**注意：需要在参数名之前加上前缀*kylin.job.mr.config.override*。举例如图：**
+**注意：需要在参数名之前加上前缀*kylin.job.mr.config.override* **。举例如图：
 
 ![override_cube](images/override_cube.jpg)
 
