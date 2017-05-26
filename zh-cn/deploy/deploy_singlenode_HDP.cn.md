@@ -29,15 +29,15 @@ KAP支持在单节点上运行多个实例，实例运行查询引擎以实现�
 
 ### 环境准备
 
-运行KAP需要Hadoop环境支持，KAP安装在Hadoop集群的客户端节点上。作为快速上手，我们推荐使用*All in one*的沙箱虚拟机用于本地测试，包括*Hortonworks Sandbox（HDP） 2.2/2.3/2.4* 和*Cloudera QuickStart VM（CDH） 5.7/5.8*。虚拟机需要至少*10G*内存。
+运行KAP需要Hadoop环境支持，KAP安装在Hadoop集群的客户端节点上。作为快速上手，我们推荐使用*All in one*的沙箱虚拟机用于本地测试，包括*Hortonworks Sandbox（HDP） 2.2+* 和*Cloudera QuickStart VM（CDH） 5.7+*。虚拟机需要至少*10G*内存。
 
 > 由于不同Sandbox采用了不同的HBase版本，安装KAP时需要采用对应的版本。
 >
-> *HDP 2.2* 请采用*HBase 0.98*版本；*HDP 2.3/2.4* 请采用*HBase 1.X*版本
+> *HDP 2.2* 请采用*HBase 0.98*版本；*HDP 2.3+* 请采用*HBase 1.X*版本
 >
-> *CDH 5.7/5.8*请采用CDH版本
+> *CDH 5.7+*请采用CDH版本
 
-为了避免权限问题，我们建议使用*root*账号通过SSH的方式登录虚拟机，*HDP 2.2*的默认密码是*hadoop*， *HDP 2.3/2.4* 请参考[Hortonworks文档](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)了解账号密码，*Cloudera QuickStart VM 5.7/5.8*的默认密码是cloudera。
+为了避免权限问题，我们建议使用*root*账号通过SSH的方式登录虚拟机，*HDP 2.2*的默认密码是*hadoop*， *HDP 2.3+* 请参考[Hortonworks文档](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)了解账号密码，*Cloudera QuickStart VM 5.7+*的默认密码是cloudera。
 
 以下指南以*root*账户为例。
 
@@ -50,10 +50,26 @@ KAP支持在单节点上运行多个实例，实例运行查询引擎以实现�
 以下配置需要修改，以配合KAP的资源需求
 
 1. 针对*HDP 2.2*，找到YARN-Configs，修改*yarn.nodemanager.resource.memory-mb*为*8192*，*yarn.scheduler.maximum-allocation-mb*为*4096*；针对*HDP 2.3/2.4*，找到YARN-Configs->Settings，修改*Memory Node*为*8192*
-2. 针对*HDP 2.3/2.4*，找到MapReduce2-Configs->Advanced，修改*MR Map Java Heap Size*及*MR Reduce Java Heap Size*为 *-Xmx3072m*
+2. 针对*HDP 2.3+*，找到MapReduce2-Configs->Advanced，修改*MR Map Java Heap Size*及*MR Reduce Java Heap Size*为 *-Xmx3072m*
 3. 如果遇到*org.apache.hadoop.hbase.security.AccessDeniedException: Insufficient permissions for user 'root (auth:SIMPLE)'*这样的异常，表示没有写HBase的权限，可以将*hbase.coprocessor.region.classes*和*hbase.coprocessor.master.classes*设置为空，*hbase.security.authentication*设置为*simple*，*hbase.security.authorization*设置为*false*，以关闭HBase的权限验证。
 
+### 启动 Hadoop
+
+用ambari来启动hadoop
+
+```shell
+ambari-agent start
+amber-server start
+```
+
+命令成功之后，登录ambari  [http://{hostname}:8080](http://{hostname}:8080) (默认登录用户名admin, 密码admin)来检查各项状态。
+
+默认Hbase是禁用的，需要在ambari 主页启动Hbase服务。
+
+ ![kap_quickstart_hbase](images/kap_quickstart_hbase.png)
+
 ### 安装KAP
+
 获取KAP安装包请参考[KAP发行说明](../release/README.md)。以下步骤针对KAP，KAP Plus步骤略有不同。
 
 拷贝KAP二进制包至安装机器，并解压至安装目录，本文以*/usr/local*为例
@@ -97,6 +113,19 @@ hdfs dfs -mkdir /user/root
 hdfs dfs -chown root /user/root
 ```
 
+### 环境检查
+
+KAP运行时需要依赖环境信息，通过环境变量读取，这些变量包括：HADOOP_CONF_DIR，HIVE_LIB，HIVE_CONF，和HCAT_HOME。样例配置如下
+
+```shell
+export HADOOP_CONF_DIR=/etc/hadoop/conf
+export HIVE_LIB=/usr/lib/hive
+export HIVE_CONF=/etc/hive/conf
+export HCAT_HOME=/usr/lib/hive-hcatalog
+```
+
+可通过执行bin/check-env.sh 验证环境是否符合KAP运行需求。
+
 ### 导入样例数据和模型
 
 `bin/sample.sh`会创建5个Hive Table，并导入样例数据。数据导入成功后，会自动创建样例项目、模型和Cube定义。
@@ -111,21 +140,6 @@ bin/sample.sh
 > Sample cube is created successfully in project 'learn_kylin'.
 > Restart Kylin server or reload the metadata from web UI to see the change.
 
-### 启动 Hadoop
-
-用ambari来启动hadoop
-
-```shell
-ambari-agent start
-amber-server start
-```
-
-命令成功之后，登录ambari  [http://{hostname}:8080](http://{hostname}:8080) (默认登录用户名admin, 密码admin)来检查各项状态。
-
-默认Hbase是禁用的，需要在ambari 主页启动Hbase服务。
-
- ![kap_quickstart_hbase](images/kap_quickstart_hbase.png)
-
 ### 启动KAP
 
 进入KAP安装目录，并执行启动脚本`bin/kylin.sh start`。
@@ -135,7 +149,7 @@ cd kap-{version}-{hbase}
 bin/kylin.sh start
 ```
 
-KAP启动之后，可以通过浏览器访问，默认地址http://{hostname}:7070/kylin，默认用户名ADMIN，密码KYLIN
+KAP正常启动之后，可以通过浏览器访问，默认地址[http://{hostname}:7070/kylin](http://{hostname}:7070/kylin)，默认用户名ADMIN，密码KYLIN。
 
 ### 构建Cube
 
@@ -153,7 +167,7 @@ KAP启动之后，可以通过浏览器访问，默认地址http://{hostname}:70
 
 ### 执行SQL查询
 
-当Cube构建成功后，进入**查询**页面，可以在页面左侧看到之前导入的三张表，这时可以输入SQL语句，对样例数据进行查询分析。样例语句包括：
+当Cube构建成功后，进入**查询**页面，可以在页面左侧看到之前导入的五张表，这时可以输入SQL语句，对样例数据进行查询分析。样例语句包括：
 
 ```sql
 select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt
