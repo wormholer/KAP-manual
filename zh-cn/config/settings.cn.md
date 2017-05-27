@@ -1,10 +1,12 @@
 ## 重要参数配置
-kylin.properties在KAP的配置文件中占据重要位置。本节内容将对一些常用的配置项进行详细介绍。
+*kylin.properties*在KAP的配置文件中占据重要位置。本节内容将对一些常用的配置项进行详细介绍。
+
+用户可以将个性化配置写在 *kylin.properties.override* 文件中，这个文件中的配置项将会覆盖*kylin.properties*中的默认值。在系统升级中，用户仅需复制*kylin.properties.override*到新版本的conf路径，即可实现配置升级。
 
 ### kylin.metadata.url
 该参数指定KAP元数据库路径。默认值为HBase中的*kylin_metadata*表，用户可以手动修改参数值以自定义的名称命名元数据库。在同一个集群上部署多个KAP实例时，可以为每个KAP实例配置一个独有的元数据库路径，以实现多个KAP实例间的隔离。例如，Production实例设置该值为*kylin\_metadata\_prod*，Staging实例设置该值为*kylin\_metadata\_staging*，那么在Staging实例中的操作不会对Production实例产生任何影响。
 ### kylin.env.hdfs-working-dir
-该参数指定KAP服务所用的HDFS路径。默认值为HDFS上的`kylin/`，以元数据库路径中的HTable表名为子目录。例如，假设元数据库路径参数值为kylin\_metadata@hbase，那么该HDFS路径默认值就是`/kylin/kylin_metadata`。请预先确保启动KAP实例的用户有读写该目录的权限。
+该参数指定KAP服务所用的HDFS路径。默认值为HDFS上的`kylin/`，以元数据库路径中的HTable表名为子目录。例如，假设元数据库路径参数值为``kylin_metadata@hbase``，那么该HDFS路径默认值就是`/kylin/kylin_metadata`。请预先确保启动KAP实例的用户有读写该目录的权限。
 ### kylin.server.mode
 该参数指定KAP实例的运行模式，参数值可以是*all*，*job*，*query*中的一个，默认值为*all*。*job*模式表示该服务仅用于Cube任务调度，不用于SQL查询；*query*模式表示该服务仅用于SQL查询，不用于Cube构建任务的调度；*all*模式表示该服务同时用于任务调度和SQL查询。
 ### kylin.source.hive.database-for-flat-table
