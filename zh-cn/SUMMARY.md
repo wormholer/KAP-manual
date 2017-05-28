@@ -4,7 +4,7 @@
 * [KAP简介](introduction/README.md)
     * [KAP概览](introduction/overview.cn.md)
     * [Apache Kylin简介](introduction/kylin.cn.md)
-    * [概念](introduction/concepts.cn.md)
+    * [基础概念](introduction/concepts.cn.md)
     * [获取支持](introduction/get_support.cn.md)
 * [KAP安装](install/README.md)
     * [必备条件](install/hadoop_env.cn.md)
