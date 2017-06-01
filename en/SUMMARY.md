@@ -8,7 +8,7 @@
     * [Get Support](introduction/get_support.en.md)
 *   [KAP Installation](install/README.md)
     * [Requirement](install/hadoop_env.en.md)
-    * [Environment check]((install/check_env.en.md))
+    * [Environment check](install/check_env.en.md)
     * [Install and Start](install/install_guide.en.md)
     * [Uninstall KAP](install/uninstall.en.md)
 *   [KAP Deployment]()
