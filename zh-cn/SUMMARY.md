@@ -13,7 +13,7 @@
         * [在CDH沙箱快速安装](install/quick_install_CDH.cn.md)
         * [在HDP沙箱快速安装](install/quick_install_HDP.cn.md)
         * [在FusionInsight快速安装](install/quick_install_FI.cn.md)
-        * [环境监测](install/check_env.cn.md)
+        * [环境检查](install/check_env.cn.md)
     * 集群部署
         * [负载均衡部署](install/adv_install_lb.cn.md)
         * [读写分离部署](install/adv_install_rw.cn.md)
@@ -24,6 +24,7 @@
     * [常见问题](install/install_faq.cn.md)
     * [卸载](install/uninstall.cn.md)
 * [配置](config/README.md)
+    * [配置文件](config/config_files.cn.md)
     - [配置参数](config/settings.cn.md)
     - [KyStorage配置参数](config/kystorage_settings.cn.md)
     - [生产环境推荐配置](config/recommend_settings.cn.md)

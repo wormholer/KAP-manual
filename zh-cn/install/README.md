@@ -6,25 +6,31 @@
 
 [必备条件](hadoop_env.cn.md)
 
-[快速安装](quick_install.cn.md)
+快速安装
 
-​	[在CDH快速安装](quick_install_CDH.cn.md)
+​	[单节点安装](quick_install.cn.md)
 
-​	[在HDP快速安装](quick_install_HDP.cn.md)
+​	[在CDH沙箱快速安装](quick_install_CDH.cn.md)
+
+​	[在HDP沙箱快速安装](quick_install_HDP.cn.md)
 
 ​	[在FusionInsight快速安装](quick_install_FI.cn.md)	
 
-[集群安装](adv_install_cluster.cn.md)
+​	[环境检查](check_env.cn.md)
 
-​	[读写分析安装](adv_install_rw.cn.md)
+集群部署
 
-​	[高可用安装](adv_install_ha.cn.md)
+​	[负载均衡部署](adv_install_lb.cn.md)
 
-[云端安装](cloud_install.cn.md)
+​	[读写分离部署](adv_install_rw.cn.md)
 
-​	[在Azure中国镜像市场安装](cloud_install_auzre_cn_image.cn.md)
+​	[高可用部署](adv_install_ha.cn.md)
 
-[安装验证](check_env.cn.md)
+云端安装
+
+​	[在Azure中国镜像市场安装](cloud_install_azure_cn_image.cn.md)
+
+[安装验证](install_validate.cn.md)
 
 [常见问题](install_faq.cn.md)
 
