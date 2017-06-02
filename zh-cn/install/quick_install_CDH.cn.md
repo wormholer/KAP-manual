@@ -1,36 +1,20 @@
-## 单节点部署（基于CDH）
-
-通常部署单个KAP节点，已经能够满足中小规模(QPS<50)的查询需求；单节点部署具有简单、快速的特点。部署过程即上一节的安装过程，下图是一个单节点部署的示意图。
-
-![](images/single_node.png)
-
-在单节点部署中，尤其是部署在沙箱中，以下的配置项值得注意。其中`yarn.nodemanager.resource.cpu-vcores`涉及CPU资源的分配，其他的配置项则是关于内存资源的分配。关于配置项的具体解释，请参考[Hadoop的官方网站](https://hadoop.apache.org/docs/r2.7.3/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)。
-
-- yarn.nodemanager.resource.cpu-vcores
-- yarn.scheduler.maximum-allocation-mb
-- yarn.nodemanager.resource.memory-mb
-- mapreduce.map.memory.mb
-- mapreduce.reduce.memory.mb
-- mapreduce.map.java.opts
-- mapreduce.reduce.java.opts
+## 在CDH沙箱快速安装KAP
 
 KAP发布了一些数据包，其中包含一些数据集样例和Cube。用户可以通过执行示例脚本轻松地导入数据集和Cube。欲悉更多关于安装和使用工具的详细信息，请参考其他相关指南。
 
 ### 准备环境
 
-KAP需要在Hadoop节点上运行，为了获得更好的稳定性，我们建议您部署一个纯Hadoop客户机， 将一些指令，例如*hive, hbase, hadoop, hdfs*，提前安装配置好。为了使准备事宜更简便，我们建议您尝试将KAP和 *All-in-one* sandbox VM这类沙盒软件配合使用，比如*Hortonworks Sandbox 2.2* 和*Cloudera QuickStart VM 5.7*。最小内存配置需要10GB。
+KAP需要在Hadoop节点上运行，为了获得更好的稳定性，我们建议您部署一个纯Hadoop客户机， 将一些指令，例如*hive, hbase, hadoop, hdfs*，提前安装配置好。为了使准备事宜更简便，我们建议您尝试将KAP和 *All-in-one* sandbox VM这类沙盒软件配合使用，比如*Hortonworks Sandbox（HDP）* 和*Cloudera QuickStart VM（CDH）*。最小内存配置需要10GB。
 
-> 由于不同的沙盒软件配套于不同的HBase版本，请安装KAP相应的配置文件。
+> 由于不同的沙盒软件配套于不同的HBase版本，请安装KAP相应的发行版。
 >
-> 在*HDP 2.2*上，请使用*HBase 0.98* 配置；
+> 在*HDP 2.2*上，请使用*HBase 0.98* 对应发行版；*HDP 2.3+*上，请使用*HBase 1.x* 对应发行版；
 >
-> 在*HDP 2.3+*上，请使用*HBase 1.x* 配置；
->
-> 在*CDH 5.7+*上，请使用*CDH*配置；
+> 在*CDH 5.7+*上，请使用*CDH*对应发行版；
 
-为了避免沙盒软件中的权限问题，你可以使用它的*root*帐户通过SSH。*Hortonworks Sandbox 2.2* 的密码为“*hadoop*”。*Horonworks Sandbox 2.3+*的密码参见 [Hortonworks Documents](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)。*Cloudera QuickStart VM 5.7+*的密码为 *cloudera*。
+为了避免沙盒软件中的权限问题，你可以使用它的*root*帐户通过SSH。*Cloudera QuickStart VM 5.7+*的密码为 *cloudera*。
 
-本指南将用*cloudera*作为案例. 
+本指南将用*cloudera*作为案例。
 
 在Virtual Box的设置中，我们也推荐您使用*bridged adapter*模型替代NAT模型。*Bridged Adapter*模型将给您的沙盒软件分配一个独立的IP地址，使您既可以通过本地访问KAP网页，也可以远程访问KAP网页。
 
@@ -60,31 +44,22 @@ tar -zxvf kap-{version}-{hbase}.tar.gz
 export KYLIN_HOME=/usr/local/kap-{version}-{hbase}
 ```
 
-> KAP Plus需要启动Spark Executor，会占用更多YARN资源，作为单机测试，需要调低Executor占用资源数，请添加（或替换）以下参数：
->
-> kap.storage.columnar.conf.spark.driver.memory=512m
->
-> kap.storage.columnar.conf.spark.executor.memory=512m
->
-> kap.storage.columnar.conf.spark.executor.cores=1
->
-> kap.storage.columnar.conf.spark.executor.instances=1
-
-在HDFS中创建KAP的工作目录，并授予KAP特殊权限与读写权限。
+在HDFS中创建KAP的工作目录，并授予KAP启动用户读写权限。
 
 ```shell
-hdfs dfs -mkdir /kylin
-hdfs dfs -mkdir /user/cloudera
-```
-
-> 如果在HDFS上没有读写权限，请先转至hdfs账户，然后创建目录，再授予权限。 
-
-```shell
-su hdfs
 hdfs dfs -mkdir /kylin
 hdfs dfs -chown cloudera /kylin
 hdfs dfs -mkdir /user/cloudera
 hdfs dfs -chown cloudera /user/cloudera
+```
+
+由于沙箱环境资源有限，可以首先切换到最小化资源配置模版。
+
+```shell
+cd $KYLIN_HOME/conf
+
+# Use sandbox(min) profile
+ln -sfn profile_min profile
 ```
 
 ### 环境检查
@@ -98,7 +73,7 @@ export HIVE_CONF=/etc/hive/conf
 export HCAT_HOME=/usr/lib/hive-hcatalog
 ```
 
-可通过执行bin/check-env.sh 验证环境是否符合KAP运行需求。
+可通过执行`bin/check-env.sh` 验证环境是否符合KAP运行需求。
 
 ### 导入数据样例和Cube
 

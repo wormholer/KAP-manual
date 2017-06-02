@@ -1,43 +1,18 @@
-## 单节点部署(基于HDP)
+## 在HDP沙箱快速安装HDP
 
-通常部署单个KAP节点，已经能够满足中小规模(QPS<50)的查询需求。单节点部署具有简单、快速的特点。下图是一个单节点部署的示意图。
-
-![](images/single_node.png)
-
-在单节点部署中，尤其是部署在沙箱中，以下的配置项值得注意。其中`yarn.nodemanager.resource.cpu-vcores`涉及CPU资源的分配，其他的配置项则是关于内存资源的分配。关于配置项的具体解释，请参考[Hadoop的官方网站](https://hadoop.apache.org/docs/r2.7.3/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)。
-
-- yarn.nodemanager.resource.cpu-vcores
-- yarn.scheduler.maximum-allocation-mb
-- yarn.nodemanager.resource.memory-mb
-- mapreduce.map.memory.mb
-- mapreduce.reduce.memory.mb
-- mapreduce.map.java.opts
-- mapreduce.reduce.java.opts
-
-
-### 单节点多实例部署
-
-KAP支持在单节点上运行多个实例，实例运行查询引擎以实现更好的负载均衡。
-
-在此部署模式中，要关注以下几点：
-
-- 实例必须运行查询模式（`kylin.server.mode＝query`），参考下一章的[配置方法](../config/jobengine_ha.cn.md)。
-
-- 保证多个实例无端口冲突。为每个实例重新配置端口，配置文件位于`${KYLIN_HOME}/tomcat/conf/server.xml`。
-
-  ​
+KAP发布了一些数据包，其中包含一些数据集样例和Cube。用户可以通过执行示例脚本轻松地导入数据集和Cube。欲悉更多关于安装和使用工具的详细信息，请参考其他相关指南。
 
 ### 环境准备
 
-运行KAP需要Hadoop环境支持，KAP安装在Hadoop集群的客户端节点上。作为快速上手，我们推荐使用*All in one*的沙箱虚拟机用于本地测试，包括*Hortonworks Sandbox（HDP） 2.2+* 和*Cloudera QuickStart VM（CDH） 5.7+*。虚拟机需要至少*10G*内存。
+KAP需要在Hadoop节点上运行，为了获得更好的稳定性，我们建议您部署一个纯Hadoop客户机， 将一些指令，例如*hive, hbase, hadoop, hdfs*，提前安装配置好。为了使准备事宜更简便，我们建议您尝试将KAP和 *All-in-one* sandbox VM这类沙盒软件配合使用，比如*Hortonworks Sandbox（HDP）* 和*Cloudera QuickStart VM（CDH）*。虚拟机需要至少*10G*内存。
 
-> 由于不同Sandbox采用了不同的HBase版本，安装KAP时需要采用对应的版本。
+> 由于不同的沙盒软件配套于不同的HBase版本，请安装KAP相应的发行版。
 >
-> *HDP 2.2* 请采用*HBase 0.98*版本；*HDP 2.3+* 请采用*HBase 1.X*版本
+> 在*HDP 2.2*上，请使用*HBase 0.98* 对应发行版；*HDP 2.3+*上，请使用*HBase 1.x* 对应发行版；
 >
-> *CDH 5.7+*请采用CDH版本
+> 在*CDH 5.7+*上，请使用*CDH*对应发行版；
 
-为了避免权限问题，我们建议使用*root*账号通过SSH的方式登录虚拟机，*HDP 2.2*的默认密码是*hadoop*， *HDP 2.3+* 请参考[Hortonworks文档](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)了解账号密码，*Cloudera QuickStart VM 5.7+*的默认密码是cloudera。
+为了避免权限问题，我们建议使用*root*账号通过SSH的方式登录虚拟机，*HDP 2.2*的默认密码是*hadoop*， *HDP 2.3+* 请参考[Hortonworks文档](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/)了解账号密码。
 
 以下指南以*root*账户为例。
 
@@ -85,17 +60,7 @@ tar -zxvf kap-{version}-{hbase}.tar.gz
 export KYLIN_HOME=/usr/local/kap-{version}-{hbase}
 ```
 
-> KAP Plus需要启动Spark Executor，会占用更多YARN资源，作为单机测试，需要调低Executor占用资源数，请添加（或替换）以下参数：
->
-> kap.storage.columnar.conf.spark.driver.memory=512m
->
-> kap.storage.columnar.conf.spark.executor.memory=512m
->
-> kap.storage.columnar.conf.spark.executor.cores=1
->
-> kap.storage.columnar.conf.spark.executor.instances=1
-
-在HDFS上创建KAP工作目录，并授权给KAP用户，能够读写该目录。
+在HDFS上创建KAP工作目录，并授权KAP启动用户读写权限。
 
 ```shell
 hdfs dfs -mkdir /kylin
@@ -111,6 +76,15 @@ hdfs dfs -mkdir /kylin
 hdfs dfs -chown root /kylin
 hdfs dfs -mkdir /user/root
 hdfs dfs -chown root /user/root
+```
+
+由于沙箱环境资源有限，可以首先切换到最小化资源配置模版。
+
+```shell
+cd $KYLIN_HOME/conf
+
+# Use sandbox(min) profile
+ln -sfn profile_min profile
 ```
 
 ### 环境检查

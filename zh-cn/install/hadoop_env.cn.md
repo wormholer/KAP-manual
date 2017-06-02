@@ -1,21 +1,22 @@
-## KAP依赖的环境
+## KAP安装必备条件
 
-KAP需要一个状态良好的Hadoop集群做为运行环境。为获得更好的稳定性，建议将KAP单独运行在一个或多个Hadoop客户机上。该客户机上已经配置了各个组件的客户端，如`hive`, `hbase`, `hadoop`, `hdfs`。
+KAP需要一个状态良好的Hadoop集群做为运行环境。为获得更好的稳定性，建议将KAP单独运行在一个或多个Hadoop客户机上。该客户机上已经配置了各个组件的客户端，如`hive`, `hbase`, `hadoop`, `hdfs`,`kafka`等，其中`hive`,`hadoop`和`hdfs`是必需组件。
 
 运行KAP的Linux账户，已经具备访问Hadoop集群的权限，包括
 * 读写HDFS
 * 创建和读取Hive表
-* 创建和操作HBase表
+* 创建和操作HBase表（如果使用JDBC Metastore，可选）
 * 递交MapReduce任务
 
 ### 认证的和已测试的Hadoop企业版
-* Cloudera CDH 5.7 / 5.8
-* Hortonworks HDP 2.2 / 2.3 / 2.4 
+* Cloudera CDH 5.7+
+* Hortonworks HDP 2.2+
+* 华为FusionInsight C60+
 
 
 ### 兼容的Hadoop版本
-* Hadoop: 2.4 - 2.7
-* Hive: 0.13 - 1.2
+* Hadoop: 2.x
+* Hive: 0.13+
 * HBase: 0.98/0.99, 1.x
 * JDK: 1.7+
 
@@ -44,6 +45,5 @@ KAP提交任务到Hadoop集群进行计算，需一定的内存资源。请保�
 - 至少两个1GbE以太网电口
 
 ### 推荐的Linux发行版
-* Red Hat Enterprise Linux 6.4, 6.5
-* CentOS 6.4, 6.5
-* *Ubuntu有已知问题*
+* Red Hat Enterprise Linux 6.4+, 7.x
+* CentOS 6.4+, 7.x

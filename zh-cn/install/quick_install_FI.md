@@ -1,4 +1,6 @@
-## 1. FI发行版环境介绍
+## 在FusionInsight快速安装KAP
+
+### FI发行版环境介绍
 
 FI集群版本：FusionInsight V100R002C60U20
 
@@ -11,7 +13,7 @@ FI集群版本：FusionInsight V100R002C60U20
 | HIVE      | 1.3.0 |
 | SPARK     | 1.5.1 |
 
-## 2.  环境兼容性检测及安装
+### 环境兼容性检测及安装
 
 关于KAP详细安装文档请参考：
 
@@ -75,32 +77,33 @@ kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions及kap.storage.colu
 
       解决方法：在FusionInsight Web_UI管理平台上创建一个新的用户，如：kap。将该用户添加到supergroup用户组下，角色分配的权限为System_administrator。 另外，需要将KAP工作目录，如：/kylin的owner更改为kap用户，可使用如下命令“hdfsdfs –chown －R kap /kylin”
 
-2.    提示没有安装SNAPPY。
+2. 提示没有安装SNAPPY。
 
       解决方法：
 
-​	方案一，安装SNAPPY。
+      ​方案一，安装SNAPPY。
 
-​	方案二，注释掉配置文件conf/kylin.properties中的snappy相关设置。 具体如下，设置kylin.storage.hbase.compression-codec=none，注释掉kap.storage.columnar.page-compression=SNAPPY。
+      ​方案二，注释掉配置文件conf/kylin.properties中的snappy相关设置。 具体如下，设置kylin.storage.hbase.compression-codec=none，注释掉kap.storage.columnar.page-compression=SNAPPY。
 
 
 
-## 4.   启动KAP服务
+### 启动KAP服务
 
-1．启动命令$KYLIN_HOME/bin/kylin.shstart，可以通过命令tail–f $KYLIN_HOME/logs/kylin.log观察KAP运行日志。
+1. 启动命令$KYLIN_HOME/bin/kylin.shstart，可以通过命令tail–f $KYLIN_HOME/logs/kylin.log观察KAP运行日志。
 
-2．打开浏览器，输入:[http://client-ip:7070/kylin](http://kap_install_ip:7070/kylin)，如果打不开页面，请确认客户机防火墙是否允许访问7070端口。
 
-3．KAP启动成功后应该可以看到如下界面。
+2. 打开浏览器，输入:[http://client-ip:7070/kylin](http://kap_install_ip:7070/kylin)，如果打不开页面，请确认客户机防火墙是否允许访问7070端口。
 
-4．关闭KAP，即：$KYLIN_HOME/bin/kylin.sh stop，执行$KYLIN_HOME/bin/sample.sh生成DEMO数据。
+3. KAP启动成功后应该可以看到如下界面。
 
-5．重新启动KAP，输入用户名:ADMIN  密码:KYLIN登录KAP。
+4. 关闭KAP，即：$KYLIN_HOME/bin/kylin.sh stop，执行$KYLIN_HOME/bin/sample.sh生成DEMO数据。
 
-6．选择 learn_kylin工程，选择Cube，在Action里选择Build，构建默认的kylin_sales_cube。
+5. 重新启动KAP，输入用户名:ADMIN  密码:KYLIN登录KAP。
 
-​	在Monitor观察构建详细步骤。
+6. 选择 learn_kylin工程，选择Cube，在Action里选择Build，构建默认的kylin_sales_cube。
 
-​	构建成功后，cube状态变为READY。
+ ​在Monitor观察构建详细步骤。
 
-7．在Insight执行查询select count(*) from kylin_sales，测试安装是否完成。
+ ​构建成功后，cube状态变为READY。
+
+7. 在Insight执行查询select count(*) from kylin_sales，测试安装是否完成。

@@ -1,4 +1,4 @@
-## KAP Azure镜像使用方法
+## 在Azure中国镜像市场安装KAP
 > Azure镜像使用方法仅针对Azure中国镜像市场上发行的KAP有效。
 
 很高兴地告诉您，KAP Enterprise已在[Azure中国镜像市场](https://market.azure.cn/)上线，用户可以方便地使用该镜像，快速创建一个基于Azure HDInsight的Hadoop集群，并运行在此集群上的KAP实例。其中所有的部署、安装和配置工作都已为您自动完成。
@@ -19,24 +19,24 @@
 
 请谨慎填写这些输入项，下面是关于这些输入项的含义和注意事项：
 
-| 输入项目  | 描述  | 建议／默认值 |
-|:------------- |:---------------| -------------|
-| Azure订阅     | 用于创建KAP的Azure订阅，如果没有可用订阅，请联系Azure支持 |         |
-| 选择资源组     | 选择用于管理KAP和所有依赖资源的资源组        |     建议新建一个资源组|
-| 资源组名称 | 新建资源组的名称        |            建议和clusterName一致|
-| 区域 | Azure中国数据中心：可选东部和北部        |            中国东部|
-| clusterName |   新建HDInsight集群的名称      |  使用字母和数字的组合，不要有特殊符号，需唯一          |
-| storageAccount |  新建HDInsight集群所使用的storage account       |   可以是一个已有的storage account，也可以是新建，建议跟clusterName同名         |
-| containerName |  新建HDInsight集群所使用的blob store的名称       |    建议跟clusterName同名        |
-| clusterLoginUserName |  HDInsight集群的web管理员账号，也将是KAP的管理员账号       |     admin       |
-| clusterLoginPassword |  HDInsight集群的web管理员密码，也将是KAP的管理员密码       |   长度不小于8，至少包含一个大写字母，一个数字以及一个特殊符号，且不能包含用户名在其中         |
-| sshUserName |   使用ssh登录HDInsight集群的用户      |    sshuser        |
-| sshPassword |  使用ssh登录HDInsight集群的密码       |    长度不小于8，至少包含一个大写字母，一个数字以及一个特殊符号，且不能包含用户名在其中          |
-| location |   区域      |      跟上面的“区域”保持一致，中国东部选chinaeast，北部选chinanorth      |
-| clusterType |  HDInsight类型       |     hbase       |
-| clusterWorkerNodeCount |  HDInsight集群的工作节点数       |    根据需要设置，最小为2， 确保当前订阅下有足够可用的core        |
-| edgeNodeSize |   运行KAP的节点的大小      |   Standard\_D3 或 Standard\_D4      |
-| appType |  选择要安装的KAP组件       |   KAP+KyAnalyzer         |
+| 输入项目                   | 描述                                  | 建议／默认值                                   |
+| :--------------------- | :---------------------------------- | ---------------------------------------- |
+| Azure订阅                | 用于创建KAP的Azure订阅，如果没有可用订阅，请联系Azure支持 |                                          |
+| 选择资源组                  | 选择用于管理KAP和所有依赖资源的资源组                | 建议新建一个资源组                                |
+| 资源组名称                  | 新建资源组的名称                            | 建议和clusterName一致                         |
+| 区域                     | Azure中国数据中心：可选东部和北部                 | 中国东部                                     |
+| clusterName            | 新建HDInsight集群的名称                    | 使用字母和数字的组合，不要有特殊符号，需唯一                   |
+| storageAccount         | 新建HDInsight集群所使用的storage account    | 可以是一个已有的storage account，也可以是新建，建议跟clusterName同名 |
+| containerName          | 新建HDInsight集群所使用的blob store的名称      | 建议跟clusterName同名                         |
+| clusterLoginUserName   | HDInsight集群的web管理员账号，也将是KAP的管理员账号   | admin                                    |
+| clusterLoginPassword   | HDInsight集群的web管理员密码，也将是KAP的管理员密码   | 长度不小于8，至少包含一个大写字母，一个数字以及一个特殊符号，且不能包含用户名在其中 |
+| sshUserName            | 使用ssh登录HDInsight集群的用户               | sshuser                                  |
+| sshPassword            | 使用ssh登录HDInsight集群的密码               | 长度不小于8，至少包含一个大写字母，一个数字以及一个特殊符号，且不能包含用户名在其中 |
+| location               | 区域                                  | 跟上面的“区域”保持一致，中国东部选chinaeast，北部选chinanorth |
+| clusterType            | HDInsight类型                         | hbase                                    |
+| clusterWorkerNodeCount | HDInsight集群的工作节点数                   | 根据需要设置，最小为2， 确保当前订阅下有足够可用的core           |
+| edgeNodeSize           | 运行KAP的节点的大小                         | Standard\_D3 或 Standard\_D4              |
+| appType                | 选择要安装的KAP组件                         | KAP+KyAnalyzer                           |
 
 在输入完上述信息后，请检查并确认Azure以及服务商的服务条款，确认无误后，点击“立即部署”开始创建集群。
 
@@ -166,10 +166,10 @@ sudo su kylin
 
 程序安装和配置路径：
 
-|组件  | 安装路径   | 日志路径 |
-|:------------- |:---------------|:-------------|
-| KAP  | /usr/local/kap/kap-2.3.0-GA-hbase1.x   |  /usr/local/kap/kap-2.3.0-GA-hbase1.x/logs/kylin.log| 
-| KyAnalyzer  | /usr/local/kap/kyanalyzer-server   | /usr/local/kap/kyanalyzer-server/tomcat/logs/kyanalyzer.log | 
+| 组件         | 安装路径                                 | 日志路径                                     |
+| :--------- | :----------------------------------- | :--------------------------------------- |
+| KAP        | /usr/local/kap/kap-2.3.0-GA-hbase1.x | /usr/local/kap/kap-2.3.0-GA-hbase1.x/logs/kylin.log |
+| KyAnalyzer | /usr/local/kap/kyanalyzer-server     | /usr/local/kap/kyanalyzer-server/tomcat/logs/kyanalyzer.log |
 
 KAP的启动停止：  
 

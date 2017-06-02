@@ -1,17 +1,20 @@
-### 集群部署
-KAP实例是无状态的服务，所有的状态信息，都存储在HBase中；启用多个KAP节点的集群部署，让这些节点分担查询压力，互为备份，提供服务的高可用性。
+## 集群（负载均衡）部署
+KAP实例是无状态的服务，所有的状态信息，都存储在MetaStore（如HBase，JDBC）中；启用多个KAP节点的拒载均衡集群，让这些节点分担查询压力，互为备份，提供服务的高可用性。
 
 ![](images/cluster.png)
+
+### KAP节点配置
 
 将多个KAP节点组成集群，需要确保它们：
 
 * 使用在同一Hadoop集群和HBase集群 
-* 没有端口冲突; 最好分开在不同服务器上，以做到互不影响。
 
 步骤：
 * 保持各节点`kylin.metadata.url`值相同，即使用同一张HBase metadata表
 * 更新其中一个KAP实例为任务引擎（`kylin.server.mode＝all`)，其它KAP实例都是查询引擎(`kylin.server.mode=query`)。如果启用任务引擎High Availability，参考下一章的[配置方法](../config/jobengine_ha.cn.md).
-* 将所有KAP实例的地址和端口更新到每个节点的``kylin.server.cluster-servers``，将被用于KAP多实例之间同步元数据状态，如`kylin.server.cluster-servers=127.0.0.1:7070,127.0.0.1:17070`
+* 将所有KAP实例的地址和端口更新到每个节点的``kylin.server.cluster-servers``，将被用于KAP多实例之间同步元数据状态，如`kylin.server.cluster-servers=1.1.1.1:7070,1.1.1.2:7070`
+
+### 负载均衡配置
 
 为了将外部请求发给集群，而不是单个节点，需要部署一个负载均衡器（Load Balancer），如Apache HTTP Server或Nginx。负载均衡器通过一定策略决定将某个请求转给某个节点，并且在节点失效时重试其它节点。终端用户通过负载均衡器的地址来访问KAP。为了便于用户和角色的管理，通常此时会启用LDAP集成的安全验证。
 
@@ -19,11 +22,11 @@ KAP实例是无状态的服务，所有的状态信息，都存储在HBase中；
 
 ```
 upstream kylin {
-    server 127.0.0.1:7070; #Kylin Server 1
-    server 127.0.0.1:17070; # Kylin Server 2
+    server 1.1.1.1:7070; #Kylin Server 1
+    server 1.1.1.2:7070; # Kylin Server 2
 }
 server {
-    listen       18080;
+    listen       8080;
     location / {
         proxy_pass http://kylin;
     }
@@ -46,4 +49,20 @@ wget https://github.com/downloads/jcoleman/tomcat-redis-session-manager/tomcat-r
 <Valve className="com.radiadesign.catalina.session.RedisSessionHandlerValve" />
 <Manager className="com.radiadesign.catalina.session.RedisSessionManager" host="localhost" port="6379" database="0" maxInactiveInterval="60"/>
 ```
-其中，host和port指向所使用的Redis集群地址。​
+其中，host和port指向所使用的Redis集群地址。
+
+
+
+### 单节点多实例部署
+
+KAP支持在单节点上运行多个实例，实例运行查询引擎以实现更好的负载均衡。
+
+在此部署模式中，要关注以下几点：
+
+- 保证多个实例无端口冲突。为每个实例重新配置端口，配置文件位于`${KYLIN_HOME}/tomcat/conf/server.xml`。
+
+步骤：
+
+- 保持各节点`kylin.metadata.url`值相同，即使用同一张HBase metadata表
+- 更新其中一个KAP实例为任务引擎（`kylin.server.mode＝all`)，其它KAP实例都是查询引擎(`kylin.server.mode=query`)。如果启用任务引擎High Availability，参考下一章的[配置方法](../config/jobengine_ha.cn.md).
+- 将所有KAP实例的地址和端口更新到每个节点的``kylin.server.cluster-servers``，将被用于KAP多实例之间同步元数据状态，如`kylin.server.cluster-servers=127.0.0.1:7070,127.0.0.1:17070

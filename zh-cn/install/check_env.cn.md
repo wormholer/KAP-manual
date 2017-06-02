@@ -2,14 +2,14 @@
 
 KAP运行在Hadoop集群上，对各个组件的版本，访问权限及CLASSPATH等都有一定的要求。因此KAP在运行时，为了避免遇到各种环境问题，提供了环境检测的功能。
 
-```
+```shell
 cd $KYLIN_HOME
 bin/check-env.sh
 ```
 
 当然用户也可不必手动触发check-env.sh，当运行kylin.sh时，如果没做过环境检测，check-env.sh将自动运行。
 
-## **脚本说明**
+### **脚本说明**
 
 #### **check-hadoop-conf.sh**
 
@@ -81,18 +81,18 @@ bin/check-env.sh
 
    作类似修改。
 
-​	**Example2:** 如果环境中没有Spark且需要Kerberos认证，请根据具体环境中的Kerberos配置：
+   ​**Example2:** 如果环境中没有Spark且需要Kerberos认证，请根据具体环境中的Kerberos配置：
 
-​	`-Djava.security.auth.login.config`
+   ​`-Djava.security.auth.login.config`
 
-​	`-Djava.security.krb5.conf`
+   ​`-Djava.security.krb5.conf`
 
-​	修改kylin.properties的配置项：
+   ​修改kylin.properties的配置项：
 
-​	`kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
+   ​`kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
 
-​	`kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
+   ​`kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
 
-​	`kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
+   ​`kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
 
 同时，check-spark.sh读取环境yarn的资源信息，用来检查kylin.properties里关于spark executor的资源配置是否合理，并给出相关合理建议。
