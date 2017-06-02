@@ -1,6 +1,6 @@
 ## KAP Required Environment
 
-A stable Hadoop cluster is the basic execution environment for KAP. We recommend deploy KAP on a dedicated edge node (or client node) of Hadoop cluster. The node must have clients of Hive, HBase, Hadoop, HDFS installed and shells are available on command line.
+A stable Hadoop cluster is the basic execution environment for KAP. We recommend deploy KAP on a dedicated edge node (or client node) of Hadoop cluster. The node must have clients of `Hive`, `HBase`, `Hadoop`, `HDFS` installed and shells are available on command line.
 
 The Linux account running KAP must have required access permissions to Hadoop cluster. These permissions include:
 * Read/Write permission of HDFS
@@ -9,13 +9,13 @@ The Linux account running KAP must have required access permissions to Hadoop cl
 * Execution permission of MapReduce job
 
 ### Certificated and Tested Commercial Hadoop Distributions
-* Cloudera CDH 5.7 / 5.8
-* Hortonworks HDP 2.2 / 2.3 / 2.4 
+* Cloudera CDH 5.7+
+* Hortonworks HDP 2.2+
 
 
 ### Compatible Hadoop Versions
 * Hadoop: 2.4 - 2.7
-* Hive: 0.13 - 1.2
+* Hive: 0.13+
 * HBase: 0.98/0.99, 1.x
 * JDK: 1.7+
 
@@ -44,6 +44,5 @@ When using *Beeline* as Hive client, KAP needs more privileges. Please update Hi
 - 2 or more 1GbE Ethernet port
 
 ### Recommended Linux Distribution
-- Red Hat Enterprise Linux 6.4, 6.5
-- CentOS 6.4, 6.5
-- *Ubuntu has known issues*
+- Red Hat Enterprise Linux 6.4, 6.5, 7.x
+- CentOS 6.4+, 7.x

@@ -1,4 +1,4 @@
-## Recommended Configurations for KAP v2.2
+## Recommended Configurations for Production
 
 The configuration files of KAP include following files: *kylin.properties*, *kylin_hive_conf.xml*, *kylin_job_conf.xml*, *kylin_job_conf_inmem.xml*. Among those files, *kylin.properties* is a major configuration parameter to control KAP's running behavior; *kylin_hive_conf.xml* is applied to configure parameters of interaction between KAP and Hive; *kylin_job_conf.xml* is applied to configure parameters of interaction between KAP and Hadoop cluster; *kylin_job_conf_inmem.xml is applied on in-memory* algorithm, *kylin_job_conf.xml* is applied on layer algorithm.
 

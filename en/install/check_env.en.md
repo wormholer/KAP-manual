@@ -9,7 +9,7 @@ bin/check-env.sh
 
 Normally "check-env.sh" will be triggered by running "kylin.sh". If "check-env.sh" hasn't been finished before, it can be triggered manually as well.
 
-### Explanation
+### Introduction
 
 "check-env.sh" is composed of a series of child checks as follow:
 
@@ -95,16 +95,16 @@ Check Spark's avaivability, there are two cases:
 
    **Example2:**  If there is no Spark installed in the environment but kerberos authentication is required,  please figure out the correct configurations of following items：
 
-​	`-Djava.security.auth.login.config`
+   ​`-Djava.security.auth.login.config`
 
-​	`-Djava.security.krb5.conf`
+   ​`-Djava.security.krb5.conf`
 
-​	and append them to the items in "kylin.properties"：
+   ​and append them to the items in "kylin.properties"：
 
-​	`kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
+   ​`kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
 
-​	`kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
+   ​`kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
 
-​	`kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
+   ​`kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
 
 Finally, "check-spark.sh" will retrieve yarn resource manager's information, in order to inspect the spark executor's configurations in kylin.properties, also give the reasonable suggestions.

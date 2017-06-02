@@ -25,7 +25,7 @@
     * [卸载](install/uninstall.cn.md)
 * [配置](config/README.md)
     * [配置文件](config/config_files.cn.md)
-    - [配置参数](config/settings.cn.md)
+    - [Kylin配置参数](config/settings.cn.md)
     - [KyStorage配置参数](config/kystorage_settings.cn.md)
     - [生产环境推荐配置](config/recommend_settings.cn.md)
     - [多级配置重写](config/config_override.cn.md)

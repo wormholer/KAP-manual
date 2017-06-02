@@ -4,7 +4,7 @@ KAP releases a few sample data sets and cubes in its package together. User coul
 
 ### Prepare Environment
 
-KAP need run in a Hadoop node, to get better stability, we suggest you to deploy it a pure Hadoop client machine, on which it command like *hive*, *hbase*, *hadoop*, *hdfs* already be installed and configured. To make things easier we strongly recommend you try KAP with *All-in-one* sandbox VM, like *Hortonworks Sandbox 2.2* and *Cloudera QuickStart VM 5.7*. The minimal memory should be 10GB. 
+KAP need run in a Hadoop node, to get better stability, we suggest you to deploy it a pure Hadoop client machine, on which it command like *hive*, *hbase*, *hadoop*, *hdfs* already be installed and configured. To make things easier we strongly recommend you try KAP with *All-in-one* sandbox VM, like *Hortonworks Sandbox(HDP)* and *Cloudera QuickStart VM(CDH)*. The minimal memory should be 10GB. 
 
 > Since different Sandbox have different HBase version, please install the corresponding KAP distribution.
 >
@@ -12,7 +12,7 @@ KAP need run in a Hadoop node, to get better stability, we suggest you to deploy
 >
 > Please use CDH distribution on *CDH 5.7+*
 
-To avoid permission issue in the sandbox, you can use its *root* account through SSH . The password for *Hortonworks Sandbox 2.2* is *hadoop*, password for *Horonworks Sandbox 2.3+*, please refer to the [Hortonworks Documents](http://zh.hortonworks.com/hadoop-tutorial/learning-the-ropes-of-the-hortonworks-sandbox/). For *Cloudera QuickStart VM 5.7+* is *cloudera*. 
+To avoid permission issue in the sandbox, you can use its *cloudera* account through SSH . 
 
 This guide uses *cloudera* as example. 
 
@@ -33,7 +33,7 @@ The following parameters should be updated, to meet the KAP resource requirement
 
 To obtain KAP package, please refer to [KAP release notes](../release/README.md). There may have some minor differences between KAP and KAP plus. 
 
-Copy KAP binary package into the server mentioned above, and decompress to /usr/local
+Copy KAP binary package into the server mentioned above, and unpack to /usr/local
 
 ```shell
 cd /usr/local
@@ -46,15 +46,6 @@ Set environment variable `KYLIN_HOME` to KAP home directory.
 export KYLIN_HOME=/usr/local/kap-{version}-{hbase}
 ```
 
-> KAP Plus will start Spark Executor, so need more YARN resource. For sandbox testing, please lower the Executor resource. Append(or update) the following parameters to Kylin.properties
->
-> kap.storage.columnar.conf.spark.driver.memory=512m
->
-> kap.storage.columnar.conf.spark.executor.memory=512m
->
-> kap.storage.columnar.conf.spark.executor.cores=1
->
-> kap.storage.columnar.conf.spark.executor.instances=1
 
 Create KAP working directory on HDFS, and grant privileges to KAP, with read/write permission.
 
@@ -71,6 +62,15 @@ hdfs dfs -mkdir /kylin
 hdfs dfs -chown cloudera /kylin
 hdfs dfs -mkdir /user/cloudera
 hdfs dfs -chown cloudera /user/cloudera
+```
+
+Since the sandbox has limited resource, please shift the current configuration to minimal profile.
+
+```shell
+cd $KYLIN_HOME/conf
+
+# Use sandbox(min) profile
+ln -sfn profile_min profile
 ```
 
 ### Environment Check

@@ -66,7 +66,7 @@ su hdfs
 hdfs dfs -mkdir /kylin
 hdfs dfs -chown root /kylin
 hdfs dfs -mkdir /user/root
-hdfs dfs -chown root /user/cloudera
+hdfs dfs -chown root /user/root
 ```
 ### 环境检查
 
