@@ -1,16 +1,16 @@
-# Count Distinct 精确查询
+## Count Distinct 精确查询
 
 Count distinct是一个对大多数数据分析师都很常用的函数。KAP 从版本v2.1以来通过位图算法支持了Count distinct 精确查询。对于数据型为tinyint， smallint和int的数据，KAP将把数据对应的值直接打入位图中。对于数据型为long，string和其他的数据，KAP将他们编码成字符串放入字典，然后再将对应的值打入位图。返回的度量结果是已经序列化的位图数据，而不仅是计算的值。这确保了不同的segment中，甚至跨越不同的segment来上卷，结果也是正确的。
 
 
 
-## 查询前提
+### 查询前提
 
 在使用count distinct 查询之前，你需要确认目标列是否预存了count distinct的预计算结果。在Cube展示界面点击需要查看的Cube的名称，可以通过点击Cube Designer界面的 `度量（measures）` 来查看Cube中所有measure的预计算信息。如果目标列已经被进行过 count distinct的预计算（`表达式(Expression)`为count_distinct 并且 `返回类型(Return Type)`为 bitmap）则意味着此列可以直接进行count distinct的精确查询。否则，你需要创建新Cube来存储目标列的count distinct预计算结果。
 
 
 
-## Count Distinct 精确查询设置 
+### Count Distinct 精确查询设置 
 
 首先在创建新Cube的界面，点击左下角`Measures+` 来开始新度量的设置。
 
@@ -30,7 +30,7 @@ Count distinct是一个对大多数数据分析师都很常用的函数。KAP �
 
 ![](images/cd_meausres_add.6.png)
 
-## 示例
+### 示例
 
 请选择默认**数据源** `learn_kylin`，其中表的结构如下：该数据集中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 、`KYLIN_CATEGORY_GROUPINGS`）。请通过**采样数据（Sample Data）**来熟悉事实表的结构 `KYLIN_SALES` 以便之后查询使用。
 
@@ -52,7 +52,7 @@ Count distinct是一个对大多数数据分析师都很常用的函数。KAP �
 
 
 
-## 全局目录
+### 全局目录
 
 KAP在默认状态下会将值编码进Cube segment级的字典。这意味着在不同的segment中的一个值可能被编码成不同的ID，然后导致计数的结果将是不正确的。 在KAP v2.1中，我们引入 “Global Dictionary” 来确保一个值只被编码为一个ID，即使是在不同的segment中。同时，字典的容量也被迅速扩大，现在一个字典已经可以支持最大为20亿数据的值。用户也可以将新上限替换到默认的五百万限制的字典中。
 

@@ -8,4 +8,4 @@ KyAnalyzer是Kyligence研发的敏捷BI工具，为用户提供开箱即用的�
 - 统一集成KAP的访问认证系统
 - 支持报表导出为链接，简化报表集成
 
-更多细节请参考：[KyAnalyzer 自助式敏捷BI工具](analyzer.cn.html)
+更多细节请参考：[KyAnalyzer 自助式敏捷BI工具](kyanalyzer.cn.html)

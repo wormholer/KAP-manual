@@ -1,6 +1,8 @@
+## 异步查询
+
 异步查询可以帮助用户异步地执行SQL查询，提供更高效的数据导出方式。
 
-## 发起异步查询
+### 发起异步查询
 
 **POST /kylin/api/async_query**
 
@@ -52,7 +54,7 @@
 curl -X POST -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: application/json" -d '{ "sql":"select * from p_lineorder limit 100", "project":"ssb" }' http://master:7070/kylin/api/async_query
 ```
 
-## 查询异步查询状态
+### 查询异步查询状态
 
 **GET /kylin/api/async_query/{QUERY_ID}/status**
 
@@ -109,7 +111,7 @@ curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: applica
 
 
 
-## 获取异步查询结果
+### 获取异步查询结果
 
 **GET /kylin/api/async_query/{QUERY_ID}/result**
 
@@ -131,7 +133,7 @@ curl -X GET -H "Authorization: Basic QURNSU46S1lMSU4=" -H "Content-Type: applica
 
 
 
-## 清理异步查询结果
+### 清理异步查询结果
 
 **DELETE /kylin/api/async_query**
 

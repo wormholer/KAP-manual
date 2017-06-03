@@ -1,4 +1,4 @@
-# Top-N 查询
+## Top-N 查询
 
 我们在生活中也总是看到“世界100强公司”、“最受欢迎的20大电子产品”等新闻标题的报道。分析Top-N也是数据分析场景中常常遇到的需求。因而易见，人们普遍认同分析顶级项对大多数数据分析都是很有价值也很有必要的。在大数据时代，这种需求显现得越来越强，因为明细数据集越来越大。在没有预计算的情况下，得到一个分布式大数据集的Top-N结果需要很长时间，导致点对点查询的效率很差。
 
@@ -6,7 +6,7 @@
 
 
 
-## Top-N 查询语句
+### Top-N 查询语句
 
 让我们用KAP包中初始默认的项目 `learn_kylin`（在KAP Web中也已经提前上传好了）。我们将重点使用其中的事实表 `kylin_sales`。如果你还没有建立过Cube，请参见以下文档构建Cube： [Quick Start with Sample Cube](https://kylin.apache.org/docs15/tutorial/kylin_sample.html).
 
@@ -40,7 +40,7 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 
 
 
-## 无Top-N 预计算
+### 无Top-N 预计算
 
 在 Kylin v1.5.0之前，只有维度列可以用“group by”查询，于是我们设计如下：用 `PART_DT`、 `LSTG_SITE_ID` 、 `SELLER_ID` 作为维度，同时定义 SUM(PRICE) 作为度量。Cube构建之后，基本的Cuboid则如下所示：
 
@@ -61,7 +61,7 @@ SELECT SELLER_ID, SUM(PRICE) FROM KYLIN_SALES
 
 
 
-## Top-N 预计算
+### Top-N 预计算
 
 如果在Cube创建时，设置了目标列Top-N的预计算，则当这个Cube被构建时，预计算结果会被存成一个新列。在这个例子中，`SELLER_ID`现在由维度变成了度量，不再出现在rowkey中。而以上场景中，新设计好的Cube中只有两个维度和一个Top-N的度量。
 

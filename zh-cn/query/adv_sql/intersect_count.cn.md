@@ -1,10 +1,10 @@
-# SQL 交集（Intersect）函数
+## SQL 交集（Intersect）函数
 
 留存率和转化率在互联网的数据分析场景下非常常见。一般来说，留存率的计算需要的就是两个数据集的交集的值，它们具有一些相同的维度（城市，类别等）和一个变化的维度（日期等）。KAP支持的留存率类的计算就是通过基于位图算法和UDAF算法的**intersect_count** 函数。本节我们将向您介绍如何使用交集函数。
 
 
 
-## Intersect 查询语句
+### Intersect 查询语句
 
 SQL **INTERSECT** 从句/操作符用来接合两个SELECT 语句，且返回的行来自第一个SELECT语句中且等同于第二个SELECT语句中某一行。也就是说INTERSECT只会返回两个SELECT语句的结果中共同的行。
 
@@ -20,7 +20,7 @@ SQL **INTERSECT** 从句/操作符用来接合两个SELECT 语句，且返回的
 
 
 
-## 查询前提
+### 查询前提
 
 为了在KAP中应用留存率的计算，sql查询需要符合以下要求：
 
@@ -30,7 +30,7 @@ SQL **INTERSECT** 从句/操作符用来接合两个SELECT 语句，且返回的
 
 
 
-## 示例
+### 示例
 
 请选择默认**数据源** `learn_kylin`，其中表的结构如下：该数据集中有一张事实表（`KYLIN_SALES`）和两张维度表（`KYLIN_CAL_DT` 、`KYLIN_CATEGORY_GROUPINGS`）。请通过**数据样例**来熟悉事实表的结构 `KYLIN_SALES` 以便之后查询使用。
 
