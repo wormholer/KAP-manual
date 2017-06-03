@@ -1,3 +1,5 @@
+## Insight
+
 > **Supported Browsers**
 >
 > Windows: Google Chrome, FireFox
@@ -5,15 +7,15 @@
 > Mac: Google Chrome, FireFox, Safari
 
 
-## Query Page Overview
-Click *Insight* on KAP navigation header, all query-able tables will be listed on the left side of page. The tables will be shown only after the cube build successfully. Enter SQL in textbox on the right side of page, query result will be shown at the below textbox.
+### Query Page Overview
+### Click *Insight* on KAP navigation header, all query-able tables will be listed on the left side of page. The tables will be shown only after the cube build successfully. Enter SQL in textbox on the right side of page, query result will be shown at the below textbox.
 
 * **FACT** - Fact Table 
 * **LOOKUP** - Dimension Table
 
 ![](images/web/query_list_table.png)
 
-## Query with SQL
+### Query with SQL
 > **Query Limitations**
 >
 > 1. Only support SQL
@@ -24,13 +26,36 @@ Enter SQL and click *Submit*, you will see query results. One more thing, there'
 ![](images/web/query_input_sql.png)
 
 
-## Save Query
+### Save Query
 User could click *Save SQL* button at right bottom to save queries, the query is associated with current user.
 
 ![](images/web/query_list_save_query.png)
 
-## Query History
+### Query History
 All query histories will show in *Query History* tab. Click *Query History* tab, you can resubmit your sql. If the browser cookies are cleared, all histories will be lost. 
 
 ![](images/web/query_list_history.png)
 
+#### Data Visulization in KAP
+
+#### Table
+
+KAP displays query result in table by default, the result data could be sorted in ascending or descending order. You can also hide the column and export results in CSV.
+
+![](images/visualization/result_display_table.png)
+
+Click *Visulization* button, you can display query result in chart. KAP supports *line chart*, *bar chart*, *pie chart* by default.
+
+#### Chart
+
+- Line Chart
+
+![](images/visualization/result_display_line.png)
+
+- Bar Chart
+
+![](images/visualization/result_display_bar.png)
+
+- Pie Chart
+
+![](images/visualization/result_display_pie.png)

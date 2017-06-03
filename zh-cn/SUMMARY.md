@@ -39,8 +39,9 @@
     * [数据导入](model/data_import.cn.md)
     * [数据采样](model/data_sampling.cn.md)
     * [设计模型](model/data_modeling.cn.md)
-    * 设计Cube
+    * [设计Cube](model/cube/README.md)
         * [设计Cube](model/cube/create_cube.cn.md)
+        * [维度聚合组](model/cube/aggregation_group.cn.md)
         * [一键优化](model/cube/cube_suggestion.cn.md)
         * [度量设计-TopN](model/cube/topN.cn.md)
         * [度量设计-近似Distinct Count](model/cube/count_distinct.cn.md)

@@ -8,5 +8,5 @@ The highlight features including:
 - Integrate authentication with KAP
 - Enable share reports with 3rd party
 
-Learn more, [KyAnalyzer Self-service Agile BI Tools](analyzer.en.html)
+Learn more, [KyAnalyzer Self-service Agile BI Tools](kyanalyzer.en.html)
 
