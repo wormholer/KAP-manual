@@ -35,7 +35,7 @@ use ambari to launch hadoop
 
 ```shell
 ambari-agent start
-amber-server start
+ambari-server start
 ```
 
 With both command successfully run you can go to ambari homepage at [http://{hostname}:8080](http://your_sandbox_ip:8080/) (username:admin,password:admin)to check everything’s status. 

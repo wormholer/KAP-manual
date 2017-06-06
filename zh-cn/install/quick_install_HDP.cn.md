@@ -34,7 +34,7 @@ KAP需要在Hadoop节点上运行，为了获得更好的稳定性，我们建�
 
 ```shell
 ambari-agent start
-amber-server start
+ambari-server start
 ```
 
 命令成功之后，登录ambari  [http://{hostname}:8080](http://{hostname}:8080) (默认登录用户名admin, 密码admin)来检查各项状态。
