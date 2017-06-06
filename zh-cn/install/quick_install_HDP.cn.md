@@ -93,9 +93,9 @@ KAP运行时需要依赖环境信息，通过环境变量读取，这些变量�
 
 ```shell
 export HADOOP_CONF_DIR=/etc/hadoop/conf
-export HIVE_LIB=/usr/lib/hive
+export HIVE_LIB=/usr/hdp/current/hive-client/lib/
 export HIVE_CONF=/etc/hive/conf
-export HCAT_HOME=/usr/lib/hive-hcatalog
+export HCAT_HOME=/usr/hdp/current/hive-webhcat/
 ```
 
 可通过执行bin/check-env.sh 验证环境是否符合KAP运行需求。

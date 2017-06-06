@@ -93,9 +93,9 @@ KAP will retrieve Hadoop dependency from environment by reading environment vari
 
 ```shell
 export HADOOP_CONF_DIR=/etc/hadoop/conf
-export HIVE_LIB=/usr/lib/hive
+export HIVE_LIB=/usr/hdp/current/hive-client/lib/
 export HIVE_CONF=/etc/hive/conf
-export HCAT_HOME=/usr/lib/hive-hcatalog
+export HCAT_HOME=/usr/hdp/current/hive-webhcat/
 ```
 
 ``bin/check-env.sh`` will check if all environment meets the KAP requirements. 
