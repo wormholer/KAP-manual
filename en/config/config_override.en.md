@@ -1,6 +1,6 @@
 ## Configuration overriding
 
-Some of the configuration properties in `KAP_HOME/conf/` could be overridden through KAP GUI. Configuration overriding has two scopes: project level and cube level. There priority order can be stated as: cube level configurations > project level configurations > configuration files.  
+Some of the configuration properties in `KAP_HOME/conf/` could be overridden through KAP GUI. Configuration overriding has two scopes: project level and cube level. The priority order can be stated as: cube level configurations > project level configurations > configuration files.  
 
 ### Project level configuration overriding
 

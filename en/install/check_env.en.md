@@ -1,6 +1,6 @@
 ## Environment Check
 
-There are a couple of requirements for KAP running on Hadoop cluster, hence it is crutial to have a environment check before running KAP.
+There are a couple of requirements for KAP running on Hadoop cluster, hence it is crucial to have a environment check before running KAP.
 
 ```
 cd $KYLIN_HOME

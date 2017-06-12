@@ -4,7 +4,7 @@ KAP releases a few sample data sets and cubes in its package together. User coul
 
 ### Prepare Environment
 
-KAP need run in a Hadoop node, to get better stability, we suggest you to deploy it a pure Hadoop client machine, on which it command like *hive*, *hbase*, *hadoop*, *hdfs* already be installed and configured. To make things easier we strongly recommend you try KAP with *All-in-one* sandbox VM, like *Hortonworks Sandbox (HDP)* and *Cloudera QuickStart VM (CDH)*. The minimal memory should be 10GB. 
+KAP need run in a Hadoop node, to get better stability, we suggest you to deploy it a pure Hadoop client machine, on which its command like *hive*, *hbase*, *hadoop*, *hdfs* already be installed and configured. To make things easier we strongly recommend you try KAP with *All-in-one* sandbox VM, like *Hortonworks Sandbox (HDP)* and *Cloudera QuickStart VM (CDH)*. The minimal memory should be 10GB. 
 
 > Since different Sandbox have different HBase version, please install the corresponding KAP distribution.
 >
@@ -89,7 +89,7 @@ ln -sfn profile_min profile
 
 ### Environment Check
 
-KAP will retrieve Hadoop dependency from environment by reading environment variables. The variables includes: HADOOP_CONF_DIR, HIVE_LIB, HIVE_CONF, and HCAT_HOME. The example configuration:
+KAP will retrieve Hadoop dependency from environment by reading environment variables. The variables include: HADOOP_CONF_DIR, HIVE_LIB, HIVE_CONF, and HCAT_HOME. The example configuration:
 
 ```shell
 export HADOOP_CONF_DIR=/etc/hadoop/conf

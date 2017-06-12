@@ -20,7 +20,7 @@ Easy-to-use web GUI allows user to build data mart in a self-serving manner, wit
 
 * __Extensible Architecture__
 
-Extensible architecture decouples KAP with computation framework, data source, and storage. Allows flexible choices between alternative technologies like MapReduce and Spark, connects with different data sources and storages. Ensures KAP can evolve with the best of the big data ecosystem. 
+Extensible architecture decouples KAP with computation framework, data source, and storages. Allows flexible choices between alternative technologies like MapReduce and Spark, connects with different data sources and storages. Ensures KAP can evolve with the best of the big data ecosystem. 
 
 
 * __Non-invasive__

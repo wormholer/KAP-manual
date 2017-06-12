@@ -23,7 +23,7 @@ KAP Plus 2.X shares compatible metadata with other KAP Plus 2.X versions. Thus y
    export KYLIN_HOME=...
    ```
 
-4. 更新配置文件：Update the configuration files: 
+4. Update the configuration files: 
 
    If you have modified any configuration files under `conf/` of the old version, please merge all of them to corresponding configuration files of the new version.  
 

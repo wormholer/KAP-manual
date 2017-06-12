@@ -1,4 +1,4 @@
-This sections introduces the basic concepts used in KAP.
+This section introduces the basic concepts used in KAP.
 
 ### Cube
 * __Table__ - Table is the source data of cube. Before creating a cube, KAP need to sync tables from data source (typically Hive), including table name, columns, and types etc.
@@ -20,7 +20,7 @@ This sections introduces the basic concepts used in KAP.
 
 * __Derived__ - Derived dimensions are dimensions on lookup table. They can be derived at runtime by searching lookup table using primary key, thus do not have to be stored in cube.
 
-* __Count Distinct(HyperLogLog)__ - Precise count distinct on big data is known to be difficult and unefficient. [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) is an approximate algorithm for count distinct. With very small error and memory footprint, it can calculate count distinct on huge data set efficiently.
+* __Count Distinct(HyperLogLog)__ - Precise count distinct on big data is known to be difficult and inefficient. [HyperLogLog](https://en.wikipedia.org/wiki/HyperLogLog) is an approximate algorithm for count distinct. With very small error and memory footprint, it can calculate count distinct on huge data set efficiently.
 
 * __Count Distinct(Bitmap)__ - Precise count distinct based on bitmap. It is much more memory consuming than HyperLogLog, but gives precise result. Currently only integer type (or other types that can converts to integer by a dictionary) is supported.
 
@@ -28,7 +28,7 @@ This sections introduces the basic concepts used in KAP.
 
 ### Cube Operations
 * __BUILD__ - Given a time range, pull records from data source and build a cube segment.
-* __REFRESH__ - Refresh a built segment, pulls latest records from data source and rebuilt the cube segment.
+* __REFRESH__ - Refresh a built segment, pull latest records from data source and rebuilt the cube segment.
 * __MERGE__ - Merge multiple segments into a bigger segment. Reduce cube storage and speed up queries a bit. 
 * __PURGE__ - Purge all segments in a cube.
 

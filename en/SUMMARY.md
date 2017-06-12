@@ -85,7 +85,7 @@
     * [Diagnosis](troubleshooting/diag.en.md)
     * [Logging](troubleshooting/logging.en.md)
     * [Alert](troubleshooting/alerting.en.md)
-    * [Techinal Support & Diagnosis](troubleshooting/diag.en.md)
+    * [Technical Support & Diagnosis](troubleshooting/diag.en.md)
     * [KyBot: Kylin Online Diagnostic and Tuning Service](kybot/README.md)
         * [KyBot Overview and Quick Start](kybot/kybot.en.md)
         * [KyBot Case Analysis](kybot/case.en.md)

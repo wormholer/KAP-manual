@@ -77,7 +77,7 @@ ${KYLIN_HOME}/bin/check-env.sh
 
 > Optionally, if want to install multiple KAP instances in a Hadoop cluster, you must specify different metadata URL for each instance. In `conf/kylin.properties`, set `kylin.metadata.url` to different values for each instance, for example `kylin_default_instance@hbase` (the default value), or `kylin_prod@hbase`, or `kylin_qa@hbase` etc.
 
-If enviroment check hits error, most likely it is because certain Hadoop dependency is not detected automatically. To overcome, you can specify Hadoop dependencies explicitly by setting environment variables, including `HADOOP_CONF_DIR`, `HIVE_LIB`, `HIVE_CONF`, and `HCAT_HOME`. Examples:
+If environment check hits error, most likely it is because certain Hadoop dependency is not detected automatically. To overcome, you can specify Hadoop dependencies explicitly by setting environment variables, including `HADOOP_CONF_DIR`, `HIVE_LIB`, `HIVE_CONF`, and `HCAT_HOME`. Examples:
 
 ```shell
 export HADOOP_CONF_DIR=/etc/hadoop/conf
