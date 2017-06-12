@@ -107,6 +107,7 @@ ${KYLIN_HOME}/bin/kylin.sh start
 成功登录KAP后，可以通过构建Sample Cube验证安装的正确性。请继续阅读[安装验证](install/install_validate.cn.md)。
 
 ### 停止KAP
+
 执行`bin/kylin.sh stop`命令，停止KAP进程。
 
 要确认KAP进程已经停止，请执行`ps -ef | grep kylin`确认没有活跃进程。

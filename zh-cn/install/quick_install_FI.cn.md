@@ -85,25 +85,13 @@ kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions及kap.storage.colu
 
       ​方案二，注释掉配置文件conf/kylin.properties中的snappy相关设置。 具体如下，设置kylin.storage.hbase.compression-codec=none，注释掉kap.storage.columnar.page-compression=SNAPPY。
 
-
-
 ### 启动KAP服务
 
 1. 启动命令$KYLIN_HOME/bin/kylin.shstart，可以通过命令tail–f $KYLIN_HOME/logs/kylin.log观察KAP运行日志。
 
+2. 打开浏览器，访问此KAP服务器的GUI界面`http://<host_name>:7070/kylin`。如果打不开页面，请确认客户机防火墙是否允许访问7070端口。
 
-2. 打开浏览器，输入:[http://client-ip:7070/kylin](http://kap_install_ip:7070/kylin)，如果打不开页面，请确认客户机防火墙是否允许访问7070端口。
+3. 从Web前端登录，默认用户名ADMIN，默认密码KYLIN。
 
-3. KAP启动成功后应该可以看到如下界面。
+4. 成功登录KAP后，可以通过构建Sample Cube验证安装的正确性。请继续阅读[安装验证](install/install_validate.cn.md)。
 
-4. 关闭KAP，即：$KYLIN_HOME/bin/kylin.sh stop，执行$KYLIN_HOME/bin/sample.sh生成DEMO数据。
-
-5. 重新启动KAP，输入用户名:ADMIN  密码:KYLIN登录KAP。
-
-6. 选择 learn_kylin工程，选择Cube，在Action里选择Build，构建默认的kylin_sales_cube。
-
- ​在Monitor观察构建详细步骤。
-
- ​构建成功后，cube状态变为READY。
-
-7. 在Insight执行查询select count(*) from kylin_sales，测试安装是否完成。

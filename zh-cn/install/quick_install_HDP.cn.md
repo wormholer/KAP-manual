@@ -100,53 +100,28 @@ export HCAT_HOME=/usr/hdp/current/hive-webhcat/
 
 可通过执行bin/check-env.sh 验证环境是否符合KAP运行需求。
 
-### 导入样例数据和模型
-
-`bin/sample.sh`会创建5个Hive Table，并导入样例数据。数据导入成功后，会自动创建样例项目、模型和Cube定义。
-
-```shell
-cd kap-{version}-{hbase}
-bin/sample.sh
-```
-
-成功执行的脚本，最后的输出如下（项目名称为“learn_kylin”并需要用户在系统页面重新导入metadata）：
-
-> Sample cube is created successfully in project 'learn_kylin'.
-> Restart Kylin server or reload the metadata from web UI to see the change.
-
 ### 启动KAP
 
-进入KAP安装目录，并执行启动脚本`bin/kylin.sh start`。
+执行`bin/kylin.sh start`，KAP将在后台开始启动，您可以用`tail`等命令观察`logs/kylin.log`文件，了解启动详细进度。
 
 ```shell
-cd kap-{version}-{hbase}
-bin/kylin.sh start
+${KYLIN_HOME}/bin/kylin.sh start
 ```
 
-KAP正常启动之后，可以通过浏览器访问，默认地址[http://{hostname}:7070/kylin](http://{hostname}:7070/kylin)，默认用户名ADMIN，密码KYLIN。
+要确认KAP进程正在运行，可以执行`ps -ef | grep kylin`查看进程。
 
-### 构建Cube
+> 如果遇到问题，请确认所有KAP都已经停止，再重试启动。请参阅"停止KAP"。
 
-进入KAP后，通过页面左上角的下拉菜单选择样例项目*learn_kylin*。
+### 打开KAP GUI
 
-![](images/kap_learn_kylin.jpg)
+在KAP启动完成后，可以打开Web浏览器，访问此KAP服务器的GUI界面`http://<host_name>:7070/kylin`。
 
-进入**模型**页面，选择样例Cube *kylin_sales_cube*，选择*操作*->*构建*，选择一个晚于*2014-01-01*的结束日期，这样会包含全部10000条原始数据，并提交。
+请替换*host_name*为具体的机器名、IP地址或域名。默认KAP启动在*7070*端口，默认用户名ADMIN，默认密码KYLIN。
 
-![](images/kap_build_cube.jpg)
+成功登录KAP后，可以通过构建Sample Cube验证安装的正确性。请继续阅读[安装验证](install/install_validate.cn.md)。
 
-进入**监控**页面，可以看到正在构建的Cube任务，可以点击*刷新*，获得最新进度，直到100%。
+### 停止KAP
 
+执行`bin/kylin.sh stop`命令，停止KAP进程。
 
-
-### 执行SQL查询
-
-当Cube构建成功后，进入**查询**页面，可以在页面左侧看到之前导入的五张表，这时可以输入SQL语句，对样例数据进行查询分析。样例语句包括：
-
-```sql
-select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt
-```
-
-查询的结果会呈现在页面中，可以对比Hive验证查询的结果和响应的速度。
-
-![](images/kap_query_result.jpg)
+要确认KAP进程已经停止，请执行`ps -ef | grep kylin`确认没有活跃进程。
