@@ -86,51 +86,27 @@ export HCAT_HOME=/usr/lib/hive-hcatalog
 
 ``bin/check-env.sh`` will check if all environment meets the KAP requirements.
 
-### Import Sample Data and Cube
-
-`bin/sample.sh` will create five sample hive tables and import sample data. After the data uploaded into Hive, the sample project metadata will be imported also, which includes model and cube definiton. 
-
-```shell
-cd kap-{version}-{hbase}
-bin/sample.sh
-```
-
-After the successful execution, the log would be:
-
-> Sample cube is created successfully in project 'learn_kylin'.
-> Restart Kylin server or reload the metadata from web UI to see the change.
-
 ### Start KAP
 
-Enter KAP home directory，and run the script`bin/kylin.sh start`。
+Execute command `bin/kylin.sh start`, KAP will start in background. You can track starting progress by watching file `logs/kylin.log` with `tail` command.
 
 ```shell
-cd kap-{version}-{hbase}
-bin/kylin.sh start
+${KYLIN_HOME}/bin/kylin.sh start
 ```
 
-When KAP is started successfully, the web portal is ready to access. The default address http://{hostname}:7070/kylin, default username ADMIN, and password KYLIN.
+To confirm KAP is running, check the process by `ps -ef | grep kylin`.
 
-### Build Cube
+> If hit problem, please confirm all KAP processes are stopped before restart. See "Stop KAP" section for details.
 
-Logon KAP web, select project *learn_kylin* in the project dropdown list(left upper corner). 
+### Open KAP GUI
 
-![](images/kap_learn_kylin.jpg)
+After starting KAP, open browser and visit KAP website `http://<host_name>:7070/kylin`. KAP login page shows if everything is good.
 
-At the **Model** page, select the sample Cube *kylin_sales_cube*, click **Action -> Build**, pick up a end date later than **2014-01-01**(to cover all 10000 sample records), and submmit the build job.
+Please replace `host_name` to machine name, ip address or domain name. The default KAP website port is 7070.
 
-![](images/kap_build_cube.jpg)
+Once login to KAP successfully, you can validate the installation by building a sample cube. Please continue to [Install Validation](install_validate.en.md).
 
-At the **Monitor** page, click *Refresh* to check the build progress, until 100%.
+### Stop KAP
+Execute command `bin/kylin.sh stop` to stop KAP service.
 
-### Execute SQL
-
-When the cube is built successfully, at the **Insight** page, three sample hive tables would be shown at the left panel. User could input query statements against these tables. For example: 
-
-```sql
-select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt
-```
-
-The query result will be displayed at the **Insight** page also. User could check the query results between KAP and Hive, including accuracy and response time. 
-
-![](images/kap_query_result.jpg)
+Confirm KAP process is stopped, `ps -ef | grep kylin` should return nothing.
