@@ -6,7 +6,7 @@ This manual is still growing. It can be viewed or downloaded at [Gitbook](https:
 
 
 
-**KyBot**: Online Diagnositic and Support Service for Apache Kylin https://kybot.io/
+**KyBot**: Online Diagnostic and Support Service for Apache Kylin https://kybot.io/
 
 KyBot is based on the Kyligence team’s deep understanding of Apache Kylin and years of accumulation on system experience. KyBot can help to give deep insight into potential problems in Kylin (KAP) cluster by using log analysis, big data statistics and artificial intelligence under the premise of protecting user data privacy. KyBot offer the features like dashboard, performance tuning, accident shooting and technical support, which can propose the data support and optimization suggestion of SQL query tuning, data model adjustment, storage tuning and full use of Hadoop clusters.
 
