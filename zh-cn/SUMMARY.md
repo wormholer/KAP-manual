@@ -9,10 +9,10 @@
 * [安装](install/README.md)
     * [必备条件](install/hadoop_env.cn.md)
     * 快速安装
-        * [单节点安装](install/quick_install.cn.md)
-        * [在CDH沙箱快速安装](install/quick_install_CDH.cn.md)
-        * [在HDP沙箱快速安装](install/quick_install_HDP.cn.md)
-        * [在FusionInsight快速安装](install/quick_install_FI.cn.md)
+        * [单节点快速安装](install/quick_install.cn.md)
+        * [在CDH沙箱上安装](install/quick_install_CDH.cn.md)
+        * [在HDP沙箱上安装](install/quick_install_HDP.cn.md)
+        * [在FusionInsight上安装](install/quick_install_FI.cn.md)
         * [环境检查](install/check_env.cn.md)
     * 集群部署
         * [负载均衡部署](install/adv_install_lb.cn.md)
