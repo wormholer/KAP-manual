@@ -24,7 +24,7 @@ Next, choose the column desired from `Param Value` and COUNT_DISTINCT from `Expr
 
 There is another little setting difference on`Advanced Setting`. To complete precise count distinct setting, which means to get correct results from precise count distinct function not only within a segment, but also across several segments when it is roll-up. So we need to add a global dictionary within `Advanced Dictionaries`. (Notice: please keep default `dict` settings for all long, string, and other non-integer columns to ensure them can be encode in the global dictionary)![](image/cd_measures_add.5.png)
 
-Select `Dictionaries+` , then choose desired columns as Column and the global dictionary shown below as its `Builder Class` . Follow the [Create Cube](molap/create_cube.en.md) introduction for rest steps, the Cube would be ready after you set segments during the [Build Cube](molap/build_cube.en.md) section.
+Select `Dictionaries+` , then choose desired columns as Column and the global dictionary shown below as its `Builder Class` . Follow the [Create Cube](create_cube.en.md) introduction for rest steps, the Cube would be ready after you set segments during the [Build Cube](../build_cube.en.md) section.
 
 ![](images/cd_meausres_add.6.png)
 
@@ -46,7 +46,7 @@ Next input `select count(distinct seller_id) as seller_num from kylin_sales wher
 
 
 
-Both results are testified right, proving that precise count distinct query works well and correctly. More information about approximate count distinct function, please refer to [Approximate Count Distinct](adv_molap/count_distinct_hllc.en.md) Introduction.
+Both results are testified right, proving that precise count distinct query works well and correctly. More information about approximate count distinct function, please refer to [Approximate Count Distinct](count_distinct.en.md) Introduction.
 
 
 

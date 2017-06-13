@@ -40,7 +40,7 @@ For instance, input `select count(distinct LSTG_FORMAT_NAME) as num from kylin_s
 
 
 
-Not only this result but also other testified results are right, which prove that approximate count distinct query works well. More information about precise count distinct function, please refer to [Precise Count Distinct](adv_molap/count_distinct_bitmap.en.md) Introduction.
+Not only this result but also other testified results are right, which prove that approximate count distinct query works well. More information about precise count distinct function, please refer to [Precise Count Distinct](count_distinct_precise.en.md) Introduction.
 
 ### Reference
 

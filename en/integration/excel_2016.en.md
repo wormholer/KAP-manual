@@ -12,7 +12,7 @@ Please make sure to download and install Kylin ODBC Driver __v1.5__. If you alre
 
 2. You will see`From ODBC`dialog, you can choose DSN`kylin` (Noticed：DSN referring to a specific data source. If you want to change data source, please rebuild connection with Kylin ODBC driver); or choose`Advanced options`, and type Database Connection String of KAP Server in the `Connection String` textbox. Optionally you can type a SQL statement in `SQL statement` textbox. Click `OK`, result set will run to your spreadsheet now.
 
-   ![](images/excel_2016/excel_3.png)
+   ![](images/excel_2016/excel_3.PNG)
    ![](images/excel_2016/excel_4.PNG)
 
 > Tips: In order to simplify the Database Connection String, DSN is recommended, which can shorten the Connection String like `DSN=[YOUR_DSN_NAME]`. Details about DSN, refer to [https://support.microsoft.com/en-us/kb/305599](https://support.microsoft.com/en-us/kb/305599).
