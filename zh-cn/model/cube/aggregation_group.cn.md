@@ -11,7 +11,7 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 为了缓解 Cube 的构建压力，Apache Kylin 引入了一系列的高级设置，帮助用户筛选出真正需要的 Cuboid。这些高级设置包括**聚合组**（Aggregation Group）、**联合维度**（Joint Dimension）、**层级维度**（Hierachy Dimension）和**必要维度**（Mandatory Dimension）等,下面我们会分别介绍高级设置中各聚合组的实现原理和应用场景实例。
 
-###聚合组（Aggregation Group）
+##聚合组（Aggregation Group）
 
 **用户根据自己关注的维度组合，可以划分出自己关注的组合大类，这些大类在Kylin里面被称为聚合组。**例如图1中展示的Cube，如果用户仅仅关注维度AB组合和维度CD组合，那么该Cube则可以被分化成两个聚合组，分别是聚合组AB和聚合组CD。如图2所示，生成的Cuboid数目从16个缩减成了8个。
 
@@ -57,7 +57,7 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ​        此时，Kylin会通过在线计算的方式，从现有的Cuboid中计算出合适的结果。
 
-###联合维度（Joint Dimension）
+##联合维度（Joint Dimension）
 
 用户有时并不关心维度之间各种细节的组合方式，例如用户的查询语句中仅仅会出现group by A, B, C，而不会出现group by A, B或者group by C等等这些细化的维度组合。这一类问题就是联合维度所解决的问题。例如将维度A、B和C定义为联合维度，Kylin就仅仅会构建Cuboid ABC，而Cuboid AB、BC、A等等Cuboid都不会被生成。最终的Cube结果如图5所示，Cuboid数目从16减少到4。
 
@@ -81,7 +81,7 @@ Case 1：SELECT cal_dt, city, sex_id, count(*) FROM table GROUP BY cal_dt, city,
 
 Case2：如果有一条不常用的查询：SELECT cal_dt, city, count(*) FROM table GROUP BY cal_dt, city则没有现成的完全匹配的Cuboid，Kylin会通过在线计算的方式，从现有的Cuboid中计算出最终结果。
 
-###层级维度 （Hierachy Dimension）
+##层级维度 （Hierachy Dimension）
 
 用户选择的维度中常常会出现具有层级关系的维度。例如对于国家（country）、省份（province）和城市（city）这三个维度，从上而下来说国家／省份／城市之间分别是一对多的关系。也就是说，用户对于这三个维度的查询可以归类为以下三类:
 
@@ -125,7 +125,7 @@ Case4：如果分析师想获取不同粒度地理维度的聚合结果时，无
 
 例如，SELECT country, city, count(*) FROM table GROUP BY country,city则它将从Cuboid[country, province, city]中获取数据。
 
-###必要维度（Mandatory Dimension） 
+##必要维度（Mandatory Dimension） 
 
 用户有时会对某一个或几个维度特别感兴趣，所有的查询请求中都存在group by这个维度，那么这个维度就被称为必要维度，只有包含此维度的Cuboid会被生成(如图10)。以图 1中的Cube为例，假设维度A是必要维度，那么生成的Cube则如图11所示，维度数目从16变为9。
 
@@ -143,7 +143,7 @@ Case4：如果分析师想获取不同粒度地理维度的聚合结果时，无
 
 ![](images/Mandatory-4.png)
 
-
+​									           	    图12
 
 ## 开始使用
 
