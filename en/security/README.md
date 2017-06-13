@@ -4,10 +4,10 @@ This chapter introduced how to manage data access and realize cell-level securit
 
 Continue reading:
 
-[User management](security/user.en.md)
+[User management](user.en.md)
 
-[Integrate with LDAP](security/ldap.en.md)
+[Integrate with LDAP](ldap.en.md)
 
-[Manage ACL](security/acl.en.md)
+[Manage ACL](acl.en.md)
 
-[Cell Level Security](security/cell.en.md)
+[Cell Level Security](cell.en.md)
