@@ -6,58 +6,191 @@ Curse of dimension is an infamous problem for all of the OLAP engines based on p
 
 It is a known fact that Kylin speeds up query performance by pre-calculating Cubes, which in term contains different combination of all dimensions, a.k.a. Cuboids. The problem is that Cuboids grows exponentially with the #dimension. For example, there’re totally 8 possible Cuboids for a cube with 3 dimensions, however there are 16 possible Cuboids for a Cube with 4 dimensions. Even though Kylin is using scalable computation framework (MapReduce) and scalable storage (HBase) to compute and store the Cubes, it is still unacceptable if Cube size turns up to be times bigger than the original data source.
 
-The solution is to prune unnecessary dimensions. As we previously discussed in http://kylin.apache.org/docs/howto/howto_optimize_cubes.html, it can be approached by two ways:
-
-First, we can remove dimensions those do NOT necessarily have to be dimensions. For example, imagine a date lookup table where keeps cal_dt as the PK column as well as lots of derived columns like week_begin_dt, month_begin_dt. Even though analysts need week_begin_dt as a dimension, we can prune it as it can always be calculated from dimension cal_dt, this is the “derived” optimization.
-
-Second, some of combinations between dimensions can be pruned. This is the main discussion for this article, and let’s call it “combination pruning”. For example, if a dimension is specified as “mandatory”, then all of the combinations without such dimension can be pruned. If dimension A,B,C forms a “hierarchy” relation, then only combinations with A, AB or ABC shall be remained. Prior to v1.5, Kylin also had an “aggregation group” concept, which also serves for combination pruning. However it is poorly documented and hard to understand (I also found it is difficult to explain). Anyway we’ll skip it as we will re-define what “aggregation group” really is.
-
-During our open source practice we found some critical drawbacks for the original combination pruning techniques. Firstly, these techniques are isolated rather than systematically well designed. Secondly, the original aggregation group is poorly designed and documented that it is hardly used outside eBay. Thirdly, which is the most important one, it’s not expressive enough in terms of describing semantics.
-
-To illustrate the describing semantic issue, let’s imagine a transaction data cube where there is a very high cardinality dimension called buyer_id, as well as other normal dimensions like transaction date cal_dt, buyers’ location city, etc. The analyst might need to get an overview impression by grouping non-buyer_id dimensions, like grouping only cal_dt. The analyst might also need to drill down to check a specific buyer’s behavior by providing a buyer_id filter. Given the fact that buy_id has really high cardinality, once the buyer_id is determined, the related records should be very few (so just use the base cuboid and do some query time aggregation to “aggregate out” the unwanted dimensions is okay). In such cases the expected output of pruning policy should be as below. Unfortunately there is no way to express such pruning settings with the existing semantic tools prior to Kylin v1.5
-
-| Cuboid               | Compute or Skip | Reason                                   |
-| -------------------- | --------------- | ---------------------------------------- |
-| city                 | compute         | Group by location                        |
-| cal_dt               | compute         | Group by date                            |
-| buyer_id             | skip            | Group by buyer yield too many results to analyze, buyer_id should be used as a filter and used by visiting base cuboid |
-| city,cal_dt          | compute         | Group by location and date               |
-| city,buyer_id        | skip            | Group by buyer yield too many results to analyze, buyer_id should be used as a filter and used by visiting base cuboid |
-| cal_dt,buyer_id      | skip            | Group by buyer yield too many results to analyze, buyer_id should be used as a filter and used by visiting base cuboid |
-| city,cal_dt,buyer_id | compute         | Base cuboid                              |
+![](images/AGG-1.png)
 
 
 
-## Aggregation Group Design
+​								Figure 1
 
-In Kylin v1.5 we redesigned the aggregation group mechanism in the jira issue https://issues.apache.org/jira/browse/KYLIN-242. The issue was named “Kylin Cuboid Whitelist” because the new design even enables cube designer to specify expected cuboids by keeping a whitelist, imagine how expressive it can be!
+To alleviate the pressure on Cube building, Apache Kylin has released a series of advanced setting to help end user filter actual neededCuboid. These advanced settings include Aggrgation Group, Join Dimension,Hierarchy Dimension and Mandatory Dimension. We will explain mechanism of these advanced settings and provide use cases in the following paragraphs. 
 
-In the new design, aggregation group (abbr. AGG) is defined as a cluster of cuboids that subject to shared rules. Cube designer can define one or more AGG for a cube, and the union of all AGGs’ contributed cuboids consists of the valid combination for a cube. Notice a cuboid is allowed to appear in multiple AGGs, and it will only be computed once during cube building.
+##Aggregation Group 
 
-If you look into the internal of AGG (https://github.com/apache/kylin/blob/kylin-1.5.0/core-cube/src/main/java/org/apache/kylin/cube/model/AggregationGroup.java) there’re two important properties defined: `@JsonProperty("includes")` and `@JsonProperty("select_rule")`.
+End user can divide combination of dimensions they focus on in several groups, and these groups in Apache Kylin is called **Aggregation Group. **As the cube shown in figure 1, if user only need dimension combination AB and CD, then cube can be divided into two aggregation group, group AB and group CD. As shown in figure 2, the number of cuboid can be reduced from 16 to 8. 
 
-`@JsonProperty("includes")`
-This property is for specifying which dimensions are included in the AGG. The value of the property must be a subset of the complete dimensions. Keep the proper minimal by including only necessary dimensions.
+![](images/AGG-2.png)
 
-`@JsonProperty("select_rule")`
-Select rules are the rules that all valid cuboids in the AGG will subject to. Here cube designers can define multiple rules to apply on the included dimensions, currently there’re three types of rule:
+​												Figure 2
 
-- Hierarchy rules, described above
-- Mandatory rule, described above
-- Joint rules. This is a newly introduced rule. If two or more dimensions are “joint”, then any valid cuboid will either contain none of these dimensions, or contain them all. In other words, these dimensions will always be “together”. This is useful when the cube designer is sure some of the dimensions will always be queried together.
-  It is also a nuclear weapon for combination pruning on less-likely-to-use dimensions. Suppose you have 20 dimensions, the first 10 dimensions are frequently used and the latter 10 are less likely to be used. By joining the latter 10 dimensions as “joint”, you’re effectively reducing cuboid numbers from 2^20 to 2^11. Actually this is pretty much what the old “aggregation group” mechanism was for. If you’re using it prior Kylin v1.5, our metadata upgrade tool will automatically translate it to joint semantics.
-  By flexibly using the new aggregation group you can in theory control whatever cuboid to compute/skip. This could significant reduce the computation and storage overhead, especially when the cube is serving for a fixed dashboard, which will reproduce SQL queries that only require some specific cuboids. In extreme cases you can configure each AGG contain only one cuboid, and a handful of AGGs will consists of the cuboid whitelist that you’ll need.
+The aggregation group end that user need might contain overlapping dimension, for example, aggregation ABC and aggregation BCD both contain dimension B and C. These aggregation groups will derive the sample cuboid, for example aggregation group ABC will derive cuboid BC, and so does aggregation group BCD. A cuboid will not be generated multiple times, if it can be derived from more than one aggregation group, as shown in figure 3.
 
-Kylin’s cuboid computation scheduler will arrange all the valid cuboids’ computation order based on AGG definition. You don’t need to care about how it’s implemented, because every cuboid will just got computed and computed only once. The only thing you need to keep in mind is: don’t abuse AGG. Leverage AGG’s select rules as much as possible, and avoid introducing a lot of “single cuboid AGG” unless it’s really necessary. Too many AGG is a burden for cuboid computation scheduler, as well as the query engine.
+With aggregation group, end user can then filter the granularity of cuboid to get the dimensionality he/she want. 
 
-## Buyer_id issue revisited
+![](images/AGG-3.png)							
 
-Now that we have got the new AGG tool, the buyer_id issue can be revisited. What we need to do is to define two AGGs for the cube:
+​											Figure 3
 
-- AGG1 includes: `[cal_dt, city, buyer_id] select_rules:{joint:[cal_dt,city,buyer_id]}`
-- AGG2 includes: `[cal_dt,city] select rules:{}`
+Use Case:
 
-The first AGG will contribute the base cuboid only, and the second AGG will contribute all the cuboids without buyer_id.
+Assume a transactional Cube, which contains below dimension: Customer ID`buyer_id`, Transaction Date`cal_dt`, Payment Type `pay_type`and Customer City`city`. Sometime, analyst need to group dimensionCity, Cal_dt and Pay_Type to understand different payment type in differentcities. There are other times, analyst need to group dimension city, cal_dt andbuy_id together to understand customer behavior in different cities. As exampleshown above, it is recommended to build two aggregation group, includingdimension and groups as below:
+
+![](images/AGG-4.png)
+
+Figure 4
+
+Aggregation Group 1： `[cal_dt,city, pay_type] `
+
+Aggregation Group 2： `[cal_dt,city, buyer_id] `
+
+ 
+
+Regardless of other situations, those two aggregation groups can reduce 3 unnecessary cuboid: [pay_type, buyer_id]、[city,pay_type, buyer_id] and [cal_dt, pay_type, buyer_id], thus storage space and build time can also be saved. 
+
+ 
+
+Case1: Select cal_dt, city, pay_type, count(*) from table
+
+​              Group by cal_dt, city, pay_type  will hit on Cuboid [cal_dt, city, pay_type]
+
+Case2: Select cal_dt, city, buyer_id, count(*) from table
+
+​             Group by cal_dt, city, buyer_id will hit on Cuboid [cal_dt, city, buyer_id]
+
+Case 3: If one unusual query occur
+
+​            Select pay_type, buyer_id,count(*) from table
+
+​            Group by pay_type, buyer_id then nocuboid can be hit, Kylin will live calculate result based on existing cuboid. 
+
+
+
+
+##Joint Dimension
+
+End user sometimes don’t need detail of some combination of dimensions, for example, user might query dimension A,B,C together in most cases, but not dimension A,C or dimension C alone. To enhance performance in this case, Join Dimension can be used. If A, B and C are defined as Join Dimension, Kylin will only build Cuboid ABC but not Cuboid AB, BC and A. Finally, Cube built will be as Figure 5. The number of Cuboid can then reduced from 16 to 4.
+
+ 
+
+![](images/AGG-5.png)
+
+​											Figure 5
+
+ 
+
+Use Case:
+
+ 
+
+Assume a transactional Cube that include dimension transaction date`cal_dt`,transaction city`city`, customer gender`sex_id`, payment type`pay_type`. Analyst usually need to group transaction date, transaction city andcustomer gender to understand consumption preference for different gender in different city, in this case, `cal_dt, city,sex_id `will be grouped together. In this case above, it is recommended to assign them in joint dimension based on existing aggregation group that include following dimension and combination as shown in figure 6. 
+
+ 
+
+![](images/AGG-6.png)
+
+Figure 6
+
+ 
+
+Aggregation group: `[cal_dt,city, sex_id，pay_type]`
+
+Join Dimension:  `[cal_dt, city, sex_id] `
+
+ 
+
+Case 1：SELECT cal_dt,city, sex_id, count(*) FROM table GROUP BY cal_dt, city, sex_id can retrieve data from cuboid [cal_dt, city, sex_id].
+
+Case2 If one unusual query occur
+
+SELECT cal_dt, city, count(*) FROM table GROUP BY cal_dt, city then no cuboid can be hit, Kylin will live calculate result based on existing cuboid. 
+
+
+
+
+##Hierarchy Dimension
+
+End user usually will use dimensions with hierarchical relationship, for example, Country,Province and city. From top to bottom, country, province and city are one-to-many relationship. That is to say, query to these three dimensions can be group into three types
+
+ 
+
+1.    group by country
+
+
+
+2.    group by country, province（equivalent to group by province）
+
+
+
+3.    group by country, province, city（equivalent to group by country, city or group by city）
+
+
+
+As the cube shownin figure 7, assume dimension A =Country, dimension B= Province and dimensionC=City, then dimension ABC can be set as hierarchy dimension. And cuboid [A,C,D]=cuboid[A,B, C, D]，cuboid [B, D]=cuboid[A, B, D], thus cuboid[A,C,D] and Cuboid[B,D] can be saved. Figure 8 illustrates, based on method above,kylin can prune redundant cuboid and thus reduce cuboid from 16 to 8. 
+
+ 
+
+![](images/Hierarchy-2.png)
+
+​												Figure 7 
+
+![](images/Hierarchy-3.png)
+
+​											Figure 8
+
+ 
+
+Use Case:
+
+Assume a transactional cube that include dimensions transaction city`city`,transaction province`province`, transaction country`country` and payment type`pay_type`. Analyst will group transaction country,transaction province, transaction city and payment type together to understand customer payment type preference in different geographical location. In this example above, it is recommended to create hierarchy dimension in existing aggregation group (Country/Province/City) that include dimension and combinationas shown in Figure 9:
+
+ 
+
+![](images/Hierarchy-4.png)
+
+Figure 9
+
+Aggregation Group: `[country, province, city，pay_type]`
+
+Hierarchy Dimension: `[country, province, city] `
+
+ 
+
+Case 1：Analyst want to understand city level customer payment type preferences
+
+SELECT city, pay_type, count(*) FROM table GROUP BY city, pay_type can be retrieved from cuboid [country, province, city, pay_type].
+
+Case 2: Analyst want to understand province level customer payment type preference
+
+SELECT province, pay_type, count(*) FROM table GROUP BY province, pay_type can be retrieved from cuboid [country, province, pay_type].
+
+Case3: SELECT country, pay_type, count(*) FROM table GROUP BY country, pay_type can be retrieved from cuboid [country, pay_type].
+
+Case4: Analyst want to get different granularity of geographical dimension, with no exception, any combination can be obtained from cuboid in Figure 8.
+
+ 
+
+##Mandatory Dimension
+
+Sometimes end user might be interested in analysis with one or a few specific dimensions, any query will include one specific dimension. In this case, this dimension can be set as mandatory dimension. once set, only the cuboid with this dimension will be calculated, as shown in figure 10. In the example of figure 1, if dimension A is set as mandatory, then cuboid will be calculated as figure 11. The numberof cuboid will be reduced from 16 to 9.
+
+ 
+
+![](images/Mandatory-2.png)
+
+​											Figure 10
+
+![](images/Mandatory-3.png)
+
+​											Figure 11
+
+ 
+
+Use case:
+
+Assume a transactional cube that include transaction date, transaction location, product, payment type. Transaction date is a frequently used group by dimension. If transactiondate is set as mandatory dimension, combination of dimensions will ascalculated as figure 12
+
+![](images/Mandatory-4.png)
+
+​											Figure 12
 
 ## Start using it
 
