@@ -1,9 +1,9 @@
 ## KyStorage参数配置
-KAP Plus将所有的cube数据都保存在KyStorage，一种基于HDFS的列式存储之上。在查询时，KAP Plus使用Spark (http://spark.apache.org，具体而言是Spark on Yarn模式)来读取cube，并做可能的存储层预聚合。一个或者多个Spark executor作为长进程启动，用来接收可能的cube访问。对于生产环境部署，请仔细阅读本文档并保证您的executors已经正确配置。另外，我们使用grpc(http://www.grpc.io/ )来连接KAP的查询服务器和Spark，必要时，需要增加grpc的配置。
+KAP Plus将所有的cube数据都保存在KyStorage，一种基于HDFS的列式存储之上。在查询时，KAP Plus使用Spark (http://spark.apache.org ，具体而言是Spark on Yarn模式)来读取cube，并做可能的存储层预聚合。一个或者多个Spark executor作为长进程启动，用来接收可能的cube访问。对于生产环境部署，请仔细阅读本文档并保证您的executors已经正确配置。另外，我们使用grpc(http://www.grpc.io/ )来连接KAP的查询服务器和Spark，必要时，需要增加grpc的配置。
 
 ### 配置Spark参数
 
-KAP Plus将Spark的二进制包和配置文件打包至`KAP_HOME/spark/`目录。KAP Plus使用spark-submit脚本来启动executor。理论上可以直接在`KAP_HOME/spark/conf/`路径下按照http://spark.apache.org/docs/latest/configuration.html来修改Spark自带的所有配置。但是我们不推荐这种方式，因为从运维的便捷性考虑所有KAP相关的配置都应限制在`KAP_HOME/conf/`路径下。
+KAP Plus将Spark的二进制包和配置文件打包至`KAP_HOME/spark/`目录。KAP Plus使用spark-submit脚本来启动executor。理论上可以直接在`KAP_HOME/spark/conf/`路径下按照http://spark.apache.org/docs/latest/configuration.html 来修改Spark自带的所有配置。但是我们不推荐这种方式，因为从运维的便捷性考虑所有KAP相关的配置都应限制在`KAP_HOME/conf/`路径下。
 
 我们建议用户通过修改kylin.properties配置文件中对应的参数值来配置Spark参数。这些参数大致分为两个类别：环境变量和Spark属性。
 
@@ -51,7 +51,7 @@ kap.storage.columnar.conf.spark.executor.instances=4
 
 ### 修改最大返回值（从KAP 2.2开始）
 
-由于https://github.com/grpc/grpc-java/issues/1676， grpc默认的最大的返回结果的大小被减小至4M。为了避免类似“Caused by: io.grpc.StatusRuntimeException: INTERNAL: Frame size 108427384 exceeds maximum: 104857600”这样的异常，在KAP的默认配置中，我们把这个值增加到了128MB。如果这个配置还是不够大，可以考虑在kylin.properties中做如下配置：
+由于https://github.com/grpc/grpc-java/issues/1676 grpc默认的最大的返回结果的大小被减小至4M。为了避免类似“Caused by: io.grpc.StatusRuntimeException: INTERNAL: Frame size 108427384 exceeds maximum: 104857600”这样的异常，在KAP的默认配置中，我们把这个值增加到了128MB。如果这个配置还是不够大，可以考虑在kylin.properties中做如下配置：
 
 
 ```
