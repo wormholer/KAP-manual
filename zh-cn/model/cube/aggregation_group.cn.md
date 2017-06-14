@@ -18,11 +18,13 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ![](images/AGG-2.png)
 
+
 <p align="center"> 图2</p>
 
 用户关心的聚合组之间可能包含相同的维度，例如聚合组ABC和聚合组BCD都包含维度B和维度C。这些聚合组之间会衍生出相同的Cuboid，例如聚合组ABC会产生CuboidBC，聚合组BCD也会产生CuboidBC。这些Cuboid不会被重复生成，一份Cuboid为这些聚合组所共有，如图3所示。
 
 ![](images/AGG-3.png)
+
 
 <p align="center"> 图3</p>
 
@@ -34,12 +36,12 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ![](images/AGG-4.png)
 
+
 <p align="center"> 图4</p>
 
 聚合组1： `[cal_dt, city, pay_type] `  聚合组2： `[cal_dt, city, buyer_id] `
 
  
-
 在不考虑其他干扰因素的情况下，这样的聚合组将节省不必要的3个Cuboid: [pay_type, buyer_id]、[city, pay_type, buyer_id]和[cal_dt,pay_type, buyer_id] 等，节省了存储资源和构建的执行时间。
 
 ​	Case1: Select cal_dt, city, pay_type, count(*) from table
@@ -64,6 +66,7 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ![](images/AGG-5.png)
 
+
 <p align="center"> 图5</p>
 
 应用实例：
@@ -71,6 +74,7 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 假设创建一个交易数据的Cube，它具有很多普通的维度，像是交易日期`cal_dt`，交易的城市`city`，顾客性别`sex_id`和支付类型`pay_type`等。分析师常用的分析方法为通过按照交易时间、交易地点和顾客性别来聚合，获取不同城市男女顾客间不同的消费偏好，例如同时聚合交易日期`cal_dt`、交易的城市`city` 和顾客性别 `sex_id`来分组。在上述的实例中，推荐在已有的聚合组中建立一组联合维度，包含的维度和组合方式如图6所示：
 
 ![](images/AGG-6.png)
+
 
 <p align="center"> 图6</p>
 
@@ -98,9 +102,11 @@ Case2：如果有一条不常用的查询：SELECT cal_dt, city, count(*) FROM t
 
 ![](images/Hierarchy-2.png)
 
+
 <p align="center"> 图7</p>
 
 ![](images/Hierarchy-3.png)
+
 
 <p align="center"> 图8</p>
 
@@ -109,6 +115,7 @@ Case2：如果有一条不常用的查询：SELECT cal_dt, city, count(*) FROM t
 假设一个交易数据的Cube，它具有很多普通的维度，像是交易的城市`city`，交易的省`province`，交易的国家`country`， 和支付类型`pay_type`等。分析师可以通过按照交易城市、交易省份、交易国家和支付类型来聚合，获取不同层级的地理位置消费者的支付偏好。在上述的实例中，建议在已有的聚合组中建立一组层级维度（国家`country`／省`province`／城市`city`），包含的维度和组合方式如图9：
 
 ![](images/Hierarchy-4.png)
+
 
 <p align="center"> 图9</p>
 
@@ -132,9 +139,11 @@ Case4：如果分析师想获取不同粒度地理维度的聚合结果时，无
 
 ![](images/Mandatory-2.png)
 
+
 <p align="center"> 图10</p>
 
-​			![](images/Mandatory-3.png) 
+![](images/Mandatory-3.png) 
+
 
 <p align="center"> 图11</p>
 
@@ -143,6 +152,7 @@ Case4：如果分析师想获取不同粒度地理维度的聚合结果时，无
 假设一个交易数据的Cube，它具有很多普通的维度，像是交易时间`order_dt`，交易的地点`location`，交易的商品`product` 和支付类型`pay_type`等。其中，交易时间就是一个被高频作为分组条件（group by）的维度。 如果将交易时间`order_dt`设置为必要维度，包含的维度和组合方式如图12：
 
 ![](images/Mandatory-4.png)
+
 
 <p align="center"> 图12</p>
 
