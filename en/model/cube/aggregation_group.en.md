@@ -7,6 +7,9 @@ Curse of dimension is an infamous problem for all of the OLAP engines based on p
 It is a known fact that Kylin speeds up query performance by pre-calculating Cubes, which in term contains different combination of all dimensions, a.k.a. Cuboids. The problem is that Cuboids grows exponentially with the #dimension. For example, there’re totally 8 possible Cuboids for a cube with 3 dimensions, however there are 16 possible Cuboids for a Cube with 4 dimensions. Even though Kylin is using scalable computation framework (MapReduce) and scalable storage (HBase) to compute and store the Cubes, it is still unacceptable if Cube size turns up to be times bigger than the original data source.
 
 ![](images/AGG-1.png)
+
+
+
 <p align="center"> Figure 1</p>
 
 To alleviate the pressure on Cube building, Apache Kylin has released a series of advanced setting to help end user filter actual neededCuboid. These advanced settings include Aggrgation Group, Join Dimension,Hierarchy Dimension and Mandatory Dimension. We will explain mechanism of these advanced settings and provide use cases in the following paragraphs. 
@@ -18,6 +21,7 @@ End user can divide combination of dimensions they focus on in several groups, a
 ![](images/AGG-2.png)
 
 
+
 <p align="center"> Figure 2</p>
 
 The aggregation group end that user need might contain overlapping dimension, for example, aggregation ABC and aggregation BCD both contain dimension B and C. These aggregation groups will derive the sample cuboid, for example aggregation group ABC will derive cuboid BC, and so does aggregation group BCD. A cuboid will not be generated multiple times, if it can be derived from more than one aggregation group, as shown in figure 3.
@@ -27,6 +31,7 @@ With aggregation group, end user can then filter the granularity of cuboid to ge
 ![](images/AGG-3.png)							
 
 
+
 <p align="center"> Figure 3</p>
 
 Use Case:
@@ -34,6 +39,7 @@ Use Case:
 Assume a transactional Cube, which contains below dimension: Customer ID`buyer_id`, Transaction Date`cal_dt`, Payment Type `pay_type`and Customer City`city`. Sometime, analyst need to group dimensionCity, Cal_dt and Pay_Type to understand different payment type in differentcities. There are other times, analyst need to group dimension city, cal_dt andbuy_id together to understand customer behavior in different cities. As exampleshown above, it is recommended to build two aggregation group, includingdimension and groups as below:
 
 ![](images/AGG-4.png)
+
 
 
 <p align="center"> Figure 4</p>
@@ -74,6 +80,7 @@ End user sometimes don’t need detail of some combination of dimensions, for ex
 ![](images/AGG-5.png)
 
 
+
 <p align="center"> Figure 5</p>
 
 Use Case:
@@ -85,6 +92,7 @@ Assume a transactional Cube that include dimension transaction date`cal_dt`,tran
  
 
 ![](images/AGG-6.png)
+
 
 
 <p align="center"> Figure 6</p>
@@ -129,9 +137,11 @@ As the cube shownin figure 7, assume dimension A =Country, dimension B= Province
 ![](images/Hierarchy-2.png)
 
 
+
 <p align="center"> Figure 7</p>
 
 ![](images/Hierarchy-3.png)
+
 
 
 <p align="center"> Figure 8</p>
@@ -145,6 +155,7 @@ Assume a transactional cube that include dimensions transaction city`city`,trans
  
 
 ![](images/Hierarchy-4.png)
+
 
 
 <p align="center"> Figure 9</p>
