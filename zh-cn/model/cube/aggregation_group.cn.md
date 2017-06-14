@@ -7,7 +7,8 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ![](images/AGG-1.png)
 
-<center>图1</center> 
+
+<p align="center"> 图1</p>
 
 为了缓解 Cube 的构建压力，Apache Kylin 引入了一系列的高级设置，帮助用户筛选出真正需要的 Cuboid。这些高级设置包括**聚合组**（Aggregation Group）、**联合维度**（Joint Dimension）、**层级维度**（Hierachy Dimension）和**必要维度**（Mandatory Dimension）等,下面我们会分别介绍高级设置中各聚合组的实现原理和应用场景实例。
 
