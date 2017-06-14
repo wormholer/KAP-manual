@@ -18,13 +18,13 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ![](images/AGG-2.png)
 
-   											     图2
+<p align="center"> 图2</p>
 
 用户关心的聚合组之间可能包含相同的维度，例如聚合组ABC和聚合组BCD都包含维度B和维度C。这些聚合组之间会衍生出相同的Cuboid，例如聚合组ABC会产生CuboidBC，聚合组BCD也会产生CuboidBC。这些Cuboid不会被重复生成，一份Cuboid为这些聚合组所共有，如图3所示。
 
 ![](images/AGG-3.png)
 
-​											     图3
+<p align="center"> 图3</p>
 
 有了聚合组用户就可以用**粗粒度**地对Cuboid进行筛选，获取自己想要的维度组合。
 
@@ -34,7 +34,7 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ![](images/AGG-4.png)
 
-​							  			             图4
+<p align="center"> 图4</p>
 
 聚合组1： `[cal_dt, city, pay_type] `  聚合组2： `[cal_dt, city, buyer_id] `
 
@@ -64,7 +64,7 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ![](images/AGG-5.png)
 
-​											      图5
+<p align="center"> 图5</p>
 
 应用实例：
 
@@ -72,7 +72,7 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 ![](images/AGG-6.png)
 
-​											      图6
+<p align="center"> 图6</p>
 
 聚合组：`[cal_dt, city, sex_id，pay_type]`
 
@@ -98,11 +98,11 @@ Case2：如果有一条不常用的查询：SELECT cal_dt, city, count(*) FROM t
 
 ![](images/Hierarchy-2.png)
 
-​												     图7
+<p align="center"> 图7</p>
 
 ![](images/Hierarchy-3.png)
 
-​													图8
+<p align="center"> 图8</p>
 
 应用实例：
 
@@ -110,7 +110,7 @@ Case2：如果有一条不常用的查询：SELECT cal_dt, city, count(*) FROM t
 
 ![](images/Hierarchy-4.png)
 
-​													图9
+<p align="center"> 图9</p>
 
 聚合组：`[country, province, city，pay_type]`
 
@@ -124,7 +124,7 @@ Case3：当分析师想从国家维度获取消费偏好时：SELECT country, pa
 
 Case4：如果分析师想获取不同粒度地理维度的聚合结果时，无一例外都可以由图8中的cuboid提供数据 。
 
-例如，SELECT country, city, count(*) FROM table GROUP BY country,city则它将从Cuboid[country, province, city]中获取数据。
+例如，SELECT country, city, count(*) FROM table GROUP BY country,city则它将从cuboid [country, province, city]中获取数据。
 
 ##必要维度（Mandatory Dimension） 
 
@@ -132,11 +132,11 @@ Case4：如果分析师想获取不同粒度地理维度的聚合结果时，无
 
 ![](images/Mandatory-2.png)
 
-​											图10
+<p align="center"> 图10</p>
 
 ​			![](images/Mandatory-3.png) 
 
-​											     图11
+<p align="center"> 图11</p>
 
 应用实例：
 
@@ -144,7 +144,7 @@ Case4：如果分析师想获取不同粒度地理维度的聚合结果时，无
 
 ![](images/Mandatory-4.png)
 
-​									           	    图12
+<p align="center"> 图12</p>
 
 ## 开始使用
 
