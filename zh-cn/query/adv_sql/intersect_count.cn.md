@@ -25,7 +25,7 @@ SQL **INTERSECT** 从句/操作符用来接合两个SELECT 语句，且返回的
 为了在KAP中应用留存率的计算，sql查询需要符合以下要求：
 
 - 有且只有一个可变维度；
-- 需要计算的测量值必须已经被设定为可以进行精确count distinct计算的度量值（具体方法请见[Count Distinct(精确)查询优化](optimization/count_distinct_precise.cn.md) ）；
+- 需要计算的测量值必须已经被设定为可以进行精确count distinct计算的度量值（具体方法请见[Count Distinct(精确)查询优化](../../model/cube/count_distinct_precise.cn.md) ）；
 
 
 

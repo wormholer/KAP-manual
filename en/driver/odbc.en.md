@@ -56,4 +56,4 @@ Among them, the parameters are described below:
 
 ## Special Reminder
 
-If you want to use the ODBC driver to connect to other client applications, the configuration is similar to this example. More information please visit the [Integration with 3rd party BI tools](integration/README.md) chapter of KAP manual or Kylin's official website.
+If you want to use the ODBC driver to connect to other client applications, the configuration is similar to this example. More information please visit the [Integration with 3rd party BI tools](../integration/README.md) chapter of KAP manual or Kylin's official website.

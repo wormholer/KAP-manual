@@ -26,7 +26,7 @@ Count distinct是一个对大多数数据分析师都很常用的函数。KAP �
 
 ![](images/cd_measures_add.5.png)
 
-选择 `Dictionaries+` ，然后选取需要的列作为`Column` 并将如下所示的 global dictionary 设置为 `Builder Class`。请参见 [创建 Cube](molap/create_cube.cn.md) 来继续创建Cube的后续步骤。当你依照  [构建 Cube](molap/build_cube.cn.md)的介绍，完成Cube的构建后，该Cube即准备完毕。
+选择 `Dictionaries+` ，然后选取需要的列作为`Column` 并将如下所示的 global dictionary 设置为 `Builder Class`。请参见 [创建 Cube](create_cube.cn.md) 来继续创建Cube的后续步骤。当你依照  [构建 Cube](../build_cube.cn.md)的介绍，完成Cube的构建后，该Cube即准备完毕。
 
 ![](images/cd_meausres_add.6.png)
 
@@ -48,7 +48,7 @@ Count distinct是一个对大多数数据分析师都很常用的函数。KAP �
 
 
 
-此结果被验证的同时也表明count distinct 精确查询执行良好。关于count distinct的近似查询信息请参见 [Count Distinct查询优化](optimization/count_distinct.cn.md) 介绍。
+此结果被验证的同时也表明count distinct 精确查询执行良好。关于count distinct的近似查询信息请参见 [近似Distinct Count](count_distinct.cn.md) 介绍。
 
 
 

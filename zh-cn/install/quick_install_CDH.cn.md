@@ -93,7 +93,7 @@ ${KYLIN_HOME}/bin/kylin.sh start
 
 请替换*host_name*为具体的机器名、IP地址或域名。默认KAP启动在*7070*端口，默认用户名ADMIN，默认密码KYLIN。
 
-成功登录KAP后，可以通过构建Sample Cube验证安装的正确性。请继续阅读[安装验证](install/install_validate.cn.md)。
+成功登录KAP后，可以通过构建Sample Cube验证安装的正确性。请继续阅读[安装验证](install_validate.cn.md)。
 
 ### 停止KAP
 

@@ -57,5 +57,5 @@ KAP提供了Windows系统下的ODBC驱动程序，支持ODBC接口的应用可�
 
 ## 特别提醒
 
-如果用户希望使用ODBC驱动连接其他客户端应用，配置方式和该例类似。更多产品信息，请访问本书[与第三方BI工具集成](integration/README.md)章节或 Apache Kylin官网。
+如果用户希望使用ODBC驱动连接其他客户端应用，配置方式和该例类似。更多产品信息，请访问本书[与第三方BI工具集成](../integration/README.md)章节或 Apache Kylin官网。
 

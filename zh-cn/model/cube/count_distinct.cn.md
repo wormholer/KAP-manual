@@ -40,7 +40,7 @@ Count distinct是一个对大多数数据分析师都很常用的函数。KAP �
 
 
 
-此结果被验证的同时也表明count distinct 近似查询执行良好。关于count distinct的精确查询信息请参见 [Count Distinct(精确)查询优化](optimization/count_distinct_precise.cn.md) 介绍。
+此结果被验证的同时也表明count distinct 近似查询执行良好。关于count distinct的精确查询信息请参见 [Count Distinct(精确)查询优化](count_distinct_precise.cn.md) 介绍。
 
 ### 参考文献
 
