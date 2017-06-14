@@ -9,8 +9,7 @@ It is a known fact that Kylin speeds up query performance by pre-calculating Cub
 ![](images/AGG-1.png)
 
 
-
-​								Figure 1
+<p align="center"> Figure 1</p>
 
 To alleviate the pressure on Cube building, Apache Kylin has released a series of advanced setting to help end user filter actual neededCuboid. These advanced settings include Aggrgation Group, Join Dimension,Hierarchy Dimension and Mandatory Dimension. We will explain mechanism of these advanced settings and provide use cases in the following paragraphs. 
 
@@ -20,7 +19,8 @@ End user can divide combination of dimensions they focus on in several groups, a
 
 ![](images/AGG-2.png)
 
-​												Figure 2
+
+<p align="center"> Figure 2</p>
 
 The aggregation group end that user need might contain overlapping dimension, for example, aggregation ABC and aggregation BCD both contain dimension B and C. These aggregation groups will derive the sample cuboid, for example aggregation group ABC will derive cuboid BC, and so does aggregation group BCD. A cuboid will not be generated multiple times, if it can be derived from more than one aggregation group, as shown in figure 3.
 
@@ -28,7 +28,8 @@ With aggregation group, end user can then filter the granularity of cuboid to ge
 
 ![](images/AGG-3.png)							
 
-​											Figure 3
+
+<p align="center"> Figure 3</p>
 
 Use Case:
 
@@ -36,7 +37,8 @@ Assume a transactional Cube, which contains below dimension: Customer ID`buyer_i
 
 ![](images/AGG-4.png)
 
-Figure 4
+
+<p align="center"> Figure 4</p>
 
 Aggregation Group 1： `[cal_dt,city, pay_type] `
 
@@ -73,9 +75,8 @@ End user sometimes don’t need detail of some combination of dimensions, for ex
 
 ![](images/AGG-5.png)
 
-​											Figure 5
 
- 
+<p align="center"> Figure 5</p>
 
 Use Case:
 
@@ -87,9 +88,9 @@ Assume a transactional Cube that include dimension transaction date`cal_dt`,tran
 
 ![](images/AGG-6.png)
 
-Figure 6
 
- 
+<p align="center"> Figure 6</p>
+
 
 Aggregation group: `[cal_dt,city, sex_id，pay_type]`
 
@@ -102,7 +103,6 @@ Case 1：SELECT cal_dt,city, sex_id, count(*) FROM table GROUP BY cal_dt, city, 
 Case2 If one unusual query occur
 
 SELECT cal_dt, city, count(*) FROM table GROUP BY cal_dt, city then no cuboid can be hit, Kylin will live calculate result based on existing cuboid. 
-
 
 
 
@@ -130,11 +130,13 @@ As the cube shownin figure 7, assume dimension A =Country, dimension B= Province
 
 ![](images/Hierarchy-2.png)
 
-​												Figure 7 
+
+<p align="center"> Figure 7</p>
 
 ![](images/Hierarchy-3.png)
 
-​											Figure 8
+
+<p align="center"> Figure 8</p>
 
  
 
@@ -146,7 +148,8 @@ Assume a transactional cube that include dimensions transaction city`city`,trans
 
 ![](images/Hierarchy-4.png)
 
-Figure 9
+
+<p align="center"> Figure 9</p>
 
 Aggregation Group: `[country, province, city，pay_type]`
 
@@ -176,12 +179,13 @@ Sometimes end user might be interested in analysis with one or a few specific di
 
 ![](images/Mandatory-2.png)
 
-​											Figure 10
+
+<p align="center"> Figure 10</p>
 
 ![](images/Mandatory-3.png)
 
-​											Figure 11
 
+<p align="center"> Figure 11</p>
  
 
 Use case:
@@ -190,7 +194,8 @@ Assume a transactional cube that include transaction date, transaction location,
 
 ![](images/Mandatory-4.png)
 
-​											Figure 12
+
+<p align="center"> Figure 12</p>
 
 ## Start using it
 
