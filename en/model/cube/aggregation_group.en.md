@@ -20,8 +20,6 @@ End user can divide combination of dimensions they focus on in several groups, a
 
 ![](images/AGG-2.png)
 
-
-
 <p align="center"> Figure 2</p>
 
 The aggregation group end that user need might contain overlapping dimension, for example, aggregation ABC and aggregation BCD both contain dimension B and C. These aggregation groups will derive the sample cuboid, for example aggregation group ABC will derive cuboid BC, and so does aggregation group BCD. A cuboid will not be generated multiple times, if it can be derived from more than one aggregation group, as shown in figure 3.
