@@ -7,8 +7,6 @@ Curse of dimension is an infamous problem for all of the OLAP engines based on p
 It is a known fact that Kylin speeds up query performance by pre-calculating Cubes, which in term contains different combination of all dimensions, a.k.a. Cuboids. The problem is that Cuboids grows exponentially with the #dimension. For example, there’re totally 8 possible Cuboids for a cube with 3 dimensions, however there are 16 possible Cuboids for a Cube with 4 dimensions. Even though Kylin is using scalable computation framework (MapReduce) and scalable storage (HBase) to compute and store the Cubes, it is still unacceptable if Cube size turns up to be times bigger than the original data source.
 
 ![](images/AGG-1.png)
-
-
 <p align="center"> Figure 1</p>
 
 To alleviate the pressure on Cube building, Apache Kylin has released a series of advanced setting to help end user filter actual neededCuboid. These advanced settings include Aggrgation Group, Join Dimension,Hierarchy Dimension and Mandatory Dimension. We will explain mechanism of these advanced settings and provide use cases in the following paragraphs. 
