@@ -67,7 +67,7 @@ kap.external.http-proxy-port // http代理服务器端口
 
 #### Kylin 用户
 
-① 下载KyBot Client (支持Apache Kylin1.5.0以上及KAP全部版本)下载路径：登录KyBot 官网https://kybot.io，在首页点击上传，然后点击"打包工具: KyBot Client 1.0.1"即可下载。
+① 下载KyBot Client (支持Apache Kylin1.5.0以上及KAP全部版本)下载路径：登录[KyBot官网](https://kybot.io)，在首页点击上传，然后点击"打包工具: KyBot Client 1.0.1"即可下载。
 
 ② 解压到每个Kylin节点的$KYLIN\_HOME/kybot目录
 

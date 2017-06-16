@@ -74,7 +74,7 @@ Login to each KAP node of the UI WEB, then click "diagnose" button on the system
 
 - #### Kylin Users
 
-① Download KyBot Client (support Apache Kylin1.5.0 and following version as well as all KAP versions) in advance, download path：Log on KyBot official website: https://kybot.io, click "upload" on the first page then click "packing tool": KyBot Client 1.0.1" is available for download.
+① Download KyBot Client (support Apache Kylin1.5.0 and following version as well as all KAP versions) in advance, download path：Log on [KyBot official website](https://kybot.io), click "upload" on the first page then click "packing tool": KyBot Client 1.0.1" is available for download.
 
 ② Extract to $KYLIN\_HOME/kybot directory of each Kylin node. 
 
