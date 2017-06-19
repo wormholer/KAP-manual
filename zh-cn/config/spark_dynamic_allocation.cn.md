@@ -15,19 +15,29 @@ Spark动态资源分配需要配置两处：一处是集群的资源管理器相
 ##### CDH
 
 1. 登入Cloudera Manager，选择YARN configuration，找到NodeManager Advanced Configuration Snippet （Safety Valve） for yarn-site.xml，配置如下：
+
 `<property>`
+
 `<name>yarn.nodemanager.aux-services</name>`
+
 `<value>mapreduce_shuffle，spark_shuffle</value>`
+
 `</property>`
+
 `<property>`
+
 `<name>yarn.nodemanager.aux-services.spark_shuffle.class</name>`
+
 `<value>org.apache.spark.network.yarn.YarnShuffleService</value>`
+
 `</property>`
 
 2. 将$KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar文件拷贝出来，放到Hadoop节点的/opt/lib/kap/目录下（路径可修改）。
 
     在Cloudera Manager中找到NodeManager Environment Advanced Configuration Snippet （Safety Valve），配置:
+    
     `YARN_USER_CLASSPATH=/opt/lib/kap/*`
+    
     则yarn-shuffle.jar文件会被加入Node Manager启动时的class path中。
 
 3. 保存配置并重启
@@ -62,9 +72,14 @@ http://spark.apache.org/docs/latest/configuration.html#dynamic-allocation
 
 ### Spark动态资源分配验证
 配置完成后，启动KAP Plus，在executor页面中可以观察当前的executor数目。
+
 ![](images/spark_executor_original.jpg)
+
 由于executor处于空闲状态，因此一定时间后会被撤除，直至达到配置项中设定的最小值。
+
 ![](images/spark_executor_min.jpg)
+
 利用Restful API，使用多个线程向KAP Plus提交查询。一定时间后会观察到executor数目增加，但不会超过配置项中设定的最大值。
+
 ![](images/spark_executor_max.jpg)
 
