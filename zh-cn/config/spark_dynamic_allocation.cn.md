@@ -16,21 +16,21 @@ Spark动态资源分配需要配置两处：一处是集群的资源管理器相
 
 1. 登入Cloudera Manager，选择YARN configuration，找到NodeManager Advanced Configuration Snippet （Safety Valve） for yarn-site.xml，配置如下：
 
-`<property>`
+    `<property>`
 
-`<name>yarn.nodemanager.aux-services</name>`
+    `<name>yarn.nodemanager.aux-services</name>`
 
-`<value>mapreduce_shuffle，spark_shuffle</value>`
+    `<value>mapreduce_shuffle，spark_shuffle</value>`
 
-`</property>`
+    `</property>`
 
-`<property>`
+    `<property>`
 
-`<name>yarn.nodemanager.aux-services.spark_shuffle.class</name>`
+    `<name>yarn.nodemanager.aux-services.spark_shuffle.class</name>`
 
-`<value>org.apache.spark.network.yarn.YarnShuffleService</value>`
+    `<value>org.apache.spark.network.yarn.YarnShuffleService</value>`
 
-`</property>`
+    `</property>`
 
 2. 将$KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar文件拷贝出来，放到Hadoop节点的/opt/lib/kap/目录下（路径可修改）。
 
