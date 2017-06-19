@@ -9,7 +9,7 @@ Spark动态资源分配详细介绍请见官方文档：http://spark.apache.org/
 ### Spark动态资源分配配置方法
 
 #### 概览
-Spark动态资源分配需要配置两处：一处是集群的资源管理器相关配置，会根据资源管理器的不同（YARN、Mesos、Standalone）有不同的配置方式。另外，动态资源分配还需要配置spark-default.conf文件（在KAP中，可以直接配置kylin.properties文件，KAP会自动转换为spark的配置），此处配置相对固定。本文当提供的配置方法主要是针对CHD5.7 sandbox以及YARN资源管理器。
+Spark动态资源分配需要配置两处：一处是集群的资源管理器相关配置，会根据资源管理器的不同（YARN、Mesos、Standalone）有不同的配置方式。另外，动态资源分配还需要配置spark-default.conf文件（在KAP中，可以直接配置kylin.properties文件，KAP会自动转换为spark的配置），此处配置相对固定。
 
 #### 资源管理器配置
 ##### CDH
@@ -31,13 +31,7 @@ Spark动态资源分配需要配置两处：一处是集群的资源管理器相
     则yarn-shuffle.jar文件会被加入Node Manager启动时的class path中。
 
 3. 保存配置并重启
-    在Cloudera Manager中，选择actions --> deploy client configuration
-
-
-    保存后，重启所有service
-
-4. 验证classpath配置成功
-    ssh登入sandbox，执行指令 ps -ef | grep -i "nodemanager"，可以看到/opt/lib/kap路径下所有jar文件已经被加入NodeManager classpath中。
+    在Cloudera Manager中，选择actions --> deploy client configuration，保存后，重启所有service。
 
 ##### HDP
 1. 登陆Ambari管理页面，选择Yarn -> Configs -> Advanced，通过Filter找到以下配置项并进行更改：
@@ -46,8 +40,6 @@ Spark动态资源分配需要配置两处：一处是集群的资源管理器相
 2. 将$KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar文件拷贝出来，放到hadoop节点的$HDP_HOME/hadoop/lib路径下。
 
 3. 保存配置并重启
-
-4. 验证classpath配置成功
 
 
 #### KAP配置
@@ -70,9 +62,9 @@ http://spark.apache.org/docs/latest/configuration.html#dynamic-allocation
 
 ### Spark动态资源分配验证
 配置完成后，启动KAP Plus，在executor页面中可以观察当前的executor数目。
-
+![](images/spark_executor_original.jpg)
 由于executor处于空闲状态，因此一定时间后会被撤除，直至达到配置项中设定的最小值。
-
+![](images/spark_executor_min.jpg)
 利用Restful API，使用多个线程向KAP Plus提交查询。一定时间后会观察到executor数目增加，但不会超过配置项中设定的最大值。
-
+![](images/spark_executor_max.jpg)
 
