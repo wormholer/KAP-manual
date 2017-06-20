@@ -1,10 +1,18 @@
 ## 使用jdbc连接其他数据库作为metastore
+<<<<<<< HEAD
 由于KAP Plus使用kystorage作为cube存储介质，因而hbase仅作为metadata的存储数据库。KAP 2.4.x版本开始支持使用标准jdbc的数据库存储metadata。
+=======
+由于kap-plus使用kystorage作为cube存储介质，因而hbase仅作为metadata的存储数据库。kap-2.4.x版本开始支持使用标准jdbc的数据库存储metadata。
+>>>>>>> #89 doc for drop hbase
 
 
 ### 配置jdbc形式的metadata
 以下以mysql为例说明配置步骤
+<<<<<<< HEAD
 1. 安装部署KAP Plus
+=======
+1. 安装部署kap-plus
+>>>>>>> #89 doc for drop hbase
 2. 在数据库中新建名为`kylin`的数据库
 3. 在kap安装目录下的`$KYLIN_HOME/conf/kylin.properties`配置文件中修改`kylin.metadata.url`为`{metadata_name}@jdbc`，`{metadata_name}`为用户的metadata名，
 以及jdbc的配置项：
