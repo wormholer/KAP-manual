@@ -55,23 +55,25 @@ Check if snappy is supported in current environment.
 
 #### **check-spark.sh**
 
-Check Spark's avaivability, there are two cases:
+Check Spark's avaivability, there are two ways and take one of them:
 
-1. If there is an existing spark installed in the environment, and its version is higher than 1.6.0 (run `spark_shell —version` to get current spark version), it is useful for KAP, i.e. 
+1. **Use Spark from the environment.** It is usally applicable for KAP version < 2.4.
 
-   export SPARK_HOME='SPARK_IN_ENV'
+   a. Please make sure Spark has been installed and it's version is higher than 1.6.0(run `spark_shell —version` to get current spark version). 
 
-2. If there is no Spark installed in the environment or there is a installed spark whose version is lower than 1.6.0, it is recommended to use the Spark in KAP's package, i.e.
+   b. export SPARK_HOME=SPARK_INSTALLATION_DIR
 
-   export SPARK_HOME=$KYLIN_HOME/spark
+2. **Use Spark from KAP.** It is recommend by default.
 
-   Meanwhile if kerberos authentication is required, it needs to configure spark relevant items in "kylin.properties". Basically there are two kerberos security items:
+   a. export SPARK_HOME=$KYLIN_HOME/spark
+
+   b. If kerberos authentication is required, it needs to configure spark relevant items in *kylin.properties*. Basically there are two kerberos security items:
 
    `-Djava.security.auth.login.config`
 
    `-Djava.security.krb5.conf`
 
-   which should be appended to those items in the "kylin.properties":
+   which should be appended to those items in the *kylin.properties*:
 
    `kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
 
@@ -79,32 +81,28 @@ Check Spark's avaivability, there are two cases:
 
    `kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
 
-   **Example1:** If there is a Spark installed in the environment and its version is lower than 1.6.0, find the following item from SPARK_DIR/conf/spark-defaults.conf:
+   **Notice:** If KAP's version is 2.4 or higher, it needs to append extra Kerberos items: 
 
-   *Item:* spark.yarn.am.extraJavaOptions. Copy the content starts with
+   `-Dhive.metastore.sasl.enabled=true`
 
-   `-Djava.security.auth.login.config` and append to
+   `-Dhive.metastore.kerberos.principal=hive/XXX@XXX.com`
 
-   `kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions` in "kylin.properties". It should look like:
+   to `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
 
-   **kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions**=-Dhdp.version=current **-Djava.security.auth.login.config**=/opt/huawei/Bigdata/FusionInsight/spark/cfg/jaas-zk.conf-Dzookeeper.server.principal=zookeeper/hadoop.hadoop.com **-Djava.security.krb5.conf**=/opt/huawei/Bigdata/FusionInsight/spark/cfg/kdc.conf
+   **Example:**
+
+   Use vi to edit kylin.properties, find spark relevant configs and append Kerberos items:
+
+   *kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions*= \
+
+   -Dhdp.version=current \
+
+   -Djava.security.auth.login.config**=/opt/spark/cfg/jaas-zk.conf **\
+
+   -Djava.security.krb5.conf=**/opt/spark/cfg/kdc.conf
+
+   The same modification should be done to another two spark configs:
 
    `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`	    `kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
-
-   should have the same modification.
-
-   **Example2:**  If there is no Spark installed in the environment but kerberos authentication is required,  please figure out the correct configurations of following items：
-
-   ​`-Djava.security.auth.login.config`
-
-   ​`-Djava.security.krb5.conf`
-
-   ​and append them to the items in "kylin.properties"：
-
-   ​`kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
-
-   ​`kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
-
-   ​`kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
 
 Finally, "check-spark.sh" will retrieve yarn resource manager's information, in order to inspect the spark executor's configurations in kylin.properties, also give the reasonable suggestions.

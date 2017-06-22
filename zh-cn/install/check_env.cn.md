@@ -55,15 +55,23 @@ bin/check-env.sh
 
 检查Spark是否可用，这里分为两种情况：
 
-1. 环境中有自带Spark并且版本高于1.6.0（通过运行spark_shell —version, 查看当前环境spark的版本），则可以使用环境自带的spark，即：export SPARK_HOME='SPARK_IN_ENV'
+1. **使用环境的Spark.** <u>适用于KAP版本低于2.4</u>，步骤如下：
 
-2. 环境中没有自带Spark或者Spark版本低于1.6.0，则需要使用KAP自带的spark，即：export SPARK_HOME=$KYLIN_HOME/spark。同时，环境要求Kerberos安全认证，则需要对KAP的kylin.properties进行相关配置，主要是将环境中Kerberos如下两个配置项：
+   a. 确认环境中已经安装Spark并且版本高于1.6.0（通过运行spark_shell —version, 查看当前环境spark的版本）。
+
+   b. 导出SPARK_HOME，即：export SPARK_HOME=SPARK_INSTALLATION_DIR
+
+2. **使用KAP的Spark.**  默认情况推荐使用这种方式，步骤如下:
+
+   a. 导出SPARK_HOME, 即：export SPARK_HOME=$KYLIN_HOME/spark。
+
+   b. 如果环境要求Kerberos安全认证，则需要对KAP的kylin.properties进行相关配置，主要是将环境中Kerberos如下两个配置项：
 
    `-Djava.security.auth.login.config`
 
    `-Djava.security.krb5.conf`
 
-   添加到kylin.properties里对应的：
+   分别添加到kylin.properties里对应的：
 
    `kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
 
@@ -71,28 +79,33 @@ bin/check-env.sh
 
    `kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
 
-   **Example1:** 如果环境中有Spark，且版本低于1.6，从其客户端conf目录下的spark-defaults.conf里找到配置项：
+   **注意：**<u>对于KAP版本2.4及以上版本</u>，需要额外给
 
-   spark.yarn.am.extraJavaOptions，将`-Djava.security.auth.login.config`开始的内容拼接到 kylin.properties对应的配置项`kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`如：	
+   `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
 
-   **kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions**=-Dhdp.version=current **-Djava.security.auth.login.config**=/opt/huawei/Bigdata/FusionInsight/spark/cfg/jaas-zk.conf-Dzookeeper.server.principal=zookeeper/hadoop.hadoop.com **-Djava.security.krb5.conf**=/opt/huawei/Bigdata/FusionInsight/spark/cfg/kdc.conf
+   添加以下HIVE的Kerberos配置项：
+
+   `-Dhive.metastore.sasl.enabled=true`
+
+   `-Dhive.metastore.kerberos.principal=hive/XXX@XXX.com`
+
+   **Example:**
+
+   vi编辑打开kylin.properties，找到如下配置项，并添加kerberos配置：
+
+   *kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions*= \
+
+   -Dhdp.version=current ** \
+
+   -Djava.security.auth.login.config**=/opt/spark/cfg/jaas-zk.conf **\
+
+   -Djava.security.krb5.conf=**/opt/spark/cfg/kdc.conf**
+
+   同样
 
    `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`	    `kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
 
    作类似修改。
 
-   ​**Example2:** 如果环境中没有Spark且需要Kerberos认证，请根据具体环境中的Kerberos配置：
-
-   ​`-Djava.security.auth.login.config`
-
-   ​`-Djava.security.krb5.conf`
-
-   ​修改kylin.properties的配置项：
-
-   ​`kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
-
-   ​`kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
-
-   ​`kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
 
 同时，check-spark.sh读取环境yarn的资源信息，用来检查kylin.properties里关于spark executor的资源配置是否合理，并给出相关合理建议。
