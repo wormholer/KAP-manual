@@ -32,11 +32,17 @@ KAP 2.X各版本之间兼容元数据。因此在从KAP 2.X升级至更高版本
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.storage.hbase.util.DeployCoprocessorCLI default all
    ```
 
-6. 确认License：
+6. 如果升级目标是KAP 2.4.X，需要对ACL数据进行迁移，执行下述命令：
+
+   ```shell
+   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
+   ```
+
+7. 确认License：
 
    在新版本的KAP安装目录下确认License。
 
-7. 启动KAP实例：
+8. 启动KAP实例：
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh start
@@ -47,7 +53,7 @@ KAP 2.X各版本之间兼容元数据。因此在从KAP 2.X升级至更高版本
 
 KAP Plus与KAP的主要区别在于引入了全新的存储引擎KyStorage。因此在从KAP 2.X升级至KAP Plus时，只需要按照从KAP升级至更高版本的方法执行，最后进行存储引擎相关的升级操作即可。具体升级步骤如下：
 
-1. 执行上一节“从KAP 2.X升级至KAP更高版本”中的步骤1至6。其中新版本的KAP安装包用KAP Plus安装包替换。
+1. 执行上一节“从KAP 2.X升级至KAP更高版本”中的步骤1至7。其中新版本的KAP安装包用KAP Plus安装包替换。
 
 2. 由于KAP Plus中新引入的KAP Query Driver会占用一定系统资源，如果是在沙箱等资源较为紧张的环境下运行KAP Plus，请调整相关配置以确保KAP Plus能够获取足够的资源。
 

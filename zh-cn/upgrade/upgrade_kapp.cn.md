@@ -32,11 +32,17 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.storage.hbase.util.DeployCoprocessorCLI default all
    ```
 
-6. 确认License：
+6. 如果升级目标是KAP 2.4.X，需要对ACL数据进行迁移，执行下述命令：
+
+   ```shell
+   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
+   ```
+
+7. 确认License：
 
    在新版本的KAP Plus安装目录下确认License。
 
-7. 启动KAP Plus实例：
+8. 启动KAP Plus实例：
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh start
