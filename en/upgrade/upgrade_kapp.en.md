@@ -33,11 +33,17 @@ KAP Plus 2.X shares compatible metadata with other KAP Plus 2.X versions. Thus y
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.storage.hbase.util.DeployCoprocessorCLI default all
    ```
 
-6. Confirm the License:
+6. If you are upgrading the system to KAP Plus 2.4.X, you are required to migrate ACL data. Run commands below: 
+
+   ```shell
+   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
+   ```
+
+7. Confirm the License:
 
    Confirm the license file in the new directory of KAP. 
 
-7. Start the KAP Plus instance: 
+8. Start the KAP Plus instance: 
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh start

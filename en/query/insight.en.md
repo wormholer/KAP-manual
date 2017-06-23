@@ -8,7 +8,7 @@
 
 
 ### Query Page Overview
-### Click *Insight* on KAP navigation header, all query-able tables will be listed on the left side of page. The tables will be shown only after the cube build successfully. Enter SQL in textbox on the right side of page, query result will be shown at the below textbox.
+Click *Insight* on KAP navigation header, all query-able tables will be listed on the left side of page. The tables will be shown only after the cube build successfully. Enter SQL in textbox on the right side of page, query result will be shown at the below textbox.
 
 * **FACT** - Fact Table 
 * **LOOKUP** - Dimension Table
@@ -36,7 +36,13 @@ All query histories will show in *Query History* tab. Click *Query History* tab,
 
 ![](images/web/query_list_history.png)
 
-#### Data Visulization in KAP
+### Query Pushdown
+
+KAP supports query pushdown from version 2.4. When queries which cannot be fulfilled with customized Cubes bother you, you can simply leverage query pushdown to redirect the query to Spark SQL or Hive, making a trade-off  between query latency and query flexibility to obtain a better experience. 
+
+Query pushdown is turned off in default. To turn on it, remove the comment character # ahead of the configuration item `kylin.query.ad-hoc.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.AdHocRunnerSparkImp` in file `kylin.properties` to bring it into  effect. With query pushdown turned on, queries cannot get results from Cubes will be redirected to Spark SQL in default. You can also configure it manually, and choose Hive as the default engine to be redirected. Please refer to [Important Configurations](../config/settings.en.md) for more configuration settings. 
+
+### Data Visualization in KAP
 
 #### Table
 

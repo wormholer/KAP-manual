@@ -55,7 +55,13 @@ KAP 2.X shares compatible metadata with Kylin 1.5.1+. Thus you could upgrade the
    $KYLIN_HOME/bin/metastore.sh refresh-cube-signature
    ```
 
-8. Start the KAP instance: 
+8. If you are upgrading the system to KAP 2.4.X, you are required to migrate ACL data. Run commands below: 
+
+   ```shell
+   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
+   ```
+
+9. Start the KAP instance: 
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh start
