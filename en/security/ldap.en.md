@@ -169,7 +169,6 @@ cn: admin
 member: cn=jenny,ou=People,dc=example,dc=com
 objectClass: groupOfNames
 objectClass: top
-
 ```
 
 8．Import it with command:
@@ -179,6 +178,18 @@ objectClass: top
 ```
 
 When prompt the password, enter the password of LDAP administrator. Then the import is succeed.
+
+9．Change passwd
+
+```shell
+For example:
+Change passwd for: dn: cn=jenny,ou=People,dc=example,dc=com
+ldappasswd -xWD cn=Manager,dc=example,dc=com -S cn=jenny,ou=People,dc=example,dc=com
+It will show like:
+Input New Password
+Verify New Password
+LDAP Administrator password
+```
 
 
 #### Configure LDAP Information in KAP

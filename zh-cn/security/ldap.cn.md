@@ -167,6 +167,16 @@ objectClass: top
 
 提示输入密码，输入管理员的密码，导入成功。
 
+9．修改密码
+
+```shell
+管理员可以强制修改用户密码，命令
+ldappasswd -xWD cn=Manager,dc=example,dc=com -S cn=jenny,ou=People,dc=example,dc=com
+提示输入新密码
+确认新密码
+输入管理员密码
+```
+
 
 #### 在KAP中配置LDAP服务器信息
 
