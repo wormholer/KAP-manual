@@ -3,18 +3,14 @@
 ### 服务发现
 多个KAP实例可以组成一个集群一起协同工作。当一个KAP实例启动、停止或者意外丢失的时候，集群中的其它实例能够自动发现并更新状态，称为服务发现。
 
-KAP从v2.0开始就支持服务发现。KAP 2.4新增了基于Apache Curator框架的服务发现功能，它比之前的版本更为稳定和灵活。要开始服务发现，您只需在集群的每个KAP实例上做以下配置：
+KAP从2.0开始就支持服务发现。KAP 2.4新增了基于Apache Curator框架的服务发现功能，它比之前的版本更为稳定易用。基于Curator的服务发现默认会被启用。
+
+当用户环境中没有使用HBase作为metadata store的时候（可以在KYLIN_HOME中运行`bin/get-properties.sh kylin.metadata.url`观察返回值是否以`@hbase`结尾），需要额外为KAP配置ZOOKEEPER地址：
 
 - 在`kylin.properties`中配置Zookeeper地址
 
 ```
 kylin.env.zookeeper-connect-string=host1:2181,host2:2181,host3:2181
-```
-
-- 开启基于Curator的调度器
-
-```
-kylin.job.scheduler.default=100
 ```
 
 - 重启KAP
