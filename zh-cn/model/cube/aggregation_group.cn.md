@@ -1,4 +1,4 @@
-# 高级设置
+# 聚合组
 
 在所有基于预计算的OLAP引擎中，维度灾难是一个广为诟病的问题。在v1.5 （KAP2.1）之前的版本中，Kylin试图通过一些基本的技术解决这个问题，也确实在某些程度上减轻了问题的严重性。在之后的开源实践中，我们发现这些基本技术缺乏系统性的设计思维，也无法解决更多更普遍的问题。于是在KAP v2.1及之后的版本中，我们重新设计了聚合组的设计机制使得Kylin更好的服务于所有Cube的设计场景。
 
@@ -41,7 +41,7 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 聚合组1： `[cal_dt, city, pay_type] `  聚合组2： `[cal_dt, city, buyer_id] `
 
- 
+
 在不考虑其他干扰因素的情况下，这样的聚合组将节省不必要的3个Cuboid: [pay_type, buyer_id]、[city, pay_type, buyer_id]和[cal_dt,pay_type, buyer_id] 等，节省了存储资源和构建的执行时间。
 
 ​	Case1: Select cal_dt, city, pay_type, count(*) from table
