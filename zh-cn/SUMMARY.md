@@ -71,6 +71,7 @@
         * [Power BI](integration/powerbi.cn.md)
         * [Apache Zeppelin](integration/zeppelin.cn.md)
         * [Cognos](integration/cognos.cn.md)
+        * [MicroStrategy](integration/microstrategy_10_4.cn)
 * [REST API](rest/README.md)
     * [访问及安全验证](rest/authentication.cn.md)
     * [查询 API](rest/query_api.cn.md)
