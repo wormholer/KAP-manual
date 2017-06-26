@@ -10,10 +10,10 @@
 ### Query Page Overview
 Click *Insight* on KAP navigation header, all query-able tables will be listed on the left side of page. The tables will be shown only after the cube build successfully. Enter SQL in textbox on the right side of page, query result will be shown at the below textbox.
 
-* **FACT** - Fact Table 
-* **LOOKUP** - Dimension Table
+* **F(FACT)** - Fact Table 
+* **L(LOOKUP)** - Dimension Table
 
-![](images/web/query_list_table.png)
+![](images/insight/insight_query_list_table.jpg)
 
 ### Query with SQL
 > **Query Limitations**
@@ -23,24 +23,31 @@ Click *Insight* on KAP navigation header, all query-able tables will be listed o
 > 2. SQL will not be routed to the source, such as hive, if the realization in cube is not found.
 
 Enter SQL and click *Submit*, you will see query results. One more thing, there's a *LIMIT* field at the bottom right of the page. If there's no *LIMIT* field in your SQL, the default limit will be *50000*. If you want to disable the limit, just replace *50000* with *0*.
-![](images/web/query_input_sql.png)
+
+After query results returned successfully, you can find the name of the hit Cube in the *Query Engine* item, which is below *Status*. 
+
+![](images/insight/insight_query_input_sql.jpg)
 
 
 ### Save Query
 User could click *Save SQL* button at right bottom to save queries, the query is associated with current user.
 
-![](images/web/query_list_save_query.png)
+![](images/insight/insight_query_list_save_query.jpg)
 
 ### Query History
 All query histories will show in *Query History* tab. Click *Query History* tab, you can resubmit your sql. If the browser cookies are cleared, all histories will be lost. 
 
-![](images/web/query_list_history.png)
+![](images/insight/insight_query_list_history.jpg)
 
 ### Query Pushdown
 
 KAP supports query pushdown from version 2.4. When queries which cannot be fulfilled with customized Cubes bother you, you can simply leverage query pushdown to redirect the query to Spark SQL or Hive, making a trade-off  between query latency and query flexibility to obtain a better experience. 
 
-Query pushdown is turned off in default. To turn on it, remove the comment character # ahead of the configuration item `kylin.query.ad-hoc.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.AdHocRunnerSparkImp` in file `kylin.properties` to bring it into  effect. With query pushdown turned on, queries cannot get results from Cubes will be redirected to Spark SQL in default. You can also configure it manually, and choose Hive as the default engine to be redirected. Please refer to [Important Configurations](../config/settings.en.md) for more configuration settings. 
+Query pushdown is turned off in default. To turn on it, remove the comment character # ahead of the configuration item `kylin.query.ad-hoc.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.AdHocRunnerSparkImp` in file `kylin.properties` to bring it into  effect. With query pushdown turned on, queries that cannot get results from Cubes will be redirected to Spark SQL in default. You can also configure it manually, and choose Hive as the default engine to be redirected. Please refer to [Important Configurations](../config/settings.en.md) for more configuration settings. 
+
+After turning on query pushdown, all tables you have synchronized will be shown without building corresponding Cubes. When you submit a query, you can find *Pushdown* in the *Query Engine* item below *Status*, if query pushdown works. 
+
+![](images/insight/insight_query_pushdown.jpg)
 
 ### Data Visualization in KAP
 
