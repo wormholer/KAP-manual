@@ -68,7 +68,7 @@
         * [Power BI](integration/powerbi.en.md)
         * [Apache Zeppelin](integration/zeppelin.en.md)
         * [Cognos](integration/cognos.en.md)
-        * [MicroStrategy](integration/microstrategy_10_4.en)
+        * [MicroStrategy](integration/microstrategy_10_4.en.md)
 * [REST API](rest/README.md)
     * [Access and authentication](rest/authentication.en.md)
     * [Query API](rest/query_api.en.md)
