@@ -5,11 +5,16 @@ KAP的Web UI上提供了一个“诊断”功能，可将相关的信息打包�
 
 ## 系统诊断
 单击System页面下的Diagnosis按钮，所生成的诊断包包含整个KAP实例的诊断信息。
-![](images/diagnosis/Picture1.png)
+![](images/diagnosis/sys_diag.png)
+
+同时KAP也支持了自动上传系统诊断包的功能，打开“帮助”下的KyBot自动上传开关，登陆KyAccount账号即可。
+
+![](images/diagnosis/auto_diag.png)
 
 ## 任务诊断
+
 单击Monitor页面中某个Job下的Diagnosis按钮，所生成的诊断包仅包含该任务的诊断信息。
-![](images/diagnosis/Picture2.png)
+![](images/diagnosis/job_diag.png)
 
 # 求助KyBot
 KyBot是Kyligence提供的一个为Apache Kylin或KAP进行诊断、优化的在线服务平台。用户可以使用KyBot Agent产生KyBot诊断包，并上传到KyBot网站。
