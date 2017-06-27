@@ -88,7 +88,7 @@
 * [安全控制](security/README.md)
     * [管理用户](security/user.cn.md)
     * [集成LDAP登录](security/ldap.cn.md)
-    * [管理ACL](security/acl.cn.md)
+    * [管理权限](security/acl.cn.md)
     * [行列级别访问控制](security/cell.cn.md)
 * [监控和诊断](troubleshooting/README.md)
     * [日志](troubleshooting/logging.cn.md)

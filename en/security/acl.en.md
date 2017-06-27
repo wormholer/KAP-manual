@@ -1,25 +1,43 @@
-## Manage ACL
+## Manage Permissions
 
-In the `Cubes` page，double click the cube line to check the detail inforamtion; here we will focus on the `Access` tab. Click `+Grant` button to grant new permission.
+What permissions does KAP provide?
 
-![](images/acl/grant.png)
+- *QUERY*: Permission to query tables/cubes in the project
+- *OPERATION*: Permission to rebuild, resume and cancel jobs. OPERATION permission includes QUERY.
+- *MANAGEMENT*: Permission to edit/delete cube. MANAGEMENT permission includes OPERATION and QUERY.
+- *ADMIN*: Full access to cube and jobs. ADMIN permission includes MANAGEMENT, OPERATION and QUERY.
 
-There are four access levels on a cube; Move cursor to the `?` icon will see the detail description of these accesses.
+### Manage Permissions at project level
 
-![](images/acl/grantInfo.png)
+It is suggested to configure permissions at project level rather than cube level.
 
-There are two access objects: `User`和`Role`. `Role` means an user group.
+#### Grant/Revoke
 
-### Grant User Permission
-* Select `User` as type, enter the user name and then select the permission that you want to grant.
+![](images/acl/acl_en.1.png)
 
-![](images/acl/grant-user.png)
+Follow the steps in above screenshot to grant permissions to user/role. Treat role as a user group.
 
-* Click `Grant` button to submit. After this you will see a new line be added to the permission table. You can select one line to update the permission, or click `Revoke` button to delete the permission.
+Use the edit/delete button to update/revoke permissions.
 
-![](images/acl/user-update.png)
 
-### Grant Role Permission
-* Select `Role` as type, select a role (user group) in the drop-down list (the list is retrieved from LDAP server), and also select the permission that you want to grant.
 
-* Click `Grant` button to submit. Other operations are the same as for user.
+### Manage Permissions at cube level
+
+
+
+Administrators could customize different cubes with different permissions for each user/role:
+
+![](images/acl/acl_en.2.png)
+
+
+
+### Influence
+
+Permission at project level will be inherited by each cube in this project, e.g. If a user is granted MANAGEMENT
+permission on a project, he naturally gets MANAGEMENT permission on all cubes this project. 
+
+KAP will throw unauthorized exception on user's query unless the user has QUERY permission to the selected cube. The permission 
+could either be at project level or cube level.
+
+Additionally, when Query Pushdown is enabled, QUERY permission on project allows users to issue ad-hoc queries on all tables in the project even though no cube could serve them. It's impossible if 
+a user is not yet granted QUERY permission at project level.

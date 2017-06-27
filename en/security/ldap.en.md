@@ -246,11 +246,11 @@ In conf/kylin.properties, set "kylin.security.profile=ldap"，and then restart K
 
 If we login with jenny which belongs to group `admin`, `System` menu will be displayed in the top bar:
 
-![](images/ldap/login-with-jenny.png)
+![](images/ldap/ldap_1.en.png)
 
 Otherwise, if we login with johnny which belongs to group `itpeople`, `System` menu won't be displayed in the top bar since the group `itpoeple` isn't admin group.
 
-![](images/ldap/login-with-johnny.png)
+![](images/ldap/ldap_2.en.png)
 
 ### LDAP user information cache
 

@@ -4,7 +4,7 @@ Login on KAP, users can click `system button` on navigation bar to enter system 
 
 KAP is set to initial three users, and corresponding account information would be admin (ADMIN/KYLIN), modeler(MODELER/MODELER), analyst(ANALYST/ANALYST).
 
-![](images/users/user.png)
+![](images/user/user_1.en.png)
 
 #### Characters
 The KAP system defaults to three characters: administrator, modeler and analyst.
@@ -18,17 +18,17 @@ Modeler is capable to build model, Cube, and other actions(such as building, edi
 #### Add users
 Administrator could add new users and input user name, password and character information. 
 
-![](images/users/add_user.png)
+![](images/user/user_2.en.png)
 
 #### Edit user information
 Once users are added, administrator would be able to edit user's character information.
 
-![](images/users/edit_user.png)
+![](images/user/user_3.en.png)
 
 #### Change password
 Administrator is able to change password and only needs to input twice the new password. 
 
-![](images/users/update_password.png)
+![](images/user/user_4.en.png)
 
 #### Delete users
 Administrator could delete users within the page. Please be noticed that deleted users cannot be restored. 
@@ -39,6 +39,6 @@ Administrator could enable or disable users and disabled users cannot login the 
 #### Change password as normal users
 Click the `welcome tag` on the far right side of navigation bar, then users could choose the `setting` option and click it to enter the personal change password page.      
 
-![](images/users/setting_update_password.png)
+![](images/user/user_5.en.png)
 
 
