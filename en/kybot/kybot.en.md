@@ -40,7 +40,7 @@ Default access address of KyBot: [https://kybot.io](https://kybot.io). Please co
 
 - #### KAP Users
 
-If you are using KAP 2.3 or subsequent versions, which supports one-click uploading to KyBot. Check on following steps:
+If you are using KAP 2.3 or subsequent versions, which supports one-click uploading to KyBot. For current version, check on following steps:
 
 1.Login to KAP Web UI, click "Diagnosis" on System page.
 ![](images/Picture12.png)
@@ -49,7 +49,7 @@ If you are using KAP 2.3 or subsequent versions, which supports one-click upload
 
 ![](images/Picture13.png)
 
-If your KAP server needs proxy server to access the Internet, following configurations are required:
+If your KAP server needs proxy server to access the Internet, following configurations in kylin.properties are required:
 
 ```
 kap.external.http-proxy-host // http proxy server

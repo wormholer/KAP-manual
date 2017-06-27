@@ -4,16 +4,16 @@ KAP用户在使用过程中经常会遇到一些棘手的问题，例如Cube创�
 KAP的Web UI上提供了一个“诊断”功能，可将相关的信息打包成zip格式压缩包，供运维人员进行问题排查。该功能的入口总共有两处：系统诊断和任务诊断
 
 ## 系统诊断
-单击System页面下的Diagnosis按钮，所生成的诊断包包含整个KAP实例的诊断信息。
+单击“系统”页面下的“诊断”按钮，所生成的诊断包包含整个KAP实例的诊断信息。
 ![](images/diagnosis/sys_diag.png)
 
-同时KAP也支持了自动上传系统诊断包的功能，打开“帮助”下的KyBot自动上传开关，登陆KyAccount账号即可。
+同时KAP也支持了自动上传系统诊断包的功能，打开“帮助”下的KyBot自动上传开关，登录KyAccount账号即可。
 
 ![](images/diagnosis/auto_diag.png)
 
 ## 任务诊断
 
-单击Monitor页面中某个Job下的Diagnosis按钮，所生成的诊断包仅包含该任务的诊断信息。
+单击“监控”页面中某个任务下的“诊断”按钮，所生成的诊断包仅包含该任务的诊断信息。
 ![](images/diagnosis/job_diag.png)
 
 # 求助KyBot
