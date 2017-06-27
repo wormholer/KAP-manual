@@ -18,7 +18,6 @@
         * [Read/Write Deployment](install/adv_install_rw.en.md)
         * [High Availability Deployment](install/adv_install_ha.en.md)
     * [Install Validation](install/install_validate.en.md)
-    * [FAQ](install/install_faq.en.md)
     * [Uninstall](install/uninstall.en.md)
 * [Configuration](config/README.md)
     * [Basic Configuration](config/basic_settings.en.md)

@@ -1,6 +1,6 @@
-#Max Dimension Combination Cuboid Pruning
+# Cuboid Pruning
 
-Aggregation group and all its advanced settings help evade cuboid number explosion. To achieve better Cube design users have to understand the data model, which is hard for the junior ones. Fortunately KAP provides another simple cuboid pruning tool named Max Dimension Combination (MDC). This tool limits the dimension number in a single cuboid, which means cuboids containing too many dimensions are not built in Cube Building process. It fits well in the situation where most queries only touch no more than N dimensions, N is MDC threshold that is configurable.
+Aggregation group and all its advanced settings help evade cuboid number explosion. To achieve better Cube design users have to understand the data model, which is hard for the junior ones. Fortunately KAP provides another simple cuboid pruning tool named **Max Dimension Combination (MDC)**. This tool limits the dimension number in a single cuboid, which means cuboids containing too many dimensions are not built in Cube Building process. It fits well in the situation where most queries only touch no more than N dimensions, N is MDC threshold that is configurable.
 
 How to define how many dimensions a query touches? It's the union column number of group-by and filter columns. Here're some examples:
 
