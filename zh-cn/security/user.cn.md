@@ -3,7 +3,7 @@
 登录KAP后，点击导航栏的‘系统’按钮，进入系统管理页面，点击左侧的用户栏进入用户管理页面。只有Admin能看到该页面。
 KAP默认会初始化三个用户，对应帐号信息为 管理员(ADMIN/KYLIN), 建模人员(MODELER/MODELER), 分析人员(ANALYST/ANALYST)
 
-![](images/users/user.png)
+![](images/users/user_1.cn.png)
 
 #### 角色
 系统默认有三个角色，管理人员、建模人员和分析师。
@@ -14,17 +14,17 @@ KAP默认会初始化三个用户，对应帐号信息为 管理员(ADMIN/KYLIN)
 #### 添加用户
 管理员可以添加新的用户， 需要填写用户名，密码，角色信息。
 
-![](images/users/add_user.png)
+![](images/users/user_2.cn.png)
 
 #### 编辑用户
 用户添加完成后, 管理员可以编辑用户角色信息。
 
-![](images/users/edit_user.png)
+![](images/users/user_3.cn.png)
 
 #### 更改密码
 管理员可以更改密码信息，需重复输入两次新密码。
 
-![](images/users/update_password.png)
+![](images/users/user_4.cn.png)
 
 #### 删除用户
 管理员可以在此页面删除用户，删除后将不能恢复。
@@ -35,6 +35,6 @@ KAP默认会初始化三个用户，对应帐号信息为 管理员(ADMIN/KYLIN)
 #### 普通用户修改密码
 点击导航栏最右侧的欢迎标签，可以看到'设置'选项，点击进入个人更改密码页面。
 
-![](images/users/setting_update_password.png)
+![](images/users/user_5.cn.png)
 
 
