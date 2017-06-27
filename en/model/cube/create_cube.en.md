@@ -1,8 +1,8 @@
-## Create Cube
+## Cube Design
 
-We need to define dimension combinations and measure types based on existed data model. This process is called Cube design and create. This chapter will introduce Cube creation process with example data coming with KAP.
+We need to define dimension combinations and measure types based on existed data model. This process is called Cube design. This article will introduce Cube design process with sample data(kylin_sales).
 
-Open KAP Web UI, select project `KAP_Sample_1` in project list located at upper left corner. Cube creation is only accessible on `Cube` page.
+Open KAP Web UI, select project `learn_kylin` in project list located at upper left corner. Cube design is only accessible on `Cube` page.
 
 ![](images/createcube_1.png)
 
@@ -67,7 +67,7 @@ Rowkey specifies how dimensions are organized together. Each dimension in the cu
 6. `time` Use 4 bytes to encode timestamps, supporting from 1970-01-01 00:00:00 to 2038/01/19 03:14:07. Millisecond is ignored. 
 7. `fix_length` Use a fixed-length("length" parameter) byte array to encode integer dimension values, with potential value truncations. 
 8. `fixed_length_hex` Use a fixed-length("length" parameter) byte array to encode the hex string dimension values, like 1A2BFF or FF00FF, with potential value truncations. Assign one length parameter for every two hex codes.
- 
+
 There're seven dimensions in our example, and we need to set encoding type for each column(placeholder). We use dict encoding for all of the dimensions except `LSTG_FORMAT_NAME`, which uses fixed_length (length 12) encoding. The order of rowkeys is important for speed up queries. In general the order of rowkeys is organized according to its frequency used in filter condition. The first rowkeys has the highest frequency, it's `PART_DT` in this case.
 
 The rowkey setting result is shown in following figure:
