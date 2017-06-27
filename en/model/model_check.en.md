@@ -36,3 +36,17 @@ If creating or editting a model, after clicking **save**, it shows a checkbox to
 If the model check job is done without any exceptions, it can observe the check result on the model list. In this case, che check result is health，there are other check status and details if the model has some issues.
 
 ![](images/24_model_diagnose_6.png)
+
+As mentioned in the beginning, The Model Check includes 3 different check tasks:
+
+1. Check if there are the duplications in primary key of lookup tables. If there are the duplication and it is over the given threshold will terminates the check job immediately. In this case, it's better to remove the duplication.
+2. Check if the source data on the foreigner key is distributed uniformly. When the data is not distributed uniformly, might cause the whole job can not finish until the latest reducer which possesses the skew data completes its task. It suggests to have some efforts to avoid the this situation before starting the cubing job. 
+3. Check if the join condition is reasonable. It will generate a flat table and check the join result. According to the result, it could have basic judgement that if the given join condition is good or bad. If the condition is totally good, there could be some issues in the source data.
+
+With the above checks, it defines five model check status:
+
+1. Not Checked Yet. Once a model is created, it will be in this state.
+2. On Checking. It means a model check job is running.
+3. Good Health. It means there are no any check errors .
+4. Warn. It indicates there is one check error.
+5. Error. It show there are at least check errors.
