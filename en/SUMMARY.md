@@ -26,7 +26,7 @@
     * [Configuration Override](config/config_override.en.md)
     * [KyStorage Configuration](config/kystorage_settings.en.md)
     * [JDBC Metastore Configuration](config/metadata_jdbc.en.md)
-    * [Spark Dynamic Allocation](conf/spark_dynamic_allocation.en.md)
+    * [Spark Dynamic Allocation](config/spark_dynamic_allocation.en.md)
     * [Compression Settings](config/compression_settings.en.md)
 * [Upgrade](upgrade/README.md)
     * [Upgrading from Apache Kylin](upgrade/upgrade_kylin.en.md)

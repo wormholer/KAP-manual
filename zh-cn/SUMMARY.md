@@ -29,7 +29,7 @@
     - [多级配置重写](config/config_override.cn.md)
     - [KyStorage配置参数](config/kystorage_settings.cn.md)
     - [JDBC配置](config/metadata_jdbc.cn.md)
-    - [Spark资源动态配置](conf/spark_dynamic_allocation.cn.md)
+    - [Spark资源动态配置](config/spark_dynamic_allocation.cn.md)
     - [压缩配置](config/compression_settings.cn.md)
 * [升级](upgrade/README.md)
     * [从Apache Kylin升级](upgrade/upgrade_kylin.cn.md)
