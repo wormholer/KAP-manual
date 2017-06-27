@@ -12,7 +12,7 @@ In this article, we take Windows 7 as an example to introduce ODBC driver's inst
 
 1. Install Microsoft Visual C++ 2012（Redistributable）
    * 32 bits: download [32bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe) 
-   * 64 bits: download[64bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
+   * 64 bits: download [64bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
 2. The ODBC driver would call KAP's Rest server, so make sure the KAP service is working properly.
 
 ## Installation
@@ -29,13 +29,8 @@ In this article, we take Windows 7 as an example to introduce ODBC driver's inst
 * 64 bits ODBC driver：select "Control Panel> Administrative Tools" to open "ODBC Data Source Administrator" 
 
 
-![](images/odbc/01.png)
-
-
-
 2. Switch to the System DSN tab, click `Add` and select "KylinODBCDriver" in the pop-up driver selection box, then click `finish`.
 
-![](images/odbc/02.png)
 
 3. In the pop-up Kylin DSN Configuration Dialog, input the KAP server information, as shown in the figure: 
 
