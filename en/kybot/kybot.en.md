@@ -33,7 +33,7 @@ Default access address of KyBot: [https://kybot.io](https://kybot.io). Please co
 ### 2. How to obscure sensitive information
 
 - OBF=obfuscate RAW=none obfuscate
-- Cardinality and mail account default not to be obfuscated (If OBF set, obfuscated range: tiny: <20; small: <100; medium: <1000; high: <10,000; very high: <100,000; ultra high: >=100,000).
+- Mail account is obfuscated by default while cardinality is not (If cardinality OBF set, obfuscated range: tiny: <20; small: <100; medium: <1000; high: <10,000; very high: <100,000; ultra high: >=100,000).
 - If hostname defaults to be OBF, then the mode of hostname needs to be defined: such as kybot.obf.hostname.pattern=\*.kybot.io
 
 ### 3. Generate diagnostic package
