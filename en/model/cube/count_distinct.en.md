@@ -22,7 +22,7 @@ Next, choose the column desired from `Param Value` and COUNT_DISTINCT from `Expr
 
 ![](images/cd_measures_add.2.png)
 
-Follow the [Create Cube](molap/create_cube.en.md) introduction for rest steps, the Cube would be ready after you setting segments on the [Build Cube](molap/build_cube.en.md) section.
+Follow the [Create Cube](create_cube.en.md) introduction for rest steps, the Cube would be ready after you setting segments on the [Build Cube](../build_cube.en.md) section.
 
 
 
