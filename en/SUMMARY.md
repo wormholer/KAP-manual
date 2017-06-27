@@ -43,6 +43,7 @@
     * [Cube Design](model/cube/README.md)
         * [Create Cube](model/cube/create_cube.en.md)
         * [Aggregation Group](model/cube/aggregation_group.en.md)
+        * [Cuboid Pruning](model/cube/cuboid_pruning.en.md)
         * [Cube Optimize](model/cube/cube_suggestion.en.md)
         * [Measure-TopN](model/cube/topN.en.md)
         * [Measure-Approximate Distinct Count](model/cube/count_distinct.en.md)

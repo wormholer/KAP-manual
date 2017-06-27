@@ -46,6 +46,7 @@
     * [设计Cube](model/cube/README.md)
         * [设计Cube](model/cube/create_cube.cn.md)
         * [维度聚合组](model/cube/aggregation_group.cn.md)
+        * [基于最大维度组合数的Cuboid剪枝](model/cube/cuboid_pruning.cn.md)
         * [一键优化](model/cube/cube_suggestion.cn.md)
         * [度量设计-TopN](model/cube/topN.cn.md)
         * [度量设计-近似Distinct Count](model/cube/count_distinct.cn.md)
