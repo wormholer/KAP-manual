@@ -1,12 +1,12 @@
 ## Use jdbc to connect other database as metastore
-Kap Plus uses KyStorage to store cube data, therefor hbase only works as a storage for metadata. Form Kap-2.4.x, kap supports storing metadata to other databases with jdbc
+KAP Plus uses KyStorage to store cube data, therefor hbase only works as a storage for metadata. From KAP 2.4.x, KAP supports storing metadata to other databases with jdbc
 
 ### Config metadata in the form of jdbc
 
 Steps below are with the case of mysql:
-1. Install Kap Plus
+1. Install KAP Plus
 2. Create database `kylin` in mysql 
-3. In Kap's installation directory, set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties` to `{metadata_name}@jdbc`,
+3. In KAP's installation directory, set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties` to `{metadata_name}@jdbc`,
 replace `{metadata_name}` as user's metadata name, for example, `{metadata_name}@jdbc`. And set configuration items for jdbc, for example, `kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`. 
 All items are as below:
 
@@ -30,9 +30,9 @@ All items are as below:
     
 4. Add configuration item `kylin.metadata.jdbc-connector-path` of configuration file `$KYLIN_HOME/conf/kylin.properties` to the path of jdbc connector jar, for example, `kylin.metadata.jdbc-connector-path=/usr/share/java/mysql-connector-java.jar`
 
-5. Add configuration item `kylin.env.zookeeper-connect-string` of configuration file `$KYLIN_HOME/conf/kylin.properties` to zookeeper's url and port. If the server of Kap installs zookeeper as well, it can be set as `kylin.env.zookeeper-connect-string=localhost:2181`
+5. Add configuration item `kylin.env.zookeeper-connect-string` of configuration file `$KYLIN_HOME/conf/kylin.properties` to zookeeper's url and port. If the server of KAP installs zookeeper as well, it can be set as `kylin.env.zookeeper-connect-string=localhost:2181`
 
-6. Start Kap
+6. Start KAP
 
 ### How to migrate metadata from hbase to jdbc
 1. Set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties` to the hbase metadata to be migrated

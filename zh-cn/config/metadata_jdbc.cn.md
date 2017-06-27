@@ -1,5 +1,5 @@
 ## 使用jdbc连接其他数据库作为metastore
-由于KAP Plus使用KyStorage作为cube存储介质，因而hbase仅作为metadata的存储数据库。kap-2.4.x版本开始支持使用标准jdbc的数据库存储metadata。
+由于KAP Plus使用KyStorage作为cube存储介质，因而hbase仅作为metadata的存储数据库。KAP 2.4.x版本开始支持使用标准jdbc的数据库存储metadata。
 
 ### 配置jdbc形式的metadata
 以下以mysql为例说明配置步骤
@@ -32,7 +32,7 @@
 5. 在配置文件`$KYLIN_HOME/conf/kylin.properties`中添加zookeeper的连接项`kylin.env.zookeeper-connect-string`，若部署kap的server同时部署有
 zookeeper，可配置为`kylin.env.zookeeper-connect-string=localhost:2181`
 
-6. 启动kap
+6. 启动KAP
 
 ###  如何将hbase的metadata迁移至jdbc
 1. 将`$KYLIN_HOME/conf/kylin.properties`的metadata配置项`kylin.metadata.url`修改为待迁移的hbase metadata配置，如：`kylin_default_instance@hbase`
