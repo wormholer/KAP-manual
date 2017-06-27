@@ -41,6 +41,7 @@
     * [Data Import](model/data_import.en.md)
     * [Data Sampling](model/data_sampling.en.md)
     * [Model Design](model/data_modeling.en.md)
+    * [Model Check](model/model_check.en.md)
     * [Cube Design](model/cube/README.md)
         * [Create Cube](model/cube/create_cube.en.md)
         * [Aggregation Group](model/cube/aggregation_group.en.md)
