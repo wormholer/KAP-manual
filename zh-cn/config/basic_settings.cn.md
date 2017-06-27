@@ -31,3 +31,37 @@ kylin.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000' -f abc.sql
 ```
 ### kylin.env
 该参数指定KAP部署的用途，可以是*DEV*、*PROD*、*QA*。出厂默认值为*PROD*。在*DEV*模式下一些开发者功能将被启用。
+
+
+
+## JVM参数
+
+​        在`$KYLIN_HOME/conf/setenv.sh` （如果版本低于2.4.0，`$KYLIN_HOME/bin/setenv.sh`) 中，为KYLIN_JVM_SETTINGS给出了两种示例配置。默认配置使用的内存较少，用户可以根据自己的实际情况，注释掉默认配置并取消另一配置前的注释符号以启用另一配置，从而为KAP示例分配更多的内存资源。
+
+该项配置的默认值如下:
+
+```
+export KYLIN_JVM_SETTINGS="-Xms1024M -Xmx4096M -Xss1024K -XX:MaxPermSize=128M -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:$KYLIN_HOME/logs/kylin.gc.$$ -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=64M"
+# export KYLIN_JVM_SETTINGS="-Xms16g -Xmx16g -XX:MaxPermSize=512m -XX:NewSize=3g -XX:MaxNewSize=3g -XX:SurvivorRatio=4 -XX:+CMSClassUnloadingEnabled -XX:+CMSParallelRemarkEnabled -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:CMSInitiatingOccupancyFraction=70 -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError"
+```
+
+
+
+## 启用邮件通知
+
+当任务完成或失败时，KAP可以发送邮件通知用户。如用户需要启用该功能，请在`$KYLIN_HOME/conf/kylin.properties`中配置如下内容：
+
+```
+mail.enabled=true
+mail.host=your-smtp-server
+mail.username=your-smtp-account
+mail.password=your-smtp-pwd
+mail.sender=your-sender-address
+kylin.job.admin.dls=adminstrator-address
+```
+
+之后请重启KAP以使得上述配置项生效。
+
+如需要停用该功能，请将上述配置项中的`mail.enabled`值设置为`false`。
+
+管理员将会收到所有任务的通知。建模人员和分析师需要在Cube设计器页面中的第一页中，将自己的电子邮件地址输入至“通知邮件列表”框内，便能够收到该Cube相关任务的通知。更详细的通知事件过滤，可以在“需通知的事件”中设置。
