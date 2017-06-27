@@ -2,7 +2,7 @@
 
 KAP supports integration with LDAP servers for user authentication. This validation is achieved through the Spring Security framework, so it has a good versatility.
 
-#### Setup LDAP server
+### Setup LDAP server
 Before enabling LDAP authentication, you need an running LDAP service. If you already have it, contact the LDAP administrator to get the necessary information including connectivity inforamtion, organization structure, etc.
 
 If you don't have LDAP server, need install one for KAP. The recommended server tool is OpenLDAP Server 2.4, as it is an open source implementation (under OpenLDAP Public License) and is the most popular LDAP server. It has been packaged in some Linux distributions like Red Hat Enterprise Linux; it can also be downloaded from http://www.openldap.org/
@@ -192,7 +192,7 @@ LDAP Administrator password
 ```
 
 
-#### Configure LDAP Information in KAP
+### Configure LDAP Information in KAP
 
 First, in `conf/kylin.properties`, configure the URL of the LDAP server, the necessary username and password (if the LDAP server is not anonymous). For security reason, the password here need be encrypted with AES, you can run code below to get the encrypted password:
 ```shell
@@ -240,7 +240,7 @@ acl.defaultRole=ROLE_ANALYST,ROLE_MODELER
 
 The attribute "acl.defaultRole" defines the roles that granted to any logged-on user. By default be both Analyst and Modeler.
 
-#### Enable LDAP
+### Enable LDAP
 
 In conf/kylin.properties, set "kylin.security.profile=ldap"，and then restart KAP.
 
@@ -251,3 +251,13 @@ If we login with jenny which belongs to group `admin`, `System` menu will be dis
 Otherwise, if we login with johnny which belongs to group `itpeople`, `System` menu won't be displayed in the top bar since the group `itpoeple` isn't admin group.
 
 ![](images/ldap/login-with-johnny.png)
+
+### LDAP user information cache
+
+After users login to KAP by LDAP authentication, their information will be cached to reduce overhead of accessing LDAP server. You can set configuration of cache time (seconds) and max cache entries in kylin.properties. Default values are shown below: 
+
+```properties
+kylin.server.auth-user-cache.expire-seconds=300
+kylin.server.auth-user-cache.max-entries=100
+```
+

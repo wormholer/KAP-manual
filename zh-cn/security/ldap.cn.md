@@ -2,7 +2,7 @@
 
 KAP支持与LDAP服务器集成完成用户验证。这种验证是通过Spring Security框架实现的，所以具有良好的通用性。在启用LDAP验证之前，建议您联系LDAP管理员，以获取必要的信息。
 
-#### LDAP服务器的安装
+### LDAP服务器的安装
 启用LDAP验证之前，需要一个运行的LDAP服务。如果已经有，联系LDAP管理员，以获取必要的信息，如服务器连接信息、人员和组织结构等。
 
 如果没有可用的LDAP服务器，需要额外安装。推荐使用OpenLDAP Server 2.4，它是一个开源的实现（基于OpenLDAP Public License）并且也是最流行的LDAP服务器之一。很多企业Linux发行版已经内置了OpenLDAP服务，如果没有可以从官网下载： http://www.openldap.org/
@@ -178,7 +178,7 @@ ldappasswd -xWD cn=Manager,dc=example,dc=com -S cn=jenny,ou=People,dc=example,dc
 ```
 
 
-#### 在KAP中配置LDAP服务器信息
+### 在KAP中配置LDAP服务器信息
 
 首先，在conf/kylin.properties中，配置LDAP服务器的URL, 必要的用户名和密码（如果LDAP Server不是匿名访问）。为安全起见，这里的密码是需要加密（加密算法AES），您可以运行下面的命令来获得加密后的密码：
 ```shell
@@ -219,14 +219,14 @@ ldap.service.groupSearchBase=ou=Groups,dc=example,dc=com
 
 KAP允许您将一个LDAP群组映射成管理员角色：在kylin.properties中，将"acl.adminRole"设置为"ROLE_" + GROUP_NAME形式. 在当前例子中，在LDAP中使用群组"ADMIN"来管理所有KAP管理员，那么这里应该设置为:
 
-```
+```properties
 acl.adminRole=ROLE_ADMIN
 acl.defaultRole=ROLE_ANALYST,ROLE_MODELER
 ```
 
 属性"acl.defaultRole"定义了赋予登录用户的权限，默认是分析师（ANALYST）和建模人员（MODELER）.
 
-#### 启用LDAP
+### 启用LDAP
 
 在conf/kylin.properties中，设置"kylin.security.profile=ldap"，然后重启KAP。
 
@@ -236,3 +236,13 @@ acl.defaultRole=ROLE_ANALYST,ROLE_MODELER
 当使用 `itpeople` 组的 johnny 登录时，因为该组并不是`管理员`组，则不会显示 `系统` 菜单项。
 
 ![](images/ldap/login-with-johnny-cn.png)
+
+### LDAP用户信息缓存
+
+用户通过LDAP验证登录KAP后，其信息会被KAP缓存以减轻访问LDAP服务器的开销。用户可以在kylin.properties中对用户信息缓存时间（秒）和最大缓存用户数目进行配置，默认值如下：
+
+```properties
+kylin.server.auth-user-cache.expire-seconds=300
+kylin.server.auth-user-cache.max-entries=100
+```
+
