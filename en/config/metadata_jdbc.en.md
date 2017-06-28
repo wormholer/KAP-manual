@@ -28,7 +28,7 @@ All items are as below:
     
     *removeAbandonedTimeout*: timeout milliseconds, default value is `300`;
     
-4. Add configuration item `kylin.metadata.jdbc-connector-path` of configuration file `$KYLIN_HOME/conf/kylin.properties` to the path of jdbc connector jar, for example, `kylin.metadata.jdbc-connector-path=/usr/share/java/mysql-connector-java.jar`
+4. Copy the jdbc connector jar to $KYLIN_HOME/lib
 
 5. Add configuration item `kylin.env.zookeeper-connect-string` of configuration file `$KYLIN_HOME/conf/kylin.properties` to zookeeper's url and port. If the server of KAP installs zookeeper as well, it can be set as `kylin.env.zookeeper-connect-string=localhost:2181`
 
