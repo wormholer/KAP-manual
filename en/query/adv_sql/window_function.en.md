@@ -35,7 +35,7 @@ Select a default **Data Source** named as `learn_kylin`, then the table structur
 
 #### Rank Function (row_number, rank, dense_rank, ntile)
 
-Though we have the row column in this table, for most data analysts, generating row number is essential to get some particular results by different partitions. For instance: `select price, LSTG_FORMAT_NAME, row_number() over(partition by LSTG_FORMAT_NAME) as format_id from kylin_sales`
+Though we have the row column in this table, for most data analysts, generating row number is essential to get some particular results by different partitions. For instance: `select LSTG_FORMAT_NAME, row_number() over(partition by LSTG_FORMAT_NAME)as format_id ,price from kylin_sales`
 
 Then result returns like:
 

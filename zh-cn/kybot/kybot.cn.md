@@ -28,33 +28,30 @@ KyBot默认访问地址：[https://kybot.io](https://kybot.io)，根据提示完
 ### 2. 如何混淆敏感信息
 
 - OBF=混淆 RAW=不混淆
-- Cardinality和邮箱账号默认混淆（Cardinality 混淆范围：tiny: &lt;20 small: &lt;100 medium: &lt;1000 high: &lt;10,000 very high: &lt;100,000 ultra high: &gt;=100,000）
+- 邮箱账号等隐私信息默认是混淆的，而Cardinality默认不混淆（若启用混淆，Cardinality 混淆范围：tiny: <20 small: <100 medium: <1000 high: <10,000 very high: <100,000 ultra high: >=100,000）
 - 如hostname设置为OBF，需要定义hostname的模式，如kybot.obf.hostname.pattern=\*.kybot.io
 
 ### 3. 生成诊断包
 
 #### KAP用户
 
-如果您使用的是KAP 2.3及以上版本，支持一键上传诊断包到KyBot，操作步骤是：
+如果您使用的是KAP 2.3及以上版本，支持一键上传诊断包到KyBot，当前版本下的操作步骤是：
 
-1.在kylin.properties中配置登陆KyBot的用户名和密码：
+1.登录KAP WEB UI，单击系统页面的"诊断"按钮，弹出以下提示框
+![](images/Picture12.png)
 
-```
-kap.kyaccount.username // 用户名
-kap.kyaccount.password // 密码
-```
+2.第一次使用该功能需要输入登录KyBot的用户名和密码：
 
-如果您的KAP服务器需要通过代理才可访问外网，还需添加一下配置项：
+![](images/Picture13.png)
+
+如果您的KAP服务器需要通过代理才可访问外网，还需在kylin.properties中添加一下配置项：
 
 ```
 kap.external.http-proxy-host // http代理服务器地址
 kap.external.http-proxy-port // http代理服务器端口
 ```
 
-2.登陆KAP WEB UI，单击系统页面的"诊断"按钮，弹出以下提示框
-![](images/Picture12.png)
-
-3.单击“一键生成诊断包至KyBot”；如果您的KAP节点无法访问外网，也可以单击“下载诊断包”将诊断包下载到本地，然后手动上传到KyBot。（上传步骤见下文）
+3.单击“生成诊断包并上传至KyBot”；如果您的KAP节点无法访问外网，也可以单击“下载诊断包”将诊断包下载到本地，然后手动上传到KyBot。（上传步骤见下文）
 
 4.稍等片刻，待诊断包上传成功，访问[KyBot网站](https://kybot.io)即可查看 
 

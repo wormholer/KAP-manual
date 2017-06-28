@@ -27,7 +27,9 @@ KAP 2.X shares compatible metadata with Kylin 1.5.1+. Thus you could upgrade the
 
 4. Update the configuration files: 
 
-   If you have modified any configuration files under `conf/` of Kylin, please merge all of them to corresponding configuration files of KAP. 
+   If you're upgrading from >=2.4.0 to a newer version, simply replace new versions' `$KYLIN_HOME/conf` with old version's `$KYLIN_HOME/conf`.
+  
+   Otherwise if you're upgrading from <2.4.0, you need to: 1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`. 2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
 5. Modify configuration parameters: 
 
@@ -55,7 +57,13 @@ KAP 2.X shares compatible metadata with Kylin 1.5.1+. Thus you could upgrade the
    $KYLIN_HOME/bin/metastore.sh refresh-cube-signature
    ```
 
-8. Start the KAP instance: 
+8. If you are upgrading the system to KAP 2.4.X, you are required to migrate ACL data. Run commands below: 
+
+   ```shell
+   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
+   ```
+
+9. Start the KAP instance: 
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh start

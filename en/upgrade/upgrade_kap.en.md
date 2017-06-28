@@ -25,7 +25,9 @@ KAP 2.X shares compatible metadata with other KAP 2.X versions. Thus you could u
 
 4. Update the configuration files: 
 
-  If you have modified any configuration files under `$KYLIN_HOME/conf/` of the old version, please merge all of them to corresponding configuration files of the new version.  
+   If you're upgrading from >=2.4.0 to a newer version, simply replace new versions' `$KYLIN_HOME/conf` with old version's `$KYLIN_HOME/conf`.
+  
+   Otherwise if you're upgrading from <2.4.0, you need to: 1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`. 2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
 5. Upgrade and redeploy coprocessors: 
 
@@ -33,11 +35,17 @@ KAP 2.X shares compatible metadata with other KAP 2.X versions. Thus you could u
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.storage.hbase.util.DeployCoprocessorCLI default all
    ```
 
-6. Confirm the License:
+6. If you are upgrading the system to KAP 2.4.X, you are required to migrate ACL data. Run commands below: 
+
+   ```shell
+   $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
+   ```
+
+7. Confirm the License:
 
    Confirm the license file in the new directory of KAP. 
 
-7. Start the KAP instance: 
+8. Start the KAP instance: 
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh start

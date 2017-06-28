@@ -1,13 +1,13 @@
 ## 使用jdbc连接其他数据库作为metastore
-由于KAP Plus使用kystorage作为cube存储介质，因而hbase仅作为metadata的存储数据库。KAP 2.4.x版本开始支持使用标准jdbc的数据库存储metadata。
-
+由于KAP Plus使用KyStorage作为cube存储介质，因而hbase仅作为metadata的存储数据库。KAP 2.4.x版本开始支持使用标准jdbc的数据库存储metadata。
 
 ### 配置jdbc形式的metadata
 以下以mysql为例说明配置步骤
 1. 安装部署KAP Plus
 2. 在数据库中新建名为`kylin`的数据库
 3. 在kap安装目录下的`$KYLIN_HOME/conf/kylin.properties`配置文件中修改`kylin.metadata.url`为`{metadata_name}@jdbc`，`{metadata_name}`为用户的metadata名，
-以及jdbc的配置项：
+如`{metadata_name}@jdbc`，以及jdbc的配置项，例如：`kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`。
+配置项的含义如下：
 
     *url*：jdbc的url，默认值为`jdbc:mysql://localhost:3306/kylin`；
     
@@ -26,12 +26,13 @@
     *removeAbandoned*：是否自动回收超时连接，默认值为`true`；
     
     *removeAbandonedTimeout*：超时时间秒数，默认为`300`；
-   
-    例如：`kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`   
+    
+4. 在配置文件`$KYLIN_HOME/conf/kylin.properties`中配置jdbc connector jar包的路径，例如：`kylin.metadata.jdbc-connector-path=/usr/share/java/mysql-connector-java.jar`
 
-4. 在配置文件`$KYLIN_HOME/conf/kylin.properties`中添加zookeeper的连接项`kylin.env.zookeeper-connect-string`，若部署kap的server同时部署有
+5. 在配置文件`$KYLIN_HOME/conf/kylin.properties`中添加zookeeper的连接项`kylin.env.zookeeper-connect-string`，若部署kap的server同时部署有
 zookeeper，可配置为`kylin.env.zookeeper-connect-string=localhost:2181`
-5. 启动kap
+
+6. 启动KAP
 
 ###  如何将hbase的metadata迁移至jdbc
 1. 将`$KYLIN_HOME/conf/kylin.properties`的metadata配置项`kylin.metadata.url`修改为待迁移的hbase metadata配置，如：`kylin_default_instance@hbase`

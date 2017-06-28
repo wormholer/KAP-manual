@@ -68,6 +68,6 @@ Several points deserve attention:
 Steps
 
 - Keep all nodes' ``kylin.metadata.url`` are same. 
-- Update one KAP instance to run as job engine (`kylin.server.mode＝all`), all other instances as query engines (`kylin.server.mode＝query`).  If to turn on `High Availability` on job engine. Please refer to the next chapter [Configuration](../config/jobengine_ha.en.md).
+- Update one KAP instance to run as job engine (`kylin.server.mode＝all`), all other instances as query engines (`kylin.server.mode＝query`).  If to turn on `High Availability` on job engine. Please refer to the next chapter [Configuration](adv_install_ha.en.md).
 - Update all instances' IP address and port to ``kylin.server.cluster-servers``, these are used to sync the metadata changes among the instances. For example, `kylin.server.cluster-servers=127.0.0.1:7070,127.0.0.1:17070`
 

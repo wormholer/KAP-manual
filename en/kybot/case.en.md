@@ -8,7 +8,7 @@ We have met a case that an e-commerce company had run Apache Kylin over 21 nodes
 Over **86%** queries are completed within **1 second**, **98%** queries are completed within 5 second. Besides, average query performance goes greatly;
 The medium of building’s time comsumed is below 15mins, which is in the normal range;
 
-![](https://kyligence.io/wp-content/uploads/2016/11/01-1.png)
+![](images/01-1.png)
 
 
 ## SQL Execution Analysis
@@ -22,13 +22,13 @@ There are 8 dimensions displayed on the SQL executing process page, showing that
 
 The filtering dimension PART_DT is at the end of the index combination; considering that front dimensions have an ultra high cardinality that leading a costly filtering time comsuming and inefficient query, we sincerely suggest users update ranking of index dimensions.
 
-![](https://kyligence.io/wp-content/uploads/2016/11/02-1.png)
+![](images/02-1.png)
 
 ### SQL Execute Life Cycle Analysis
 
 As the SQL executing life cycle analysis diagram shows, the blue part refers to SQL works on parallel scaning among multiple storage nodes, the green part refers to SQL executtions on query nodes. The green part is much longer, suggesting that executing query bottleneck is on query nodes. Due to the reason before, we advise users to reduce data post aggregation pressure or improve query nodes performance.
 
-![](https://kyligence.io/wp-content/uploads/2016/11/03-1.png)
+![](images/03-1.png)
 
 ## Optimizing Action
 
