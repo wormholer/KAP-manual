@@ -27,7 +27,7 @@ KAP兼容开源Hadoop及主流商业Hadoop发行版，可运行在*Apache Hadoop
 
 
 
-![](images/kap_portofilio.png)
+![KAP Portofilio](images/kap_portofilio.png)
 
 
 
