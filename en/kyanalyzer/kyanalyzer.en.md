@@ -142,6 +142,9 @@ Click the green button `Sync Cubes From Kylin` after select project, KyAnalyzer 
 
 The schema could be edited online in KyAnalyzer, it's not necessary at most time.
 
+### User's query authority to cubes
+User's query authority to cubes in KyAnalyzer is consistent with kylin/kap's, for details, please refer to [Manage Permissions](../security/acl.en.md).
+
 ### New Query
 Click `New Query` button at navigation bar, then click `Refresh` button to fetch the latest meta data, select the cube under *Cubes* menu, now all dimensions and measures are shown. In the report designer area, here are four panels: *Measures*, *Columns*, *Rows*, *Filter*. User could drag measures into Measures panel, and dimensions into Columns and Rows panels.
 
