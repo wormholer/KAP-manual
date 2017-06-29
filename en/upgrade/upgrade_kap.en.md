@@ -35,7 +35,7 @@ KAP 2.X shares compatible metadata with other KAP 2.X versions. Thus you could u
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.storage.hbase.util.DeployCoprocessorCLI default all
    ```
 
-6. If you are upgrading the system to KAP 2.4.X, you are required to migrate ACL data. Run commands below: 
+6. If you are upgrading from KAP <2.4.0, you are required to migrate ACL data. Run commands below: 
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE

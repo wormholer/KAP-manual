@@ -27,9 +27,9 @@ KAP 2.X shares compatible metadata with Kylin 1.5.1+. Thus you could upgrade the
 
 4. Update the configuration files: 
 
-   If you're upgrading from >=2.4.0 to a newer version, simply replace new versions' `$KYLIN_HOME/conf` with old version's `$KYLIN_HOME/conf`.
+   If you're upgrading from Apache Kylin >=2.1, simply replace new versions' `$KYLIN_HOME/conf` with old version's `$KYLIN_HOME/conf`.
   
-   Otherwise if you're upgrading from <2.4.0, you need to: 1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`. 2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
+   Otherwise if you're upgrading from Apache Kylin <2.1, you need to: 1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`. 2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
 5. Modify configuration parameters: 
 
@@ -44,7 +44,6 @@ KAP 2.X shares compatible metadata with Kylin 1.5.1+. Thus you could upgrade the
 
    KAP and Kylin have subtle differences in the cube building algorithm. Change the value `true` of parameter `kylin.cube.aggrgroup.is-mandatory-only-valid` to `false` in `conf/kylin.properties`, if you would like to use your already built cubes in KAP. 
 
-
 6. Upgrade and redeploy coprocessors: 
 
    ```shell
@@ -57,7 +56,7 @@ KAP 2.X shares compatible metadata with Kylin 1.5.1+. Thus you could upgrade the
    $KYLIN_HOME/bin/metastore.sh refresh-cube-signature
    ```
 
-8. If you are upgrading the system to KAP 2.4.X, you are required to migrate ACL data. Run commands below: 
+8. If you are upgrading from Apache Kylin <2.1, you are required to migrate ACL data. Run commands below: 
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE

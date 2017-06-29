@@ -35,7 +35,7 @@ KAP 2.X各版本之间兼容元数据。因此在从KAP 2.X升级至更高版本
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.storage.hbase.util.DeployCoprocessorCLI default all
    ```
 
-6. 如果升级目标是KAP 2.4.X，需要对ACL数据进行迁移，执行下述命令：
+6. 如果是从<2.4 的KAP版本升级，需要对ACL数据进行迁移，执行下述命令：
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE

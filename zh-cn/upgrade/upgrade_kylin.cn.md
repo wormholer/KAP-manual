@@ -27,11 +27,9 @@ KAP 2.X与Kylin 1.5.1+版本兼容元数据。因此在Kylin升级至KAP时，�
 
 4. 更新配置文件：
 
-
-   如果是从>=2.4.0的版本升级到更新的版本，只需要简单地用老版本中的的`$KYLIN_HOME/conf`替换新版本中的`$KYLIN_HOME/conf`
+   如果是从>=2.1的Apache Kylin版本升级，只需要简单地用老版本中的的`$KYLIN_HOME/conf`替换新版本中的`$KYLIN_HOME/conf`
   
-   如果是从<2.4.0的版本升级到更新的版本，需要： 1. 手动地把在老版本`$KYLIN_HOME/conf`中的改动重新在新版本的`$KYLIN_HOME/conf`重做一遍 2. 手动地把在老版本中`$KYLIN_HOME/bin/setenv.sh`中的改动再新版本中的`$KYLIN_HOME/conf/setenv.sh`重新做一遍。 注意：1. setenv.sh的目录发生了改变 2. 不允许直接拷贝-替换配置文件
-
+   如果是从<2.1的Apache Kylin版本升级，需要： 1. 手动地把在老版本`$KYLIN_HOME/conf`中的改动重新在新版本的`$KYLIN_HOME/conf`重做一遍 2. 手动地把在老版本中`$KYLIN_HOME/bin/setenv.sh`中的改动再新版本中的`$KYLIN_HOME/conf/setenv.sh`重新做一遍。 注意：1. setenv.sh的目录发生了改变 2. 不允许直接拷贝-替换配置文件
 
 5. 修改配置参数：
 
@@ -46,7 +44,6 @@ KAP 2.X与Kylin 1.5.1+版本兼容元数据。因此在Kylin升级至KAP时，�
 
    由于KAP与Kylin的cube逐层构建算法存在差异，如果想要使用Kylin中已构建的Cube数据，需要将`conf/kylin.properties`文件中的参数`kylin.cube.aggrgroup.is-mandatory-only-valid`的值`true`修改为`false`。
 
-
 6. 升级并重新部署HBase协处理器：
 
    ```shell
@@ -59,7 +56,7 @@ KAP 2.X与Kylin 1.5.1+版本兼容元数据。因此在Kylin升级至KAP时，�
    $KYLIN_HOME/bin/metastore.sh refresh-cube-signature
    ```
 
-8. 如果升级目标是KAP 2.4.X，需要对ACL数据进行迁移，执行下述命令：
+8. 如果是从<2.1的Apache Kylin版本升级，需要对ACL数据进行迁移，执行下述命令：
 
    ```shell
    $KYLIN_HOME/bin/kylin.sh org.apache.kylin.tool.AclTableMigrationCLI MIGRATE
