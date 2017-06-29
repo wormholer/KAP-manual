@@ -29,7 +29,7 @@ Kylin使用HBase作为Metastore存储数据库，KAP 2.4+版本可以支持关�
 
      *removeAbandonedTimeout*：超时时间秒数，默认为`300`；
 
-4. 将jdbc的connector jar包拷贝至$KYLIN_HOME/lib
+4. 将jdbc的connector jar包拷贝至$KYLIN_HOME/ext
 
 5. 在配置文件`$KYLIN_HOME/conf/kylin.properties`中添加zookeeper的连接项`kylin.env.zookeeper-connect-string`，若部署kap的server同时部署有
    zookeeper，可配置为`kylin.env.zookeeper-connect-string=localhost:2181`
