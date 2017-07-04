@@ -231,11 +231,11 @@ acl.defaultRole=ROLE_ANALYST,ROLE_MODELER
 在conf/kylin.properties中，设置"kylin.security.profile=ldap"，然后重启KAP。
 
 当使用 `admin` 组的 jenny 用户登录时，会显示 `系统` 菜单项。
-![](images/ldap/login-with-jenny-cn.png)
+![](images/ldap/ldap_1.cn.png)
 
 当使用 `itpeople` 组的 johnny 登录时，因为该组并不是`管理员`组，则不会显示 `系统` 菜单项。
 
-![](images/ldap/login-with-johnny-cn.png)
+![](images/ldap/ldap_2.cn.png)
 
 ### LDAP用户信息缓存
 

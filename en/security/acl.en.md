@@ -39,5 +39,5 @@ permission on a project, he naturally gets MANAGEMENT permission on all cubes th
 KAP will throw unauthorized exception on user's query unless the user has QUERY permission to the selected cube. The permission 
 could either be at project level or cube level.
 
-Additionally, when Query Pushdown is enabled, QUERY permission on project allows users to issue ad-hoc queries on all tables in the project even though no cube could serve them. It's impossible if 
+Additionally, when Query Pushdown is enabled, QUERY permission on project allows users to issue pushdown queries on all tables in the project even though no cube could serve them. It's impossible if
 a user is not yet granted QUERY permission at project level.

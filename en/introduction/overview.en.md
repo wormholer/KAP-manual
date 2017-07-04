@@ -44,7 +44,7 @@ KAP is compatible with open source Hadoop and mainstream commercial Hadoop distr
 | **Detailed Query**         | Limited                           | Limited                                  | **Efficiently Support**                  |
 | **Data Modeling Tool**     | Cube Only                         | **KyStudio: Enhanced Semantic Layer Modeling** | **KyStudio: Enhanced Semantic Layer Modeling** |
 | **Intelligent Modeling**   | Unsupported                       | **Cube Suggestion, Smart Pruning**       | **Cube Suggestion, Smart Pruning**       |
-| **Ad Hoc Query**           | Unsupported                       | Limited Supported by JDBC Integration    | **Fully Supported by Spark SQL Integration** |
+| **Query Pushdown**         | Unsupported                       | Limited Supported by JDBC Integration    | **Fully Supported by Spark SQL Integration** |
 | **Security**               | Limited                           | **LDAP/Kerberos/Cell Level Security**    | **LDAP/Kerberos/Cell Level Security**    |
 | **BI Tool**                | No built-in                       | **KyAnalyzer: Built-in Agile BI**        | **KyAnalyzer: Built-in Agile BI**        |
 | **Technical Support**      | Open source community, no SLA     | Mail, phone, ticket, SLA with 5*8 or 7\*24 | Mail, phone, ticket, SLA with 5*8 or 7\*24 |

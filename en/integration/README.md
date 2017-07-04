@@ -15,3 +15,5 @@ Continue Read:
 [Power BI](powerbi.en.md)
 
 [Zeppelin](zeppelin.en.md)
+
+[Impala](impala.cn.md)

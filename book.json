@@ -20,7 +20,8 @@
         "expandable-chapters",
         "codeblock-filename",
         "edit-link",
-        "header"
+        "header",
+        "image-captions"
     ],
     "pluginsConfig": {
         "disqus": {
@@ -60,6 +61,10 @@
  
         "layout": {
              "headerPath" : "layouts/header.html"
+        },
+
+        "image-captions": {
+             "caption": "_CAPTION_"
         }
         
     }

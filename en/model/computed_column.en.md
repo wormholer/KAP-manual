@@ -23,9 +23,6 @@ the following information is required:
 - *Expression*：Definition of the computed column. Notice no columns from other tables is allowed to appear here.
 - *Data Type*：The data type of the created column
 
-Computed Column can not only be defined on fact table, but also on lookup tables. It's worth mentioning that since KAP supports snowflake schema, it's possible that two tables with different alias names share a common table in source database. For example, for a lookup table named "COUNTRY", user's fact table may join it with different FKs, resulting in two alias tables called "BUYER_COUNTRY" and "SELLER_COUNTRY". To keep it simple, in KAP computed column is defined against original table rather than the alias table. If user defines a computed column on "BUYER_COUNTRY", the same computed column will appear on "SELLER_COUNTRY" because they share the same origin table.
-
-
 After defining the computed columns in model, user needs to use them to build cube (either in dimension or measure), so that computed column can be pre-calculated and performance advantages can be observed.
 
 

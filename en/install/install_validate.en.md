@@ -24,11 +24,11 @@ On KAP web, under the **System** page, click `Reload Metadata` to refresh the sa
 
 On KAP web, select project *learn_kylin* in the project dropdown list (left upper corner). 
 
-![](images/kap_learn_kylin.jpg)
+![](images/kap_learn_kylin.png)
 
 At the **Model** page, select the sample Cube *kylin_sales_cube*, click **Action -> Build**, pick up a end date later than **2014-01-01**(to cover all 10000 sample records), and submit the build job.
 
-![](images/kap_build_cube.jpg)
+![](images/kap_build_cube.png)
 
 At the **Monitor** page, click *Refresh* to check the build progress, until 100%.
 
@@ -42,4 +42,4 @@ select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers
 
 The query result will be displayed at the **Insight** page also. User could check the query results between KAP and Hive, including accuracy and response time. 
 
-![](images/kap_query_result.jpg)
+![](images/kap_query_result.png)
