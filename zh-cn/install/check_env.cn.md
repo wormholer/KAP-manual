@@ -79,15 +79,15 @@ bin/check-env.sh
 
    `kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
 
-   **注意：**<u>对于KAP版本2.4及以上版本</u>，需要额外给
-
-   `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
-
+   ```
+   注意：对于KAP版本2.4及以上版本，需要额外给
+   kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions
    添加以下HIVE的Kerberos配置项：
-
-   `-Dhive.metastore.sasl.enabled=true`
-
-   `-Dhive.metastore.kerberos.principal=hive/XXX@XXX.com`
+   -Dhive.metastore.sasl.enabled=true
+   -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
+   或者：
+   将hive-site.xml文件拷贝到KAP_DIR/spark/conf目录下，KAP启动后请检查KAP_DIR/spark_clinet.out日志，如果遇到类似HDFS目录，比如：/tmp/hive-scratch没有写权限的错误，通过执行hadoop fs -chmod -R 777 /tmp/hive-scratch。
+   ```
 
    **Example:**
 
