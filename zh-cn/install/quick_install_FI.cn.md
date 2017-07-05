@@ -28,13 +28,13 @@ kinit YOUR_DEFINED_USER   //通过FI Manager创建运行KAP的kerberos用户
 source /opt/hadoopclient/bigdata_env 
 ```
 
-3．HBASE和HIVE的客户端的lib目录下可能包含了不同版本的thrift包(分别是:libthrift-0.9.0.jar和libthrift-0.9.3)，建议保留0.9.3版本，即：可将libthrift-0.9.0.jar移出lib目录并重命名为libthrift-0.9.0.jar.bak。
+3．HBase和Hive的客户端的lib目录下可能包含了不同版本的thrift包(分别是:libthrift-0.9.0.jar和libthrift-0.9.3)，建议保留0.9.3版本，即：可将libthrift-0.9.0.jar移出lib目录并重命名为libthrift-0.9.0.jar.bak。
 
 4．将Hive客户端的hivemetastore-site.xml合并到hive-site.xml。即:将hivemetastore-site.xml里所有的property拷贝到hive-site.xml里。**对于KAP PLUS 2.4及以上需要将hive-site.xml文件拷贝到KAP_DIR/spark/conf目录下。**
 
-5．对于KAP企业版（非PLUS）需要将Hbase客户端的hbase-site.xml合并到$KYLIN_HOME/conf/kylin_job_conf.xml。即:将hbase-site.xml里所有的property拷贝到kylin_job_conf.xml。
+5．对于KAP企业版（非PLUS）需要将HBase客户端的hbase-site.xml合并到$KYLIN_HOME/conf/kylin_job_conf.xml。即:将hbase-site.xml里所有的property拷贝到kylin_job_conf.xml。
 
-6．在FI管理页面里，将$KYLIN_HOME/conf/kylin_hive_conf.xml涉及到的所有hive配置项的key，如: *dfs.replication*添加到FIHive配置的白名单里（FI管理界面:Hive－配置（全部配置）－安全－白名单），另外如果使用KAP  Plus，并且版本是2.2及以上，还需要额外添加mapreduce.job.reduces到白名单。
+6．在FI管理页面里，将$KYLIN_HOME/conf/kylin_hive_conf.xml涉及到的所有hive配置项的key，如: *dfs.replication*添加到FIHive配置的白名单里（FI管理界面:Hive－配置（全部配置)－安全－白名单），另外如果使用KAP Plus，并且版本是2.2及以上，还需要额外添加mapreduce.job.reduces到白名单。
 
 7．导出环境变量：
 ```shell
