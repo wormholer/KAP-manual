@@ -1,4 +1,4 @@
-## 在FusionInsight快速安装KAP
+## 在 FusionInsight 上快速安装 KAP
 
 ### FI发行版环境介绍
 
