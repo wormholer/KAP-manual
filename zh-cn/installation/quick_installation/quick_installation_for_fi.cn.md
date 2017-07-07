@@ -1,83 +1,147 @@
 ## 在 FusionInsight 上快速安装 KAP
 
-### FI发行版环境介绍
+KAP 及 KAP Plus 均可以在 FusionInsight 环境中运行。在本节中，我们将引导您在 FusionInsight 环境中快速安装 KAP。
 
-FI集群版本：FusionInsight V100R002C60U20
+### 准备运行环境
 
+KAP 支持在版本为 V100R002C60U20 的 FusionInsight 环境中运行。该版本中各组件的版本如下：
 
++ Hadoop: 2.7.2
++ HBase: 1.0.2
++ Hive: 1.3.0
++ Zookeeper: 3.5.1
++ Spark: 1.5.1
 
-| HADOOP    | 2.7.2 |
-| --------- | ----- |
-| ZOOKEEPER | 3.5.1 |
-| HBASE     | 1.0.2 |
-| HIVE      | 1.3.0 |
-| SPARK     | 1.5.1 |
+如果您需要在 FusionInsight 的环境下运行 KAP，请选择 HBase 1.x 对应的发行版。
 
-### 环境兼容性检测及安装
-
-关于KAP详细安装文档请参考：
-
-[https://kyligence.gitbooks.io/kap-manual/content/zh-cn/](https://kyligence.gitbooks.io/kap-manual/content/zh-cn/)
-
-1．FI支持KAP Hbase1.x系列产品，即：KAP企业版及KAP Plus版，两个版本都适用本文档。 
-
-2．Kerberos用户登录即环境初始化。
+执行下述命令以创建运行 KAP 的 Kerberos 用户并初始化环境：
 
 ```shell
-kinit YOUR_DEFINED_USER   //通过FI Manager创建运行KAP的kerberos用户
-source /opt/hadoopclient/bigdata_env 
+kinit <user_name>
+source /opt/hadoopclient/bigdata_env
 ```
 
-3．HBase和Hive的客户端的lib目录下可能包含了不同版本的thrift包(分别是:libthrift-0.9.0.jar和libthrift-0.9.3)，建议保留0.9.3版本，即：可将libthrift-0.9.0.jar移出lib目录并重命名为libthrift-0.9.0.jar.bak。
+如果您所使用的环境中 HBase 客户端和 Hive 客户端的`lib/`目录下的 thrift 包版本不一致，请保留较高版本并将较低版本的 thrift 包移出`lib/`目录并备份。
 
-4．将Hive客户端的hivemetastore-site.xml合并到hive-site.xml。即:将hivemetastore-site.xml里所有的property拷贝到hive-site.xml里。**对于KAP PLUS 2.4及以上需要将hive-site.xml文件拷贝到KAP_DIR/spark/conf目录下。**
+### 下载安装 KAP
 
-5．对于KAP企业版（非PLUS）需要将HBase客户端的hbase-site.xml合并到$KYLIN_HOME/conf/kylin_job_conf.xml。即:将hbase-site.xml里所有的property拷贝到kylin_job_conf.xml。
+1. 获取 KAP 软件包。您可以访问 [KAP release notes](../release/README.md)，选择适合您的版本；
 
-6．在FI管理页面里，将$KYLIN_HOME/conf/kylin_hive_conf.xml涉及到的所有hive配置项的key，如: *dfs.replication*添加到FIHive配置的白名单里（FI管理界面:Hive－配置（全部配置)－安全－白名单），另外如果使用KAP Plus，并且版本是2.2及以上，还需要额外添加mapreduce.job.reduces到白名单。
+2. 将 KAP 软件包拷贝至您需要安装 KAP 的服务器或虚拟机，并解压至安装路径下。我们假设您的安装路径为`/usr/local/`。运行下述命令：
 
-7．导出环境变量：
-```shell
-export KYLIN_HOME=KAP_DIR
+   ```shell
+   cd /usr/local
+   tar -zxvf kap-{version}.tar.gz
+   ```
+
+3. 将环境变量`KYLIN_HOME`的值设为 KAP 解压后的路径：
+
+   ```shell
+   export KYLIN_HOME=/usr/local/kap-{version}
+   ```
+
+4. 在 HDFS 上创建 KAP 的工作目录，并授予启动 KAP 的账户读写该工作目录的权限。默认的工作目录为`/kylin`。运行下述命令：
+
+   ```shell
+   hdfs dfs -mkdir /kylin
+   hdfs dfs -chown root /kylin
+   ```
+
+   > 提示：您可以在`$KYLIN_HOME/conf/kylin.properties`配置文件中修改 KAP 工作目录的位置。
+
+   **注意：如果您所使用的账户在 HDFS 上没有读写权限，请先转至`hdfs`账户，然后再创建工作目录并授予权限。**执行下述命令：
+
+   ```shell
+   su hdfs
+   hdfs dfs -mkdir /kylin
+   hdfs dfs -chown root /kylin
+   ```
+
+5. 请您将 Hive 客户端的`hivemetastore-site.xml`文件中的所有配置项拷贝至`hive-site.xml`文件中。
+
+   **注意：对于 KAP Plus 2.4 及以上版本，还需要将`hive-site.xml`文件拷贝至`$KYLIN_HOME/spark/conf/`路径下。**
+
+   如果您需要运行的是 KAP 而非 KAP Plus，请您将 HBase 客户端的`hbase-site.xml`文件中的所有配置项拷贝至`$KYLIN_HOME/conf/kylin_job_conf.xml`文件中。
+
+6. 在 FI Manager 页面中，依次点击 **Hive** - **配置（全部配置）**- **安全** - **白名单**，将`$KYLIN_HOME/conf/kylin_hive_conf.xml`文件中的所有 Hive 配置项的 key（如`dfs.replication`）添加至 FI Hive 配置的白名单中。此外，对于 KAP Plus 2.2 及以上版本，还需要额外将`mapreduce.job.reduces`配置项添加至白名单中。
+
+7. 请您在 FI 客户端中输入 **beeline**，并复制 **Connect to** 后面的内容：**jdbc:hive2://…HADOOP.COM**，并且在`$KYLIN_HOME/conf/kylin.properties`中进行如下配置：
+
+   ```properties
+   kylin.source.hive.client=beeline
+   kylin.source.hive.beeline-params=-n root -u 'jdbc:hive2://…HADOOP.COM'
+   ```
+
+### 检查运行环境
+
+首次启动 KAP 之前，KAP 会对所依赖的环境进行检查。如果在检查过程中发现问题，您将在控制台中看到警告或错误信息。
+
+检查中遇到的一部分问题可能是由于无法有效获取环境依赖信息导致的。如果遇到这类问题，请您运行如下命令，显示指定 KAP 获取环境依赖信息的途径：
+
+```properties
 export HIVE_CONF=HIVE_CLIENT_CONF //hive客户端的配置文件路径,不是hive路径
 export HIVE_LIB=HIVE_CLIENT_LIB //hive客户端的lib路径
 export HCAT_HOME=HCATALOG_DIR
-export SPARK_HOME=$KYLIN_HOME/spark  //注：针对KAP Plus 版本>=2.2
+export SPARK_HOME=$KYLIN_HOME/spark //对于 KAP Plus 2.2 以上版本
 ```
 
-8．配置kap/conf/kylin.properties：
+> 提示：您可以在任何时候手动检查运行环境。运行下述命令：
+>
+> ```shell
+> $KYLIN_HOME/bin/check-env.sh
+> ```
 
-	kylin.source.hive.client=beeline
-在FI客户端输入beeline，复制Connect to后面的内容： **jdbc:hive2://…HADOOP.COM**，并按如下格式赋值：
-kylin.source.hive.beeline-params=-n root -u ‘**jdbc:hive2://…HADOOP.COM**’
+如果检查运行环境时提示缺少 HBase 权限，请您在 FI Manager 页面上创建一个新用户，并将该用户添加至`supergroup`用户组下，分配权限`System_administrator`。然后，请您运行下述命令，将 KAP 工作目录的所有者更改为该用户：
 
-*注意别漏掉单引号*
+```shell
+hdfs dfs -chown -R <user_name> <working_directory>
+```
 
-9．环境检测
+如果检查运行环境时提示未安装 Snappy，您可以自行安装 Snappy，也可以在`$KYLIN_HOME/conf/kylin.properties`配置文件中修改下述与 Snappy 相关的配置项：
 
-运行$KYLIN_HOME/bin/check-env.sh，如果没有任何错误就可以准备启动KAP了。
+```properties
+kylin.storage.hbase.compression-codec=none
+# kap.storage.columnar.page-compression=SNAPPY //注释掉该项
+```
 
-**在环境检测中遇到的问题及解决方法：**
+### 启动 KAP
 
-1.    提示HBase没有权限。
+运行下述命令以启动 KAP：
 
-      解决方法：在FusionInsight Web_UI管理平台上创建一个新的用户，如：kap。将该用户添加到supergroup用户组下，角色分配的权限为System_administrator。 另外，需要将KAP工作目录，如：/kylin的owner更改为kap用户，可使用如下命令“hadoop fs –chown －R kap /kylin”
+```shell
+$KYLIN_HOME/bin/kylin.sh start
+```
 
-2. 提示没有安装SNAPPY。
+> 您可以执行下述命令以观察启动的详细进度：
+>
+> ```shell
+> tail $KYLIN_HOME/logs/kylin.log
+> ```
 
-      解决方法：
+启动成功后，您将在控制台中看到提示信息。此时可以运行下述命令以查看 KAP 进程是否正在运行：
 
-      ​方案一，安装SNAPPY。
+```shell
+ps -ef | grep kylin
+```
 
-      ​方案二，注释掉配置文件conf/kylin.properties中的snappy相关设置。 具体如下，设置kylin.storage.hbase.compression-codec=none，注释掉kap.storage.columnar.page-compression=SNAPPY。
+### 访问 KAP GUI
 
-### 启动KAP服务
+当 KAP 顺利启动后，您可以打开 web 浏览器，访问`http://<host_name>:7070/kylin/`。请将其中`<host_name>`替换为具体的 host 名、IP 地址或域名。默认端口值为`7070`。默认用户名和密码分别为`ADMIN`和`KYLIN`。
 
-1. 启动命令$KYLIN_HOME/bin/kylin.shstart，可以通过命令tail –100f KAP_DIR/logs/kylin.log观察KAP运行日志，同样检查KAP_DIR/spark_clinet.out日志，**如果遇到类似/tmp/hive-scratch没有写权限错误，需要执行hadoop fs -chmod -R 777 /tmp/hive-scratch**。
+当您成功从 KAP GUI 登录后，可以通过构建 Sample Cube 以验证 KAP 的功能。请参阅[安装验证](install_validate.cn.md)。
 
-2. 打开浏览器，访问此KAP服务器的GUI界面`http://<host_name>:7070/kylin`。如果打不开页面，请确认客户机防火墙是否允许访问7070端口。
+### 停止 KAP
 
-3. 从Web前端登录，默认用户名ADMIN，默认密码KYLIN。
+运行下述命令以停止运行 KAP：
 
-4. 成功登录KAP后，可以通过构建Sample Cube验证安装的正确性。请继续阅读[安装验证](install/install_validate.cn.md)。
+```shell
+$KYLIN_HOME/bin/kylin.sh stop
+```
+
+您可以运行下述下述命令以查看 KAP 进程是否已停止：
+
+```shell
+ps -ef | grep kylin
+```
+
 

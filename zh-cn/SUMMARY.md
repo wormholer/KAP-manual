@@ -12,12 +12,12 @@
         * [单节点快速安装](installation/quick_installation/quick_installation_for_single_node.cn.md)
         * [在CDH沙箱上安装](installation/quick_installation/quick_installation_for_cdh.cn.md)
         * [在HDP沙箱上安装](installation/quick_installation/quick_installation_for_hdp.cn.md)
-        * [在FusionInsight上安装](installation/quick_installation/quick_installation_for_single_node.cn)
+        * [在FusionInsight上安装](installation/quick_installation/quick_installation_for_single_node.cn.md)
         * [环境检查](installation/quick_installation/quick_installation_environment_check.cn.md)
     * 集群部署
         * [负载均衡部署](installation/advancing_installation/advancing_installation_lb.cn.md)
-        * [读写分离部署](installatiion/advancing_installation/advancing_installation_rw.cn.md)
-        * [高可用部署](install/advancing_installation/advancing_installation_ha.cn.md)
+        * [读写分离部署](installation/advancing_installation/advancing_installation_rw.cn.md)
+        * [高可用部署](installation/advancing_installation/advancing_installation_ha.cn.md)
     * 云端部署
         * [在Azure中国镜像市场安装](installation/installation_on_cloud/cloud_install_azure_cn_image.cn.md)
     * [安装验证](installation/installation_validation.cn.md)
