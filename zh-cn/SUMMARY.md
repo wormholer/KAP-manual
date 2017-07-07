@@ -7,12 +7,12 @@
     * [基础概念](introduction/concepts.cn.md)
     * [获取支持](introduction/get_support.cn.md)
 * [安装](installation/installation.cn.md)
-    * [必备条件](installation/installation_condition.cn.md)
+    * [必备条件](installation/installation_conditions.cn.md)
     * 快速安装
         * [单节点快速安装](installation/quick_installation/quick_installation_for_single_node.cn.md)
         * [在CDH沙箱上安装](installation/quick_installation/quick_installation_for_cdh.cn.md)
         * [在HDP沙箱上安装](installation/quick_installation/quick_installation_for_hdp.cn.md)
-        * [在FusionInsight上安装](installation/quick_installation/quick_installation_for_single_node.cn.md)
+        * [在FusionInsight上安装](installation/quick_installation/quick_installation_for_fi.cn.md)
         * [环境检查](installation/quick_installation/quick_installation_environment_check.cn.md)
     * 集群部署
         * [负载均衡部署](installation/advancing_installation/advancing_installation_lb.cn.md)
