@@ -15,7 +15,7 @@
         * [在FusionInsight上安装](installation/quick_installation/quick_installation_for_fi.cn.md)
         * [环境检查](installation/quick_installation/quick_installation_environment_check.cn.md)
     * 集群部署
-        * [负载均衡部署](installation/advancing_installation/advancing_installation_lb.cn.md)
+        * [负载均衡部署](installation/advancing_installation/advancing_installation_load_balance.cn.cn.md)
         * [读写分离部署](installation/advancing_installation/advancing_installation_rw.cn.md)
         * [高可用部署](installation/advancing_installation/advancing_installation_ha.cn.md)
     * 云端部署
