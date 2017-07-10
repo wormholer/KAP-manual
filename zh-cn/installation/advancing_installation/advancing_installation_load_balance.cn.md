@@ -1,5 +1,5 @@
 ## 负载均衡与集群部署
-KAP 实例是无状态的服务，所有的状态信息都存储在 metastore（如HBase，JDBC source）中。因此，您可以启用多个 KAP 节点以部署负载均衡集群，使各个节点分担查询压力且互为备份，从而提高服务的可用性。
+KAP 实例是无状态的服务，所有的状态信息都存储在 metastore（如HBase，JDBC source）中。因此，您可以启用多个 KAP 节点以部署负载均衡集群，使各个节点分担查询压力且互为备份，从而提高服务的可用性，其部署架构如图所示：
 
 ![](advancing_installation_images/advancing_installation_cluster.png)
 

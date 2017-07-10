@@ -16,7 +16,7 @@
         * [环境检查](installation/quick_installation/quick_installation_environment_check.cn.md)
     * 集群部署
         * [负载均衡部署](installation/advancing_installation/advancing_installation_load_balance.cn.md)
-        * [读写分离部署](installation/advancing_installation/advancing_installation_rw.cn.md)
+        * [读写分离部署](installation/advancing_installation/advancing_installation_read_write_separation.cn.md)
         * [高可用部署](installation/advancing_installation/advancing_installation_ha.cn.md)
     * 云端部署
         * [在Azure中国镜像市场安装](installation/installation_on_cloud/cloud_install_azure_cn_image.cn.md)
