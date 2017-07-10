@@ -43,14 +43,25 @@ Time taken: 24.966 seconds, Fetched: 1 row(s)
 ```
 
 ### 创建项目
-打开KAP的Web UI，如下图所示的操作创建一个新的项目（Project），并命名为KAP_Sample_1。
+打开KAP的Web UI，在主界面的顶端是项目的管理工具栏，点击“＋”即可如下图所示创建一个新的项目（Project），例如命名该项目为KAP_Sample。
 ![](images/dataimport_1.png)
+
 在Web UI的左上角选择刚刚创建的项目，表示我们接下来的全部操作都在这个项目中，在当前项目的操作不会对其他项目产生影响。
 ![](images/dataimport_2.png)
+
+
+
 ### 同步Hive表
-需要把Hive数据表同步到KAP当中才能使用。为了方便操作，我们通过“使用图形化树状结构方式加载Hive表”进行同步，如下图所示：
+
+需要把Hive数据表同步到KAP当中才能使用。为了方便操作，我们通过“加载Hive表”进行同步，如下图所示：
 ![](images/dataimport_3.png)
-在弹出的对话框中展开default数据库，并选择需要的三张表，如图所示
+
+
+
+在弹出的对话框中展开default数据库，并选择需要的五张表，如图所示
 ![](images/dataimport_4.png)
+
+
+
 导入后系统会自动计算各表各列的维数，以掌握数据的基本情况。稍等几分钟后，我们可以通过数据源表的详情页查看这些信息。
 ![](images/dataimport_5.png)

@@ -45,8 +45,8 @@ Select the project you just created on the upper corner of the web UI, all our f
 
 ### Synchronize Hive Table
 
-Hive tables need to be synchronized into KAP before they can be used. To make things easy, we synchronize by using graphical tree structure to load the Hive table, as shown below.![](images/dataimport_3.png)
+Hive tables need to be synchronized into KAP before they can be used. To make things easy, we synchronize by using following button to load the Hive table.![](images/dataimport_3.png)
 
-In the dialog box, expand the default database and select the desired three tables.![](images/dataimport_4.png)
+In the dialog box, expand the default database and select the desired five tables.![](images/dataimport_4.png)
 
 After importing, the system will automatically scan the tables to collect basic statistics of the data. Wait a few minutes, we can view the details under the "Data Source" tab.![](images/dataimport_5.png)
