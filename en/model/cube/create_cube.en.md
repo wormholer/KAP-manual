@@ -1,6 +1,6 @@
 ## Cube Design
 
-We need to define dimension combinations and measure types based on existing data model. This process is called Cube design. This article will introduce how to design a cube with sample data(kylin_sales).
+We need to define dimension combinations and measure types based on existing data model. This process is called Cube design. This article will introduce how to design a cube with sample data(learn_kylin).
 
 Open KAP Web UI, select project `learn_kylin` in project list located at upper left corner. Cube design is only accessible on `Cube` page.
 
@@ -76,12 +76,12 @@ In previous sections, we mentioned that we want to build Cube incrementally and 
 Build **Scheduler** is a cube build plan. Check the scheduler box and set a build time to trigger the first build and build cycle is time interval between different build job.
 
 
-> **For Plus Version**: Raw Table is new feature in KAP Plus. If enabled, KAP will keep raw table records in additional to cubing result, to support high speed raw record queries. Raw Table is still in the beta stage. It can be enabled and disabled, however other related settings are not effective at the moment.
+> **For Plus Version**:  Table index is new feature in KAP Plus. If enabled, KAP will keep raw table records in additional to cubing result, to support high speed raw record queries. Table index is still in the beta stage.
 
 Step 6: Advanced Setting. The configuration added here can override the global ones read from file `kylin.properties`. We suggest don't change any configuration in this case.
 ​	
 Step 7: Overview. Please read the information carefully. Click `Save` button if everything is desired. Then click `Yes` button in pop-up menu.
 ​	
-Finally Cube creation is done. The new Cube will be shown in Cube list in the refreshed Model page. The state of the Cube is disable for that it has not been built.
+Finally Cube creation is done. The new Cube will be shown in Cube list in the refreshed Cube list page. The state of the Cube is disable for that it has not been built.
 
 ![](images/createcube_11.png)
