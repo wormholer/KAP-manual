@@ -4,7 +4,9 @@ Data model is created based on data source. Take the data set coming with KAP as
 
 ## Create Data Model
 
-Step 1: Open KAP Web UI, select project `Learn_kylin` in project list located at upper left corner. Then create a new data model on `Model` page.![](images/datamodel_1.png)Step 2: Drag source tables from the left box to the canvas of model designer and exchange `kylin_sales` 's data type as fact table. Select f one fact table (`KYLIN_SALES`) and four lookup tables (`KYLIN_CAL_DT`, `KYLIN_CATEGORY_GROUPINGS`,`KYLIN_ACCOUNT`, `KYLIN_COUNTRY`) for data model according snowflake schema. ![](images/datamodel_2.png)Step 3: Set table join conditions as below.
+Step 1: Open KAP Web UI, select project `Learn_kylin` in project list located at upper left corner. Then create a new data model on `Model` page.![](images/datamodel_1.png)Step 2: Drag source tables from the left box to the canvas of model designer and exchange `kylin_sales` 's table type as fact table. Select one fact table (`KYLIN_SALES`) and four lookup tables (`KYLIN_CAL_DT`, `KYLIN_CATEGORY_GROUPINGS`,`KYLIN_ACCOUNT`, `KYLIN_COUNTRY`) for data model according to snowflake schema. ![](images/datamodel_2.png)
+
+Step 3: Set table join conditions as below.
 
 1. KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT 
 
