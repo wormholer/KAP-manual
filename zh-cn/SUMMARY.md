@@ -103,6 +103,7 @@
     * [元数据恢复](operation/metadata_restore.cn.md)
     * [垃圾清理](operation/storage_cleanup.cn.md)
 * [KAP发行说明](release/README.md)
+    * [KAP 2.4 发行说明](release/KAP_2_4_notes.cn.md)
     * [KAP 2.3 发行说明](release/KAP_2_3_notes.cn.md)
     * [KAP 2.2 发行说明](release/KAP_2_2_notes.cn.md)
     * [KAP 2.1 发行说明](release/KAP_2_1_notes.cn.md)

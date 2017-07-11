@@ -5,6 +5,7 @@
 发行包括标准企业版（KAP）和高级企业版（KAP Plus），两个版本同步发行。Kyligence提供迁移工具，支持从*Apache Kylin*向KAP及KAP Plus迁移。
 
 继续阅读
+
 [KAP 2.4 发行说明](KAP_2_4_notes.cn.md)
 
 [KAP 2.3 发行说明](KAP_2_3_notes.cn.md)
