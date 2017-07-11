@@ -11,47 +11,63 @@ bin/check-env.sh
 
 ### 脚本说明
 
-check-hadoop-conf.sh
+**Checking Hadoop Configuration (check-hadoop-conf.sh)**
 
 检查kylin.properties里的配置项: kap.storage.columnar.spark-env.HADOOP_CONF_DIR是否配置正确。
 
-check-hbase-classpath.sh
+**Checking Permission of HBase's Table (check-hbase-classpath.sh)**
 
-检查环境里的HBase是否正确安装，
+检查环境里的HBase是否正确安装。
 
-check-hbase-create-table.sh
+**Checking Permission of HBase's Root Dir (check-hbase-create-table.sh)**
 
 检查当前用户是否对HBase的表有操作权限。
 
-check-hbase-read-root.sh
+**Checking Permission of HDFS Working Dir (check-hbase-read-root.sh)**
 
-检查当前用户是否有权限访问`hbase.rootdir`
+检查当前用户是否有权限访问`hbase.rootdir`。
 
-check-hdfs-working-dir.sh
+**Checking Hive Classpath (check-hdfs-working-dir.sh)**
 
 检查当前用户是否对hdfs有操作权限。具体来说，KAP需要创建hdfs目录`kylin.env.hdfs-working-dir`，并进行文件读写操作。
 
-check-hive-classpath.sh
+**Checking Hive Classpath (check-hive-classpath.sh)**
 
 检查环境里是否有需要的Hive相关的classpath, 特别是HCatInputFormat相关类是否存在。
 
-check-hive-user.sh
+**Checking Hive Usages (check-hive-user.sh)**
 
 检查当前用户是否对Hive有读写权限。包括Hive表的创建，插入数据，删除等，同时检查是否可以通过HCatalog的HCatInputFormat作为Mapreduce Job的输入。
 
-check-os-commands.sh
+**Checking Java Version (check-java.sh)**
+
+检查Java版本，并确定版本高于1.7。
+
+**Checking JDBC Usages (check-jdbc.sh)**
+
+从KAP 2.4开始支持元数据通过JDBC存储在数据库上，如果元数据存储模式设置成JDBC，这个脚本将检查当前环境的JDBC是否可用。
+
+**Checking License (check-license.sh)**
+
+检查KAP的安装目录是否有LICENSE文件，如果存在，检查其格式是否合法。
+
+**Checking ACL Migration Status (check-migration-acl.sh)**
+
+在KAP 2.4里进行了metadata在HBase存储结构的重构，所有KAP 2.4在使用KAP 2.3及更早版本的metadata时，需要进行metadata的迁移。该脚本一方面检查metadata时候需要迁移，并给出迁移的方法。
+
+**Checking OS Commands  (check-os-commands.sh)**
 
 检查当前环境是否支持需要的系统命令。
 
-check-ports.sh
+**Checking Ports Availability (check-ports.sh)**
 
 检查当前环境下，KAP需要的端口是否可用。如被占用，释放被占用端口或者修改KAP需要的默认端口。
 
-check-snappy.sh
+**Checking Snappy Availability (check-snappy.sh)**
 
 检测当前环境是否支持snappy压缩，主要是测试Snappy是否在Maprecude Job中可用。
 
-check-spark.sh
+**Checking Spark Availablity (check-spark.sh)**
 
 检查Spark是否可用，这里分为两种情况：
 
