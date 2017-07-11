@@ -13,47 +13,63 @@ Normally "check-env.sh" will be triggered by running "kylin.sh". If "check-env.s
 
 "check-env.sh" is composed of a series of child checks as follow:
 
-#### **check-hadoop-conf.sh**
+#### **Checking Hadoop Configuration (check-hadoop-conf.sh)**
 
 Inspect `kap.storage.columnar.spark-env.HADOOP_CONF_DIR` if it is configured correctly in kylin.properties.
 
-#### **check-hbase-classpath.sh**
+#### **Checking Permission of HBase's Table (check-hbase-classpath.sh)**
 
 Check HBase whether it is installed correctly or not.
 
-#### **check-hbase-create-table.sh**
+#### **Checking Permission of HBase's Root Dir (check-hbase-create-table.sh)**
 
 Test current user if it possesses enough permission to operate HBase table(hTable), such as create/delete/update tables.
 
-#### **check-hbase-read-root.sh**
+#### **Checking Permission of HDFS Working Dir (check-hbase-read-root.sh)**
 
 Have a test whether current user possesses permission to read`hbase.rootdir` or not.
 
-#### **check-hdfs-working-dir.sh**
+#### **Checking Hive Classpath (check-hdfs-working-dir.sh)**
 
 Have a check if current user possesses enough permission to operate hdfs. Specifically, KAP needs to create HDFS dir according to `kylin.env.hdfs-working-dir` defined in kylin.properties as well as create/delete files on this dir.
 
-#### **check-hive-classpath.sh**
+####  **Checking Hive Classpath (check-hive-classpath.sh)**
 
 Inspect if there are Hive classpath required by KAP, especially there are HCatalog relevant classes.
 
-#### **check-hive-user.sh**
+#### **Checking Hive Usages (check-hive-user.sh)**
 
 Have a test if current user can read/create/delete/insert hive table, meanwhile running a mapreduce job to check if HCatalog is available.
 
-#### **check-os-commands.sh**
+#### **Checking Java Version (check-java.sh)**
+
+Detect Java Version and make sure it is higher than 1.7
+
+#### **Checking JDBC Usages (check-jdbc.sh)**
+
+From KAP 2.4, it supports metadata stores in Databaes via JDBC, if it is in jdbc mode, this script checks jdbc relevant requirements.
+
+#### **Checking License (check-license.sh)**
+
+Detect if there is a license file in KAP_DIR and verify its format if it exists.
+
+#### **Checking ACL Migration Status (check-migration-acl.sh)**
+
+From KAP 2.4, it refactor the metadata in HBase. Therefore it needs migrate metadata from KAP 2.3 to KAP 2.4. This check helps figure out if the current metadata needs migration. Meanwhile it illustrates the migration method.
+
+#### **Checking OS Commands  (check-os-commands.sh)**
 
 Run a couple of system commands to test if they are supported by current environment.
 
-#### **check-ports.sh**
+#### **Checking Ports Availability (check-ports.sh)**
 
 Detect the ports would be used by KAP if they are available. 
 
-#### **check-snappy.sh**
+#### **Checking Snappy Availability (check-snappy.sh)**
 
 Check if snappy is supported in current environment.
 
-#### **check-spark.sh**
+#### **Checking Spark Availablity (check-spark.sh)**
 
 Check Spark's avaivability, there are two ways and take one of them:
 
