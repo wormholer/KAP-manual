@@ -71,57 +71,60 @@ bin/check-env.sh
 
 检查Spark是否可用，这里分为两种情况：
 
-{0}.  **使用环境的Spark.** <u>适用于KAP版本低于2.4</u>，步骤如下：
++ **使用环境的Spark.** <u>适用于KAP版本低于2.4</u>，步骤如下：
 
-   确认环境中已经安装Spark并且版本高于1.6.0（通过运行`spark_shell —version`, 查看当前环境spark的版本）。
+  确认环境中已经安装Spark并且版本高于1.6.0（通过运行`spark_shell —version`, 查看当前环境spark的版本）。
 
-   `export SPARK_HOME=SPARK_INSTALLATION_DIR`
+  `export SPARK_HOME=SPARK_INSTALLATION_DIR`
 
-{0}.  **使用KAP的Spark.**  默认情况推荐使用这种方式，步骤如下:
++ **使用KAP的Spark.**  默认情况推荐使用这种方式，步骤如下:
 
-   `export SPARK_HOME=$KYLIN_HOME/spark`
+  `export SPARK_HOME=$KYLIN_HOME/spark`
 
-   如果环境要求Kerberos安全认证，则需要对KAP的`kylin.properties`进行相关配置，主要是将环境中Kerberos如下两个配置项：
+  如果环境要求Kerberos安全认证，则需要对KAP的`kylin.properties`进行相关配置，主要是将环境中Kerberos如下两个配置项：
 
-   `-Djava.security.auth.login.config`
+  ```
+  -Djava.security.auth.login.config
+  -Djava.security.krb5.conf
+  ```
 
-   `-Djava.security.krb5.conf`
+  分别添加到`kylin.properties`里对应的：
 
-   分别添加到`kylin.properties`里对应的：
+  ```
+  kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions
+  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions
+  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions
+  ```
 
-   `kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
+  **注意：**对于KAP版本2.4及以上版本，需要额外给
+  `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
+  添加以下HIVE的Kerberos配置项：
 
-   `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
+  ```
+  -Dhive.metastore.sasl.enabled=true
+  -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
+  ```
 
-   `kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
+  另外一种解决方案：将`hive-site.xml`文件拷贝到`KAP_DIR/spark/conf`目录下，KAP启动后请检查`KAP_DIR/spark_clinet.out`日志，如果遇到类似HDFS目录，比如：`/tmp/hive-scratch`没有写权限的错误，通过执行`hadoop fs -chmod -R 777 /tmp/hive-scratch`。
 
-   **注意：**对于KAP版本2.4及以上版本，需要额外给
-   `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
-   添加以下HIVE的Kerberos配置项：
+  **Example:**
 
-   ```
-   -Dhive.metastore.sasl.enabled=true
-   -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
-   ```
+  vi编辑打开`kylin.properties`，找到如下配置项，并添加kerberos配置：
 
-   另外一种解决方案：将`hive-site.xml`文件拷贝到`KAP_DIR/spark/conf`目录下，KAP启动后请检查`KAP_DIR/spark_clinet.out`日志，如果遇到类似HDFS目录，比如：`/tmp/hive-scratch`没有写权限的错误，通过执行`hadoop fs -chmod -R 777 /tmp/hive-scratch`。
+  ```
+  kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions= \
+  -Dhdp.version=current \
+  -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
+  -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
+  ```
 
-   **Example:**
+  同样
 
-   vi编辑打开`kylin.properties`，找到如下配置项，并添加kerberos配置：
+  ```
+  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions
+  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions
+  ```
 
-   ```
-   kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions= \
-   -Dhdp.version=current \
-   -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-   -Djava.security.krb5.conf=/opt/spark/cfg/kdc.conf
-   ```
+  作类似修改。
 
-   同样
-
-   `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`	    `kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
-
-   作类似修改。
-
-
-- 同时，`check-spark.sh`读取环境yarn的资源信息，用来检查`kylin.properties`里关于spark executor的资源配置是否合理，并给出相关合理建议。
+  同时，`check-spark.sh`读取环境yarn的资源信息，用来检查`kylin.properties`里关于spark executor的资源配置是否合理，并给出相关合理建议。
