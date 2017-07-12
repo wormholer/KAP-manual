@@ -25,7 +25,6 @@ KAP Plus 2.X各版本之间兼容元数据。因此在从KAP Plus 2.X升级至�
 
 4. 更新配置文件：
 
-
    如果是从>=2.4.0的版本升级到更新的版本，只需要简单地用老版本中的的`$KYLIN_HOME/conf`替换新版本中的`$KYLIN_HOME/conf`
   
    如果是从<2.4.0的版本升级到更新的版本，需要： 1. 手动地把在老版本`$KYLIN_HOME/conf`中的改动重新在新版本的`$KYLIN_HOME/conf`重做一遍 2. 手动地把在老版本中`$KYLIN_HOME/bin/setenv.sh`中的改动再新版本中的`$KYLIN_HOME/conf/setenv.sh`重新做一遍。 注意：1. setenv.sh的目录发生了改变 2. 不允许直接拷贝-替换配置文件
