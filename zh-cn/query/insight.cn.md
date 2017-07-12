@@ -19,7 +19,7 @@ KAP的分析页面即为查询页面。点击“分析”标签后，左边将�
 >
 > 1. 仅支持SELECT查询
 >
-> 2. 若未开启即席查询，无法根据cube中的数据满足的查询，将不会进行重定向
+> 2. 若未开启查询下压，无法根据cube中的数据满足的查询，将不会进行重定向
 
 * 提供一个输入框以输入SQL语句，点击提交按钮即可进行查询。在右下角提交按钮旁有一个limit输入框，如果SQL语句中没有limit字段，此处会拼接上limit 50000的默认值；如果SQL语句中有limit字段则以SQL语句为准。假如用户想去掉limit限制，请将右下角的limit输入框中的内容改为0。
 * 查询结果成功返回后，会在状态下方的查询引擎条目里，显示该查询所命中的Cube。
@@ -37,13 +37,13 @@ KAP的分析页面即为查询页面。点击“分析”标签后，左边将�
 
 ![](images/insight/insight_list_history.png)
 
-### 即席查询
+### 查询下压
 
-KAP从2.4版本开始支持即席查询。当用户需要执行定制的Cube无法满足的查询时，可以使用即席查询，将该查询重定向至Spark SQL或者Hive，从而在查询的执行时间与灵活程度之间做一个权衡折中，获取更理想的使用体验。
+KAP从2.4版本开始支持查询下压。当用户需要执行定制的Cube无法满足的查询时，可以使用查询下压，将该查询重定向至Spark SQL或者Hive，从而在查询的执行时间与灵活程度之间做一个权衡折中，获取更理想的使用体验。
 
-即席查询功能默认未开启。如果用户需要开启即席查询，需要在`kylin.properties`文件中删去`kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl`这一配置项前的注释符号使其生效。即席查询开启后，当Cube无法返回所需的查询结果时，默认将被重定向至Spark SQL。用户也可以手动配置，选择Hive作为重定向的对象。更多配置请参考[Kylin配置参数](../config/basic_settings.cn.md)。
+查询下压功能默认未开启。如果用户需要开启查询下压，需要在`kylin.properties`文件中删去`kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl`这一配置项前的注释符号使其生效。查询下压开启后，当Cube无法返回所需的查询结果时，默认将被重定向至Spark SQL。用户也可以手动配置，选择Hive作为重定向的对象。更多配置请参考[Kylin配置参数](../config/basic_settings.cn.md)。
 
-开启即席查询后，所有同步的数据表将对用户可见，而无需构建相应的Cube。用户在提交查询时，若即席查询发挥作用，则状态下方的查询引擎条目里，会显示Pushdown。
+开启查询下压后，所有同步的数据表将对用户可见，而无需构建相应的Cube。用户在提交查询时，若查询下压发挥作用，则状态下方的查询引擎条目里，会显示Pushdown。
 
 ![](images/insight/insight_pushdown.png)
 

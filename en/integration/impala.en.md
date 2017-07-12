@@ -16,7 +16,7 @@ Impala raises the bar for SQL query performance on Apache Hadoop while retaining
 * Modify kylin.properties, add hive-jdbc configuration
 
 
-  1. Configure hive jdbc driver and adhoc runner:
+  1. Configure hive jdbc driver and pushdown runner:
 
      1. ```kylin.query.pushdown.runner-class-name=org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl```
 

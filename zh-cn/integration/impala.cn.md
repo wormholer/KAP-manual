@@ -14,7 +14,7 @@ Impala提高了Apache Hadoop上的SQL查询性能，同时保留了熟悉的用�
 
 * 修改kylin.properties,添加hive-jdbc配置
 
-  1. 配置hive jdbc driver 和adhoc runner:
+  1. 配置hive jdbc driver 和pushdown runner:
 
      1. ```kylin.query.pushdown.runner-class-name=org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl```
 
