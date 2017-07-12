@@ -73,54 +73,59 @@ Check if snappy is supported in current environment.
 
 Verify if spark could submit task to cluster. There are two ways to get spark work:
 
-{0}.  **Use Spark from the environment.** It is usally applicable for KAP version < 2.4.
++ **Use Spark from the environment.** It is usally applicable for KAP version < 2.4.
 
-   Please make sure Spark has been installed and it's version is higher than 1.6.0, run `spark_shell —version` to check current spark version
+  Please make sure Spark has been installed and it's version is higher than 1.6.0, run `spark_shell —version` to check current spark version
 
-   `export SPARK_HOME=SPARK_INSTALLATION_DIR`
+  `export SPARK_HOME=SPARK_INSTALLATION_DIR`
 
-{0}.  **Use Spark from KAP.** It is recommend by default.
++ **Use Spark from KAP.** It is recommend by default.
 
-   `export SPARK_HOME=KAP_DIR/spark`
+  `export SPARK_HOME=KAP_DIR/spark`
 
-   If kerberos authentication is required, it needs to configure spark relevant items in `kylin.properties`. Basically there are two kerberos security items:
+  If kerberos authentication is required, it needs to configure spark relevant items in `kylin.properties`. Basically there are two kerberos security items:
 
-   `-Djava.security.auth.login.config`
+  ```
+  -Djava.security.auth.login.config
+  -Djava.security.krb5.conf
+  ```
 
-   `-Djava.security.krb5.conf`
+  which should be appended to those items in the `kylin.properties`:
 
-   which should be appended to those items in the `kylin.properties`:
+  ```
+  kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions
+  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions
+  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions
+  ```
 
-   `kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions`
+  **Notice:** If KAP's version is 2.4 or higher, it needs to append extra Kerberos items:
+  Append
 
-   `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
+  ```
+  -Dhive.metastore.sasl.enabled=true
+  -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
+  ```
 
-   `kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
+  to `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
 
-   **Notice:** If KAP's version is 2.4 or higher, it needs to append extra Kerberos items:
-   Append
+  Another solution is to copy `hive-site.xml` to `KAP_DIR/spark/conf`. It's better to check `spark_client.out` after starting KAP, if there are some exceptions like: `/tmp/hive-scratch` is not writeable, please change its mode to 777, i.e. `hadoop fs -chmod -R 777 /tmp/hive-scratch`.
 
-   `-Dhive.metastore.sasl.enabled=true`
-   `-Dhive.metastore.kerberos.principal=hive/XXX@XXX.com`
-   to `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
+  **Example:**
 
-   Another solution is to copy `hive-site.xml` to `KAP_DIR/spark/conf`. It's better to check `spark_client.out` after starting KAP, if there are some exceptions like: `/tmp/hive-scratch` is not writeable, please change its mode to 777, i.e. `hadoop fs -chmod -R 777 /tmp/hive-scratch`.
+  Use vi to edit `kylin.properties`, find spark relevant configs and append Kerberos items:
 
-   **Example:**
+  ```
+  kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions= \
+  -Dhdp.version=current \
+  -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
+  -Djava.security.krb5.conf=**/opt/spark/cfg/kdc.conf
+  ```
 
-   Use vi to edit `kylin.properties`, find spark relevant configs and append Kerberos items:
+  The same modification should be done to another two spark configs:
 
-   ```
-   kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions= \
-   -Dhdp.version=current \
-   -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
-   -Djava.security.krb5.conf=**/opt/spark/cfg/kdc.conf
-   ```
+  ```
+  kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions
+  kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions
+  ```
 
-   The same modification should be done to another two spark configs:
-
-   `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions	    `
-
-   `kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions`
-
-- Finally, `check-spark.sh` will retrieve yarn resource manager's information, in order to inspect the spark executor's configurations in `kylin.properties`, also give the reasonable suggestions.
+  Finally, `check-spark.sh` will retrieve yarn resource manager's information, in order to inspect the spark executor's configurations in `kylin.properties`, also give the reasonable suggestions.
