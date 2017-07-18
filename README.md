@@ -16,7 +16,7 @@ The manual can be viewed or downloaded at [Gitbook](https://www.gitbook.com/book
 
 KyBot是基于Kyligence团队对Apache Kylin 运行机制的深刻理解及多年系统经验的积累，利用日志分析、大数据统计和人工智能技术，在保证用户数据隐私保护的前提下，最大限度透视Kylin(KAP)系统的潜在问题，提供可视化仪表盘，系统优化，故障排查，技术支持等功能，为用户优化SQL查询、调整数据模型、优化存储、充分利用Hadoop集群等提供数据支撑和优化建议。
 
-**KyBot - Kyligence Robot: Intelligent Services for Apache Kylin https://kybot.io/ **
+**KyBot - Kyligence Robot**: Intelligent Services for Apache Kylin https://kybot.io/ 
 
 KyBot (Kyligence Robot) is an online service for Apache Kylin users to self-service insight and diagnose Kylin’s usage, performance and other statistics based on Kylin platform logs. With Kyligence’s rich knowledge base of Apache Kylin, KyBot provides intelligent optimization and tuning suggestions, such as Slow SQL, Cube Storage Skew, MR Job Performance, to help users to run their Kylin cluster cost-effective and better Hadoop cluster utilization.
 
