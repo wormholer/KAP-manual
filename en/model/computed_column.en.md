@@ -10,7 +10,7 @@
 
 KAP allows you to define computed columns for each model seprately. A column column is based on specific table in the table, using one or more columns on that table to form an expression. For example, say you have a fact table named `kylin_sales` with following columns: `price` (price for each item in the transaction), `item_count` (number of sold items in the transaction) and `part_dt` (time when the transaction happens). You can define two more computed columns on `kylin_sales`: `total_amount = price * item_count` and `deal_year = year(part_dt)`. Thus, later when creating a cube, you can not only define dimensions/measures based on original columns price/item_count/part_dt, but also from newly added computed columns total_amount/deal_year.
 
-You can create computed columns by clicking the **calculator icon** as the arrow points to:
+You can create computed columns by clicking the icon as the arrow points to:
 
 ![](images/computed_column_en.1.png)
 
@@ -30,7 +30,7 @@ After defining the computed columns in model, you need to use them to build cube
 
 ### Explicit Query vs. Implicit Query
 
-A computed column is logically appended to the table's column list after creation. You can query the column as if it were normal columns under the premise that the computed column is included by a ready cube or Query Pushdown is enabled. Continuing with the last example, if you created and built a cube containing measure `sum(total_amount)`, KAP can answer queries like `select sum(total_amount) from kylin_sales`. We call it **Explicit Query** on computed columns. 
+A computed column is logically appended to the table's column list after creation. You can query the column as if it were normal columns under the premise that the computed column is included by a ready **Cube**/**TableIndex** or **Query Pushdown** is enabled. Continuing with the last example, if you created and built a cube containing measure `sum(total_amount)`, KAP can answer queries like `select sum(total_amount) from kylin_sales`. We call it **Explicit Query** on computed columns. 
 
 Or, the your can pretend that computed column is invisible from the table, and still use the expression behind the computed column to query. Continuing with the last example, when your query `select sum(price * item_count) from kylin_sales`, KAP will analyze the query and figure out that expression in `price * item_count` is replacable by an existing computed column named `total_amount`. For better performance KAP will try to translate your original query to `select sum(total_amount) from kylin_sales`. We call it **Implicit Query** on computed columns.
 
