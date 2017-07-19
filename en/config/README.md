@@ -36,3 +36,5 @@ Continue reading:
 [Spark Dynamic Allocation](spark_dynamic_allocation.en.md)
 
 [Compression Settings](compression_settings.en.md)
+
+[Impala Integration](impala.cn.md)

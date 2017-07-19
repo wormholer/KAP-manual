@@ -39,3 +39,5 @@ KAP在集群结点上安装完毕后，还需要对KAP的参数进行配置，�
 [Spark资源动态配置](spark_dynamic_allocation.cn.md)
 
 [压缩配置](compression_settings.cn.md)
+
+[Impala集成](impala.cn.md)
