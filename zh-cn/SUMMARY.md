@@ -27,7 +27,7 @@
     * [生产环境推荐配置](config/recommend_settings.cn.md)
     * [多级配置重写](config/config_override.cn.md)
     * [KyStorage配置参数](config/kystorage_settings.cn.md)
-    * [JDBC配置](config/metadata_jdbc.cn.md)
+    * [JDBC Metastore配置](config/metadata_jdbc.cn.md)
     * [Spark资源动态配置](config/spark_dynamic_allocation.cn.md)
     * [压缩配置](config/compression_settings.cn.md)
     * [Impala集成](config/impala.cn.md)

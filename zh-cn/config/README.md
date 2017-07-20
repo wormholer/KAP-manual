@@ -34,7 +34,7 @@ KAP在集群结点上安装完毕后，还需要对KAP的参数进行配置，�
 
 [KyStorage配置参数](kystorage_settings.cn.md)
 
-[JDBC配置](metadata_jdbc.cn.md)
+[JDBC Metastore配置](metadata_jdbc.cn.md)
 
 [Spark资源动态配置](spark_dynamic_allocation.cn.md)
 
