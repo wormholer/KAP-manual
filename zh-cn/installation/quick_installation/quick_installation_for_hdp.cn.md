@@ -52,11 +52,13 @@ ambari-server start
    export KYLIN_HOME=/usr/local/kap-{version}
    ```
 
-4. 在 HDFS 上创建 KAP 的工作目录，并授予启动 KAP 的账户读写该工作目录的权限。默认的工作目录为`/kylin`。运行下述命令：
+4. 在 HDFS 上创建 KAP 的工作目录，并授予启动 KAP 的账户读写该工作目录的权限。默认的工作目录为`/kylin`。KAP需要向`/user/{current_user}`目录下写入临时数据，需要创建对应目录。运行下述命令：
 
    ```shell
    hdfs dfs -mkdir /kylin
    hdfs dfs -chown root /kylin
+   hdfs dfs -mkdir /user/root
+   hdfs dfs -chown root /user/root
    ```
 
    > 提示：您可以在`$KYLIN_HOME/conf/kylin.properties`配置文件中修改 KAP 工作目录的位置。
@@ -67,6 +69,8 @@ ambari-server start
    su hdfs
    hdfs dfs -mkdir /kylin
    hdfs dfs -chown root /kylin
+   hdfs dfs -mkdir /user/root
+   hdfs dfs -chown root /user/root
    ```
 
 ### 快速配置 KAP

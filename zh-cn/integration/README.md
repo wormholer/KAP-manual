@@ -15,5 +15,3 @@
 [PowerBI](powerbi.cn.md)
 
 [Apache Zeppelin](zeppelin.cn.md)
-
-[Impala](impala.cn.md)
