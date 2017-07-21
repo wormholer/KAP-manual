@@ -1,36 +1,46 @@
 ## KAP 2.4 Release Notes
 
-### KAP 2.4 Highlight Features
+In this release, KAP has envolved from MOLAP (Multidimensional OLAP) to **HOLAP** (Hybrid OLAP) , which supports popular SQL on Hadoop technologies in multiple analytics scenarios. Furthermore, KAP 2.4 has extended its semantic layer by introducing **Snowflake** schema and **Computed Column**, transferring complex business logic to data model accurately.
 
-The highlight features introduced by KAP 2.4 are as follows:
 
-#### Redesigned User Experience
 
-**KyStudio: Modeling Tool**
-
-KyStudio is totally redesigned with a modeling GUI. With an intuitive model structure and drag-and-drop modeling process, KyStudio brings a new visual experience and enables the analysts to import data, design model/cube, build cube, and process  works more smoothly through a *self-service* interface.  
-
-![KyStudio](images/24_kystudio.png)
-
-**Support Snowflake Model**
-
-KAP extends the modeling design capability to support Snowflake schema. Both Star schema and snowflake schema are supported by KAP now. By leveraging optimized index technology, KAP supports ultra-high dimension lookup table and resolves huge table join problem.  
-
-#### Extended Query Capability
+#### **Introduced HOLAP (Hybrid OLAP)**
 
 **Query Pushdown** 
 
-Previously, KAP only answered to cube-based query. Upgraded to 2.4, KAP can route the cube incapable query to another SQL engine by enabling Query Pushdown. KAP has embedded Spark SQL and Hive as the pushdown engines, and other SQL on Hadoop engines will be onboard soon. KAP supports both mission-critical and exploratory analytics by leveraging cube-based sub-second high performance query and pushdown-based query respectively.   
+Query Pushdown routes the query that can’t be answered by Cube to underlying SQL engine. KAP has embedded Spark SQL and Hive as its pushdown engines, and other SQL on Hadoop engines will be coming in following releases. KAP supports mission-critical and exploratory analytics (Ad-Hoc) by leveraging cube-based sub-second performance query and pushdown-based query respectively.
 
-![Beyond OLAP](images/24_beyondolap.png)
-
-**Hybrid-OLAP Architecture** 
-
-KAP 2.4 has upgraded Kylin's architecture from MOLAP(Multidimensional OLAP) to HOLAP(Hybrid OLAP). KAP supports both aggregation query and detailed-data query in multiple analytics scenarios. 
+![Beyond OLAP](images/KAP24/Query pushdown_EN.png)
 
 **Seamless Integration with SQL on Hadoop** 
 
-KAP seamlessly integrates with existing SQL on Hadoop, with no data movement and no model redesign required, and it reuses existing analytics capability. KAP brings the transparent speedup power to data access layer and empowers the unified query gateway for all Business Intelligence(BI) applications. By taking full advantage of pre-calculation technology, KAP enables BI to analyze massive data on Hadoop directly and fills the gap between BI and Hadoop.  
+KAP seamlessly integrates with existing SQL on Hadoop and reuses existing analytics capability. KAP brings the transparent speedup power to data access layer and empowers the unified query gateway for all BI applications. By taking full advantage of pre-calculation technology, KAP enables BI to analyze massive data interactively and fills the gap between BI and Hadoop.
+
+
+
+#### **Enhanced Data Modeling**
+
+**KyStudio: New Data Modeling Tool**
+
+KyStudio is an intuitive model structure that brings new visual experience. With drag-and-drop modeling process, KyStudio enables the analysts to load metadata, design model/cube, build cube, and process works more smoothly through a self-served interface.
+
+![KyStudio](images/KAP24/24_kystudio.png)
+
+**Model Health Inspection**
+
+Model Health Inspection can figure out the potential modeling issues, such as primary-foreign key mismatch and data skew. The inspection result guides users to improve the model design directly and efficiently.
+
+**Cube Optimizer**
+
+Cube Optimizer will first analyze source data characters and inputted SQL patterns, and then suggests cube design that includes dimensions, aggregation group settings, measurement settings, encoding algorithms, and rowkey orders. This method reduces the modeling learning curve and helps users to follow the modeling steps by simple clicks.
+
+![Cube_optimizer](images/KAP24/EN release_note optimizer.png)
+
+**Efficient Cubing**
+
+KAP offers the efficient cubing by following the Max Dimension Combination (the biggest usage of dimension combination number during queries) setting defined by users. The efficient cubing algorithm avoids the rarely-used cube build, reduces the cubing time, and resolves the cube explosion problem. In some real-cases, it saves over 90% storage
+
+
 
 #### Enriched Semantic Layer
 
@@ -38,37 +48,31 @@ KAP seamlessly integrates with existing SQL on Hadoop, with no data movement and
 
 The semantic layer is enriched by introducing computed column technology. KAP allows users to define computed column on the original source table to extract/transform/redefine the original column into a new virtual column. The computed column works like other original column which will be pre-calculated during cubing phase. The computed column enables analysts to do data clean/transform all by themselves without their IT teams. It also improves the query performance by pre-calculated the filter condition. Hive User Defined Function(UDF) is supported on computed column, and this allows users to reuse existing code and libraries. 
 
-![Computed Column](images/24_computedcolumn.png)
+![Computed Column](images/KAP24/Computed Column_EN.png)
 
-#### Enhanced Intelligent Modeling
+**Support Snowflake**
 
-**Model Health Inspection**
+With both star schema and snowflake schema supported, KAP provides a hold of complex business logic.
 
-Model Health Inspection is enabled by running statistics algorithm. It figures out the potential modeling issues, such as primary-foreign key mismatch and data skew. The inspection result guides users to improve the model design directly and efficiently. 
 
-**Cube Optimizer**
 
-Cube Optimizer will analyze source data characters and inputted SQL patterns first, and then it generates the suggested cube design, including suggested dimensions, aggregation group settings, measures settings, encoding algorithm, and the rowkey order. This method reduces the modeling learning curve and helps users to finish the modeling steps by simple clicks. 
-
-**Cuboid Pruning based on the Maximum Dimension Combination**
-
-The Maximum Dimension Combination is the biggest usage of dimension combination number during queries. KAP would prune the cuboid combination by following the Max Dimension Combination rule. The cuboid pruning avoids the rarely-used cuboid build, reduces the cubing time, and resolves the cuboid explosion problem. In some real-cases, it shrinks the cuboid by more than 90%. 
-
-#### New Cube Scheduler
-
-**Cube Building Scheduler**
-
-Cube Building Scheduler enables users to build the cube on schedule, minutely, hourly, or daily. It reduces the operation cost and enables analysts to build the cube by themselves with automatic scheduler service. With better operation experience and reliability, the Cube Build Scheduler works well with Kafka in streaming cubing case. 
-
-#### Easy to Operate  
+#### **Easy to DevOps**
 
 **Installation Environment Inspection**
 
-Full environment check scripts are provided. It inspects the environment dependency, permission, version, and other necessary resource. The inspection result indicates the potential issues and provides solution before KAP starts. 
+Full environment check scripts are provided. It inspects the environment dependency, permission, version, and other necessary resources. The inspection result will indicate the potential issues and provide solutions before KAP starts.
 
 **New Metadata Storage**
 
-Relational databases, such as MySQL, can be used as the KAP metadata store. By moving the metadata from HBase to relational database, the database operation strategies would be followed. Without HBase, the total operation cost and risks are reduced dramatically.
+Relational databases, such as MySQL, can be used as the KAP metadata store. By moving the metadata from HBase to relational database, the database operation strategies are followed. Without HBase, the total operation cost and risks are reduced dramatically.
+
+**Cube Building Scheduler**
+
+Cube Building Scheduler enables users to build the cube on schedule. It reduces the operating cost and enables analysts to build the cube by themselves with automatic scheduler service. Offering better operating experience and reliability, the Cube Build Scheduler works well with Kafka in streaming cubing case.
+
+
+
+#### **Kylin Core and Compatibility**
 
 #### Upgrade Apache Kylin to 2.0
 
@@ -81,6 +85,8 @@ KYLIN-2331: Spark cubing engine
 KYLIN-2006: Job Engine HA
 
 KYLIN-2351: Support cloud-based storage
+
+
 
 #### More enhancement and bug-fix
 
@@ -104,6 +110,8 @@ Easy to upgrade, all configurations are back-compatible
 
 KyAnalyzer access control is integrated with KAP backend
 
+
+
 #### Hadoop Distribution Support
 
  Certificated distributions ：
@@ -121,3 +129,9 @@ KyAnalyzer access control is integrated with KAP backend
   	Amazon EMR
 
   	Huawei FusionInsight C50/C60
+
+
+
+#### **Download**
+
+The KAP 2.4 is available for download, please visit[ KAP Product ](http://kyligence.io/products/#kap)for more details.
