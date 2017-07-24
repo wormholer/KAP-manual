@@ -4,7 +4,11 @@ KAP is developed based on Apache Kylin. Users could upgrade the system from Apac
 
 ### Upgrading from Apache Kylin 1.5.1+ to KAP 2.X###
 
-KAP 2.X shares compatible metadata with Kylin 1.5.1+. Thus you could upgrade the system from Kylin to KAP by overwriting the software package, updating configuration files, and upgrading HBase coprocessors without upgrading the metadata unnecessarily. Please follow the steps below: 
+KAP 2.X shares compatible metadata with Kylin 1.5.1+. Thus you could upgrade the system from Kylin to KAP by overwriting the software package, updating configuration files, and upgrading HBase coprocessors without upgrading the metadata unnecessarily. 
+
+> Before upgrading from the older version, please ensure that all automated **metadata clean** and **storage cleanup CLI** tools are turned off to avoid the impact of the upgrade.
+
+Please follow the steps below: 
 
 1. Backup the metadata: 
 
@@ -28,7 +32,7 @@ KAP 2.X shares compatible metadata with Kylin 1.5.1+. Thus you could upgrade the
 4. Update the configuration files: 
 
    If you're upgrading from Apache Kylin >=2.1, simply replace new versions' `$KYLIN_HOME/conf` with old version's `$KYLIN_HOME/conf`.
-  
+
    Otherwise if you're upgrading from Apache Kylin <2.1, you need to: 1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`. 2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
 5. Modify configuration parameters: 
