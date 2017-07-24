@@ -2,7 +2,11 @@
 
 ### Upgrading from KAP Plus 2.X to KAP Plus of higher versions###
 
-KAP Plus 2.X shares compatible metadata with other KAP Plus 2.X versions. Thus you could upgrade the system from KAP Plus 2.X to KAP Plus of higher versions by overwriting the software package, updating configuration files, and upgrading HBase coprocessors without upgrading the metadata unnecessarily. Please follow the steps below: 
+KAP Plus 2.X shares compatible metadata with other KAP Plus 2.X versions. Thus you could upgrade the system from KAP Plus 2.X to KAP Plus of higher versions by overwriting the software package, updating configuration files, and upgrading HBase coprocessors without upgrading the metadata unnecessarily. 
+
+> Before upgrading from the older version, please ensure that all automated **metadata clean** and **storage cleanup CLI** tools are turned off to avoid the impact of the upgrade.
+
+Please follow the steps below: 
 
 1. Backup the metadata: 
 
@@ -26,7 +30,7 @@ KAP Plus 2.X shares compatible metadata with other KAP Plus 2.X versions. Thus y
 4. Update the configuration files: 
 
    If you're upgrading from >=2.4.0 to a newer version, simply replace new versions' `$KYLIN_HOME/conf` with old version's `$KYLIN_HOME/conf`.
-  
+
    Otherwise if you're upgrading from <2.4.0, you need to: 1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`. 2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
 5. Upgrade and redeploy coprocessors: 

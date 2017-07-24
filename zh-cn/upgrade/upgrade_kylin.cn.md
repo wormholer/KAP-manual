@@ -1,10 +1,14 @@
 ## 从Apache Kylin升级##
 
-KAP是基于Apache Kylin进行二次开发的产品，支持从Apache Kylin升级至KAP或KAP Plus。
+KAP是基于Apache Kylin的产品，支持从Apache Kylin升级至KAP或KAP Plus。
 
 ### 从Apache Kylin 1.5.1+升级至KAP 2.X###
 
-KAP 2.X与Kylin 1.5.1+版本兼容元数据。因此在Kylin升级至KAP时，无需对元数据进行升级，只需要覆盖软件包、更新配置文件并升级HBase协处理器即可。具体升级步骤如下：
+KAP 2.X与Kylin 1.5.1+版本兼容元数据。因此在Kylin升级至KAP时，无需对元数据进行升级，只需要覆盖软件包、更新配置文件并升级HBase协处理器即可。
+
+> 从旧版本升级前，请您务必确认已关闭所有自动执行的metadata clean和Storage cleanup CLI工具，以避免影响升级。
+
+具体升级步骤如下：
 
 1. 备份元数据：
 
@@ -28,7 +32,7 @@ KAP 2.X与Kylin 1.5.1+版本兼容元数据。因此在Kylin升级至KAP时，�
 4. 更新配置文件：
 
    如果是从>=2.1的Apache Kylin版本升级，只需要简单地用老版本中的的`$KYLIN_HOME/conf`替换新版本中的`$KYLIN_HOME/conf`
-  
+
    如果是从<2.1的Apache Kylin版本升级，需要： 1. 手动地把在老版本`$KYLIN_HOME/conf`中的改动重新在新版本的`$KYLIN_HOME/conf`重做一遍 2. 手动地把在老版本中`$KYLIN_HOME/bin/setenv.sh`中的改动再新版本中的`$KYLIN_HOME/conf/setenv.sh`重新做一遍。 注意：1. setenv.sh的目录发生了改变 2. 不允许直接拷贝-替换配置文件
 
 5. 修改配置参数：
