@@ -4,7 +4,7 @@
 
 ### 下载安装 KAP
 
-1. 获取 KAP 软件包。您可以访问 [KAP release notes](../release/README.md)，选择适合您的版本；
+1. 获取 KAP 软件包。您可以访问 [KAP release notes](../../release/README.md)，选择适合您的版本；
 
 2. 将 KAP 软件包拷贝至您需要安装 KAP 的服务器或虚拟机，并解压至安装路径下。我们假设您的安装路径为`/usr/local/`，安装 KAP 所使用的 Linux 账户为`root`。运行下述命令：
 
