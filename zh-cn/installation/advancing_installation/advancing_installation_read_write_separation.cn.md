@@ -1,4 +1,8 @@
 ## 读写分离部署
+由于KAP企业版和KAP PLUS版在Cube的构建和存储上都有很大区别，所以各自读写分离部署也不尽相同，我们将分别进行介绍。
+
+**KAP企业版的读写分离部署**
+
 KAP 在使用 Hadoop 集群进行 Cube 构建等任务的同时，使用 HBase 集群处理 Cube 查询。前者中存在很多写操作，而后者中则以只读操作为主。如果您需要完全隔离上述两种工作负载，让它们各自独立运行，减少甚至避免它们之间的相互影响及其可能引发的性能不稳定，以响应即时性较高的查询，可以将 Hadoop 和 HBase 集群分开部署，即读写分离部署，其部署架构如图所示：
 
 ![](advancing_installation_images/advancing_installation_read_write_separation.png)
@@ -29,3 +33,7 @@ KAP 在使用 Hadoop 集群进行 Cube 构建等任务的同时，使用 HBase �
 
 8. 重新启动 KAP。
 
+
+**KAP Plus版的读写分离部署**
+
+KAP Plus目前也是支持读写分离部署，但存在一定的风险，不推荐用户自己部署，可以联系[Kyligence Inc](../../introduction/get_support.cn.md). 的专家进行咨询。
