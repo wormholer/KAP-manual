@@ -4,14 +4,14 @@ This chapter includes multiple methods of integration between KAP and the 3rd pa
 
 Continue Read:
 
-[Tableau10.x](tableau_10.en.md)
+[Tableau](tableau_10.en.md)
 
-[Tableau9.x](tableau_9.en.md)
-
-[Tableau8.x](tableau_8.en.md)
-
-[Excel 2016](excel_2016.en.md)
+[Excel](excel_2016.en.md)
 
 [Power BI](powerbi.en.md)
 
-[Zeppelin](zeppelin.en.md)
+[Apache Zeppelin](zeppelin.en.md)
+
+[Cognos](cognos.en.md)
+
+[MicroStrategy](microstrategy_10_4.en.md)

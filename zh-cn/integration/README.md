@@ -4,14 +4,14 @@
 
 继续阅读：
 
-[Tableau8.x](tableau_8.cn.md)
+[Tableau](tableau_10.cn.md)
 
-[Tableau9.x](tableau_9.cn.md)
+[Excel ](excel_2016.cn.md)
 
-[Tableau10.x](tableau_10.cn.md)
-
-[Excel 2016](excel_2016.cn.md)
-
-[PowerBI](powerbi.cn.md)
+[Power BI](powerbi.cn.md)
 
 [Apache Zeppelin](zeppelin.cn.md)
+
+[Cognos](cognos.cn.md)
+
+[MicroStrategy](microstrategy_10_4.cn.md)
