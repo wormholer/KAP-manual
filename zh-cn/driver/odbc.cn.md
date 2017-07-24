@@ -11,7 +11,7 @@ KAP提供了Windows系统下的ODBC驱动程序，支持ODBC接口的应用可�
 
 1. 安装Microsoft Visual C++ 2012（Redistributable）
 
-* 32位：下载 [32bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe) 
+* 32位：下载 [32bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe) （推荐用户优先使用32位ODBC）
 * 64位：下载 [64bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
 
 2. ODBC驱动程序会调用KAP的Rest服务器，请提前确保KAP服务已正常运行。
