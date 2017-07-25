@@ -13,7 +13,7 @@ Spark 是用于大数据处理的快速通用引擎，具有用于流计算，SP
 
 * 修改 `$KAP_HOME/conf/kylin.properties` ，添加以下配置：
 
-* 1. 配置 Hive JDBC driver 和 Pushdown Runner:
+  1. 配置 Hive JDBC driver 和 Pushdown Runner:
 
   1. ```kylin.query.pushdown.runner-class-name=org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl```
 
@@ -48,7 +48,7 @@ Spark 是用于大数据处理的快速通用引擎，具有用于流计算，SP
      1. 启动 KAP ，在 Insight 界面进行一些简单查询。
      2. Spark web 页面中能够找到刚才的查询，表示 KAP 能够正常连接Spark Thrift。
 
-      ![](query_pushdown_images/query_pushdown_spark.png)
+      ![](images/query_pushdown_spark.png)
 
 
 
