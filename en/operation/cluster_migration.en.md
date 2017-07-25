@@ -1,6 +1,6 @@
 ## **KAP Across-Hadoop-Cluster Migration**
 
-Please notice that this guide is only available for **KAP Enterprise Plus**. If you want to migrate **KAP Enterprise** across Hadoop clusters, please skip it.
+Please notice that this guide is only available for **KAP Enterprise Plus**. 
 
 **The migration job contains two tasks:**
 
