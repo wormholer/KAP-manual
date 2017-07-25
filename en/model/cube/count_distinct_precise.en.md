@@ -22,7 +22,9 @@ Next, choose the column desired from `Param Value` and COUNT_DISTINCT from `Expr
 
 
 
-There is another little setting difference on`Advanced Setting`. To complete precise count distinct setting, which means to get correct results from precise count distinct function not only within a segment, but also across several segments when it is roll-up. So we need to add a global dictionary within `Advanced Dictionaries`. (Notice: please keep default `dict` settings for all long, string, and other non-integer columns to ensure them can be encode in the global dictionary)![](image/cd_measures_add.5.png)
+There is another little setting difference on`Advanced Setting`. To complete precise count distinct setting, which means to get correct results from precise count distinct function not only within a segment, but also across several segments when it is roll-up. So we need to add a global dictionary within `Advanced Dictionaries`. (Notice: please keep default `dict` settings for all long, string, and other non-integer columns to ensure them can be encode in the global dictionary).
+
+![](images/cd_measures_add.5.png)
 
 Select `Dictionaries+` , then choose desired columns as Column and the global dictionary shown below as its `Builder Class` . Follow the [Create Cube](create_cube.en.md) introduction for rest steps, the Cube would be ready after you set segments during the [Build Cube](../build_cube.en.md) section.
 
