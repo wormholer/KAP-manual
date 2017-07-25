@@ -40,7 +40,7 @@ Suddenly, it return multiple records as below:
 
 **Method2**: To get the same result, when you haven't had the Cube created, you can add **Top100** for the target measures and edit desired dimension columns as their group columns. These steps would happen when you add new measures to edit their Expression, which are in Cube create section. Yet if the target Cube was created before, then you need to use the first method mentioned above to reach the result. Measures editing page would look like below:
 
-![](images/topN_2.png)
+![](images/topN_en_measure_edit.png)
 
 
 
