@@ -4,17 +4,17 @@ KAP provides completed REST API, which can be used to query model, trigger build
 
 Continue reading：
 
-[Access and authentication](rest/authentication.en.md)
+[Access and authentication](authentication.en.md)
 
-[Query API](rest/query_api.en.md)
+[Query API](query_api.en.md)
 
-[Model API](rest/model_api.en.md)
+[Model API](model_api.en.md)
 
-[Cube API](rest/cube_api.en.md)
+[Cube API](cube_api.en.md)
 
-[Job API](rest/job_api.en.md)
+[Job API](job_api.en.md)
 
-[Metadata API](rest/metadata_api.en.md)
+[Metadata API](metadata_api.en.md)
 
-[Cache API](rest/cache_api.en.md)
+[Cache API](cache_api.en.md)
 
