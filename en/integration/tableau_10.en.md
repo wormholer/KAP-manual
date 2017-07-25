@@ -1,7 +1,7 @@
 ## Integration with Tableau 10.x
 
 ### Install ODBC Driver
-Refer to this guide: [Kylin ODBC Driver Tutorial](driver/odbc.en.md).
+Refer to this guide: [Kylin ODBC Driver Tutorial](../driver/odbc.en.md).
 
 Please make sure to download and install Kylin ODBC Driver v1.5. If you already installed ODBC Driver in your system, please uninstall it first.  
 
@@ -11,7 +11,7 @@ Connect Using Driver: Start Tableau 10.1 desktop, click `Other Database(ODBC)` i
 
 ![](images/tableau_9/1.png)
 
-Provide your Sever location, credentials and project. Clicking `Connect` button, you can get the list of projects that you have permission to access, see details at [Kylin Cube Permission Grant Tutorial](./acl.html).
+Provide your Sever location, credentials and project. Clicking `Connect` button, you can get the list of projects that you have permission to access, see details at [Kylin Cube Permission Grant Tutorial](../security/acl.en.md).
 
 
 ![](images/tableau_10/step3.PNG)

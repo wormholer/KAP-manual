@@ -3,7 +3,7 @@
 Microsoft Excel is one of the most famous data tool on Windows platform, and has plenty of data analyzing functions. With Power Query installed as plug-in, excel can easily read data from ODBC data source and fill spreadsheets. 
 
 ### Install ODBC Driver
-Refer to this guide: [Kylin ODBC Driver Tutorial](./odbc.html).
+Refer to this guide: [Kylin ODBC Driver Tutorial](../driver/odbc.en.md).
 Please make sure to download and install Kylin ODBC Driver __v1.5__. If you already installed ODBC Driver in your system, please uninstall it first.  
 
 ### Connect Excel to KAP

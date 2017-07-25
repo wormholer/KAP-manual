@@ -5,7 +5,7 @@ Microsoft Power BI is a business intelligence tool providing rich functionality 
 > Power BI does not support "connect live" model for other ODBC driver yet, please pay attention when you query on a huge dataset, it may pull too many data into your client which will take a while even fail at the end.
 
 ### Install ODBC Driver
-Refer to this guide: [Kylin ODBC Driver Tutorial](./odbc.html).
+Refer to this guide: [Kylin ODBC Driver Tutorial](../driver/odbc.en.md).
 Please make sure to download and install Kylin ODBC Driver __v1.5__. If you already installed ODBC Driver in your system, please uninstall it first. 
 
 ### Power BI

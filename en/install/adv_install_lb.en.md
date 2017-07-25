@@ -62,7 +62,7 @@ KAP support running multiple query engine on a single node for better load balan
 
 Several points deserve attention:
 
-- Run KAP instance in query engine mode (`kylin.server.mode＝query`). Please refer to the next chapter [Configuration](../config/jobengine_ha.en.md).
+- Run KAP instance in query engine mode (`kylin.server.mode＝query`). Please refer to the next chapter [Configuration](../install/adv_install_ha.en.md).
 - No port conflict. Reconfigure the ports in file `${KYLIN_HOME}/tomcat/conf/server.xml` and make sure different instances don't affect each other.
 
 Steps

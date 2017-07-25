@@ -4,7 +4,7 @@ This chapter will introduce you more advanced SQL skills on molap.
 
 Continue reading:
 
-[Window Function](window function.en.md)
+[Window Function](window_function.en.md)
 
 [Grouping Sets](grouping_sets.en.md)
 
