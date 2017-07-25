@@ -1,6 +1,6 @@
 ## Read/Write Deployment
 
-Since there are a lot of diffences during Cube building and storage between KAP Enterprise and KAP Enterprise Plus. Therefore the Read/Write Deployments on these two KAP versions are also different. 
+KAP Enterprise and KAP Enterprise Plus have some difference of cube build and storage settings, therefore please note that the Read/Write Deployments on these two KAP distributions are different. Following sections would introduce you specific settings for each distribution.
 
 **Read/Write Deployment on KAP Enterprise**
 
