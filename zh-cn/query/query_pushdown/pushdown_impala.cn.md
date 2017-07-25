@@ -1,6 +1,8 @@
-## 使用 Impala 查询引擎
+## 配置 Impala 查询引擎
 
-  Impala 提高了 Apache Hadoop 上的SQL查询性能，同时保留了熟悉的用户体验。 使用 Impala，您可以实时查询数据，无论是存储在 HDFS 还是 Apache HBase 中，包括 SELECT，JOIN 和聚合函数。 此外，Impala 使用和Hive相同的元数据，SQL 语法（Hive SQL），ODBC 驱动程序和用户界面（Hue Beeswax），为面向批量或实时查询提供了一个熟悉和统一的平台。 （由于这个原因，Hive 用户可以利用 Impala 几乎没有设置开销。）
+Impala 提高了 Apache Hadoop 上的SQL查询性能，同时保留了熟悉的用户体验。 使用 Impala，您可以实时查询数据，无论是存储在 HDFS 还是 Apache HBase 中，包括 SELECT，JOIN 和聚合函数。 此外，Impala 使用和Hive相同的元数据，SQL 语法（Hive SQL），ODBC 驱动程序和用户界面（Hue Beeswax），为面向批量或实时查询提供了一个熟悉和统一的平台。
+
+> 由于这个原因，Hive 用户可以利用 Impala 几乎没有设置开销。
 
 ## Query Pushdown 连接 Impala
 * Impala 使用 Hive JDBC接口，支持 JDBC 接口的应用可以通过 Hive JDBC 访问 Impala 进行数据查询。
@@ -14,14 +16,14 @@
 
 * 修改 `$KAP_HOME/conf/kylin.properties` ，添加以下配置：
 
-  1. 配置 Hive JDBC driver 和 Pushdown Runner:
-
-     1. ```kylin.query.pushdown.runner-class-name=org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl```
-
-     2. ```kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver```
 
 
-  2. 配置 JDBC URL
+1. 配置 Hive JDBC driver 和 Pushdown Runner:
+   1. ```kylin.query.pushdown.runner-class-name=org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl```
+
+   2. ```kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver```
+
+2. 配置 JDBC URL
 
      1. 访问没有 kerberos 安全认证的 Impala 集群，例如(访问default库):
 
@@ -41,11 +43,11 @@
                    </property>
              ```
         + 在初始化 hive-jdbc connection 前，KAP 需要具有有效的kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Impala 集群。
-  3. 验证 Thrift server
+3.   验证 Thrift server
      1. 启动 beeline ```${SPARK_HOME} or ${HIVE_HOME}/bin/beeline```
      2. 使用 beeline 连接 Spark Thrift ```!connect  ${kylin.query.pushdown.jdbc.url}```
      3. 使用简单SQL测试可用
-  4. 验证 Query Pushdown
+4. 验证 Query Pushdown
      1. 启动 KAP ，在 Insight 界面进行一些简单查询。
      2. 在 Impala web 页面中能够找到刚才的查询，表示 KAP 能够正常连接 Impala。
 

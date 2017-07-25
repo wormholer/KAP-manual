@@ -6,7 +6,7 @@ KAP从2.4版本开始支持查询下压。当用户需要执行定制的Cube无�
 
 [开启 Query Pushdown](pushdown.cn.md)
 
-[使用 Spark 查询引擎](spark.cn.md)
+[配置 Spark 查询引擎](pushdown_spark.cn.md)
 
-[使用 Impala 查询引擎](impala.cn.md)
+[配置 Impala 查询引擎](pushdown_impala.cn.md)
 
