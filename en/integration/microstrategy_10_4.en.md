@@ -1,12 +1,12 @@
 ## Integration with MicroStrategy 10.X
 
-### install ODBC Driver
+### Install ODBC Driver
 
-Refer to this guide : [Kylin ODBC Driver Tutorial](driver/odbc.en.md).
+Refer to this guide : [Kylin ODBC Driver Tutorial](../driver/odbc.en.md).
 
 Please make sure to download and install Kylin ODBC Driver v1.6. If you already installed ODBC Driver in your system, please uninstall it first.  
 
-the kylin ODBC driver need to be installed in the machine or virtual environment where your Microstrategy Intelligenec Server is installed. 
+The kylin ODBC driver needs to be installed in the machine or virtual environment where your Microstrategy Intelligenec Server is installed. 
 
 ### Connect to Kylin Server
 
@@ -18,7 +18,7 @@ Once logged in, go to Administration -> Configuration manager -> Database Instan
 
 ### Setting Database instance
 
-depending on your business scenario, you may need to create a new project and set kylin database instance as your primary database instance or if there is an existing project, set kylin database instance as one of your primary or non-primary database instance. You can achieve this by right click on your project, and go to project configuration -> database instance. 
+Depending on your business scenario, you may need to create a new project and set kylin database instance as your primary database instance or if there is an existing project, set kylin database instance as one of your primary or non-primary database instance. You can achieve this by right click on your project, and go to project configuration -> database instance. 
 
 ![](images/microstrategy_10_4/picture5.png)
 
@@ -68,4 +68,3 @@ Now you can start creating reports with Kylin as Data source.
 
    [https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB](https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB)
 
- 
