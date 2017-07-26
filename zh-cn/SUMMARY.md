@@ -14,11 +14,11 @@
         * [在 HDP 沙箱中快速安装](installation/quick_installation/quick_installation_for_hdp.cn.md)
         * [在 FusionInsight 上快速安装](installation/quick_installation/quick_installation_for_fi.cn.md)
         * [检查运行环境](installation/quick_installation/quick_installation_environment_check.cn.md)
-    * 集群部署
+    * [集群部署](installation/advancing_installation/README.md)
         * [负载均衡与集群部署](installation/advancing_installation/advancing_installation_load_balance.cn.md)
         * [读写分离部署](installation/advancing_installation/advancing_installation_read_write_separation.cn.md)
         * [服务发现及任务引擎高可用](installation/advancing_installation/advancing_installation_ha.cn.md)
-    * 云端部署
+    * [云端部署](installation/installation_on_cloud/README.md)
         * [通过 Azure 中国镜像市场安装](installation/installation_on_cloud/cloud_install_azure_cn_image.cn.md)
     * [安装验证](installation/installation_validation.cn.md)
     * [卸载](installation/uninstallation.cn.md)
