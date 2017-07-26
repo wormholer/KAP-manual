@@ -28,6 +28,7 @@
     * [Spark Dynamic Allocation](config/spark_dynamic_allocation.en.md)
     * [Compression Settings](config/compression_settings.en.md)
     * [Impala Integration](config/impala.en.md)
+    * [Hive Integration](config/hive.en.md)
 * [Upgrade](upgrade/README.md)
     * [Upgrading from Apache Kylin](upgrade/upgrade_kylin.en.md)
     * [Upgrading from KAP](upgrade/upgrade_kap.en.md)
