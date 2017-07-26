@@ -7,7 +7,7 @@ AP从2.4版本开始支持查询下压。当用户需要执行定制的Cube无�
 
 ### 配置引擎
 
-查询下压开启后，当Cube无法返回所需的查询结果时，默认将被下压至Spark SQL。用户也可以手动配置，选择Hive／Impala作为下压引擎。相关配置请参考[Spark配置]()／[Impala配置](../config/basic_settings.cn.md)／[Hive配置]()。
+查询下压开启后，当Cube无法返回所需的查询结果时，默认将被下压至Spark SQL。用户也可以手动配置，选择Hive／Impala作为下压引擎。相关配置请参考[Spark配置](../config/pushdown_spark.cn.md)／[Impala配置](../config/pushdown_impala.cn.md)／[Hive配置]()。
 
 ### 查询下压的展示
 

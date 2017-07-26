@@ -1,8 +1,10 @@
-# 聚合组
+## 聚合组
 
 在所有基于预计算的OLAP引擎中，维度灾难是一个广为诟病的问题。在v1.5 （KAP2.1）之前的版本中，Kylin试图通过一些基本的技术解决这个问题，也确实在某些程度上减轻了问题的严重性。在之后的开源实践中，我们发现这些基本技术缺乏系统性的设计思维，也无法解决更多更普遍的问题。于是在KAP v2.1及之后的版本中，我们重新设计了聚合组的设计机制使得Kylin更好的服务于所有Cube的设计场景。
 
-## 背景简介
+
+
+### 背景简介
 Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维度的不同的两两组合，每一种组合即为一个Cuboid。问题在于随着维度增加，Cuboids也会急剧增加。比如，一个有3种维度的Cube里，总共包括8个Cuboid；如图1所示，当增加1个维度时，Cuboid数目翻倍变成16个。即使Kylin使用可扩展的框架（MapReduce）和可扩展的存储（HBase）来计算和存储Cubes，当数据增长到原来的几倍后，Cube仍然会增长到一个难以接受的大小。
 
 ![图1](images/AGG-1.png)
@@ -21,11 +23,15 @@ Kylin通过预计算Cubes提高了查询的性能，而Cube则包含了所有维
 
 下面我们会分别介绍高级设置中各聚合组的实现原理和应用场景实例。
 
-##聚合组（Aggregation Group）
+
+
+###聚合组（Aggregation Group）
 
 **用户根据自己关注的维度组合，可以划分出自己关注的组合大类，这些大类在Kylin里面被称为聚合组。**例如图1中展示的Cube，如果用户仅仅关注维度AB组合和维度CD组合，那么该Cube则可以被分化成两个聚合组，分别是聚合组AB和聚合组CD。如图2所示，生成的Cuboid数目从16个缩减成了8个。
 
 ![图2](images/AGG-2.png)
+
+
 
 用户关心的聚合组之间可能包含相同的维度，例如聚合组ABC和聚合组BCD都包含维度B和维度C。这些聚合组之间会衍生出相同的Cuboid，例如聚合组ABC会产生CuboidBC，聚合组BCD也会产生CuboidBC。这些Cuboid不会被重复生成，一份Cuboid为这些聚合组所共有，如图3所示。
 
@@ -80,7 +86,9 @@ Case 1：SELECT cal_dt, city, sex_id, count(*) FROM table GROUP BY cal_dt, city,
 
 Case2：如果有一条不常用的查询：SELECT cal_dt, city, count(*) FROM table GROUP BY cal_dt, city则没有现成的完全匹配的Cuboid，Kylin会通过在线计算的方式，从现有的Cuboid中计算出最终结果。
 
-##层级维度 （Hierachy Dimension）
+
+
+###层级维度 （Hierachy Dimension）
 
 用户选择的维度中常常会出现具有层级关系的维度。例如对于国家（country）、省份（province）和城市（city）这三个维度，从上而下来说国家／省份／城市之间分别是一对多的关系。也就是说，用户对于这三个维度的查询可以归类为以下三类:
 
@@ -118,7 +126,9 @@ Case4：如果分析师想获取不同粒度地理维度的聚合结果时，无
 
 例如，SELECT country, city, count(*) FROM table GROUP BY country,city则它将从cuboid [country, province, city]中获取数据。
 
-##必要维度（Mandatory Dimension） 
+
+
+###必要维度（Mandatory Dimension） 
 
 用户有时会对某一个或几个维度特别感兴趣，所有的查询请求中都存在group by这个维度，那么这个维度就被称为必要维度，只有包含此维度的Cuboid会被生成(如图10)。以图 1中的Cube为例，假设维度A是必要维度，那么生成的Cube则如图11所示，维度数目从16变为9。
 
@@ -132,6 +142,6 @@ Case4：如果分析师想获取不同粒度地理维度的聚合结果时，无
 
 ![图12](images/Mandatory-4.png)
 
-## 开始使用
+### 开始使用
 
 从Kylin v1.5 (KAP v2.1)开始，新聚合定义可以使用。对于使用过Kylin v1.5之前的Kylin的用户，你需要将元数据升级至最新版本。 

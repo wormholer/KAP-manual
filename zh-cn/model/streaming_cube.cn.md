@@ -1,33 +1,36 @@
 ## 流式构建cube
 
 
-KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数据源，根据时间间隔流式构建cube。本文档提供了一个简单的教程，向用户展示如何一步步流式构建cube
+KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数据源，根据时间间隔流式构建cube。本文档提供了一个简单的教程，向用户展示如何创建流式cube。
 
-## 环境准备
-在开始本教程前，请确保您已准备好Hadoop环境并且已经安装了KAP 2.3或以上版本及Kafka。在本教程中，我们使用Hortonworks HDP 2.4 Sandbox虚拟机作为Hadoop环境。
+### 环境准备
+在开始本教程前，请确保您已准备好Hadoop环境并且已经安装了**KAP 2.3**及以上版本和**Kafka v2.10-0.10.1.0**及以上版本。在本教程中，我们使用Hortonworks HDP 2.4 Sandbox虚拟机作为Hadoop环境。
 
-## 创建Kafka topic并导入数据
 
-首先，我们需要启动Kafka服务器，并且创建一个名为"kylin_demo"的topic
+
+### 创建Kafka topic并导入数据
+
+首先，我们需要启动Kafka服务器，并且创建一个名为"kylin_demo"的topic。
 
 	curl -s http://mirrors.tuna.tsinghua.edu.cn/apache/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
 	cd /usr/local/kafka_2.10-0.10.1.0/
 	./bin/kafka-server-start.sh config/server.properties &
 
-接着，我们需要启动一个生产者，持续往topic中导入数据。KAP提供了一个简单的Producer用于产生数据。这里假设KAP安装在${KYLIN_HOME}目录
+接着，我们需要启动一个生产者，持续往topic中导入数据。KAP提供了一个简单的Producer用于产生数据。这里假设KAP安装在${KYLIN_HOME}目录。
 
 	bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic kylindemo
 	export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
 	cd $KYLIN_HOME
 	./bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker localhost:9092
 
-这个工具类每秒会向Kafka中发送100条消息。在学习本教程的过程中，请保持本程序持续运行。同时，你可以使用Kafka自带的消费者控制台来检查消息是否成功导入
+这个工具类每秒会向Kafka中发送100条消息。在学习本教程的过程中，请保持本程序持续运行。同时，你可以使用Kafka自带的消费者控制台来检查消息是否成功导入。
 
 	cd $KAFKA_HOME
 	bin/kafka-console-consumer.sh --zookeeper localhost:2181 --bootstrap-server localhost:9092 --topic kylindemo --from-beginning
 
 
-## 从流式数据中定义事实表
+
+### 从流式数据中定义事实表
 
 1. 启动KAP, 登录KAP web GUI, 新建一个project或者选择一个已有的project。点击 "Studio" -> "Data Source"，点击"Kafka"按钮。
      ![](images/s1.png)
@@ -36,14 +39,14 @@ KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数�
    ![](images/s2.png)
 
 
-3. 点击 √ 确认Broker后，点击 Get Cluster Info -> sandbox -> kylindemo, Kafka的采样消息会出现在右边，点击 Convert
+3. 点击 √ 确认Broker后，点击 Get Cluster Info -> sandbox -> kylindemo, Kafka的采样消息会出现在右边，点击 Convert。
    ![](images/s3.png)
 
 
-4. 接着，您需要为流式数据源定义一个表名。定义的表名会用于后续的 SQL 查询。 假设我们将表命名为 "KAFKA_TABLE_1" 
+4. 接着，您需要为流式数据源定义一个表名。定义的表名会用于后续的 SQL 查询。 假设我们将表命名为 "KAFKA_TABLE_1" 。
    ![](images/s4.png)
 
-5. 检查表结构是否正确，确保至少有一列被选择为timestamp
+5. 检查表结构是否正确，确保至少有一列被选择为timestamp。
 
    ![](images/s5.png)
 
@@ -60,8 +63,11 @@ KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数�
 7. 点击"提交"
 
 
-## 创建model
-定义好事实表以后，我们就可以开始定义数据模型了。这一步和定义一个普通的数据模型没有太大不同。不过，不过，您可能需要留意如下两点：
+
+
+### 创建model
+
+定义好事实表以后，我们就可以开始定义数据模型了。这一步和定义一个普通的数据模型没有太大不同。不过，不过，您需要留意如下两点：
 
 - 对于流式Cube，KAP暂时还不支持查找表，因此，在定义model的时候请不要引入查找表。
 - 请选择 "MINUTE_START" 属性作为partition column, 这样KAP可以以分钟为间隔构建Cube。不要直接选择ORDER_TIME属性（因为其粒度太小）。
@@ -79,7 +85,9 @@ KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数�
 
 ![](images/s10.png)
 
-## 创建cube
+
+
+### 创建cube
 
 流式Cube与常规Cube在大部分情况下都十分相似，不过，您需要特别留意如下几点：
 
@@ -97,7 +105,7 @@ KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数�
 
 保存Cube。
 
-## 触发Cube构建
+### 触发Cube构建
 
 您可以直接在WebUI中，点击“Actions” -> “Build”来触发Cube构建，当然，你也可以通过curl指令结合KAP的RESTfulAPI触发cube构建
 
@@ -112,15 +120,17 @@ KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数�
 
 	SELECT MINUTE_START, COUNT(*), SUM(AMOUNT), SUM(QTY) FROM KAFKA_TABLE_1 GROUP BY MINUTE_START ORDER BY MINUTE_START
 
-## 自动触发Cube定期构建
+
+### 自动触发Cube定期构建
 
 在第一次构建完成以后，你可以以一定周期定时触发构建任务。KAP会自动记录每次构建的偏移量，每次触发构建的时候，KAP都会自动从上次结束的位置开始构建。您可以使用Linux上的crontab指令定期触发构建任务:
 
 	crontab -e　*/5 * * * * curl -X PUT --user ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/json" -H "Accept-Language: en" -d '{ "sourceOffsetStart": 0, "sourceOffsetEnd": 9223372036854775807, "buildType": "BUILD"}' http://localhost:7070/kylin/api/cubes/{your_cube_name}/build_streaming
+现在，您可以看到Cube已经可以自动定期构建了。同时，当累积的segments超过一定阈值时，KAP会自动触发segments合并。
 
-现在，您可以看到Cube已经可以自动定期构建了。同时，当累积的segments超过一定阀值时，KAP会自动触发segments合并。
 
-##一些常见问题
+
+###一些常见问题
 
 1. 在运行“kylin.sh”的时候，您可能会遇到如下错误:
 
