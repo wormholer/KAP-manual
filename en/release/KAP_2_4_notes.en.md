@@ -10,7 +10,7 @@ In this release, KAP has envolved from MOLAP (Multidimensional OLAP) to **HOLAP*
 
 Query Pushdown routes the query that can’t be answered by Cube to underlying SQL engine. KAP has embedded Spark SQL and Hive as its pushdown engines, and other SQL on Hadoop engines will be coming in following releases. KAP supports mission-critical and exploratory analytics (Ad-Hoc) by leveraging cube-based sub-second performance query and pushdown-based query respectively.
 
-![Beyond OLAP](images/KAP24/Query pushdown_EN.png)
+![Beyond OLAP](images/KAP24/Query_pushdown_EN.png)
 
 **Seamless Integration with SQL on Hadoop** 
 
@@ -34,7 +34,7 @@ Model Health Inspection can figure out the potential modeling issues, such as pr
 
 Cube Optimizer will first analyze source data characters and inputted SQL patterns, and then suggests cube design that includes dimensions, aggregation group settings, measurement settings, encoding algorithms, and rowkey orders. This method reduces the modeling learning curve and helps users to follow the modeling steps by simple clicks.
 
-![Cube_optimizer](images/KAP24/EN release_note optimizer.png)
+![Cube_optimizer](images/KAP24/EN_release_note_optimizer.png)
 
 **Efficient Cubing**
 
@@ -48,7 +48,7 @@ KAP offers the efficient cubing by following the Max Dimension Combination (the 
 
 The semantic layer is enriched by introducing computed column technology. KAP allows users to define computed column on the original source table to extract/transform/redefine the original column into a new virtual column. The computed column works like other original column which will be pre-calculated during cubing phase. The computed column enables analysts to do data clean/transform all by themselves without their IT teams. It also improves the query performance by pre-calculated the filter condition. Hive User Defined Function(UDF) is supported on computed column, and this allows users to reuse existing code and libraries. 
 
-![Computed Column](images/KAP24/Computed Column_EN.png)
+![Computed Column](images/KAP24/Computed_Column_EN.png)
 
 **Support Snowflake**
 

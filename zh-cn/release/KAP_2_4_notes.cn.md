@@ -10,7 +10,7 @@
 
 **查询下压**特性使得KAP能够将Kylin Cube不支持的查询下压到其他SQL引擎，内置支持Spark SQL及Hive，未来将进一步支持其他SQL on Hadoop技术。在KAP可以支持高性能的亚秒级聚合查询的同时，进一步满足了灵活的探索式分析（Ad-Hoc）需求。
 
-![Beyond OLAP](images/KAP24/Query pushdown_CN.png)
+![Beyond OLAP](images/KAP24/Query_pushdown_CN.png)
 
 **无缝对接SQL on Hadoop技术**
 
@@ -34,7 +34,7 @@ KAP支持与用户原有SQL on Hadoop技术的无缝对接，重用原有技术�
 
 Cube优化器根据源数据特征和用户常用SQL模式，推荐出优化的Cube维度组合，度量配置，聚合组规则，字典编码算法和Rowkey排序。Cube优化器降低了建模的学习曲线，帮助用户迅速上手掌握建模核心。
 
-![Cube_optimizer](images/KAP24/CN release_note optimizer.png)
+![Cube_optimizer](images/KAP24/CN_release_note_optimizer.png)
 
 **高效的Cube剪枝**
 
@@ -48,7 +48,7 @@ Cube优化器根据源数据特征和用户常用SQL模式，推荐出优化的C
 
 支持用户自定义可计算列（Computed Column），将数据的抽取／转换／重定义等操作预先定义在模型中，增强数据模型语义层。将自定义计算列预置在模型中提前计算，以充分利用KAP的预计算能力，进一步提升查询效率。可计算列支持Hive UDF，可以重用已有的业务逻辑和代码。
 
-![ Computed Column](images/KAP24/ Computed Column_CN.png)
+![ Computed Column](images/KAP24/Computed_Column_CN.png)
 
 **Snowflake 雪花模型**
 
