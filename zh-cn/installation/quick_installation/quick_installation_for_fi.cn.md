@@ -65,7 +65,7 @@ source /opt/hadoopclient/bigdata_env
 
    **注意：对于 KAP Plus 2.4 及以上版本，还需要将`hive-site.xml`文件拷贝至`$KYLIN_HOME/spark/conf/`路径下。**
 
-   如果您需要运行的是 KAP 而非 KAP Plus，请您将 HBase 客户端的`hbase-site.xml`文件中的所有配置项拷贝至`$KYLIN_HOME/conf/kylin_job_conf.xml`文件中。
+   > 如果您运行的是 KAP Enterprise 而非 KAP Plus，请您将 HBase 客户端的`hbase-site.xml`文件中的所有配置项拷贝至`$KYLIN_HOME/conf/kylin_job_conf.xml`文件中。
 
 6. 在 FI Manager 页面中，依次点击 **Hive** - **配置（全部配置）**- **安全** - **白名单**，将`$KYLIN_HOME/conf/kylin_hive_conf.xml`文件中的所有 Hive 配置项的 key（如`dfs.replication`）添加至 FI Hive 配置的白名单中。此外，对于 KAP Plus 2.2 及以上版本，还需要额外将`mapreduce.job.reduces`配置项添加至白名单中。
 
