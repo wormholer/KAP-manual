@@ -32,6 +32,7 @@
     * [压缩配置](config/compression_settings.cn.md)
     * [Impala集成](config/pushdown_impala.cn.md)
     * [Spark SQL集成](config/pushdown_spark.cn.md)
+    * [Hive集成](config/hive.cn.md)
 * [升级](upgrade/README.md)
     * [从Apache Kylin升级](upgrade/upgrade_kylin.cn.md)
     * [从KAP升级](upgrade/upgrade_kap.cn.md)
