@@ -104,6 +104,7 @@
     * [元数据恢复](operation/metadata_restore.cn.md)
     * [垃圾清理](operation/storage_cleanup.cn.md)
     * [跨集群迁移](operation/cluster_migration.cn.md)
+    * [Hybrid Cube](operation/hybrid_cube.cn.md)
 * [KAP发行说明](release/README.md)
     * [KAP 2.4 发行说明](release/KAP_2_4_notes.cn.md)
     * [KAP 2.3 发行说明](release/KAP_2_3_notes.cn.md)
