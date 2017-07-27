@@ -1,6 +1,6 @@
 ## Config Hive as Query Pushdown's query engine
 
-KAP uses Hive as its cubes' data source. Meanwhile, Hive can also be configed as Query Pushdown's backup query engine. For sqls which are not commonly queried, or in no quickness required cases, KAP can push down such sqls to hive if no cubes matched.
+KAP uses Hive as cube's data source. Meanwhile, Hive can also be configed as Query Pushdown's backup query engine. For cases sqls which cannot be anwsered by cube, or no response time required, KAP can push down such sqls to hive when no cubes are match.
 
 ### Query Pushdown config
 
