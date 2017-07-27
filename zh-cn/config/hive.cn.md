@@ -1,6 +1,6 @@
 ## 使用Hive作为Query Pushdown查询引擎
 
-KAP使用Hive作为cube的数据源。同时，也可以将其配置为Query Pushdown的备用查询引擎，以根据需求，在未建cube时，对查询频率不高或者对响应时耗无太高要求的查询语句也能给出相应结果。
+KAP使用Hive作为cube的数据源，也可以将其配置为查询下压（Query Pushdown）的备用查询引擎。在未构建cube时，查询下压适用于适用于探索式的分析场景，对查询频率不高或者对响应时间无太高要求的查询。
 
 ### 配置方法
 1. 修改配置文件`kylin.properties`打开Query Pushdown注释掉的配置项`kylin.query.pushdown.runner-class-name`，设置为`org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl`
