@@ -29,11 +29,11 @@ The configuration entry tells Spark to launch 4 executors for KAP. As the exampl
 
 | Property Name                            | Default | Meaning                                  |
 | ---------------------------------------- | ------- | ---------------------------------------- |
-| kap.storage.columnar.conf.spark.driver.memory | 1G      | Amount of memory to use for the driver process, i.e. where SparkContext is initialized. (e.g. `1g`, `2g`). *Note:* In client mode, this config must not be set through the `SparkConf` directly in your application, because the driver JVM has already started at that point. Instead, please set this through the `--driver-memory` command line option or in your default properties file. |
-| kap.storage.columnar.conf.spark.executor.memory | 1G      | Amount of memory to use per executor process (e.g. `2g`, `8g`). |
-| kap.storage.columnar.conf.spark.yarn.executor.memoryOverhead |  executorMemory * 0.10, with minimum of 384  | The amount of off-heap memory (in megabytes) to be allocated per executor. This is memory that accounts for things like VM overheads, interned strings, other native overheads, etc. This tends to grow with the executor size (typically 6-10%). |
-| kap.storage.columnar.conf.spark.executor.cores | 1       | The number of cores to use on each executor. In standalone and Mesos coarse-grained modes, setting this parameter allows an application to run multiple executors on the same worker, provided that there are enough cores on that worker. Otherwise, only one executor per application will run on each worker. |
-| kap.storage.columnar.conf.spark.executor.instances | 2       | The number of executors for static allocation. With `spark.dynamicAllocation.enabled`, the initial set of executors will be at least this large. |
+| kap.storage.columnar.conf.spark.driver.memory | 4G      | Amount of memory to use for the driver process, i.e. where SparkContext is initialized. (e.g. `1g`, `2g`). *Note:* In client mode, this config must not be set through the `SparkConf` directly in your application, because the driver JVM has already started at that point. Instead, please set this through the `--driver-memory` command line option or in your default properties file. |
+| kap.storage.columnar.conf.spark.executor.memory | 4G      | Amount of memory to use per executor process (e.g. `2g`, `8g`). |
+| kap.storage.columnar.conf.spark.yarn.executor.memoryOverhead |  1G  | The amount of off-heap memory (in megabytes) to be allocated per executor. This is memory that accounts for things like VM overheads, interned strings, other native overheads, etc. This tends to grow with the executor size (typically 6-10%). |
+| kap.storage.columnar.conf.spark.executor.cores | 5       | The number of cores to use on each executor. In standalone and Mesos coarse-grained modes, setting this parameter allows an application to run multiple executors on the same worker, provided that there are enough cores on that worker. Otherwise, only one executor per application will run on each worker. |
+| kap.storage.columnar.conf.spark.executor.instances | 4       | The number of executors for static allocation. With `spark.dynamicAllocation.enabled`, the initial set of executors will be at least this large. |
 
 ### Advices on configurations
 
