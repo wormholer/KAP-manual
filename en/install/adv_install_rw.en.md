@@ -27,4 +27,4 @@ Deployment usually includes following steps:
 
 **Read/Write Deployment on KAP Enterprise Plus**
 
-Read/Write Deployment on KAP Enterprise Plus is supported but might have potential issues. Thus it strongly recommands to contact [Kyligence's export](../introduction/get_support.en.md) for corresponding tech support.
+Read/Write Deployment on KAP Enterprise Plus is supported but might have potential issues. Thus it strongly recommands to contact [Kyligence's expert](../introduction/get_support.en.md) for corresponding tech support.
