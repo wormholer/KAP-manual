@@ -98,17 +98,18 @@ Verify if spark could submit task to cluster. There are two ways to get spark wo
   kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions
   ```
 
-  **Notice:** If KAP's version is 2.4 or higher, it needs to append extra Kerberos items:
-  Append
-
-  ```
-  -Dhive.metastore.sasl.enabled=true
-  -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
-  ```
-
-  to `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
-
-  Another solution is to copy `hive-site.xml` to `KAP_DIR/spark/conf`. It's better to check `spark_client.out` after starting KAP, if there are some exceptions like: `/tmp/hive-scratch` is not writeable, please change its mode to 777, i.e. `hadoop fs -chmod -R 777 /tmp/hive-scratch`.
+  > **Notice:** If KAP's version is 2.4 or higher, it needs to append extra Kerberos items:
+  > Append
+  >
+  > ```
+  > -Dhive.metastore.sasl.enabled=true
+  > -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
+  > ```
+  >
+  > to `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
+  >
+  > Another solution is to copy `hive-site.xml` to `KAP_DIR/spark/conf`. It's better to check `spark_client.out` after starting KAP, if there are some exceptions like: `/tmp/hive-scratch` is not writeable, please change its mode to 777, i.e. `hadoop fs -chmod -R 777 /tmp/hive-scratch`.
+  >
 
   **Example:**
 
