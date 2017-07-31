@@ -44,6 +44,8 @@
 
 *kylin.cube.aggrgroup.max-combination*，默认值4096；
 
+> 注意：**请勿**将此参数设置> 10000, 否则将会在计算维度组合时耗用大量CPU与内存资源。易导致页面卡顿，严重或可致KAP崩溃。如Cube中有大量维度，建议分多个聚合组（AGG）进行优化。
+
 *kylin.table.snapshot.max-mb*，默认值300；
 
 
