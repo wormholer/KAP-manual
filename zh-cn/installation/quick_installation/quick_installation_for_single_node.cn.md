@@ -91,9 +91,16 @@ ps -ef | grep kylin
 
 ### 访问 KAP GUI
 
-当 KAP 顺利启动后，您可以打开 web 浏览器，访问`http://<host_name>:7070/kylin/`。请将其中`<host_name>`替换为具体的 host 名、IP 地址或域名。默认端口值为`7070`。默认用户名和密码分别为`ADMIN`和`KYLIN`。
+当 KAP 顺利启动后，您可以打开 web 浏览器，访问`http://<host_name>:7070/kylin/`。请将其中`<host_name>`替换为具体的 host 名、IP 地址或域名。默认端口值为`7070`。默认用户名和密码分别为`ADMIN`和`KYLIN`。使用默认用户名／密码初次登陆后，请遵照密码规则重置管理员密码。
 
-当您成功从 KAP GUI 登录后，可以通过构建 Sample Cube 以验证 KAP 的功能。请参阅[安装验证](install_validate.cn.md)。
+> **密码规则：**
+>
+> - 密码长度至少8位
+> - 密码需要包含至少一个数字、字母、及特殊字符（~!@#$%^&*(){}|:"<>?[];',./`）
+
+
+
+当您成功从 KAP GUI 登录后，可以通过构建 Sample Cube 以验证 KAP 的功能。具体请参阅[安装验证](install_validate.cn.md)。
 
 ### 停止 KAP
 
