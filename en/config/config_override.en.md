@@ -40,6 +40,8 @@ At the `Configuration Overwrites` phase in cube design, user could rewrite prope
 
 *kylin.cube.aggrgroup.max-combination*, default is 4096
 
+> Note：**DO NOT** set this parameter over 10000. Otherwise it will consume a lot of CPU and memory resources when calculating the dimension combination, may lead to browser unstable or KAP crash. If there are a number of dimensions in the Cube, it is recommended to set multiple Aggregation Groups (AGG). 
+
 *kylin.table.snapshot.max-mb*, default is 300
 
 ### Overriding properties in kylin_hive_conf.xml
