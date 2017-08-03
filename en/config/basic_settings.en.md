@@ -35,7 +35,7 @@ beeline -n root -u 'jdbc:hive2://localhost:10000' -f abc.sql
 
 Please set the value of the property as:
 ```
-kylin.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000'
+kylin.source.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000'
 ```
 
 ### kylin.env
