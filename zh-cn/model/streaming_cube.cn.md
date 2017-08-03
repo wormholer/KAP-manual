@@ -29,8 +29,10 @@ cd $KYLIN_HOME
 
 这个工具类每秒会向Kafka中发送100条消息。在学习本教程的过程中，请保持本程序持续运行。同时，你可以使用Kafka自带的消费者控制台来检查消息是否成功导入。
 
-	cd $KAFKA_HOME
-	bin/kafka-console-consumer.sh --zookeeper localhost:2181 --bootstrap-server localhost:9092 --topic kylindemo --from-beginning
+```shell
+cd $KAFKA_HOME
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic kylindemo --from-beginning
+```
 
 
 

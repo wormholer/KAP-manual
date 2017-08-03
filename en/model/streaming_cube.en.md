@@ -9,23 +9,29 @@ To finish this tutorial, you need a Hadoop environment which has KAP 2.3 or abov
 
 Firstly, we need a Kafka topic for the incoming data. A sample topic "kylin_demo" will be created here:
 
-	curl -s http://mirrors.tuna.tsinghua.edu.cn/apache/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
-	cd /usr/local/kafka_2.10-0.10.1.0/
-	./bin/kafka-server-start.sh config/server.properties &
+```shell
+curl -s http://mirrors.tuna.tsinghua.edu.cn/apache/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
+cd /usr/local/kafka_2.10-0.10.1.0/
+./bin/kafka-server-start.sh config/server.properties &
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic kylindemo
+```
 
 
 Secondly, we need to put some sample data to this topic. KAP has an utility class which can do this. Assuming KAP is installed in ${KYLIN_HOME}
 
-	bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic kylindemo
-	export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
-	cd $KYLIN_HOME
-	./bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker localhost:9092
+```shell
+export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
+cd $KYLIN_HOME
+./bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker localhost:9092
+```
 
 
 This tool sends 100 records to Kafka per second. Please keep it running during this tutorial. You can check the sample messages by running kafka-console-consumer.sh 
 
-	cd $KAFKA_HOME
-	bin/kafka-console-consumer.sh --zookeeper localhost:2181 --bootstrap-server localhost:9092 --topic kylindemo --from-beginning
+```shell
+cd $KAFKA_HOME
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic kylindemo --from-beginning
+```
 
 
 ## Define a table from streaming
