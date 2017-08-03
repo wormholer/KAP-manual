@@ -10,22 +10,39 @@ KyAnalyzer无缝集成KAP（Kylin），让用户以最简单快捷的方式访�
 
 
 ### 安装
-通过Kyligence公司获得定制版的KyAnalyzer安装包 KyAnalyzer-{version}.tar.gz，同时需要下载对应KAP版本的Mondrian包，请下载mondrian-kylin-{version}.jar。对应Mondrian包可在GitHub kylin-mondrian 仓库: (https://github.com/Kyligence/kylin-mondrian/blob/master/build/) 上获得。
-解压KyAnalyzer安装包，把下载的mondrian-kylin对应的jar包拷到 kyanalyzer-server/tomcat/webapps/saiku/WEB-INF/lib 目录下, 版本若有变动请下载最新版本。
+解压kyanalyzer安装包，生成目录kyanalyzer-server-{version}。
 
-在kyanalyzer-server/conf目录下有个配置文件kyanalyzer.properties， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，默认为localhost，*kap.port*为KAP REST API的端口，默认7070。
+在[ KyAccount ]( http://account.kyligence.io/ )申请KyAnalyzer的license，并将license文件kyAnalyzer.lic拷贝至kyanalyzer-server-{version}/conf下
+
+在kyanalyzer-server-{version}/conf目录下有个配置文件kyanalyzer.properties， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，默认为localhost，*kap.port*为KAP REST API的端口，默认7070。
 同时，关于mondrian的所有配置可以参考conf/mondrian.properties.template 配置到mondrian.properties中。（注：在kap2.2之后，我们将kap.host及kap.port配置移到kyanalyzer.properties中，同时在conf下引入了mondrian.properties）
 
 通过server 目录下的 start-analyzer.sh启动KyAnalyzer，默认端口为8080,可通过 http://{hostname}:8080 访问页面。如果要停掉应用执行stop-analyzer.sh即可。
 如果在启动过程中遇到问题页面打不开，可以到tomcat/logs目录下查看具体出错信息。
-启动时通过tomcat/logs/catalina.out可以监控到启动时是否有错，如果端口冲突，请修改tomcat/conf/server.xml, 找到对应的关键字port="8080"，将端口改为可用的端口即可。
+启动时通过tomcat/logs/catalina.out可以监控到启动时是否有错，如果端口冲突，请修改tomcat/conf/server.xml, 找到如下配置项
+
+```$xslt
+<Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+```
+将`port`改为可用的端口即可。
 
 根目录下文件信息
 
 ![](images/server_dir.png)
 
+### 升级
+KyAnalyzer的数据信息主要存储在根目录下的repository和data目录下，设要从在KyAnalyzer从在KyAnalyzer-1升级到在KyAnalyzer-2，升级步骤如下：
 
-KyAnalyzer的数据信息主要存储在根目录下的repository和data目录下，如果需要进行升级，可备份这两个目录。
+* 备份KyAnalyzer-1元数据
+  + 在KyAnalyzer-1目录下创建备份文件夹，命令：`mkdir backup`
+  + 运行命令`cp -r data repository ./backup/`将元数据备份至backup文件夹
+
+* 恢复KyAnalyzer-2为KyAnalyzer-1元数据
+  + 新安装KyAnalyzer为KyAnalyzer-2，设KyAnalyzer-2和KyAnalyzer-1目录分别为{KyAnalyzer-2}和{KyAnalyzer-1}
+  + 在KyAnalyzer-2目录下，先删除KyAnalyzer-2的自带元数据文件夹，`rm -rf data repository`
+  + 在KyAnalyzer-2目录下运行`cp -r ${KyAnalyzer-1}/backup/* ./`
 
 ###关于KyAnalyzer,KAP,Mondrian-Kylin 版本功能描述
 <table>
