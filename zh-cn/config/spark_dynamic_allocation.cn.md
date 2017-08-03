@@ -32,12 +32,12 @@ Spark动态资源分配需要配置两处：一处是集群的资源管理器相
 
     `</property>`
 
-2. 将$KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar文件拷贝出来，放到Hadoop节点的/opt/lib/kap/目录下（路径可修改）。
+2. 将`$KYLIN_HOME/spark/yarn/spark-<version>-yarn-shuffle.jar`文件拷贝出来（KAP 2.4.1之前版本路径为`$KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar`），放到Hadoop节点的/opt/lib/kap/目录下（路径可修改）。
 
     在Cloudera Manager中找到NodeManager Environment Advanced Configuration Snippet （Safety Valve），配置:
-    
+
     `YARN_USER_CLASSPATH=/opt/lib/kap/*`
-    
+
     则yarn-shuffle.jar文件会被加入Node Manager启动时的class path中。
 
 3. 保存配置并重启
@@ -45,7 +45,7 @@ Spark动态资源分配需要配置两处：一处是集群的资源管理器相
 
 ##### HDP
 1. 登陆Ambari管理页面，选择Yarn -> Configs -> Advanced，通过Filter找到以下配置项并进行更改：
-`yarn.nodemanager.aux-services.spark_shuffle.class=org.apache.spark.network.yarn.YarnShuffleService`
+   `yarn.nodemanager.aux-services.spark_shuffle.class=org.apache.spark.network.yarn.YarnShuffleService`
 
 2. 将$KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar文件拷贝出来，放到hadoop节点的$HDP_HOME/hadoop/lib路径下。
 
