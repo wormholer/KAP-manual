@@ -20,38 +20,38 @@ There are two parts we need to config for Spark Dynamic Allocation:
 
 1. Log into Cloudera Manager, choose YARN configuration and find NodeManager Advanced Configuration Snippet(Safety Valve) for yarn-site.xml，config as following：
 
-	`<property>`
+ `<property>`
 
-	`<name>yarn.nodemanager.aux-services</name>`
+ `<name>yarn.nodemanager.aux-services</name>`
 
-	`<value>mapreduce_shuffle，spark_shuffle</value>`
+ `<value>mapreduce_shuffle，spark_shuffle</value>`
 
-	`</property>`
+ `</property>`
 
-	`<property>`
+ `<property>`
 
-	`<name>yarn.nodemanager.aux-services.spark_shuffle.class</name>`
+ `<name>yarn.nodemanager.aux-services.spark_shuffle.class</name>`
 
-	`<value>org.apache.spark.network.yarn.YarnShuffleService</value>`
+ `<value>org.apache.spark.network.yarn.YarnShuffleService</value>`
 
-	`</property>`
+ `</property>`
 
 2. Copy the $KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar and put it under path /opt/lib/kap/ of Hadoop node.
 
    Find NodeManager Environment Advanced Configuration Snippet （Safety Valve）in Cloudera Manager, Config:
-   
-	`YARN_USER_CLASSPATH=/opt/lib/kap/*`
-	
-	Then yarn-shuffle.jar will be added into the startup classpath of Node Manager.
+
+   `YARN_USER_CLASSPATH=/opt/lib/kap/*`
+
+   Then yarn-shuffle.jar will be added into the startup classpath of Node Manager.
 
 3. Save the config and restart
-	In Cloudera Manager, choose actions --> deploy client configuration, save and restart all services.
+ In Cloudera Manager, choose actions --> deploy client configuration, save and restart all services.
 
 ##### HDP
 1. Log into Ambari management page, choose Yarn -> Configs -> Advanced, find following configurations via filter and update：
-`yarn.nodemanager.aux-services.spark_shuffle.class=org.apache.spark.network.yarn.YarnShuffleService`
+   `yarn.nodemanager.aux-services.spark_shuffle.class=org.apache.spark.network.yarn.YarnShuffleService`
 
-2. Copy $KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar and put it under path $HDP_HOME/hadoop/lib of Hadoop node.
+2. Copy `$KYLIN_HOME/spark/yarn/spark-<version>-yarn-shuffle.jar` (the path before KAP 2.4.1 `$KYLIN_HOME/spark/lib/spark-<version>-yarn-shuffle.jar`) and put it under path $HDP_HOME/hadoop/lib of Hadoop node.
 
 3. Save the config and restart all services.
 

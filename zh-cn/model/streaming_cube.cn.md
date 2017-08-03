@@ -12,16 +12,20 @@ KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数�
 
 首先，我们需要启动Kafka服务器，并且创建一个名为"kylin_demo"的topic。
 
-	curl -s http://mirrors.tuna.tsinghua.edu.cn/apache/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
-	cd /usr/local/kafka_2.10-0.10.1.0/
-	./bin/kafka-server-start.sh config/server.properties &
+```shell
+curl -s http://mirrors.tuna.tsinghua.edu.cn/apache/kafka/0.10.1.0/kafka_2.10-0.10.1.0.tgz | tar -xz -C /usr/local/
+cd /usr/local/kafka_2.10-0.10.1.0/
+./bin/kafka-server-start.sh config/server.properties &
+./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic kylindemo
+```
 
 接着，我们需要启动一个生产者，持续往topic中导入数据。KAP提供了一个简单的Producer用于产生数据。这里假设KAP安装在${KYLIN_HOME}目录。
 
-	bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic kylindemo
-	export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
-	cd $KYLIN_HOME
-	./bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker localhost:9092
+```shell
+export KAFKA_HOME=/usr/local/kafka_2.10-0.10.1.0
+cd $KYLIN_HOME
+./bin/kylin.sh org.apache.kylin.source.kafka.util.KafkaSampleProducer --topic kylindemo --broker localhost:9092
+```
 
 这个工具类每秒会向Kafka中发送100条消息。在学习本教程的过程中，请保持本程序持续运行。同时，你可以使用Kafka自带的消费者控制台来检查消息是否成功导入。
 
@@ -52,11 +56,11 @@ KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数�
 
 6. 设置解析器
 
-   Parser Name: 默认为org.apache.kylin.source.kafka.TimedJsonStreamParser，您也可以自定义解析器
+   解析器名称: 默认为org.apache.kylin.source.kafka.TimedJsonStreamParser，您也可以自定义解析器
 
-   Parser Timestamp Field: 必须为解析器指定一列用于分段的时间字段，本例选择了order_time
+   时间戳字段名称: 必须为解析器指定一列用于分段的时间字段，本例选择了order_time
 
-   ParserProperties: 解析器属性至少应包含所选的用于分段的时间字段，本例中为:tsColName=order_time。您还可以为解析器定义更多属性
+   解析器属性: 为解析器定义更多属性
 
    ![](images/s6.png)
 
@@ -67,10 +71,10 @@ KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数�
 
 ### 创建model
 
-定义好事实表以后，我们就可以开始定义数据模型了。这一步和定义一个普通的数据模型没有太大不同。不过，不过，您需要留意如下两点：
+定义好事实表以后，我们就可以开始定义数据模型了。这一步和定义一个普通的数据模型没有太大不同。不过，您需要留意如下两点：
 
-- 对于流式Cube，KAP暂时还不支持查找表，因此，在定义model的时候请不要引入查找表。
-- 请选择 "MINUTE_START" 属性作为partition column, 这样KAP可以以分钟为间隔构建Cube。不要直接选择ORDER_TIME属性（因为其粒度太小）。
+- 对于流式Cube，KAP暂时还不支持维度表，因此，在定义model的时候请不要引入维度表。
+- 请选择 "MINUTE_START" 属性作为partition column, 这样KAP可以以分钟为间隔构建Cube。不要直接选择时间戳ORDER_TIME属性（因为其粒度太小）。
 
 这里，我们选择８个属性作为dimension，２个属性作为measure。
 
