@@ -36,5 +36,21 @@ Or, the your can pretend that computed column is invisible from the table, and s
 
 **Implicit Query** is not enabled by default. To enable it you'll need to add `kylin.query.transformers=org.apache.kylin.query.util.ConvertToComputedColumn` in `KYLIN_HOME/conf/kylin.properties`
 
+## Rule using Computed Column##
 
+· As of KAP 2.4.1, computed column can only be defined on face table (cannot be defined on dimension nor cross tables)
+
+· Under one project, there is one-to-one mapping between computed column and formula defined. That means under different models, computed column with same name can be defined on the condition that two computed columns share the same formula. 
+
+· Under one project, computed column cannot have the duplicated column with column on source table.
+
+
+
+## Advanced Function##
+
+Computed column is pushed down to data source to be calculated. Hive is the default data source for KAP, thus the syntax for computed need to follow hive's. 
+
+It is possible to utilize Hive embedded function or Hive User Defined Function in computed column. To learn more about what function Hive SQL offers, please refer to Hive documentation below:
+
+https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-StringFunctions
 
