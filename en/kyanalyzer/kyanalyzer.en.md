@@ -8,14 +8,22 @@ KyAnalyzer allow user analyze data easier and quicker.
 * Apache Kylin version should be 1.5.4.1 or later.
 * KyAnalyzer does not supprt *left join*, you should use *inner join* when create cube mode in KAP.
 
-### Install
-Unzip kyanalyzer's install package, it will then generate folder kyanalyzer-server-{version}.
+### Installation
+Go to [ KyAccount ]( http://account.kyligence.io/ ) to apply for KyAnalyzer's Installation package and license, Unzip kyanalyzer's install package, it will then generate folder kyanalyzer-server-{version}:
 
-Open [ KyAccount ]( http://account.kyligence.io/ ) to apply KyAnalyzer's license, and copy license file kyAnalyzer.lic to kyanalyzer-server-{version}/conf.
+```tar-zxf KyAnalyzer-{version}.tar.gz```
 
-Edit kyanalyzer.properties under kyanalyzer-server-{version}/conf，set KAP host and KAP port, *kap.host* represents KAP IP(default value localhost), and *kap.port* represents KAP app port(default value 7070). And you can edit mondrian.properties refer to conf/mondrian.properties.template.（Note: we have moved 'kap.host' and 'kap.port' to kyanalyzer.properties since kap2.2, and also add mondrian.properties to kyanalyzer-server/conf/）
+Copy license file kyAnalyzer.lic to kyanalyzer-{version}/conf.
 
-Run start-analyzer.sh under server to start KyAnalyzer, the default port is 8080. When the server is started, please visit http://{hostname}:8080. If you want to stop the server, please run stop-analyzer.sh.
+Edit kyanalyzer.properties under kyanalyzer-server-{version}/conf，set KAP host and KAP port, *kap.host* represents KAP IP(default value localhost), and *kap.port* represents KAP app port (default port is 7070). And you can edit mondrian.properties refer to conf/mondrian.properties.template.（Note: we have moved 'kap.host' and 'kap.port' to kyanalyzer.properties since kap2.2, and also add mondrian.properties to kyanalyzer-server/conf/）
+
+Run below script under kyanalyzer-{version} folder to start KyAnalyzer, the default port is 8080. 
+
+```sh start-analyzer.sh```
+
+When the server is started, please visit http://{hostname}:8080. If you want to stop the server, please run under kyanalyzer-{version} folder 
+
+```sh stop-analyzer.sh```
 
 If the server is not started normally, please check the logs under tomcat/logs for details. Make sure there's no port conflict, you can check it in tomcat/logs/catalina.out. To fix port conflict, find config item below:
 ```$xslt
