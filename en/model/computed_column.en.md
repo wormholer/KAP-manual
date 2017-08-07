@@ -34,7 +34,23 @@ A computed column is logically appended to the table's column list after creatio
 
 Or, the your can pretend that computed column is invisible from the table, and still use the expression behind the computed column to query. Continuing with the last example, when your query `select sum(price * item_count) from kylin_sales`, KAP will analyze the query and figure out that expression in `price * item_count` is replacable by an existing computed column named `total_amount`. For better performance KAP will try to translate your original query to `select sum(total_amount) from kylin_sales`. We call it **Implicit Query** on computed columns.
 
-**Implicit Query** is not enabled by default. To enable it you'll need to add `kylin.query.transformers=org.apache.kylin.query.util.ConvertToComputedColumn` in `KYLIN_HOME/conf/kylin.properties`
+**Implicit Query** is not enabled by default. To enable it you'll need to add `kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` in `KYLIN_HOME/conf/kylin.properties`
+
+## Rule using Computed Column##
+
+· As of KAP 2.4.1, computed column can only be defined on face table (cannot be defined on dimension nor cross tables)
+
+· Under one project, there is one-to-one mapping between computed column and formula defined. That means under different models, computed column with same name can be defined on the condition that two computed columns share the same formula. 
+
+· Under one project, computed column cannot have the duplicated column with column on source table.
 
 
+
+## Advanced Function##
+
+Computed column is pushed down to data source to be calculated. Hive is the default data source for KAP, thus the syntax for computed need to follow hive's. 
+
+It is possible to utilize Hive embedded function or Hive User Defined Function in computed column. To learn more about what function Hive SQL offers, please refer to Hive documentation below:
+
+https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-StringFunctions
 
