@@ -30,7 +30,7 @@ KAP 允许您为每个模型中定义各自的可计算列。每个可计算列�
 
 或者，您也可以假装表上没有可计算列，直接使用可计算列背后的表达式进行查询，接着上面的例子，您可以查询`select sum(price * item_count) from kylin_sales`。KAP 会分析到`price * item_count`可以由可计算列`total_amount`替代，且`sum(total_amount)`已经在某个 Cube 中被预计算完毕，为了更好的性能，KAP 会将您原始查询翻译为`select sum(total_amount) from kylin_sales`，以求更佳的性能。我们将这种查询方式称为可计算列的**隐式查询**。
 
-隐式查询默认没有被开启，为了开启它，您需要在`KYLIN_HOME/conf/kylin.properties`中添加`kylin.query.transformers=org.apache.kylin.query.util.ConvertToComputedColumn` 
+隐式查询默认没有被开启，为了开启它，您需要在`KYLIN_HOME/conf/kylin.properties`中添加`kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` 
 
 
 

@@ -34,7 +34,7 @@ A computed column is logically appended to the table's column list after creatio
 
 Or, the your can pretend that computed column is invisible from the table, and still use the expression behind the computed column to query. Continuing with the last example, when your query `select sum(price * item_count) from kylin_sales`, KAP will analyze the query and figure out that expression in `price * item_count` is replacable by an existing computed column named `total_amount`. For better performance KAP will try to translate your original query to `select sum(total_amount) from kylin_sales`. We call it **Implicit Query** on computed columns.
 
-**Implicit Query** is not enabled by default. To enable it you'll need to add `kylin.query.transformers=org.apache.kylin.query.util.ConvertToComputedColumn` in `KYLIN_HOME/conf/kylin.properties`
+**Implicit Query** is not enabled by default. To enable it you'll need to add `kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` in `KYLIN_HOME/conf/kylin.properties`
 
 ## Rule using Computed Column##
 
