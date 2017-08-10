@@ -1,12 +1,9 @@
-# Advanced SQL
+# Operator and Function
 
-This chapter will introduce you more advanced SQL skills on molap. 
+This chapter will introduce you more operator and functions KAP support,
 
 Continue reading:
 
-[Window Function](window_function.en.md)
+[Operator](operator.en.md)
 
-[Grouping Sets](grouping_sets.en.md)
-
-[Intersect Count](intersect_count.en.md)
-
+[Function](function.en.md)
