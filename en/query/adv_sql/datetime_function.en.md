@@ -1,9 +1,8 @@
 ### Date and time function
 
 | Function Syntax                          | Decription                               | Example                               | Result                     |
-| ---------------------------------------- | ---------------------------------------- | ------------------------------------- | -------------------------- |
-| LOCALTIME                                | Returns the current date and time in the session time zone in a value of datatype TIME | ```select LOCALTIME```                | ```21:34:30``              |
-|                                          |                                          |                                       |                            |
+| ---------------------------------------- | ---------------------------------------- | :------------------------------------ | -------------------------- |
+| LOCALTIME                                | Returns the current date and time in the session time zone in a value of datatype TIME | ```select LOCALTIME```                | ```21:34:30```             |
 | LOCALTIMESTAMP                           | Returns the current date and time in the session time zone in a value of datatype TIMESTAMP | ```select LOCALTIMESTAMP```           | ```2017-08-10 21:36:12```  |
 | CURRENT_TIME                             | Returns the current time in the session time zone, in a value of datatype TIMESTAMP WITH TIME ZONE | ```select CURRENT_TIME```             | ```21:36:54```             |
 | CURRENT_DATE                             | Returns the current date in the session time zone, in a value of datatype DATE | ```select CURRENT_DATE```             | ```2017-08-10```           |

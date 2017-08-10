@@ -3,7 +3,7 @@
 | Function Syntax                | Decription                               | Example                                  |
 | ------------------------------ | ---------------------------------------- | ---------------------------------------- |
 | POWER(numeric1, numeric2)      | Returns *numeric1* raised to the power of *numeric2* | ```POWER(Price,2)```                     |
-| ABS(numeric)                   | Returns the absolute value of *numeric*  | ```ABS(Price)``                          |
+| ABS(numeric)                   | Returns the absolute value of *numeric*  | ```ABS(Price)```                         |
 | MOD(numeric, numeric)          | Returns the remainder (modulus) of *numeric1* divided by *numeric2*. The result is negative only if *numeric1* is negative | ```MOD(31,2)```                          |
 | SQRT(numeric)                  | Returns the square root of *numeric*     | ```SQRT(Price)```                        |
 | LN(numeric)                    | Returns the natural logarithm (base *e*) of *numeric* | ```LN(Price)```                          |
