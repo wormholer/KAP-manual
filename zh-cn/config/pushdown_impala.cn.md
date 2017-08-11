@@ -19,39 +19,35 @@ Impala 提高了 Apache Hadoop 上的SQL查询性能，同时保留了熟悉的�
 
 
 1. 配置 Hive JDBC driver 和 Pushdown Runner:
-   1. ```kylin.query.pushdown.runner-class-name=org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl```
+   + ```kylin.query.pushdown.runner-class-name=org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl```
 
-   2. ```kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver```
-
+   + ```kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver```
 2. 配置 JDBC URL
-
-     1. 访问没有 kerberos 安全认证的 Impala 集群，例如(访问default库):
-
-        ```kylin.query.pushdown.jdbc.url=jdbc:hive2://Impala_host:impala_hs2_port/default;auth=noSasl```
-
-     2. 访问带有 kerberos 安全认证的 Impala
-       + 访问带有kerberos认证的Impala集群需要JDBC Client端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问 default 库)：
-
-           ```kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal```
-
-
-        + 请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:
-            ```
-                   <property>
-                       <name>hive.server2.authentication</name>
-                       <value>kerberos</value>
-                   </property>
-             ```
-        + 在初始化 hive-jdbc connection 前，KAP 需要具有有效的kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Impala 集群。
+   + 访问没有 kerberos 安全认证的 Impala 集群，例如(访问default库):
+   ```
+    kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal```
+   + 访问带有 kerberos 安全认证的 Impala
+	 * 访问带有kerberos认证的Impala集群需要JDBC Client端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问default库):
+	 ```
+	 kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal```  
+       
+     * 请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:
+     					
+                       <property>
+                           <name>hive.server2.authentication</name>
+                           <value>kerberos</value>
+                       </property>                 
+     * 在初始化 hive-jdbc connection 前，KAP 需要具有有效的kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Impala 集群。
+      
 3.   验证 Thrift server
-     1. 启动 beeline ```${SPARK_HOME} or ${HIVE_HOME}/bin/beeline```
-     2. 使用 beeline 连接 Spark Thrift ```!connect  ${kylin.query.pushdown.jdbc.url}```
-     3. 使用简单SQL测试可用
+     + 启动 beeline ```${SPARK_HOME} or ${HIVE_HOME}/bin/beeline```
+     + 使用 beeline 连接 Spark Thrift ```!connect  ${kylin.query.pushdown.jdbc.url}```
+     + 使用简单SQL测试可用
 4. 验证 Query Pushdown
-     1. 启动 KAP ，在 Insight 界面进行一些简单查询。
-     2. 在 Impala web 页面中能够找到刚才的查询，表示 KAP 能够正常连接 Impala。
+     + 启动 KAP ，在 Insight 界面进行一些简单查询。
+     + 在 Impala web 页面中能够找到刚才的查询，表示 KAP 能够正常连接 Impala。
 
-      ![](query_pushdown_images/query_pushdown_impala.png)
+      ![](images/query_pushdown_impala.png)
 
 
 

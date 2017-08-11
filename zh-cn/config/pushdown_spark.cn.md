@@ -14,39 +14,35 @@ Spark 是用于大数据处理的快速通用引擎，具有用于流计算，SP
 * 修改 `$KAP_HOME/conf/kylin.properties` ，添加以下配置：
 
   1. 配置 Hive JDBC driver 和 Pushdown Runner:
+     + ```kylin.query.pushdown.runner-class-name=org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl```
 
-  1. ```kylin.query.pushdown.runner-class-name=org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl```
-
-  2. ```kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver```
+     + ```kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver```
 
 
 2.   配置 JDBC URL
+     + 访问没有 kerberos 安全认证的 Spark Thrift 集群，例如(访问default库):
+     ```
+     kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default```
 
-     1. 访问没有 kerberos 安全认证的 Spark Thrift 集群，例如(访问default库):
+     + 访问带有 kerberos 安全认证的 Spark Thrift 集群
+        * 访问带有 kerberos 认证 Spark Thrift 需要 JDBC Client 端包含 Spark Thrift(principal=<Spark-Kerberos-Principal>)principal 在 JDBC url中，例如(访问 default 库):
+        ```
+        kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default;principal=Spark-Kerberos-Principal```
 
-        ```kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default```
-
-     2. 访问带有 kerberos 安全认证的 Spark Thrift 集群
-        + 访问带有 kerberos 认证 Spark Thrift 需要 JDBC Client 端包含 Spark Thrift(principal=<Spark-Kerberos-Principal>)principal 在 JDBC url中，例如(访问 default 库):
-
-           ```kylin.query.pushdown.jdbc.url=jdbc:hive2://spark_host:spark_hs2_port/default;principal=Spark-Kerberos-Principal```
-
-
-        + 请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:
-            ```
+        * 请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:
+       
                    <property>
                        <name>hive.server2.authentication</name>
                        <value>kerberos</value>
                    </property>
-             ```
-         + 在初始化 hive-jdbc connection 前，kap 需要具有有效的 kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Spark Thrift。
+        * 在初始化 hive-jdbc connection 前，kap 需要具有有效的 kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Spark Thrift。
 3.   验证 Thrift server
-     1. 启动 beeline ```${SPARK_HOME} or ${HIVE_HOME}/bin/beeline```。
-     2. 使用 beeline 连接 Spark Thrift ```!connect  ${kylin.query.pushdown.jdbc.url}```。
-     3. 使用简单sql测试可用。
+     + 启动 beeline ```${SPARK_HOME} or ${HIVE_HOME}/bin/beeline```。
+     + 使用 beeline 连接 Spark Thrift ```!connect  ${kylin.query.pushdown.jdbc.url}```。
+     + 使用简单sql测试可用。
 4. 验证 Query Pushdown
-     1. 启动 KAP ，在 Insight 界面进行一些简单查询。
-     2. Spark web 页面中能够找到刚才的查询，表示 KAP 能够正常连接Spark Thrift。
+     + 启动 KAP ，在 Insight 界面进行一些简单查询。
+     + Spark web 页面中能够找到刚才的查询，表示 KAP 能够正常连接Spark Thrift。
 
       ![](images/query_pushdown_spark.png)
 
