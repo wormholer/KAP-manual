@@ -64,7 +64,7 @@
     * [异步查询](query/async_query.cn.md)
     * [函数及操作符](query/adv_sql/README.md)
         * [操作符](query/adv_sql/operator.cn.md)
-        * [函数](function.cn.md)
+        * [函数](query/adv_sql/function.cn.md)
           * [算数函数](query/adv_sql/arithmetic_function.cn.md)
           * [字符串函数](query/adv_sql/string_function.cn.md)
           * [日期函数](query/adv_sql/datetime_function.cn.md)
