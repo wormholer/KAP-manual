@@ -22,7 +22,7 @@ KAP suppports below operators:
 | SIMILAR TO           | Whether string1 matches regular expression string2 | string1 SIMILAR TO string2               | name SIMILAR TO 'frank'                  |
 | NOT SIMILAR TO       | Whether *string1* does not match regular expression *string2* | string1 NOT SIMILAR TO string2           | name NOT SIMILAR TO 'frank'              |
 
-###Logical operator
+###Logical Operator
 
 | Opeartor     | Decription                               | Syntax                | Example                       |
 | ------------ | ---------------------------------------- | --------------------- | ----------------------------- |
@@ -34,7 +34,7 @@ KAP suppports below operators:
 | IS TRUE      | Whether *boolean* is TRUE; returns FALSE if *boolean* is UNKNOWN | boolean IS TRUE       | Name ='frank' IS TRUE         |
 | IS NOT TRUE  | Whether *boolean* is not TRUE; returns TRUE if *boolean* is UNKNOWN | boolean IS NOT TRUE   | Name ='frank' IS NOT TRUE     |
 
-###Arithmetic operator
+###Arithmetic Operator
 
 | Opeartor | Decription                               | Syntax | Example              |
 | -------- | ---------------------------------------- | ------ | -------------------- |
@@ -43,7 +43,7 @@ KAP suppports below operators:
 | *        | Times. Returns *numeric1* multiplied by *numeric2* | A*B    | Unit_Price* Quantity |
 | /        | Devide                                   | A/B    | Total_Sale/Quantity  |
 
-### String operator
+### String Operator
 
 | Opeartor | Decription         | Syntax | Example                 |
 | -------- | ------------------ | ------ | ----------------------- |

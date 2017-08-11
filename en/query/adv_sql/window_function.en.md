@@ -1,4 +1,4 @@
-# SQL Window Function
+# Window Function
 
 Since KAP v2.1, we've provided window function in KAP to support more complicated query, keeping SQL query simple and work well. Here we are going to introduce how to use this function.
 

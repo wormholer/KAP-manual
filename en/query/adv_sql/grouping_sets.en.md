@@ -1,4 +1,4 @@
-# SQL Grouping Sets
+# Grouping Sets
 
 Since KAP v2.1, we've provided grouping sets function in KAP to support when we want aggregate data by different keys in one SQL statements. Here we are going to introduce how to use this function. 
 

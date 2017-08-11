@@ -1,4 +1,4 @@
-### Date and time function
+### Date and Time Function
 
 | Function Syntax                          | Decription                               | Example                               |
 | ---------------------------------------- | ---------------------------------------- | ------------------------------------- |

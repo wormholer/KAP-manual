@@ -1,4 +1,4 @@
-## Type function
+## Type Function
 
 | Function Syntax     | Decription                        | Example                                  | Result           |
 | ------------------- | --------------------------------- | ---------------------------------------- | ---------------- |

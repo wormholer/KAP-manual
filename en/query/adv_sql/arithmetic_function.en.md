@@ -1,4 +1,4 @@
-##Arithmetic function
+##Arithmetic Function
 
 | Function Syntax                | Decription                               | Example                                  |
 | ------------------------------ | ---------------------------------------- | ---------------------------------------- |
@@ -11,7 +11,7 @@
 | EXP(numeric)                   | Returns *e* raised to the power of *numeric* | ```EXP(Number)```                        |
 | CEIL(numeric)                  | Rounds *numeric* up, returning the smallest integer that is greater than or equal to *numeric* | ``CEIL(Price)``                          |
 | FLOOR(numeric)                 | Rounds *numeric* down, returning the largest integer that is less than or equal to *numeric* | ```FLOOR(Price)```                       |
-| RAND([seed])                   | Generates a random double between 0 and 1 inclusive, optionally initializing the random number generator with *seed* | ```RAND() ``` ```RAND(12)```             |
+| RAND([seed])                   | Generates a random double between 0 and 1 inclusive, optionally initializing the random number generator with *seed* | ```RAND() ```             ```RAND(12)``` |
 | RAND_INTEGER([seed, ] numeric) | Generates a random integer between 0 and *numeric* - 1 inclusive, optionally initializing the random number generator with *seed* | ```RAND_INTEGER(50)```       ```RAND_INTEGER(12,50)``` |
 | ACOS(numeric)                  | Returns the arc cosine of *numeric*      |                                          |
 | ASIN(numeric)                  | Returns the arc sine of *numeric*        |                                          |

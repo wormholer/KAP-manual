@@ -1,4 +1,4 @@
-# SQL Intersect Function
+# Intersect Function
 
 Retention or conversion rate is important in data analysis for most internet enterprises. In general, the value can be calculated based on the intersection of two data sets, with some same dimensions (city, category, or so on) and one varied dimension (date, or so forth). KAP has supported retention calculation based on the bitmap and UDAF **intersect_count**. This article would introduce you how to use this function.
 
