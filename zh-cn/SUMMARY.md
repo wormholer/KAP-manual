@@ -1,4 +1,4 @@
-# Summary
+# 目录
 
 * [KAP 手册](README.md)
 * [简介](introduction/README.md)
@@ -62,10 +62,17 @@
     * [在Insight页面查询](query/insight.cn.md)
     * [SQL规范参考](query/sql_spec.cn.md)
     * [异步查询](query/async_query.cn.md)
-    * [高级SQL支持](query/adv_sql/README.md)
-        * [窗口函数](query/adv_sql/window_function.cn.md)
-        * [分组函数](query/adv_sql/grouping_sets.cn.md)
-        * [交集函数](query/adv_sql/intersect_count.cn.md)
+    * [函数及操作符](query/adv_sql/README.md)
+        * [操作符](query/adv_sql/operator.cn.md)
+        * [函数](function.cn.md)
+          * [算数函数](query/adv_sql/arithmetic_function.cn.md)
+          * [字符串函数](query/adv_sql/string_function.cn.md)
+          * [日期函数](query/adv_sql/datetime_function.cn.md)
+          * [条件函数](query/adv_sql/conditional_function.cn.md)
+          * [类型转换函数](query/adv_sql/type_function.cn.md)
+          * [窗口函数](query/adv_sql/window_function.cn.md)
+          * [分组函数](query/adv_sql/grouping_sets.cn.md)
+          * [交集函数](query/adv_sql/intersect_count.cn.md)
 * [自助式敏捷BI工具KyAnalyzer](kyanalyzer/README.md)
     * [KyAnalyzer简介](kyanalyzer/kyanalyzer.cn.md)
 * [与可视化工具集成](integration/README.md)
