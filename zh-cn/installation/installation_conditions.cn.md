@@ -13,11 +13,17 @@ KAP 需要一个状态良好的 Hadoop 集群作为其运行环境，以便为�
 + 创建和操作 HBase 表（如果您使用 JDBC 连接元数据存储，该项可忽略）
 + 提交 MapReduce 任务
 
-> 如果您使用 Beeline 连接 Hive，需要进行如下配置已使得 KAP 能够获取相应的操作权限：
+> 如果您使用 Beeline 连接 Hive，需要进行如下配置已使得 KAP 能够获取相应的操作权限：(更多[beeline命令说明](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-BeelineCommandOptions))
+>
+> “-n root” 指用root账户连接；
+>
+> “-u jdbc:hive2://localhost:10000” 指将jdbc连接到以下host；
 >
 > ```properties
-> hive.security.authorization.sqlstd.confwhitelist=dfs.replication|hive.exec.compress.output|hive.auto.convert.join.noconditionaltask.*|mapred.output.compression.type|mapreduce.job.split.metainfo.maxsize
+> kylin.source.hive.beeline-params=-n root --hiveconf hive.security.authorization.sqlstd.confwhitelist.append='mapreduce.job.*|dfs.*' -u jdbc:hive2://localhost:10000
 > ```
+
+
 
 ### 支持的企业级平台
 
@@ -84,14 +90,14 @@ KAP Plus的查询需要使用Spark，如果环境中配置了Kerberos或者已�
 
   如果环境要求Kerberos安全认证，则需要对KAP的`kylin.properties`进行相关配置，主要是将环境中Kerberos如下两个配置项：
 
-  ```
+  ```properties
   -Djava.security.auth.login.config
   -Djava.security.krb5.conf
   ```
 
   分别添加到`kylin.properties`里对应的：
 
-  ```
+  ```properties
   kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions
   kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions
   kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions
@@ -101,7 +107,7 @@ KAP Plus的查询需要使用Spark，如果环境中配置了Kerberos或者已�
   > `kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions`
   > 添加以下HIVE的Kerberos配置项：
   >
-  > ```
+  > ```properties
   > -Dhive.metastore.sasl.enabled=true
   > -Dhive.metastore.kerberos.principal=hive/XXX@XXX.com
   > ```
@@ -112,7 +118,7 @@ KAP Plus的查询需要使用Spark，如果环境中配置了Kerberos或者已�
 
   vi编辑打开`kylin.properties`，找到如下配置项，并添加kerberos配置：
 
-  ```
+  ```properties
   kap.storage.columnar.spark-conf.spark.yarn.am.extraJavaOptions= \
   -Dhdp.version=current \
   -Djava.security.auth.login.config=/opt/spark/cfg/jaas-zk.conf \
@@ -121,7 +127,7 @@ KAP Plus的查询需要使用Spark，如果环境中配置了Kerberos或者已�
 
   同样
 
-  ```
+  ```properties
   kap.storage.columnar.spark-conf.spark.driver.extraJavaOptions
   kap.storage.columnar.spark-conf.spark.executor.extraJavaOptions
   ```

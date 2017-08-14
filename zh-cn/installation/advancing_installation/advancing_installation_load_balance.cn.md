@@ -13,13 +13,8 @@ KAP 实例是无状态的服务，所有的状态信息都存储在 metastore（
 
    > 如果您需要启用任务引擎高可用，请参考[服务发现及任务引擎高可用](advancing_installation_ha.cn.md)。
 
-3. 将所有 KAP 实例的地址和端口更新至每个节点的`kylin.server.cluster-servers`，如：
 
-   ```shell
-   kylin.server.cluster-servers=1.1.1.1:7070,1.1.1.2:7070
-   ```
 
-   上述地址和端口将被用于多个 KAP 实例之间的元数据状态同步。
 
 ### 负载均衡配置
 
