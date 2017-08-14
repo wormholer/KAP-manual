@@ -24,22 +24,19 @@ Impala 提高了 Apache Hadoop 上的SQL查询性能，同时保留了熟悉的�
    + ```kylin.query.pushdown.jdbc.driver=org.apache.hive.jdbc.HiveDriver```
 2. 配置 JDBC URL
    + 访问没有 kerberos 安全认证的 Impala 集群，例如(访问default库):
-   ```
-    kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal```
-   + 访问带有 kerberos 安全认证的 Impala
-	 * 访问带有kerberos认证的Impala集群需要JDBC Client端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问default库):
-	 ```
-	 kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal```  
-       
-     * 请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:
-     					
-                       <property>
-                           <name>hive.server2.authentication</name>
-                           <value>kerberos</value>
-                       </property>                 
-     * 在初始化 hive-jdbc connection 前，KAP 需要具有有效的kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Impala 集群。
-      
-3.   验证 Thrift server
+
+     ```kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal```
+
+   + 访问带有 kerberos 安全认证的 Impala: 访问带有kerberos认证的Impala集群需要JDBC Client端包含 Impala(principal=<Impala-Kerberos-Principal>)principal 在 jdbc url 中，例如(访问default库): 		```kylin.query.pushdown.jdbc.url=jdbc:hive2://impala_host:impala_hs2_port/default;principal=Impala-Kerberos-Principal```      
+
+   +   请确保 KAP 能都读取到的 hive-site.xml 中打开了 hive-server2 的 kerberos 认证:					
+              <property>
+                  <name>hive.server2.authentication</name>
+                  <value>kerberos</value>
+              </property>                 
+   + 在初始化 hive-jdbc connection 前，KAP 需要具有有效的kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Impala 集群。
+
+3. 验证 Thrift server
      + 启动 beeline ```${SPARK_HOME} or ${HIVE_HOME}/bin/beeline```
      + 使用 beeline 连接 Spark Thrift ```!connect  ${kylin.query.pushdown.jdbc.url}```
      + 使用简单SQL测试可用
