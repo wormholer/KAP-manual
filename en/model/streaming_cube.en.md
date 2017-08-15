@@ -182,3 +182,13 @@ If the result is an empty array, it means there is no hole. Otherwise, trigger K
 
 	curl -X PUT --user ADMINN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type:application/json" -H "Accept-Language: en" http://localhost:7070/kylin/api/cubes/{your_cube_name}/holes
 
+
+### Create streaming cube by sample scripts
+
+KAP has bundled sample streaming cube and script which generates sample records constantly. 
+
+Under KAP home , run`bin/sample.sh`,  it creates source table `kylin_streaming_table`, model `kylin_streaming`, and cube `kylin_streaming_cube` . The table `kylin_streaming_table` has referred to the Kafka topic `kylin_streaming_topic` under localhost:9092 Kafka broker node.
+
+Suppose the Kafka broker is running on localhost:9092, and `KAFKA_HOME` is set properly when KAP starts, the script`sample-streaming.sh` will create new Kafka topic `kylin_streaming_topic`. The script will send 100 random messages per second to that topic. 
+
+In the Cube list page, 'BUILD' could be triggered manually. Multiple build jobs could be triggered one by one to check the streaming cube. 
