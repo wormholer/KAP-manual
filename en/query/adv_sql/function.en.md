@@ -6,7 +6,7 @@ KAP suppports below functions, click on each section to read more details:
 
 [String function](string_function.en.md)
 
-[Date and time function](dateime_function.en.md)
+[Date and time function](datetime_function.en.md)
 
 [Conditional function](conditional_function.en.md)
 

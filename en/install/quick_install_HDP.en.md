@@ -46,7 +46,7 @@ By default hortonworks ambari disables Hbase, you need manually start the Hbase
 
 ### Install KAP
 
-To obtain KAP package, please refer to [KAP release notes]((../release/README.md)). There may some minor differences between KAP and KAP plus. 
+To obtain KAP package, please refer to [KAP release notes](../release/README.md). There may some minor differences between KAP and KAP plus. 
 
 Copy KAP binary package into the server mentioned above, and decompress to /usr/local
 

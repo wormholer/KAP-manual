@@ -2,7 +2,7 @@
 
 ### Deployment Architecture
 
-In general KAP deployed on a single node can serve small-scale (QPS<50) query and deployment process is easy and quick. The guide of single node KAP deployment is in [previous section](./install_guide.en.md). The architecture of this deployment is shown in the following figure.
+In general KAP deployed on a single node can serve small-scale (QPS<50) query and deployment process is easy and quick. The architecture of this deployment is shown in the following figure.
 
 ![](images/single_node.png)
 

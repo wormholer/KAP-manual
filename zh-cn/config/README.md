@@ -42,4 +42,6 @@ KAP在集群结点上安装完毕后，还需要对KAP的参数进行配置，�
 
 [Impala集成](pushdown_impala.cn.md)
 
-[Spark集成](pushdown_spark.cn.md)
+[Spark SQL集成](pushdown_sparksql.cn.md)
+
+[Hive集成](pushdown_hive.cn.md)

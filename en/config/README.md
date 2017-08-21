@@ -37,4 +37,8 @@ Continue reading:
 
 [Compression Settings](compression_settings.en.md)
 
-[Impala Integration](impala.cn.md)
+[Impala Integration](pushdown_impala.en.md)
+
+[SparkSQL Integration](pushdown_sparksql.en.md)
+
+[Hive Integration](pushdown_hive.en.md)
