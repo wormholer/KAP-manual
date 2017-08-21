@@ -5,6 +5,8 @@ KAP 2.3.x releases the scalable streaming cubing function, it leverages Hadoop t
 ## Preparation
 To finish this tutorial, you need a Hadoop environment which has KAP 2.3 or above installed, and have Kafka be ready to use. In this tutorial, we use Hortonworks HDP 2.4 Sandbox VM as the Hadoop environment.
 
+Environment variable *KAFKA_HOME* should be exported successfully before KAP starts.
+
 ## Create sample Kafka topic and populate data
 
 Firstly, we need a Kafka topic for the incoming data. A sample topic "kylin_demo" will be created here:

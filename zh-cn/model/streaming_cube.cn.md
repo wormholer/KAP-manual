@@ -6,7 +6,7 @@ KAP 从 2.3.x 开始提供了流式构建的功能，用户能够以Kafka为数�
 ### 环境准备
 在开始本教程前，请确保您已准备好Hadoop环境并且已经安装了**KAP 2.3**及以上版本和**Kafka v2.10-0.10.1.0**及以上版本。在本教程中，我们使用Hortonworks HDP 2.4 Sandbox虚拟机作为Hadoop环境。
 
-
+请确保KAP启动前，已经将*KAFKA_HOME*变量正确导出。
 
 ### 创建Kafka topic并导入数据
 
