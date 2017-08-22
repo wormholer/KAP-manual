@@ -19,6 +19,8 @@ Provide your Sever location, credentials and project. Clicking `Connect` button,
 ### Mapping Data Model
 In left panel, select `defaultCatalog` as Database, click `Search` button in Table search box, and all tables get listed. Drag the table to right side, then you can add this table as your data source and edit relation between tables(mapping information is shown in figure).
 
+**NOTE: Tableau will send query "select \* from fact\_table" and it'll take a long time if the table size is extremely large. To work around the issue please refer to [Configuration](../config/basic_settings.en.md#kylinqueryforce-limit)**
+
 ![](images/tableau_10/step5.PNG)
 
 ### Connect Live

@@ -41,6 +41,8 @@ kylin.source.hive.beeline.params=-n root -u 'jdbc:hive2://localhost:10000'
 ### kylin.env
 The usage of the KAP instance is specified by this property. Optional values include *DEV*, *PROD* and *QA*, among them *PROD* is the default one. In *DEV* mode some developer functions are enabled. 
 
+### kylin.query.force-limit
+Some BI tools always send query like "select \* from fact\_table", but the process may stuck if the table size is extremely large. LIMIT clause helps in this case, and setting the value of this property to a positive integer make KAP append LIMIT clause if there's no one. For instance the value is 1000, query "select \* from fact\_table" will be transformed to "select \* from fact\_table limit 1000".
 
 
 ## JVM Configuration Setting

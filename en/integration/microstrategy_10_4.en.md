@@ -28,6 +28,8 @@ Depending on your business scenario, you may need to create a new project and se
 
 Open up your project, go to schema menu -> warehouse catalog to import the tables your need. 
 
+**NOTE: Microstrategy will send query "select \* from fact\_table" and it'll take a long time if the table size is extremely large. To work around the issue please refer to [Configuration](../config/basic_settings.en.md#kylinqueryforce-limit)**
+
 ![](images/microstrategy_10_4/picture7.png)
 
 ![](images/microstrategy_10_4/picture8.png)

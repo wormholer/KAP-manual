@@ -24,6 +24,8 @@ Kylin ODBC Driver需要安装在MicroStrategy Intelligence Server所在的服务
 
 打开你的项目，选择菜单->Schema-> Warehouse Catalog导入你需要的Kylin数据源的表。
 
+**注意：Microstrategy 会发送查询"select \* from fact\_table"，如果被查询表格数据量太大，Microstrategy 可能需要等待很长时间拿到返回结果。请参见[配置](../config/basic_settings.cn.md#kylinqueryforce-limit)对KAP进行配置绕过该问题。**
+
 ![](images/microstrategy_10_4/picture7.png)
 
 ![](images/microstrategy_10_4/picture8.png)
