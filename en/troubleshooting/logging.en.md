@@ -1,6 +1,6 @@
 KAP will create a logs directory in $KYLIN_HOME after service started up, which contains log files from KAP.
 
-## Log files
+### Log files
 KAP log files are consist of following files;
 #### kylin.log
 This is kylin's main log file, whose default logging level is DEBUG, rolling by days.
@@ -8,10 +8,16 @@ This is kylin's main log file, whose default logging level is DEBUG, rolling by 
 This file stores the redirect of standard output of KAP process. For example, echo from tomcat, hive will redirect to this file.
 #### kylin.gc
 This file stores GC events of KAP JVM. To avoid file overwritten, pid is used as filename suffix.
-#### spark_client.out
+
+#### spark_driver.log
 (Only for KAP Plus) This file stores output of Spark Query Engine.
 
-## Logging Analysis
+#### spark_driver.out
+
+(Only for KAP Plus) The file stores the redirect of Spark Query Engine.
+
+### Logging Analysis
+
 Take query as an example, to introduce how to get more detail information of one query.
 Submit a query on Web UI, and tail kylin.log at same time: 
 
@@ -44,6 +50,10 @@ Here lists some primary field of this content:
 * Project: The project of this query
 * Realization Names: The cube used for this query
 
-## Logging Configuration
+### Logging Configuration
 KAP leverages log4j for logging configuration. User can edit conf/kylin-server-log4j.properties to modify logging level, log files etc.
 Reminder, it's required to restart KAP to take effect.
+
+### Log File Rolling
+
+Log file rolling is supported by configuring kylin-server-log4j.properties. Two rules are applied: "Max File Size" and "Max Files". By default, log4j.appender.file.MaxFileSize=268435456, which means each log file has size limit to 268435456 bytes (256M); log4j.appender.file.MaxBackupIndex=10, keep at most 10 files. 
