@@ -62,12 +62,6 @@ kap.external.http-proxy-port // http proxy port
 
 5.If you have multiple KAP nodes, you need to upload diagnostics packages for each nodes.
 
-If you are using KAP 2.2 or the past KAP versisons, you need to manually download diagnotic package and uplaod it to KyBot, the steps are:
-
-Login to each KAP node of the UI WEB, then click "diagnose" button on the system page to generate diagnose packages.
-
-![](images/Picture2.png)
-
 
 - #### Kylin Users
 
@@ -83,7 +77,7 @@ Login to each KAP node of the UI WEB, then click "diagnose" button on the system
 
 ### 4. Upload diagnose package
 
-Log on KyBot website, click the "Upload" button at the top of the page to access upload page, then click "upload diagnose package" button, and select a desired KyBot diagnostic package. If the diagnose package get uploaded, it will join analysis queue soon. Users could check the analyzing speed on the upload page, and use further functions after analysis completed.
+Log on KyBot website, click the "Upload" button at the top of the page to access upload page, then Drag and drop or click "browse" button, to upload a desired KyBot diagnostic package. If the diagnose package get uploaded, it will join analysis queue soon. Users could check the analyzing speed on the upload page, and use further functions after analysis completed.
 
 ![](images/Picture4.png)
 
@@ -93,7 +87,7 @@ Log on KyBot website, click the "Upload" button at the top of the page to access
 
 ### 1. Dashboard
 
-Get tp know the health status of KAP ( or Apache Kylin) clusters
+Get tp know the health status of KAP (or Apache Kylin) clusters
 
 - Cube usage statistics
 
@@ -129,4 +123,6 @@ Founded on knowledge base and log analysis, provide effective incident solution
 
 ### 4. Technical support
 
-Kyligence is capable to provide support from the original Apache Kylin team, so users can submit ticket throught KyBot to get technical support from Kyligence. ![](images/Picture11.png)
+Kyligence is capable to provide support from the original Apache Kylin team, so users can submit ticket throught KyBot to get technical support from Kyligence.
+
+ ![](images/Picture11.png)
