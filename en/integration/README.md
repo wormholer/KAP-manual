@@ -6,8 +6,6 @@ Continue Read:
 
 [Tableau](tableau_10.en.md)
 
-[Excel](excel_2016.en.md)
-
 [Power BI](powerbi.en.md)
 
 [Apache Zeppelin](zeppelin.en.md)

@@ -78,7 +78,6 @@
         * [ODBC driver](driver/odbc.en.md)
     * [Integration with the 3rd party applications](integration/README.md)
         * [Tableau](integration/tableau_10.en.md)
-        * [Excel](integration/excel_2016.en.md)
         * [Power BI](integration/powerbi.en.md)
         * [Apache Zeppelin](integration/zeppelin.en.md)
         * [Cognos](integration/cognos.en.md)
