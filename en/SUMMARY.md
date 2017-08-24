@@ -51,7 +51,6 @@
         * [Measure-Approximate Distinct Count](model/cube/count_distinct.en.md)
         * [Measure-Precise Distinct Count](model/cube/count_distinct_precise.en.md)
         * [Table Index](model/cube/table_index.en.md)
-        * [Scheduler](model/cube/scheduler.en.md)
     * [Build Cube](model/build_cube.en.md)
     * [Streaming Cube](model/streaming_cube.en.md)
 * [SQL Query](query/README.md)
