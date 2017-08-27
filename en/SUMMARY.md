@@ -10,8 +10,9 @@
     * [Requirement](install/hadoop_env.en.md)
     * Quick Start
         * [Quick Install](install/quick_install.en.md)
-        * [Install on CDH sandbox](install/quick_install_CDH.en.md)
-        * [Install on HDP sandbox](install/quick_install_HDP.en.md)
+        * [Install on Cloudera CDH sandbox](install/quick_install_CDH.en.md)
+        * [Install on Horontowrks HDP sandbox](install/quick_install_HDP.en.md)
+        * [Install on MapR CDP sandbox](install/quick_install_MAPR.en.md)
         * [Environment Check](install/check_env.en.md)
     * Cluster Deployment
         * [Load Balance Deployment](install/adv_install_lb.en.md)

@@ -45,6 +45,12 @@ rm -f $KYLIN_HOME/conf/profile
 ln -s $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 ```
 
+为了使用MapR文件系统，需要将KAP的默认工作目录指向MapR-FS(maprfs:///)。更新kylin.properties文件
+
+```
+kylin.env.hdfs-working-dir=maprfs:///kylin
+```
+
 ### 检查运行环境
 
 首次启动 KAP 之前，KAP 会对所依赖的环境进行检查。如果在检查过程中发现问题，您将在控制台中看到警告或错误信息。

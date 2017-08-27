@@ -4,7 +4,7 @@ KAP releases a few sample data sets and cubes in its package together. User coul
 
 ## Prepare Environment
 
-KAP need run in a Hadoop node, to get better stability, we suggest you to deploy it a pure Hadoop client machine, on which it command like *hive*, *hbase*, *hadoop*, *hdfs* already be installed and configured. To make things easier we strongly recommend you try KAP with *All-in-one* sandbox VM, like *MapR Sandbox For Hadoop 5.2.1* and *Hortonworks Sandbox 2.2*. The minimal memory should be 10GB. 
+KAP need run in a Hadoop node, to get better stability, we suggest you to deploy it a pure Hadoop client machine, on which it command like *hive*, *hbase*, *hadoop*, *hdfs* already be installed and configured. To make things easier we strongly recommend you try KAP with *All-in-one* sandbox VM, like *MapR Sandbox For Hadoop 5.2.1*. The minimal memory should be 10GB. 
 
 To avoid permission issue in the sandbox, you can use its *root* account through SSH . The password for *MapR 5.2.1* is *mapr*. This guide uses *root* as example. 
 
@@ -42,6 +42,12 @@ cd $KYLIN_HOME/conf
 
 # Use sandbox(min) profile
 ln -sfn profile_min profile
+```
+
+To use MapR FileSystem, KAP needs to point to MapR-FS(maprfs:///) rather than the default HDFS. Update kylin.properties
+
+```
+kylin.env.hdfs-working-dir=maprfs:///kylin
 ```
 
 ### Environment Check
