@@ -69,7 +69,7 @@ Step 4: We configure cube's building and maintain. Filter and aggregation condit
 
 ![](images/createcube_8.png)
 
-As there's demand to query orders histories, Cube auto cleanup is not turned on. Please set value of **Retention Threshold** to 0.
+**Retention Threshold**: For some old and not-used segments, KAP could remove these segments automatically by configuring the **Retention Threshold**. For each new segment is built ready, KAP will check whether the old segments should be removed at the same time. The rule is if the time range between the latest segment's end date and the old segment's end date exceeds the **Retention Threshold**. For example, if the **Retention Threshold** is 1 year, and the latest segment's end date is today. Any old segments whose end dates before the today of the last year will be removed. If no automatical cleanup needed, please keep the default value to 0. 
 
 In previous sections, we mentioned that we want to build Cube incrementally and choose column `PART_DT` as the partition column. The start time of the cube is required in creation process and it is "1970-01-01 08:00:00" as the start time by default.
 
