@@ -10,7 +10,9 @@ Step 1: Click **Add Cube** from `kylin_sales_Model` , and enter Cube's name `kyl
 
 ![](images/createcube_2.1.png)
 
-Step 2: Select some dimensions via **Add Dimensions**. The number of selected columns will affect the number of Cuboid generated later, so as the size of Cube data. Basic rules for dimension selecting process are as following example:
+
+
+Step 2: **Dimensions and dimension optimization**. Select some dimensions via **Add Dimensions**. The number of selected columns will affect the number of Cuboid generated later, so as the size of Cube data. Basic rules for dimension selecting process are as following example:
 
 In table `KYLIN_CATEGORY_GROUPINGS`, if three columns (`META_CATEG_NAME`, `CATEG_LVL2_NAME`, `CATEG_LVL3_NAME`) can be filter condition in query, they should be set as dimensions.  
 
@@ -43,7 +45,7 @@ The rowkey setting result is shown in following figure:
 
 ![](images/createcube_10.png)
 
-Step 3: Define Cube measure types according to aggregation requirements in analysis. COUNT measure and SUM measure could be created automatically if you click **Optimize**, which depend on data type, to demonstrate order amount and over all amount of item sold. Of course these defaulted measures can be modified or deleted later manually. In this case, `PRICE` is also an important in sales measurement. For example, total sales `SUM(PRICE)`. 
+Step 3: **Measures**. Define Cube measure types according to aggregation requirements in analysis. COUNT measure and SUM measure could be created automatically if you click **Optimize**, which depend on data type, to demonstrate order amount and over all amount of item sold. Of course these defaulted measures can be modified or deleted later manually. In this case, `PRICE` is also an important in sales measurement. For example, total sales `SUM(PRICE)`. 
 
 Secondly we need to count sellers number by `COUNT(DISTINCT SELLER_ID)`. KAP adopts HyperLogLog algorithm, an approximation algorithm, by default in `COUNT_DISTINCT` computing. Low accuracy is enough in this case, so we choose "Error Rate < 9.75%". For the same reason we create another measure `COUNT(DISTINCT LSTG_FORMAT_NAME)`.
 
@@ -65,22 +67,33 @@ The result is shown in the following figure:
 
 ![](images/createcube_4.png)
 
-Step 4: We configure cube's building and maintain. Filter and aggregation conditions of a SQL query are usually based on monthes or weeks. So Cube's set to automatically merge every week and month, meaning cube will be merged every 7 days and every 4 weeks (28 days). The settings are as bellow:
+
+
+Step 4: **Refresh settings**. We configure cube's building and maintain. Filter and aggregation conditions of a SQL query are usually based on monthes or weeks. So Cube's set to automatically merge every week and month, meaning cube will be merged every 7 days and every 4 weeks (28 days). The settings are as bellow:
 
 ![](images/createcube_8.png)
 
-**Retention Threshold**: For some old and not-used segments, KAP could remove these segments automatically by configuring the **Retention Threshold**. For each new segment is built ready, KAP will check whether the old segments should be removed at the same time. The rule is if the time range between the latest segment's end date and the old segment's end date exceeds the **Retention Threshold**. For example, if the **Retention Threshold** is 1 year, and the latest segment's end date is today. Any old segments whose end dates before the today of the last year will be removed. If no automatical cleanup needed, please keep the default value to 0. 
+**Retention Threshold**. For some old and not-used segments, KAP could remove these segments automatically by configuring the **Retention Threshold**. For each new segment built ready, KAP will check whether the old segments should be removed at the same time. The rule is if the time range between the latest segment's end date and the old segment's end date exceeds the **Retention Threshold**. 
 
-In previous sections, we mentioned that we want to build Cube incrementally and choose column `PART_DT` as the partition column. The start time of the cube is required in creation process and it is "1970-01-01 08:00:00" as the start time by default.
+> For example, if the **Retention Threshold** is 1 year, and the latest segment's end date is today. Any old segments whose end dates before the today of the last year will be removed. If no automatical cleanup needed, please keep the default value to 0. 
+
+**Partition start time**. In previous sections, we mentioned that we want to build Cube incrementally and choose column `PART_DT` as the partition column. The **partition start time** of the cube is required in creating process and it is "1970-01-01 08:00:00" as the start time by default.
 
 Build **Scheduler** is a cube build plan. Check the scheduler box and set a build time to trigger the first build and build cycle is time interval between different build job.
 
+**Scheduler**: Build **Scheduler** is a cube build plan. 
 
-> **For Plus Version**:  Table index is new feature in KAP Plus. If enabled, KAP will keep raw table records in additional to cubing result, to support high speed raw record queries. Table index is still in the beta stage.
+- Check the scheduler box and set a **first build time** to trigger the first build job and **build cycle** is time interval between different build job.
 
-Step 6: Advanced Setting. The configuration added here can override the global ones read from file `kylin.properties`. We suggest don't change any configuration in this case.
+  > Assume that a telecom firm has a cube, they build this cube manually at 8:00 at each morning and this build will cover one day's data imported. For this scenario, is it suggested to set a scheduler: first build time is "2017-08-01 08:00:00" and build cycle is "24 hours".  Then from the point 8am on 1st Aug. of 2017, cube build job will be trigger and continuely building over every 24 hours, each build job will build 24 hours inported data into the cube. 
+
+- Plus, check the scheduler box can enable this scheduler(auto build plan).
+
+Step5: **Table index**. KAP Plus series product include this  feature. Details please refer to [table index section](table_index.en.md).
+
+Step 6: **Advanced Setting**. The configuration added here can override the global ones read from file `kylin.properties`. We suggest don't change any configuration in this case.
 ​	
-Step 7: Overview. Please read the information carefully. Click `Save` button if everything is desired. Then click `Yes` button in pop-up menu.
+Step 7: **Overview**. Please read the information carefully. Click `Save` button if everything is desired. Then click `Yes` button in pop-up menu.
 ​	
 Finally Cube creation is done. The new Cube will be shown in Cube list in the refreshed Cube list page. The state of the Cube is disable for that it has not been built.
 
