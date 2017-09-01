@@ -68,15 +68,14 @@ Now you can start creating reports with Kylin as Data source.
 
    ​	Reports with custom groups
 
-Note that in KAP 2.4.5 and above, user may rely on underlying SQL on hadoop engine to process multiple SQL passes or temporary table, if query pushdown is enabled in KAP. 
+   Note that in KAP 2.4.5 and above, user may rely on underlying SQL on hadoop engine to process multiple SQL passes or temporary table, if query pushdown is enabled in KAP. 
 
-1. Dimension named with Kylin reserved word will cause sql to error out. You may find Kylin reserved word here: [https://calcite.apache.org/docs/reference.html#keywords](https://calcite.apache.org/docs/reference.html#keywords)
+3. Dimension named with Kylin reserved word will cause sql to error out. You may find Kylin reserved word here: [https://calcite.apache.org/docs/reference.html#keywords](https://calcite.apache.org/docs/reference.html#keywords)
 
-2. If underlying Kylin data model has left join from fact table to lookup table, In order for Microstrategy to also generate the same left join in sql, please follow below MicroStrategy TN to modify VLDB property:
+4. If underlying Kylin data model has left join from fact table to lookup table, In order for Microstrategy to also generate the same left join in sql, please follow below MicroStrategy TN to modify VLDB property:
 
    [https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB](https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB)
 
-3. By default, MicroStrategy generate SQL query with date filter in a format like 'mm/dd/yyyy'. This format might be different from Kylin's date format, if so, query will error out. You may refer to this article to change the setting in MicroStrategy so that date format MicroStrategy generated will be consistent with KAP: 
+5. By default, MicroStrategy generate SQL query with date filter in a format like 'mm/dd/yyyy'. This format might be different from Kylin's date format, if so, query will error out. You may refer to this article to change the setting in MicroStrategy so that date format MicroStrategy generated will be consistent with KAP: 
 
    https://kyligence.zendesk.com/hc/en-us/articles/115001690433-Modify-MicroStrategy-query-date-format-to-be-consitent-with-KAP
-
