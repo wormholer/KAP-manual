@@ -6,12 +6,12 @@
 >
 
 
-* [Resume job](#resume-job)
-* [Discard job](#discard-job)
-* [Get job status](#get-job-status)
-* [Get job step output](#get-job-step-output)
+* [Resume Job](#resume-job)
+* [Discard Job](#discard-job)
+* [Get Job Status](#get-job-status)
+* [Get Job Step Output](#get-job-step-output)
 
-### <span id="resume-job">Resume Job</span>
+### Resume Job
 `Rquest Mode PUT`
 
 `Access Path http://host:port/kylin/api/jobs/{jobId}/resume`
@@ -81,7 +81,7 @@
 }
 ```
 
-### <span id="discard-job">Discard Job</span>
+### Discard Job
 `Request Mode PUT`
 
 `Access Path http://host:port/kylin/api/jobs/{jobId}/cancel`
@@ -92,7 +92,7 @@
 #### Response Example
 (same as "Resume Job")
 
-### <span id="get-job-status">Get Job Status</span>
+### Get Job Status
 `GET /jobs/{jobId}`
 
 #### Path Variable
@@ -101,7 +101,7 @@
 #### Response Example
 (same as "Resume Job")
 
-### <span id="get-job-step-output">Return Job Each Step Output</span>
+### Get Job Step Output
 `GET /{jobId}/steps/{stepId}/output`
 
 #### Path Variable

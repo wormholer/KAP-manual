@@ -5,10 +5,10 @@
 >
 
 
-* [返回 Hive 表信息](#get-hive-table)
-* [返回 Hive 表扩展信息](#get-hive-table-extend-info)
-* [返回多个 Hive 表](#get-hive-tables)
-* [加载 Hive 表](#load-hive-tables)
+* [返回 Hive 表信息](#返回hive表信息)
+* [返回 Hive 表扩展信息](#返回hive表扩展信息)
+* [返回多个 Hive 表](#返回多个hive表)
+* [加载 Hive 表](#加载hive表)
 
 ### 返回Hive表信息
 `请求方式 GET`
@@ -45,7 +45,7 @@
 }
 ```
 
-### 返回 Hive 表扩展信息
+### 返回Hive表扩展信息
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/tables/{tableName}/exd-map`
@@ -74,7 +74,7 @@
 }
 ```
 
-### 返回多个 Hive 表
+### 返回多个Hive表
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/tables`
@@ -130,7 +130,7 @@
 ]
 ```
 
-### 加载 Hive 表
+### 加载Hive表
 `请求方式 POST`
 
 `访问路径 http://host:port/kylin/api/tables/{tables}/{project}`

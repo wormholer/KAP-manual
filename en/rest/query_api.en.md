@@ -7,9 +7,8 @@
 
 If users access dataset built by KAP, mainly there are two API, one is querying data from Cube, another one is listing all available tables.
 
-* Query
-   * [Query Cube](#query)
-   * [List queryable tables](#list-queryable-tables)
+* [Query Cube](#query-data-from-cube)
+* [List queryable tables](#list-queryable-tables)
 
 
 ## Query Data from Cube
@@ -146,7 +145,7 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/j
 ```
 
 
-## List Queryable Table
+## List Queryable Tables
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/tables_and_columns`

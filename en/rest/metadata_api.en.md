@@ -5,10 +5,10 @@
 >
 
 
-* [Get hive table information](#get-hive-table)
-* [Get hive table with extended information](#get-hive-table-extend-info)
-* [Get multiple hive tables](#get-hive-tables)
-* [Load hive tables](#load-hive-tables)
+* [Get Hive table information](#get-hive-table)
+* [Get Hive table with extended information](#get-hive-table-extend-info)
+* [Get multiple Hive tables](#get-hive-tables)
+* [Load Hive tables](#load-hive-tables)
 
 ### <span id="get-hive-table">Get Hive Table</span>
 `Request Mode GET`

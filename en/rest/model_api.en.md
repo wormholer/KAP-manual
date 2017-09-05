@@ -6,12 +6,12 @@
 >
 
 
-* [List models](#list-models)
-* [Get the model](#get-model)
-   * [Clone model](#clone-model)
-   * [Drop model](#drop-model)
+* [List Models](#list-models)
+* [Get the Model](#get-model)
+* [Clone Model](#clone-model)
+* [Drop Model](#drop-model)
 
-### Return Models
+### List Models
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/models`
@@ -125,7 +125,7 @@
   ］
 ```
 
-### Get the Model
+### Get Model
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/model/{modelName}`
@@ -158,7 +158,7 @@
 }
 ```
 
-### Drop Data Model 
+### Drop Model 
 `Request Mode DELETE`
 
 `Access Path http://host:port/kylin/api/model/{modelName}`

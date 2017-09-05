@@ -8,13 +8,13 @@
 
 * [List Cubes](#list-cubes)
 * [Get Cube](#get-cube)
-   * [Get Cube Descriptor(dimensions, measures, ...)](#get-cube-descriptor)
-   * [Get data model(fact tables, vlookup tables, ...)](#get-data-model)
-   * [Build Cube](#build-cube)
-   * [Clone Cube](#clone-cube)
-   * [Disable Cube](#disable-cube)
-   * [Purge Cube](#purge-cube)
-   * [Enable Cube](#enable-cube)
+* [Get Cube Descriptor](#get-cube-descriptor)
+* [Get Data Model](#get-data-model)
+* [Build Cube](#build-cube)
+* [Clone Cube](#clone-cube)
+* [Enable Cube](#enable-cube)
+* [Disable Cube](#disable-cube)
+* [Purge Cube](#purge-cube)
 
 ### List Cubes 
 `Request Mode GET`
@@ -50,7 +50,7 @@
 ]
 ```
 
-### Get the Cube 
+### Get Cube 
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/cubes/{cubeName}`
@@ -58,7 +58,9 @@
 #### Path variable
 * cubeName - `required` `string` Obtained Cube's name.
 
-### Get Cube Descriptor(dimensions, measures, ...) 
+### Get Cube Descriptor
+dimensions, measures and more
+
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/cube_desc/{cubeName}/desc`
@@ -242,7 +244,9 @@
 }
 ```
 
-### Get data model(fact tables, vlookup tables, ...)
+### Get data model
+fact tables, vlookup tables and more
+
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/model/{modelName}`

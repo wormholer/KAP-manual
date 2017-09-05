@@ -6,12 +6,12 @@
 >
 
 
-* [恢复 job](#resume-job)
-* [抛弃 job](#discard-job)
-* [返回 job 信息](#get-job-status)
-* [返回 job 每步输出](#get-job-step-output)
+* [恢复 Job](#恢复job)
+* [抛弃 Job](#抛弃job)
+* [返回 Job 信息](#返回job信息)
+* [返回 Job 每步输出](#返回job每步输出)
 
-### 恢复 job
+### 恢复Job
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/jobs/{jobId}/resume`
@@ -81,7 +81,7 @@
 }
 ```
 
-### 抛弃 job
+### 抛弃Job
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/jobs/{jobId}/cancel`
@@ -92,7 +92,7 @@
 #### 响应示例
 (同 "恢复 job")
 
-### 返回 job 信息
+### 返回Job信息
 `GET /jobs/{jobId}`
 
 #### 路径变量
@@ -101,7 +101,7 @@
 #### 响应示例
 (同 "恢复 Job")
 
-### 返回 Job 每步输出
+### 返回Job每步输出
 `GET /{jobId}/steps/{stepId}/output`
 
 #### 路径变量

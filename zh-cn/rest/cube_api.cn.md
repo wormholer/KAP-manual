@@ -6,17 +6,17 @@
 >
 
 
-* [返回多个Cube](#list-cubes)
-* [返回指定cube](#get-cube)
-* [返回Cube描述信息(维度, 度量，等)](#get-cube-descriptor)
-* [返回数据模型 (事实表及维度表等信息)](#get-data-model)
-* [构建 cube](#build-cube)
-* [克隆 cube](#clone-cube)
-* [禁用 cube](#disable-cube)
-* [清理 cube](#purge-cube)
-* [启用 cube](#enable-cube)
+* [返回多个Cube](#返回多个cube)
+* [返回指定Cube](#返回指定cube)
+* [返回Cube描述信息](#返回cube描述信息)
+* [返回数据模型](#返回数据模型)
+* [构建 Cube](#构建cube)
+* [克隆 Cube](#克隆cube)
+* [启用 Cube](#启用cube)
+* [禁用 Cube](#禁用cube)
+* [清理 Cube](#清理cube)
 
-### <span id="list-cubes">返回多个Cube</span>
+### 返回多个Cube
 
 `请求方式 GET`
 
@@ -51,7 +51,7 @@
 ]
 ```
 
-### <span id="get-cube">返回指定cube</span>
+### 返回指定Cube
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}`
@@ -59,7 +59,8 @@
 #### 路径变量
 * cubeName - `必选` `string` 要获取的Cube 名称.
 
-### <span id="get-cube-descriptor">返回Cube描述信息(维度, 度量，等)</span>
+### 返回Cube描述信息
+ 维度, 度量，等
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/cube_desc/{cubeName}/desc`
@@ -243,7 +244,8 @@
 }
 ```
 
-### <span id="get-data-model">返回数据模型 (事实表及维度表等信息)</span>
+### 返回数据模型
+ 事实表及维度表等信息
 `请求方式 GET`
 
 `访问路径 http://host:port/kylin/api/model/{modelName}`
@@ -352,7 +354,7 @@
 }
 ```
 
-### <span id="get-data-model">构建 Cube</span>
+### 构建Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/rebuild`
@@ -429,7 +431,7 @@
 }
 ```
 
-### <span id="clone-cube">克隆Cube</span>
+### 克隆Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/clone`
@@ -445,7 +447,7 @@
 #### 响应示例
 (同 "启用 Cube")
 
-### <span id="enable cube">启用 Cube</span>
+### 启用Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/enable`
@@ -501,7 +503,7 @@
 }
 ```
 
-### <span id="disable-cube">禁用 Cube</span>
+### 禁用Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/disable`
@@ -512,7 +514,7 @@
 #### 响应示例
 (同 "启用 Cube")
 
-### <span id="purge-cube">清理 Cube</span>
+### 清理Cube
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/purge`
