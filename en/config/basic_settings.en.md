@@ -44,6 +44,9 @@ The usage of the KAP instance is specified by this property. Optional values inc
 ### kylin.query.force-limit
 Some BI tools always send query like "select \* from fact\_table", but the process may stuck if the table size is extremely large. LIMIT clause helps in this case, and setting the value of this property to a positive integer make KAP append LIMIT clause if there's no one. For instance the value is 1000, query "select \* from fact\_table" will be transformed to "select \* from fact\_table limit 1000".
 
+### kylin.query.disable-cube-noagg-sql
+Cube stores the pre-processed data, which is different from original data in most cases. It results in inaccurate answer from Cube if the query has no aggregation function. 
+This configuration is used to address the issue. If it's set to *true*, Cube is forbidden to answer queries that contain no aggregation functions, such as query "select \* from fact\_table limit 1000". Table Index or Query Pushdown will answer the query instead of Cube in this case.
 
 ## JVM Configuration Setting
 
