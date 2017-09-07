@@ -2,7 +2,13 @@
 
 Aggregation group and all its advanced settings help evade cuboid number explosion. To achieve better Cube design users have to understand the data model, which is hard for the junior ones. Fortunately KAP provides another simple cuboid pruning tool named **Max Dimension Combination (MDC)**. This tool limits the dimension number in a single cuboid, which means cuboids containing too many dimensions are not built in Cube Building process. It fits well in the situation where most queries only touch no more than N dimensions, N is MDC threshold that is configurable.
 
-How to define how many dimensions a query touches? It's the union column number of group-by and filter columns. Here're some examples:
+## Dimensions Count in Query
+
+How to define how many dimensions a query touches? It depends on the KAP version you are using.
+
+### For Version 2.4.0 ~ 2.4.2
+
+It's the union column number of group-by and filter columns. Here're some examples:
 
 1. Query contains only group-by columns
 
@@ -24,6 +30,16 @@ select count(*) from table where column1='a' and column2='b' or column3='c' and 
 -- 3 dimensions
 select count(*) from table where column1='a', column2='b' group by column2, column3
 ```
+
+### For Version 2.4.3 ~ Latest
+
+From version 2.4.3, we treat joint dimension, hierarchy dimension as one when counting dimensoins in cuboid pruning, and mandatory dimensions are ignored. For example,
+
+```sql
+select count(*) from table group by column_mandatory, column_joint1, column_joint2, column_hierarchy1, column_hierarchy2, column_normal
+```
+
+There're one mandatory dimension, two dimensions belonging to one joint dimension, two dimensions belonging to one hierarchy dimension and one normal dimension. So we treat them 3 dimensions in cube pruning.
 
 ## Turn it on
 
