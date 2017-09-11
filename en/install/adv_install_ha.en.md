@@ -10,25 +10,29 @@ KAP supports service discovery from 2.0. Now KAP 2.4 has a new implementation ba
 When HBase metadata store is NOT chosen (You can tell it by running `bin/get-properties.sh kylin.metadata.url` and check whether returned value ends with `@hbase`), you'll need to additionally configure zookeeper address for KAP:
 
 - Configure Zookeeper address in `kylin.properties`
-  ```
+  ```properties
   kylin.env.zookeeper-connect-string=host1:2181,host2:2181,host3:2181
   ```
 
 - Restart KAP
 
-After restart, each KAP will register itself in Zookeeper, and each one will discover other instances from Zookeeper. 
+After the restart, each KAP will register itself in Zookeeper, and each one will discover other instances from Zookeeper. 
 
-By default, KAP will use `hostname -f` as the node name and the port in `tomcat/conf/server.xml` as the service port, and then broadcast this to cluster, for example: `salve1:7070`. This requires your cluster can resolve the hostname on each nodes. If not, it will cause connection error as they couldn't connect with each other. In this case, you needed manually specify the REST address when start KAP, for example:
+By default, KAP will use `hostname -f` as the node name and the port in `tomcat/conf/server.xml` as the service port, and then broadcast this to cluster, for example: `salve1:7070`. This requires your cluster can resolve the hostname on each node. If not, it will cause connection error as they couldn't connect with each other. In this case, you needed manually specify the REST address when start KAP, for example:
 
-```
+```shell
 export KYLIN_REST_ADDRESS=10.0.0.100:7070
 $KYLIN_HOME/bin/kylin.sh start
 ```
 
 ### Job Engine HA
 
-KAP job engine executes Cube building tasks and notify user when tasks finished. By default there is only one job engine in a KAP cluster. When you enable service discovery, the job engine role will be assigned dynamically among the instances which can run job engine (`kylin.server.mode=all` or `kylin.server.mode=job`). When job engine instance is stopped in one instance, other instances will take over.If you don't expect job engine be executed on some KAP instances, just configure them to run as *query* mode:
+KAP job engine executes Cube building tasks and notifies user when tasks finished. By default, there is only one job engine in a KAP cluster. When you enable service discovery, the job engine role will be assigned dynamically among the instances which can run job engine (`kylin.server.mode=all` or `kylin.server.mode=job`). When job engine instance is stopped in one instance, other instances will take over.If you don't expect job engine be executed on some KAP instances, just configure them to run as *query* mode:
 
-```
+```properties
 kylin.server.mode=query
 ```
+
+Each of the KAP nodes could accept the Cube build requests, and all requests are appended to the building queue. The current active `job` node will submit the Cube build job into the Hadoop/Spark cluster. 
+
+If the existing `job` node failed, one of the other KAP nodes whose mode is `job` or `all` will be selected as the new active `job` node. It will track the Cube build progress and process later build requests. If no active `job` node exists, build job will fail. 

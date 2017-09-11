@@ -1,5 +1,5 @@
 ## 负载均衡与集群部署
-KAP 实例是无状态的服务，所有的状态信息都存储在 metastore（如HBase，JDBC source）中。因此，您可以启用多个 KAP 节点以部署负载均衡集群，使各个节点分担查询压力且互为备份，从而提高服务的可用性，其部署架构如图所示：
+KAP 实例是无状态的服务，所有的状态信息都存储在 metastore（如HBase，JDBC 数据库）中。因此，您可以启用多个 KAP 节点以部署负载均衡集群，使各个节点分担查询压力且互为备份，从而提高服务的可用性，其部署架构如图所示：
 
 ![](advancing_installation_images/advancing_installation_cluster.png)
 
@@ -9,9 +9,8 @@ KAP 实例是无状态的服务，所有的状态信息都存储在 metastore（
 
 1. 在各 KAP 节点的`$KYLIN_HOME/conf/kylin.properties`配置文件中，为各节点配置相同的`kylin.metadata.url`值，即令各 KAP 节点使用同一个 HBase metastore；
 
-2. 选择其中一个 KAP 节点，配置`kylin.server.mode=all`以将该实例同时作为任务引擎和查询引擎；为其他 KAP 节点配置`kylin.server.mode=query`以使得它们仅作为查询引擎。
-
    > 如果您需要启用任务引擎高可用，请参考[服务发现及任务引擎高可用](advancing_installation_ha.cn.md)。
+
 
 
 
@@ -57,23 +56,3 @@ Nginx 在默认情况下将以轮询的方式分发请求。如果一个 KAP 实
    ```
 
    其中，host 和 port 指向所使用的 Redis 集群的地址。
-
-### 单节点多实例部署
-
-KAP 支持在单节点上运行多个实例运行查询引擎以实现负载均衡。
-
-如果您需要进行单节点多实例部署，请确保多个实例无端口冲突。为此，请在`${KYLIN_HOME}/tomcat/conf/server.xml`中为每个实例重新配置端口。然后，请您执行下述步骤：
-
-1. 在各 KAP 节点的`$KYLIN_HOME/conf/kylin.properties`配置文件中，为各节点配置相同的`kylin.metadata.url`值，即令各 KAP 节点使用同一个 HBase metastore；
-
-2. 选择其中一个 KAP 实例，配置`kylin.server.mode=all`以将该实例同时作为任务引擎和查询引擎；为其他 KAP 实例配置`kylin.server.mode=query`以使得它们仅作为查询引擎。
-
-   > 如果您需要启用任务引擎高可用，请参考[服务发现及任务引擎高可用](advancing_installation_ha.cn.md)。
-
-3. 将所有 KAP 实例的地址和端口更新至每个节点的`kylin.server.cluster-servers`，如：
-
-   ```shell
-   kylin.server.cluster-servers=1.1.1.1:7070,1.1.1.2:7070
-   ```
-
-   上述地址和端口将被用于多个 KAP 实例之间的元数据状态同步。

@@ -1,5 +1,5 @@
 ## Cluster (Load Balance) Deployment
-KAP instance is stateless as all state information is stored in HBase. So running KAP on multiple node in a cluster is a good practice for better load balance and higher availability.
+KAP instance is stateless as all state information is stored in HBase or JDBC database. So running KAP on multiple node in a cluster is a good practice for better load balance and higher availability.
 
 ![](images/cluster.png)
 
@@ -12,9 +12,11 @@ To organize multiple KAP nodes in a cluster, please pay attention on following p
 
 Steps
 
-* Keep all nodes' ``kylin.metadata.url`` are same. 
-* Update one KAP instance to run as job engine (`kylin.server.mode＝all`), all other instances as query engines (`kylin.server.mode＝query`).  If to turn on `High Availability` on job engine. Please refer to the next chapter [Configuration](adv_install_ha.en.md).
-* Update all instances' IP address and port to ``kylin.server.cluster-servers``, these are used to sync the metadata changes among the instances. For example, ``kylin.server.cluster-servers=1.1.1.1:7070,1.1.1.2:7070``
+1. Keep all nodes' `kylin.metadata.url` are same. 
+
+   > If to turn on `High Availability` on job engine. Please refer to the next chapter [Configuration](adv_install_ha.en.md).
+
+  ​
 
 ### Load Balance Configuration
 
@@ -55,19 +57,3 @@ wget https://github.com/downloads/jcoleman/tomcat-redis-session-manager/tomcat-r
 ```
 
 host and port are to specify your Redis cluster.
-
-### Multi-Instance on Single Node Deployment
-
-KAP support running multiple query engine on a single node for better load balance.
-
-Several points deserve attention:
-
-- Run KAP instance in query engine mode (`kylin.server.mode＝query`). Please refer to the next chapter [Configuration](../install/adv_install_ha.en.md).
-- No port conflict. Reconfigure the ports in file `${KYLIN_HOME}/tomcat/conf/server.xml` and make sure different instances don't affect each other.
-
-Steps
-
-- Keep all nodes' ``kylin.metadata.url`` are same. 
-- Update one KAP instance to run as job engine (`kylin.server.mode＝all`), all other instances as query engines (`kylin.server.mode＝query`).  If to turn on `High Availability` on job engine. Please refer to the next chapter [Configuration](adv_install_ha.en.md).
-- Update all instances' IP address and port to ``kylin.server.cluster-servers``, these are used to sync the metadata changes among the instances. For example, `kylin.server.cluster-servers=127.0.0.1:7070,127.0.0.1:17070`
-
