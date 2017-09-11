@@ -1,4 +1,4 @@
-## Cell Level Security
+## (v2.4.6 or earlier) Cell Level Security
 
 Cell Level Security helps administrator guarantee the data security on cell level, which is achieved by configuring access control file. The examples mentioned in this text are based on KAP's Sample.
 
