@@ -33,13 +33,13 @@ select count(*) from table where column1='a', column2='b' group by column2, colu
 
 ### For Version 2.4.3 ~ Latest
 
-From version 2.4.3, we treat joint dimension, hierarchy dimension as one when counting dimensoins in cuboid pruning, and mandatory dimensions are ignored. For example,
+From version 2.4.3, we treat a group of joint dimension or hierarchy dimension as one dimension when counting dimensoins in cuboid, and ignore mandatory dimensions. For example,
 
 ```sql
 select count(*) from table group by column_mandatory, column_joint1, column_joint2, column_hierarchy1, column_hierarchy2, column_normal
 ```
 
-There're one mandatory dimension, two dimensions belonging to one joint dimension, two dimensions belonging to one hierarchy dimension and one normal dimension. So we treat them 3 dimensions in cube pruning.
+There're one mandatory dimension, two dimensions belonging to one joint dimension, two dimensions belonging to one hierarchy dimension and one normal dimension. So we treat them as 3 dimensions in cube pruning.
 
 ## Turn it on
 
