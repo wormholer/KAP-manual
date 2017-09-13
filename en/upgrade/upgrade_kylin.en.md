@@ -31,9 +31,7 @@ Please follow the steps below:
 
 4. Update the configuration files: 
 
-   If you're upgrading from Apache Kylin >=2.1, simply replace new versions' `$KYLIN_HOME/conf` with old version's `$KYLIN_HOME/conf`.
-
-   Otherwise if you're upgrading from Apache Kylin <2.1, you need to: 1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`. 2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
+   If you're upgrading from Apache Kylin, you need to: 1. manually re-apply all changes in old version's `$KYLIN_HOME/conf` to new version's `$KYLIN_HOME/conf`. 2. manually re-apply all changes in old version's `$KYLIN_HOME/bin/setenv.sh` to new version's `$KYLIN_HOME/conf/setenv.sh`. Watch out: 1. the folder for setenv.sh has changed. 2. Direct file copy-and-replace is not allowed.
 
 5. Modify configuration parameters: 
 
