@@ -83,6 +83,7 @@
         * [Apache Zeppelin](integration/zeppelin.en.md)
         * [Cognos](integration/cognos.en.md)
         * [MicroStrategy](integration/microstrategy_10_4.en.md)
+        * [Cognos](integration/cognos.en.md)
 * [REST API](rest/README.md)
     * [Access and Authentication](rest/authentication.en.md)
     * [Query API](rest/query_api.en.md)
