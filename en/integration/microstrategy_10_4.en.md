@@ -72,7 +72,7 @@ Now you can start creating reports with Kylin as Data source.
 
 3. Dimension named with Kylin reserved word will cause sql to error out. You may find Kylin reserved word here: [https://calcite.apache.org/docs/reference.html#keywords](https://calcite.apache.org/docs/reference.html#keywords)
 
-4. If underlying Kylin data model has left join from fact table to lookup table, In order for Microstrategy to also generate the same left join in sql, please follow below MicroStrategy TN to modify VLDB property:
+4. If underlying Kylin data model has left join from fact table to lookup table, in order for Microstrategy to also generate the same left join in sql, please follow below MicroStrategy TN to modify VLDB property:
 
    [https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB](https://community.microstrategy.com/s/article/ka1440000009GrQAAU/KB17514-Using-the-Preserve-all-final-pass-result-elements-VLDB)
 
