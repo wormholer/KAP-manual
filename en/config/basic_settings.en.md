@@ -63,17 +63,31 @@ export KYLIN_JVM_SETTINGS="-Xms1024M -Xmx4096M -Xss1024K -XX:MaxPermSize=128M -v
 
 KAP can send email notification on job complete/fail. To enable this, edit `conf/kylin.properties`, set the following parameters: 
 
-```
-mail.enabled=true
-mail.host=your-smtp-server
-mail.username=your-smtp-account
-mail.password=your-smtp-pwd
-mail.sender=your-sender-address
-kylin.job.admin.dls=adminstrator-address
+```properties
+kylin.job.notification-enabled=true|false
+kylin.job.notification-mail-enable-starttls=true|false
+kylin.job.notification-mail-host=your-smtp-server
+kylin.job.notification-mail-port=your-smtp-port
+kylin.job.notification-mail-username=your-smtp-account
+kylin.job.notification-mail-password=your-smtp-pwd
+kylin.job.notification-mail-sender=your-sender-address
+kylin.job.notification-admin-emails=adminstrator-address
 ```
 
 Restart KAP server to take effective. 
 
-To disable, set `mail.enabled` back to `false`.
+One example:
 
-Administrator will get notifications for all jobs. Modeler and Analyst need entering email address into the “Notification List” at the first page of Cube wizard, and then will get notifications for that Cube.
+```properties
+kylin.job.notification-enabled=true
+kylin.job.notification-mail-enable-starttls=true
+kylin.job.notification-mail-host=smtp.office365.com
+kylin.job.notification-mail-port=587
+kylin.job.notification-mail-username=kylin@example.com
+kylin.job.notification-mail-password=mypassword
+kylin.job.notification-mail-sender=kylin@example.com
+```
+
+To disable, set `kylin.job.notification-enabled` back to `false`.
+
+Administrator will get notifications for all jobs. Modeler and Analyst need entering email address into the `Notification List` at the first page of Cube wizard, and then will get notifications for that Cube.
