@@ -1,11 +1,9 @@
-
-
 ## Computed Column
 
 
 **Computed Column** allows you to pre-define operations like data extraction/transformation/redefinition in modes, and thus enhance the data semantic abstraction. By replacing runtime calculation with offline cube construction, KAP's pre-calculation capability is fully utilized. As a result, query performance could improve significantly. It's allowed to use Hive UDF in computed column, so that existing business codes can be reused.
 
-### For KAP 2.4.4 and higher
+### For KAP 2.4.4 and versions above
 
 #### Create Computed Column
 
@@ -20,9 +18,13 @@ the following information is required:
 
 ![](images/computed_column_en.2.kap244.png)
 
-+ **Column**：Display name of the created column
-+ **Expression**：Definition of the computed column. Columns in the expression can refer to any table in current model, however you have to make sure the column reference complies to **Table.Column**
-+ **Data Type**：The data type of the created column
++ **Column**：Display name of the created computed column.
+
++ **Expression**：Definition of the computed column. Columns in the expression can refer to any table in current model, however you have to make sure the column reference complies to **Table.Column**.
+
+  > Expressions can support rich advanced functions (specified at the end of this article), but please do not define the expression that contains the aggregations (as cube measures). For example that expression of a computed column cannot directly support count (distinct), such as "select count (distinct seller_ID) from kylin_sales".
+
++ **Data Type**：The data type of the created column.
 
 After successfully submiting & saving the computed column, you will see the new column `total_amount` appearing in the table:
 
@@ -51,24 +53,30 @@ Implicit Query is **enabled** by default. To disable it you'll need to remove `k
 
 · Under one project, computed column cannot duplicate with any other column in current model
 
+
+
 ### For KAP 2.4.0 ~ 2.4.3
 
 #### Create Computed Column
 
-KAP allows you to define computed columns for each model seprately. A column column is based on specific table in the table, using one or more columns on that table to form an expression. For example, say you have a fact table named `kylin_sales` with following columns: `price` (price for each item in the transaction), `item_count` (number of sold items in the transaction) and `part_dt` (time when the transaction happens). You can define two more computed columns on `kylin_sales`: `total_amount = price * item_count` and `deal_year = year(part_dt)`. Thus, later when creating a cube, you can not only define dimensions/measures based on original columns price/item_count/part_dt, but also from newly added computed columns total_amount/deal_year.
+KAP allows you to define computed columns for each model seprately. A column column is based on specific table in the table, using one or more columns on that table to form an expression. For example, say you have a fact table named `kylin_sales` with following columns: `price` (price for each item in the transaction), `item_count` (number of sold items in the transaction) and `part_dt` (time when the transaction happens). You can define two more computed columns on `kylin_sales`: `total_amount = price * item_count` and `deal_year = year(part_dt)`. Thus, later when creating a cube, you can not only define dimensions/measures based on original columns `price`/`item_count`/`part_dt`, but also from newly added computed columns `total_amount`/`deal_year`.
 
 You can create computed columns by clicking the icon as the arrow points to:
 
 ![](images/computed_column_en.1.png)
 
 
-the following information is required:
+Note that following information is required:
 
 ![](images/computed_column_en.2.png)
 
-+ **Column**：Display name of the created column
++ **Column**：Display name of the created column.
+
 + **Expression**：Definition of the computed column. Notice no columns from other tables is allowed to appear here.
-+ **Data Type**：The data type of the created column
+
+  > Expressions can support rich advanced functions (specified at the end of this article), but please do not define the expression that contains the aggregations (as cube measures). For example that expression of a computed column cannot directly support count (distinct), such as "select count (distinct seller_ID) from kylin_sales".
+
++ **Data Type**：The data type of the created computed column.
 
 After defining the computed columns in model, you need to use them to build cube (either as dimension or measure), so that computed column can be pre-calculated and performance advantages can be observed.
 
@@ -83,13 +91,15 @@ Or, the your can pretend that computed column is invisible from the table, and s
 
 **Implicit Query** is not enabled by default. To enable it you'll need to add `kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` in `KYLIN_HOME/conf/kylin.properties`
 
-#### Rule using Computed Column##
+#### Rules on Computed Column##
 
-· As of KAP 2.4.3, computed column can only be defined on face table (cannot be defined on dimension nor cross tables)
+· As of KAP 2.4.3, computed column can only be defined on face table (cannot be defined on dimension nor cross tables).
 
 · Under one project, there is one-to-one mapping between computed column and expression defined. That means under different models, computed column with same name can be defined on the condition that two computed columns share the same expression. 
 
 · Under one project, computed column cannot have the duplicated column with column on source table.
+
+
 
 ## Advanced Function##
 
