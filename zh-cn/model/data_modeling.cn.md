@@ -4,10 +4,17 @@
 ### 创建步骤
 第一步，打开KAP的Web UI，在左上角项目列表中选择刚刚创建的*learn_kylin*项目，然后进入“模型”页面，并创建一个模型。
 ![](images/datamodel_1.png)
+
 第二步，为模型选择事实表（*Fact Table*）和查找表（*Lookup Table*）。从左边的表工具箱中拖出您希望用来建模的表，拖至建模画布（页面中央）并将kylin_sales的表类型转化为事实表。为了建立下文所需的雪花模型，请您选择拖出的表分别为：一张事实表 (`KYLIN_SALES`) 和四张维度表 (`KYLIN_CAL_DT`, `KYLIN_CATEGORY_GROUPINGS`,`KYLIN_ACCOUNT`, `KYLIN_COUNTRY`)。
 ![](images/datamodel_2.png)
 
-第三步，建立表连接关系，并设置好连接条件（如下所示）：
+
+
+第三步，建立表连接关系。在KAP2.4系列中，表与表关系的建立可以通过拖拽表上的列完成。当你希望建立一个表连接（join），从事实表（外键所在表）指向维度表（主键所在表），比如，“KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT on KYLIN\_SALES.PART_DT=KYLIN\_CAL\_DT.CAL\_DT”, 则将`PART_DT`从`KYLIN_SALES`拖至`KYLIN\_CAL\_DT`，如下图所示的窗口将会弹出。
+
+![](images/datamodel_join_condition.png)
+
+参照以上方法，设置好所有连接条件（如下所示）：
 
 1. KYLIN_SALES *Inner Join* KYLIN\_CAL\_DT 
 
@@ -47,7 +54,7 @@
 
    SELLER_ACCOUNT.ACCOUNT_COUNTRY=SELLER_COUNTRY.COUNTRY
 
-下图是设置好之后的界面：
+下图是设置好之后的界面（点击连接中的标志（join），可以展开连接具体内容）：
 ![](images/datamodel_3.png)
 
 第四步，从上一步添加的事实表和维度表中选择需要作为维度（D: Dimension）的字段。一般的，时间经常用来作为过滤条件，所以我们首先添加时间字段。此外，我们再添加商品分类、卖家ID等字段为维度，保存后结果如下图所示：

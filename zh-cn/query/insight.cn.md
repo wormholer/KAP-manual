@@ -47,6 +47,8 @@ KAP从2.4版本开始支持查询下压。当用户需要执行定制的Cube无�
 
 ![](images/insight/insight_pushdown.png)
 
+
+
 ### 数据展现的方式
 
 ##### 表格
