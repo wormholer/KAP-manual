@@ -7,7 +7,7 @@
 
 #### Create Computed Column
 
-KAP allows you to define computed columns for each model seprately. A column column is based on specific table in the table, using one or more columns on that table to form an expression. For example, say you have a fact table named `kylin_sales` with following columns: `price` (price for each item in the transaction), `item_count` (number of sold items in the transaction) and `part_dt` (time when the transaction happens). You can define two more computed columns on `kylin_sales`: `total_amount = kylin_sales.price * kylin_sales.item_count` and `deal_year = year(kylin_sales.part_dt)`. Thus, later when creating a cube, you can not only define dimensions/measures based on original columns price/item_count/part_dt, but also from newly added computed columns total_amount/deal_year.
+KAP allows you to define computed columns for each model seprately. A column column is based on the fact table in the model and can use one or more columns from any table in the model to form an expression. For example, say you have a fact table named `kylin_sales` with following columns: `price` (price for each item in the transaction), `item_count` (number of sold items in the transaction) and `part_dt` (time when the transaction happens). You can define two more computed columns on `kylin_sales`: `total_amount = kylin_sales.price * kylin_sales.item_count` and `deal_year = year(kylin_sales.part_dt)`. Later when creating a cube, you can add computed columns total_amount/deal_year.
 
 You can create computed columns by clicking the icon as the arrow points to:
 
@@ -26,7 +26,7 @@ the following information is required:
 
 + **Data Type**：The data type of the created column.
 
-After successfully submiting & saving the computed column, you will see the new column `total_amount` appearing in the table:
+After successfully submitting and saving the computed column, you will see the new column `total_amount` appearing in the table:
 
 ![](images/computed_column_en.4.png)
 
@@ -37,9 +37,11 @@ After defining the computed columns in model, you need to use them to build cube
 
 #### Explicit Query vs. Implicit Query
 
-A computed column is logically appended to the table's column list after creation. You can query the column as if it were normal columns under the premise that the computed column is included by a ready **Cube**/**TableIndex** or **Query Pushdown** is enabled. Continuing with the last example, if you created and built a cube containing measure `sum(total_amount)`, KAP can answer queries like `select sum(total_amount) from kylin_sales`. We call it **Explicit Query** on computed columns. 
+A computed column is logically appended to the table's column list after creation. You can query the computed column as if it was a normal column as long as it is pre-calculated in a Cube. Or if query pushdown is enabled in KAP, you can query the computed column directly regardless of whether the Cube containing the computed column is ready. Continuing with the last example, if you created and built a cube containing measure `sum(total_amount)`, KAP can answer queries like `select sum(total_amount) from kylin_sales`. We call it **Explicit Query** on computed columns. 
 
-Or, the your can pretend that computed column is invisible from the table, and still use the expression behind the computed column to query. Continuing with the last example, when your query `select sum(price * item_count) from kylin_sales`, KAP will analyze the query and figure out that expression in `price * item_count` is replacable by an existing computed column named `total_amount`. For better performance KAP will try to translate your original query to `select sum(total_amount) from kylin_sales`. We call it **Implicit Query** on computed columns.
+Or, the your can pretend that computed column is invisible from the table, and still use the expression behind the computed column to query. Continuing with the last example, when your query `select sum(price * item_count) from kylin_sales`, KAP will analyze the query and figure out that expression in `price * item_count` is replaceable by an existing computed column named `total_amount`. For better performance KAP will try to translate your original query to `select sum(total_amount) from kylin_sales`. We call it **Implicit Query** on computed columns.
+
+When query pushdown is enabled and there is no cube can be hit on for your query on computed column, KAP will analyze the query and translate the computed column to the original formula. Continuing with the previous example, if you query `select sum(total_amount) from kylin_sales` when there is no Cube ready to answer, and query pushdown is enabled, this query will be translated into `select sum(price * item_count) from kylin_sales`, and be pushed down to underlying SQL on Hadoop engine. 
 
 Implicit Query is **enabled** by default. To disable it you'll need to remove `kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` in `KYLIN_HOME/conf/kylin.properties`
 
@@ -53,7 +55,7 @@ Implicit Query is **enabled** by default. To disable it you'll need to remove `k
 
 · Under one project, computed column cannot duplicate with any other column in current model
 
-
+·If a user has been restricted access to the column that is used in the expression of a computed column, the user will not be able to query the computed column either. 
 
 ### For KAP 2.4.0 ~ 2.4.3
 

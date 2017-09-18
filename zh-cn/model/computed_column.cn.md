@@ -6,7 +6,7 @@
 
 #### 创建可计算列
 
-KAP 允许您为每个模型中定义各自的可计算列。每个可计算列基于模型中的某个表，是该表上若干列（一个或者多个）的运算的结果。例如模型中有一个事实表`kylin_sales`，`kylin_sales`上有以下列：`price` (交易的单价)，`item_count`（交易数量）和`part_dt` （交易时间），您可以在`kylin_sales`上定义两个可计算列：`total_amount = kylin_sales.price * kylin_sales.item_count` 和 `deal_year = year(kylin_sales.part_dt)`。这样，在创建 Cube 的时候，您不仅可以选择原来的 price/item_count/part_dt 作为 Cube 中的维度或者度量，还能选择 total_amount/deal_year 作为 Cube 的维度或者度量。
+KAP 允许您为每个模型中定义各自的可计算列。每个可计算列基于模型中的某个表，可使用模型中任意表的若干列（一个或者多个）进行运算的结果。例如模型中有一个事实表`kylin_sales`，`kylin_sales`上有以下列：`price` (交易的单价)，`item_count`（交易数量）和`part_dt` （交易时间），您可以在`kylin_sales`上定义两个可计算列：`total_amount = kylin_sales.price * kylin_sales.item_count` 和 `deal_year = year(kylin_sales.part_dt)`。这样，在创建 Cube 的时候，您也可以选择可计算列 total_amount/deal_year 作为 Cube 的维度或者度量。
 
 点击下图箭头所指的按钮，就可以根据提示创建可计算列，
 
@@ -36,9 +36,11 @@ KAP 允许您为每个模型中定义各自的可计算列。每个可计算列�
 
 #### 显式 vs. 隐式查询
 
-在一个表上创建了可计算列后，逻辑上这个可计算列就被拼接到了这个表的列列表中。您可以像查询普通的列一样查询这个列（能够被查询的前提是这个某个 Ready 状态的 **Cube**/**TableIndex** 包含了该列，或者启用了 **查询下压**）。在上面的`kylin_sales`例子中，如果您创建并构建了一个包含`sum(total_amount)`度量的Cube，您可以直接查询`select sum(total_amount) from kylin_sales`。我们将这种查询方式称为可计算列的**显式查询**。
+在一个表上创建了可计算列后，逻辑上这个可计算列就被拼接到了这个表的列列表中。您可以像查询普通的列一样查询这个列（能够被查询的前提是这个某个 Ready 状态的 **Cube**/**Table Index** 包含了该列。如果启用了**查询下压**，那么无论是否有Ready状态的Cube/Table Index, 您都可以查询可计算列）。在上面的`kylin_sales`例子中，如果您创建并构建了一个包含`sum(total_amount)`度量的Cube，您可以直接查询`select sum(total_amount) from kylin_sales`。我们将这种查询方式称为可计算列的**显式查询**。
 
 或者，您也可以假装表上没有可计算列，直接使用可计算列背后的表达式进行查询，接着上面的例子，您可以查询`select sum(price * item_count) from kylin_sales`。KAP 会分析到`price * item_count`可以由可计算列`total_amount`替代，且`sum(total_amount)`已经在某个 Cube 中被预计算完毕，为了更好的性能，KAP 会将您原始查询翻译为`select sum(total_amount) from kylin_sales`。我们将这种查询方式称为可计算列的**隐式查询**。
+
+当查询下压启用的情况下，如果查询中有可计算列且没有Cube可以满足当前查询，KAP会分析当前的查询，把查询中的可计算列翻译成原有的表达式后下压到下层的SQL on Hadoop引擎进行计算。例如如果您查询`select sum(total_amount) from kylin_sales`没有Cube可以满足这个查询的时候，在查询下压启用的情况下，这个查询会被翻译成`select sum(price * item_count) from kylin_sales`被下压到下层引擎中进行计算。
 
 隐式查询默认**开启**，如果要关闭它，您需要在`KYLIN_HOME/conf/kylin.properties`中**移除**`kylin.query.transformers=io.kyligence.kap.query.util.ConvertToComputedColumn` 
 
@@ -54,7 +56,7 @@ KAP 允许您为每个模型中定义各自的可计算列。每个可计算列�
 
 · 同一项目下，可计算列的名字不允许和模型中的其他列名重复。
 
-
+· 如果用户在某列上的列级权限受到限制，该列被用来计算某可计算列，则该用户也不能查询这个可计算列。
 
 ### 适用于KAP 2.4.0 ~ 2.4.3之间的版本
 
@@ -105,8 +107,6 @@ KAP 允许您为每个模型中定义各自的可计算列。每个可计算列�
 
 
 
-
-
 ### 高级函数的使用
 
 可计算列的计算是直接下沉到数据源进行处理的，而当前Hive是KAP的默认数据源，因此可计算列的表达式定义默认需要以hive SQL的语法为准。
@@ -114,7 +114,11 @@ KAP 允许您为每个模型中定义各自的可计算列。每个可计算列�
 欲在可计算列中使用更多的函数，请在下面链接中参考Hive SQL函数的使用规范：
 https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-StringFunctions
 
-可计算列函数的具体使用案例请参考Kyilgence官网的技术博客：http://kyligence.io/zh/2017/07/17/7172/
+可计算列函数的具体使用案例请参考Kyilgence官网的技术博客：
+
+http://kyligence.io/zh/2017/07/17/7172/
+
+http://kyligence.io/zh/2017/08/24/kap-v2-4-computed-column-hive-udf/
 
 
 
