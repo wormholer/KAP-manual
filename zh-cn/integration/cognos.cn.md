@@ -12,7 +12,7 @@ Kylin ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 ### 创建一个Cognos数据源
 
-首先打开一个已有Cognos项目或者创建一个新项目。在本例中我们将创建一个新项目。
+DSN创建好后打开一个已有Cognos项目或者创建一个新项目。在本例中我们将创建一个新项目。
 
 ![](images/cognos/1.png)
 
@@ -30,7 +30,7 @@ Kylin ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 下一步在ODBC数据源中填入上一步创建的DSN的名称。
 
-勾选`Unicode ODBC`. 在`登陆`项中勾选`无身份验证`。
+勾选`Unicode ODBC`。在`登陆`项中勾选`无身份验证`。
 
 随后点击`测试连接`。
 
@@ -48,7 +48,7 @@ Kylin ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 ### 测试连接
 
-首先选择需要导入项目中的表。
+下面我们对已创建的数据源连接进行测试。首先选择需要导入项目中的表。
 
 ![](images/cognos/10.png)
 
@@ -56,7 +56,7 @@ Kylin ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 ![](images/cognos/11.png)
 
-现在新数据源义经被导入到项目中了。邮件一个表测试表的连接。
+现在新数据源已经被导入到项目中了。右键一个表测试表的连接。
 
 ![](images/cognos/12.png)
 
@@ -70,15 +70,15 @@ Kylin ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 ![](images/cognos/14.png)
 
-第一步为数据包命名。
+首先创建数据包，在创建流程中第一步先为数据包命名。
 
 ![](images/cognos/15.png)
 
-第二步，选择需要发布的表和列
+第二步选择数据包中需要包含的表和列。
 
 ![](images/cognos/16.png)
 
-第三步，选择包中支持的`函数集`，这里可以保留默认的设置。
+第三步选择包中支持的`函数集`，这里可以保留默认的设置。
 
 ![](images/cognos/17.png)
 
@@ -102,7 +102,7 @@ Kylin ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 下面我们可以使用发布好的数据包来制作一个简单的图表。
 
-在Cognos网页端启动Report Studio。
+在Cognos网页端启动`Report Studio`。
 
 ![](images/cognos/23.png)
 
@@ -110,7 +110,7 @@ Kylin ODBC Driver需要安装在Cognos Server所在的服务器上。
 
 ![](images/cognos/32.png)
 
-在Report Studio中选择`新建`。
+在`Report Studio`中选择`新建`。
 
 ![](images/cognos/24.png)
 
