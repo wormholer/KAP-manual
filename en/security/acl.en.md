@@ -22,8 +22,8 @@ Once project-level access permission has been set for a user, access permission 
 | View System  Dashboard                   | Yes          | Yes           | Yes        | Yes       | Yes   |
 | View Studio                              | Yes          | Yes           | Yes        | Yes       | Yes   |
 | View Data  Source page                   | Yes          | Yes           | Yes        | No        | No    |
-| Load, unload  data source                | Yes          | Yes           | Yes        | No        | No    |
-| configure  KAFKA data source             | Yes          | yes           | yes        | No        | No    |
+| Load, unload,reload data source          | Yes          | Yes           | No         | No        | No    |
+| configure  KAFKA data source             | Yes          | yes           | No         | No        | No    |
 | View table,  row, and column-level access control | Yes          | Yes           | Yes        | No        | No    |
 | Add, modify,  delete table, row and column-level access control | Yes          | Yes           | No         | No        | No    |
 | View Model  page                         | Yes          | Yes           | Yes        | Yes       | Yes   |
@@ -75,7 +75,7 @@ Follow below steps to revoke access at project-level:
 
 1. Click on project icon on the right side of project list on the navigation bar.
 2. Expand a project on the project list.
-3.  click `Access` menu, choose a user, and then click `Delete` .
+3. click `Access` menu, choose a user, and then click `Delete` .
 
 When user's project access permission has been revoked, all access permission on this project will be revoked/dropped subsequently, this may include table-level, row-level and column-level if there is any. 
 

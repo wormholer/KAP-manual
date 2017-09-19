@@ -23,8 +23,8 @@ KAP提供什么样的权限？
 | 查看系统仪表盘              | Yes          | Yes           | Yes        | Yes       | Yes   |
 | 查看建模页面               | Yes          | Yes           | Yes        | Yes       | Yes   |
 | 查看建模->数据源页面          | Yes          | Yes           | Yes        | No        | No    |
-| 同步／卸载数据源             | Yes          | Yes           | Yes        | No        | No    |
-| 配置Kafka数据源           | Yes          | yes           | yes        | No        | No    |
+| 载入／卸载／重载数据源          | Yes          | Yes           | No         | No        | No    |
+| 配置Kafka数据源           | Yes          | Yes           | No         | No        | No    |
 | 查看表级、行级、列级访问权限       | Yes          | Yes           | Yes        | No        | No    |
 | 添加、修改、删除表级、行级、列级访问权限 | Yes          | Yes           | No         | No        | No    |
 | 查看建模->模型页面           | Yes          | Yes           | Yes        | Yes       | Yes   |
