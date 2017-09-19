@@ -13,5 +13,6 @@
 | SUBSTRING(string FROM integer)           | Returns a substring of a character string starting at a given point | ```Select SUBSTRING(name from 3) from KYLIN_COUNTRY where name='Fiji'``` | ```ji```          |
 | SUBSTRING(string FROM integer FOR integer) | Returns a substring of a character string starting at a given point with a given length | ```select SUBSTRING(name from 3 for 2) from KYLIN_COUNTRY where name='Fiji'``` | ``` ji```         |
 | INITCAP(string)                          | Returns *string* with the first letter of each word converter to upper case and the rest to lower case. Words are sequences of alphanumeric characters separated by non-alphanumeric characters. | ```select INITCAP('hello world')```      | ```Hello World``` |
+| REPLACE(string1,string2, string3 )       | Replace substring *string2* of *string1* with *string3* | `select replace(NAME,'China','Hello') from KYLIN_COUNTRY where NAME='China'` | `Hello`           |
 
 ### 

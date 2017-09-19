@@ -10,7 +10,7 @@
 | LOG10(numeric)                 | 返回以10为底的*numeric*的对数                     | ```LOG10(Price)```                       |
 | EXP(numeric)                   | 返回以 *e* 为底，以 *numeric*为幂的指数。             | ```EXP(Number)```                        |
 | CEIL(numeric)                  | 对*numeric* 向上取整,返回大于或等于*numeric*的最小整数。   | ``CEIL(Price)``                          |
-| FLOOR(numeric)                 | 对*numeric* 向上取整, 返回小于或等于*numeric*的最大整数。  | ```FLOOR(Price)```                       |
+| FLOOR(numeric)                 | 对*numeric* 向下取整, 返回小于或等于*numeric*的最大整数。  | ```FLOOR(Price)```                       |
 | RAND([seed])                   | 随机生成0到1（包括0和1）之间的double型的数字，也可以基于*seed*生成随机数字。 | ```RAND() ```             ```RAND(12)``` |
 | RAND_INTEGER([seed, ] numeric) | 随机生成0到*numeric*（包括0和*numeric*）之间的double型的数字，也可以基于*seed*生成随机数字。* | ```RAND_INTEGER(50)```       ```RAND_INTEGER(12,50)``` |
 | ACOS(numeric)                  | 返回*numeric*d的反余弦                         |                                          |
