@@ -19,6 +19,8 @@ KyAnalyzer无缝集成KAP（Kylin），让用户以最简单快捷的方式访�
 在kyanalyzer-server-{version}/conf目录下有个配置文件kyanalyzer.properties， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，默认为localhost，*kap.port*为KAP REST API的端口，默认7070。
 同时，关于mondrian的所有配置可以参考conf/mondrian.properties.template 配置到mondrian.properties中。（注：在kap2.2之后，我们将kap.host及kap.port配置移到kyanalyzer.properties中，同时在conf下引入了mondrian.properties）
 
+###启动
+
 通过kyanalyzer-{version}目录下的 start-analyzer.sh启动KyAnalyzer
 ```sh start-analyzer.sh  ```
 默认端口为8080,可通过 http://{hostname}:8080 访问页面。如果要停掉应用执行
@@ -216,10 +218,52 @@ KyAnalyzer支持多种展现形式，表格，柱状图，堆积柱状图，百�
 ![](images/open_query.png)
 
 #### 执行查询
+
 ![](images/execute_query.png)
 
+### 分享查询
 
+![](images/share_query.png)
 
+### Calculated Member
 
+Calculated Member是由一组维度、度量、运算符及函数组成的计算。例如你希望用Calculated Member计算出Cube中的两列的和。Calculated Member被定义在KyAanlyzer中，会在查询时进行实时计算。
 
+KyAnalyzer可以支持Calculated Member使用MDX。
+
+以KAP样例数据集为例使用`Price`和`Item_count`来计算出一个新的Calculated Member。
+
+1. 点击指标板块右侧的`添加`按钮。
+
+![](images/calculated_member_1.png)
+
+2. 在弹窗中开始编辑Calculated Member.
+
+Calculated Member创建后会显示在弹窗中的左侧列表中，方便后续修改或删除。
+
+![](images/calculated_member_2.png)
+
+3. 点击`Select Member` 选择`ITEM_COUNT_SUM`和`PRICE_SUM`。
+
+![](images/calculated_member_3.png)
+
+4. 定义表达式为
+
+```sql
+[Measures].[KYLIN_SALES.PRICE_SUM]/[Measures].[KYLIN_SALES.ITEM_COUNT_SUM]
+```
+
+在 `Dimension` 中选择Measures。
+
+你可以点击 `Format` 下拉菜单选择Calculated Member展示的格式。
+
+当你完成编辑Calculated Member，你需要点击`Add`或  `Save to Schema` 来保存。`Add`会把Calculated Member仅添加到当前查询中。 `Save to Schema` 会被Calculated Member保存到当前Cube的定义中，让使用当前Cube的其他用户也可以复用这个Calculated Member.
+
+![](images/calculated_member_4.png)
+
+5. 保存好的Calculated Member会显示在指标面板上。现在你可以在报表上使用了。
+
+![](images/calculated_member_5.png)
+
+![](images/calculated_member_6.png)
 
