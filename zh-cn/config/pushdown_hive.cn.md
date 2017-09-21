@@ -5,13 +5,13 @@ KAP使用Hive作为cube的数据源，也可以将其配置为查询下压（Que
 ### 配置方法
 1. 修改配置文件`kylin.properties`打开Query Pushdown注释掉的配置项`kylin.query.pushdown.runner-class-name`，设置为`org.apache.kylin.query.adhoc.PushDownRunnerJdbcImpl`
 
-2. 在配置文件`kylin.properties`添加如下配置项。若不设置，将使用默认配置项。
+2. 在配置文件`kylin.properties`添加如下配置项。其中`kylin.query.pushdown.jdbc.url`，`kylin.query.pushdown.jdbc.driver`和`kylin.query.pushdown.jdbc.username`为必须配置项，其余项若不配置将使用默认配置项。
 
-   - *kylin.query.pushdown.jdbc.url*：Hive Jdbc的url，默认值为`jdbc:hive2://sandbox:10000/default`
+   - *kylin.query.pushdown.jdbc.url*：Hive Jdbc的url，例如`jdbc:hive2://sandbox:10000/default`
 
-   - *kylin.query.pushdown.jdbc.driver*：Hive Jdbc的driver类名，默认值为`org.apache.hive.jdbc.HiveDriver`
+   - *kylin.query.pushdown.jdbc.driver*：Hive Jdbc的driver类名，例如`org.apache.hive.jdbc.HiveDriver`
 
-   - *kylin.query.pushdown.jdbc.username*：Hive Jdbc对应数据库的用户名，默认值为`hive`
+   - *kylin.query.pushdown.jdbc.username*：Hive Jdbc对应数据库的用户名
 
    - *kylin.query.pushdown.jdbc.password*：Hive Jdbc对应数据库的密码，默认为空字符串
 
