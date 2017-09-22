@@ -37,8 +37,4 @@ Continue reading:
 
 [Compression Settings](compression_settings.en.md)
 
-[Impala Integration](pushdown_impala.en.md)
-
-[SparkSQL Integration](pushdown_sparksql.en.md)
-
-[Hive Integration](pushdown_hive.en.md)
+[Query Pushdown Configuration](pushdown/README.md)

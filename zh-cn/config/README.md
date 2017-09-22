@@ -40,8 +40,4 @@ KAP在集群结点上安装完毕后，还需要对KAP的参数进行配置，�
 
 [压缩配置](compression_settings.cn.md)
 
-[Impala集成](pushdown_impala.cn.md)
-
-[Spark SQL集成](pushdown_sparksql.cn.md)
-
-[Hive集成](pushdown_hive.cn.md)
+[查询下压配置](pushdown/README.md)
