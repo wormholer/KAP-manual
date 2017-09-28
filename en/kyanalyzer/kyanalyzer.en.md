@@ -52,6 +52,8 @@ KyAnalyzer will save data under the directory *repository* and *data*, suppose y
   + Install new KyAnalyzer as KyAnalyzer-2, suppose KyAnalyzer-2 and KyAnalyzer-1's folders are {KyAnalyzer-2} and {KyAnalyzer-1}
   + Under KyAnalyzer-2's folder, delete KyAnalyzer-2's data folders first with command `rm -rf data repository`
   + Under KyAnalyzer-2's folder, run`cp -r ${KyAnalyzer-1}/backup/* ./`
+  
+* Notice the default port is set 8080, which means that you can visit http://{hostname}:8080 to get KyAnalyzer login page. If you need to change this port, please config the tomcat/conf/server.xml file or copy and replace the config file of KyAnalyzer-1 to here.
 
 ###About KyAnalyzer,KAP,Mondrian-Kylin Version/Features
 <table>

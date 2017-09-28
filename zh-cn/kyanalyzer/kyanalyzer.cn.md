@@ -52,7 +52,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
   + 在KyAnalyzer-2目录下，先删除KyAnalyzer-2的自带元数据文件夹，`rm -rf data repository`
   + 在KyAnalyzer-2目录下运行`cp -r ${KyAnalyzer-1}/backup/* ./`
   
-* 注意默认端口8080，可通过http://{hostname}:8080访问；如果需要修改端口，请同步修改tomcat/conf/server.xml文件或者将KyAnalyzer-1的server.xml文件复制到KyAnalyzer-2的tomcat/conf/server.xml。
+* 注意默认端口8080，即KyAnalyzer启动后可通过http://{hostname}:8080访问；如果需要修改端口，请同步修改tomcat/conf/server.xml文件或者将KyAnalyzer-1的server.xml文件复制到KyAnalyzer-2的tomcat/conf/server.xml。
 
 ###关于KyAnalyzer,KAP,Mondrian-Kylin 版本功能描述
 <table>
