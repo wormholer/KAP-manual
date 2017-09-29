@@ -13,9 +13,11 @@ Go to [ KyAccount ]( http://account.kyligence.io/ ) to apply for KyAnalyzer's In
 
 ```tar-zxf KyAnalyzer-{version}.tar.gz```
 
-Copy license file kyAnalyzer.lic to kyanalyzer-{version}/conf.
+In KyAnalyzer 2.4.0 or earlier version, copy license file kyAnalyzer.lic to kyanalyzer-{version}/conf.
 
 ```mv kyAnalyzer.lic kyanalyzer-{version}/conf```
+
+In KyAnalyzer 2.5.0 or later version, KyAnalyzer will read the KAP license and does not require a separate license file.
 
 Edit kyanalyzer.properties under kyanalyzer-server-{version}/conf，set KAP host and KAP port, *kap.host* represents KAP IP(default value localhost), and *kap.port* represents KAP app port (default port is 7070). And you can edit mondrian.properties refer to conf/mondrian.properties.template.（Note: we have moved 'kap.host' and 'kap.port' to kyanalyzer.properties since kap2.2, and also add mondrian.properties to kyanalyzer-server/conf/）
 
