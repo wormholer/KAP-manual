@@ -13,8 +13,9 @@ KyAnalyzer无缝集成KAP（Kylin），让用户以最简单快捷的方式访�
 在[ KyAccount ]( http://account.kyligence.io/ )申请下载KyAnalyzer的安装包和许可证
 解压kyanalyzer安装包，生成目录kyanalyzer-{version}
 ```tar-zxf KyAnalyzer-{version}.tar.gz```
-将license文件kyAnalyzer.lic拷贝至kyanalyzer-{version}/conf下
+2.4.0版本及之前的版本需要将许可证文件kyAnalyzer.lic拷贝至kyanalyzer-{version}/conf下
 ```mv kyAnalyzer.lic kyanalyzer-{version}/conf```
+2.5.0版本及以后的版本将直接使用KAP的许可证进行认证。
 
 在kyanalyzer-server-{version}/conf目录下有个配置文件kyanalyzer.properties， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，默认为localhost，*kap.port*为KAP REST API的端口，默认7070。
 同时，关于mondrian的所有配置可以参考conf/mondrian.properties.template 配置到mondrian.properties中。（注：在kap2.2之后，我们将kap.host及kap.port配置移到kyanalyzer.properties中，同时在conf下引入了mondrian.properties）
@@ -52,7 +53,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
   + 在KyAnalyzer-2目录下，先删除KyAnalyzer-2的自带元数据文件夹，`rm -rf data repository`
   + 在KyAnalyzer-2目录下运行`cp -r ${KyAnalyzer-1}/backup/* ./`
   
-* 注意默认端口8080，即KyAnalyzer启动后可通过http://{hostname}:8080访问；如果需要修改端口，请同步修改tomcat/conf/server.xml文件或者将KyAnalyzer-1的server.xml文件复制到KyAnalyzer-2的tomcat/conf/server.xml。
+* 注意默认端口8080，即KyAnalyzer启动后可通过 http://{hostname}:8080 访问；如果需要修改端口，请同步修改tomcat/conf/server.xml文件或者将KyAnalyzer-1的server.xml文件复制到KyAnalyzer-2的tomcat/conf/server.xml。
 
 ###关于KyAnalyzer,KAP,Mondrian-Kylin 版本功能描述
 <table>
