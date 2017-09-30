@@ -12,13 +12,17 @@ Step 1: Click **Add Cube** from `kylin_sales_Model` , and enter Cube's name `kyl
 
 
 
-Step 2: **Dimensions and dimension optimization**. Select some dimensions via **Add Dimensions**. The number of selected columns will affect the number of Cuboid generated later, so as the size of Cube data. Basic rules for dimension selecting process are as following example:
+Step 2: **Dimensions and dimension optimization**. Select some dimensions via **Add Dimensions**. The number of selected columns will affect the number of Cuboid generated later, so as the size of Cube data. 
+
+Dimension can be set as ***normal*** and ***derived***. For derived dimensions, only dimensions from lookup table can be set as derived dimension. We suggest you use cube optimizer to generate dimension type. Or use following case to lead you set derived dimensions.
+
+Basic rules for dimension selecting process are as following example:
 
 In table `KYLIN_CATEGORY_GROUPINGS`, if three columns (`META_CATEG_NAME`, `CATEG_LVL2_NAME`, `CATEG_LVL3_NAME`) can be filter condition in query, they should be set as dimensions.  
 
-Date usually appears in filter and aggregation condition in query, such as filter by week or aggregation by week. Here we take Week as an example, column `WEEK_BEG_DT` in table `KYLIN_CAL_DT` is required and derived from column `PART_DT`. So column `WEEK_BEG_DT` is set as derived dimension.
+Date usually appears in filter and aggregation condition in query, such as filter by week or aggregation by week. Here we take Week as an example, column `WEEK_BEG_DT` in table `KYLIN_CAL_DT` is required and derived from column `PART_DT`. So column `WEEK_BEG_DT` is set as ***derived*** dimension.
 
-For the same reason, column `USER_DEFINED_FIELD1`, `USER_DEFINED_FIELD3` and `UPD_DATE、UPD_USER` in table `KYLIN_CATEGORY_GROUPINGS` are set as derived dimensions. Finally set column `LSTG_FORMAT_NAME` in fact table as normal dimension.
+For the same reason, column `USER_DEFINED_FIELD1`, `USER_DEFINED_FIELD3` and `UPD_DATE、UPD_USER` in table `KYLIN_CATEGORY_GROUPINGS` are set as derived dimensions. Finally set column `LSTG_FORMAT_NAME` in fact table as ***normal*** dimension.
 
 The result is shown in following figure:
 

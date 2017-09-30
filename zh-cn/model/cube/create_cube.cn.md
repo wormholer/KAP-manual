@@ -19,11 +19,11 @@
 
 ### 维度设置
 
-从数据模型的维度中选择一些列作为Cube的维度。这里的设置会影响到生成的Cuboid数量，进而影响Cube的数据量大小。一些基本的设计规则如下：
+从数据模型的维度中选择一些列作为Cube的维度。这里的设置会影响到生成的Cuboid数量，进而影响Cube的数据量大小。在选择维度时，每一个维度列可以作为**普通维度**（Normal），也可以作为**衍生维度**（Derived）。相对于普通维度来说，衍生维度并不参与维度的Cuboid，衍生维度对应的外键（FK）参与维度Cuboid，从而降低Cuboid数。在查询时，对衍生维度的查询会首先转换为对外键所在维度的查询，因此会牺牲少量性能。一些基本的设计规则如下：
 
-在KYLIN\_CATEGORY\_GROUPINGS表里，和商品分类相关的三个字段（META\_CATEG\_NAME、CATEG\_LVL2\_NAME、CATEG\_LVL3\_NAME）都可能出现在过滤条件中，我们先把他们添加为普通类型维度，方法如下：单击“添加维度”按钮，然后选择所需的列，将其设置为“普通维度”。
+在KYLIN\_CATEGORY\_GROUPINGS表里，和商品分类相关的三个字段（META\_CATEG\_NAME、CATEG\_LVL2\_NAME、CATEG\_LVL3\_NAME）都可能出现在过滤条件中，我们先把他们添加为普通类型维度，方法如下：单击“添加维度”按钮，然后选择所需的列，将其设置为**普通维度**。
 
-此外，在查询中还经常把时间作为过滤或聚合的条件，如按周过滤、按周聚合等。这里我们以按周为例，需要用到KYLIN_CAL_DT中的WEEK_BEG_DT字段，但是该字段实际上可以由PART_DT字段决定，即根据每一个PART_DT值可以对应出一个WEEK_BEG_DT字段，因此，我们添加WEEK_BEG_DT字段为可推导维度。
+此外，在查询中还经常把时间作为过滤或聚合的条件，如按周过滤、按周聚合等。这里我们以按周为例，需要用到KYLIN_CAL_DT中的WEEK_BEG_DT字段，但是该字段实际上可以由PART_DT字段决定，即根据每一个PART_DT值可以对应出一个WEEK_BEG_DT字段，因此，我们添加WEEK_BEG_DT字段为**衍生维度**。
 
 同样的，KYLIN_CATEGORY_GROUPINGS表中还有一些可作为可推导维度的字段，如USER_DEFINED_FIELD1、USER_DEFINED_FIELD3、UPD_DATE、UPD_USER等。
 
