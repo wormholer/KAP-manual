@@ -42,7 +42,7 @@ KAP的分析页面即为查询页面。点击“分析”标签后，左边将�
 KAP从2.4版本开始支持查询下压。当用户需要执行定制的Cube无法满足的查询时，可以使用查询下压，将该查询重定向至Spark SQL或者Hive，从而在查询的执行时间与灵活程度之间做一个权衡折中，获取更理想的使用体验。
 查询下压功能默认未开启。如果用户需要开启查询下压，需要在`kylin.properties`文件中删去`kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImpl`这一配置项前的注释符号使其生效。
 
-查询下压开启后，当Cube无法返回所需的查询结果时，默认将被重定向至Spark SQL。用户也可以手动配置，选择Hive作为重定向的对象。更多配置请参考[查询下压](../config/query_pushdown/README.md)章节。
+查询下压开启后，当Cube无法返回所需的查询结果时，默认将被重定向至Spark SQL。用户也可以手动配置，选择Hive或者Impala作为查询下压的引擎。具体配置方法请见[查询下压](../config/query_pushdown/README.md)章节。
 开启查询下压后，所有同步的数据表将对用户可见，而无需构建相应的Cube。用户在提交查询时，若查询下压发挥作用，则状态下方的查询引擎条目里，会显示Pushdown。
 
 ![](images/insight/insight_pushdown.png)
@@ -53,22 +53,8 @@ KAP从2.4版本开始支持查询下压。当用户需要执行定制的Cube无�
 
 ##### 表格
 
-默认情况下，KAP会以表格形式展示数据，可以对数据进行升序或降序排列，也可以对字段进行隐藏。也可以点击”导出“按钮以导出csv文件。
+默认情况下，KAP会以表格形式展示数据，可以对数据进行升序或降序排列，也可以对字段进行隐藏。也可以点击”**导出**“按钮以导出csv文件。
 
 ![](images/insight/insight_show_result.png)
 
-点击”可视化“按钮，可以对数据进行可视化展示。KAP默认支持三种图形展示，分别是线形图、柱状图、饼图。
-
-#### 图表展示
-
-- 线形图展示
-
-![](images/2 result_display_line.png)
-
-- 柱状图展示 
-
-![](images/2 result_display_bar.png)
-
-- 饼图展示
-
-![](images/2 result_display_pie.png)
+点击”**可视化**“按钮，可以对数据进行可视化展示。KAP默认支持三种图形展示，分别是线形图、柱状图、饼图。
