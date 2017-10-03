@@ -1,23 +1,25 @@
-## Auto-Modeling
+## Modeling Advisor
 
 模型设计与创建是使用KAP的关键步骤。模型从0到1的部分，最为考验用户对业务逻辑和查询需求的理解。许多用户希望能够依据SQL查询语句，自动地创建好一个可用的模型，方便地进入后续的模型优化或调整中。从KAP 2.5开始，我们提供您根据指定的SQL查询语句与一张指定的事实表，自动的创建模型的能力。
 
-### Apply SQL to generate model
+### Apply SQL to generate  a desired model
 
-Step one, sync target tables to the project. 
+Step 1, sync target tables to the project. 
 
-![auto_sync_table](images/auto modeling/auto_sync_table.png)
+![sync table](images/auto modeling/auto_sync_table.png)
 
-第二步，将需要作为事实表的表拖入中央，并指定为事实表。点击事实表工具栏的“SQL”，将弹出一个可供输入查询语句的窗口。
+Step 2, drag one table, which will be the fact table, to the model designer and set it as *fact*. Click ***SQL*** button to pop up a dialog to collect your SQL statements. 
 
-![fact_table](images/auto modeling/fact_table.png)
+<!--Note that only fact table will have this button and SQL queries here inputed should be the SQL you would query later.-->
 
-![sql_window](images/auto modeling/sql_window.png)
+![set fact table](images/auto modeling/fact_table.png)
 
-第三步，输入你希望创建出来的模型能满足的查询语句，然后点击“检测”来确认这些SQL可以被正确的识别并输入KAP的计算引擎。如果全部正确识别，则如下图所示。
+![collect SQL](images/auto modeling/sql_window.png)
 
-![valid_SQL](images/auto modeling/valid_SQL.png)
+Step 3, enter the SQLs that would cross this model. You should ***check***  these SQLs to make sure which can be used to generate model, because only correctly recoganized ones can work. If all SQLs are right to the model advisor, the dialog would look as follow picture.
 
-第四步，提交已经通过检测的SQL，之后你将得到一个已经被补全的模型，如下图所示。如果您对这个模型还有更多的修改，需要添加SQL语句，则可以酌情重复前面三步直至您满意。
+![valid SQLs](images/auto modeling/valid_SQL.png)
 
-![auto_modeling](images/auto modeling/auto_modeling.png)
+Step 4, ***submit*** checked SQLs and you will get a initial model from your SQLs as below. Please do modify, check and re-submit SQLs via ***model advisor***.  When you find all good, save it.
+
+![model advisor complete once](images/auto modeling/auto_modeling.png)
