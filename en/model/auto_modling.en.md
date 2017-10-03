@@ -1,6 +1,6 @@
-## Modeling Advisor
+## Model Advisor
 
-模型设计与创建是使用KAP的关键步骤。模型从0到1的部分，最为考验用户对业务逻辑和查询需求的理解。许多用户希望能够依据SQL查询语句，自动地创建好一个可用的模型，方便地进入后续的模型优化或调整中。从KAP 2.5开始，我们提供您根据指定的SQL查询语句与一张指定的事实表，自动的创建模型的能力。
+Model design is a key part to use KAP. Because the initial version of model design si so engaging business insight from modeler. To lower the learn curve of modeling, enable business professional to generate models directly from SQLs. We features the model advisor to meet this demand: all you need to do is drag one table into the model designer and set it as fact table, the entering SQLs will complete the rest part of model design. 
 
 ### Apply SQL to generate  a desired model
 
@@ -10,7 +10,8 @@ Step 1, sync target tables to the project.
 
 Step 2, drag one table, which will be the fact table, to the model designer and set it as *fact*. Click ***SQL*** button to pop up a dialog to collect your SQL statements. 
 
-<!--Note that only fact table will have this button and SQL queries here inputed should be the SQL you would query later.-->
+> Note: only fact table will have this button and SQL queries here inputed should be the SQL you would query later.
+>
 
 ![set fact table](images/auto modeling/fact_table.png)
 
