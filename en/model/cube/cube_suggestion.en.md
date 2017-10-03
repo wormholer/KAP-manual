@@ -39,23 +39,28 @@ In order to achieve accurate suggestion, Optimizer need following items as input
 
 ### Steps
 
-1. To finish model check. Skip if already passed. To get more about model check, please click [here](../model_check.en.md).
+Step 1, To finish model check. Skip if already passed. To get more about model check, please click [here](../model_check.en.md).
 
-2. To create a cube with this model, and click "Collect SQL patterns" under "Cube Info" tabpage, and paste your SQL statements. For multiple SQLs, use ';' for seperation.
+Step 2, To create a cube with this model, and click "Collect SQL patterns" under "Cube Info" tabpage, and paste your SQL statements. For multiple SQLs, use ';' for seperation.
 
 ![](images/Cube_optimizer/suggestion_sql.png)
 
-3. Click "+ Dimensions" button on "Dimensions" tabpage, and select required dimensions, whose default selection of dimension type is suggested by Optimzier. 
 
-![](images/Cube_optimizer/suggestion_dim.png)
 
-4. Click "Optimize" button under "Dimension optimizations" section, Aggregation groups will be filled with suggested rules, such as Mandatory, Hierarchy and Joint. Besides, configuration and order of Rowkeys will also be updated as suggestion.
+Step 3, Click "+ Dimensions" button on "Dimensions" tabpage and then the dimension window will pop up. You can select ***SQL output*** to get suggested dimensions from ***SQL patterns***, or select dimensions manually. All default dinmension type(normal/derived) are suggested by Cube Optimzier. 
 
-5. Click "Optimize" button under "Measures" tabpage, Optimizer will fill measures with suggestions.
+![](images/Cube_optimizer/dimension.png)
+
+
+
+Step 4, Click "Optimize" button under "Dimension optimizations" section, Aggregation groups will be filled with suggested rules, such as Mandatory, Hierarchy and Joint. Besides, configuration and order of Rowkeys will also be updated as suggestion.
+
+Step 5, Click "SQL Output" button under "Measures" tabpage, Optimizer will fill suggest measures from SQL patterns.
 
 ![](images/Cube_optimizer/suggestion_measure.png)
 
-6. According to business requirements, users are able to make any adjustment to dimension, measures, aggregation groups, rowkeys, measures and so on. And save it at last.
 
+
+Step 6, According to business requirements, users are able to make any adjustment to dimension, measures, aggregation groups, rowkeys, measures and so on. And save it at last.
 
 
