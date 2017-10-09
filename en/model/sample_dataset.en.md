@@ -2,7 +2,7 @@
 
 The KAP binary package contains a sample data set for testing, total size is about 1.5 MB. A total of five tables, including the fact table which has 10 000 rows. Because of the small data size, it is convenient to carry out as a test in virtual machine.
 
-KAP supports snowflake data model. The sample data set contains five tables:
+KAP supports both star schema and snowflake data model since v2.4.0. At this article, we will use a typical star schema as our sample data set which contains five tables:
 
 * KYLIN\_SALES
   This is the fact table, it contains detail information of sales orders. Each row holds information such as the seller, the commodity classification, the amount of orders, the quantity of goods and so on. Each row corresponds to a transaction.
