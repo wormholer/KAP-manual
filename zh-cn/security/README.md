@@ -10,4 +10,8 @@
 
 [管理ACL](acl.cn.md)
 
-[行列级别安全控制](cell.cn.md)
+[管理数据访问](data_access_control.cn.md)
+
+- [表级访问权限](table.cn.md)
+- [行级访问权限](row.cn.md)
+- [列级访问权限](column.cn.md)

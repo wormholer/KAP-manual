@@ -58,7 +58,7 @@
         * [度量设计-近似Distinct Count](model/cube/count_distinct.cn.md)
         * [度量设计-精确Distinct Count](model/cube/count_distinct_precise.cn.md)
         * [明细表索引](model/cube/table_index.cn.md)
-    * [验证SQL](model/Verify_sql.cn.md)
+    * [验证SQL](model/verify_sql.cn.md)
     * [构建Cube](model/build_cube.cn.md)
     * [流式Cube](model/streaming_cube.cn.md)
 * [SQL查询](query/README.md)
