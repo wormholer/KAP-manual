@@ -122,6 +122,7 @@
     * [Hybrid Cube](operation/hybrid_cube.cn.md)
     * [配置Hadoop队列](operation/hadoop_queue.cn.md)
 * [KAP发行说明](release/README.md)
+    * [KAP 2.5 发行说明](release/KAP_2_5_notes.cn.md)
     * [KAP 2.4 发行说明](release/KAP_2_4_notes.cn.md)
     * [KAP 2.3 发行说明](release/KAP_2_3_notes.cn.md)
     * [KAP 2.2 发行说明](release/KAP_2_2_notes.cn.md)
