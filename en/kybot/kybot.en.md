@@ -52,8 +52,8 @@ If you are using KAP 2.3 or subsequent versions, which supports one-click upload
 If your KAP server needs proxy server to access the Internet, following configurations in kylin.properties are required:
 
 ```
-kap.external.http-proxy-host // http proxy server
-kap.external.http-proxy-port // http proxy port
+kap.external.http.proxy.host // http proxy server
+kap.external.http.proxy.port // http proxy port
 ```
 
 3.Click "One click to sync diagnostic package to KyBot". If your KAP does not have access to Internet, you can also download the diagnostic package to local with clicking "Download diagnostic package" and manually upload to KyBot. (Check following steps for uploading)

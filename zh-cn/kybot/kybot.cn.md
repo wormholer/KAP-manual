@@ -47,8 +47,8 @@ KyBot默认访问地址：[https://kybot.io](https://kybot.io)，根据提示完
 如果您的KAP服务器需要通过代理才可访问外网，还需在kylin.properties中添加一下配置项：
 
 ```
-kap.external.http-proxy-host // http代理服务器地址
-kap.external.http-proxy-port // http代理服务器端口
+kap.external.http.proxy.host // http代理服务器地址
+kap.external.http.proxy.port // http代理服务器端口
 ```
 
 3.单击“生成诊断包并上传至KyBot”；如果您的KAP节点无法访问外网，也可以单击“下载诊断包”将诊断包下载到本地，然后手动上传到KyBot。（上传步骤见下文）
