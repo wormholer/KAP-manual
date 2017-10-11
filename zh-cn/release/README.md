@@ -6,6 +6,8 @@
 
 继续阅读
 
+[KAP 2.5 发行说明](KAP_2_5_notes.cn.md)
+
 [KAP 2.4 发行说明](KAP_2_4_notes.cn.md)
 
 [KAP 2.3 发行说明](KAP_2_3_notes.cn.md)

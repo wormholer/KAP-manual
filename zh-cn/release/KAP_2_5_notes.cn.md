@@ -1,4 +1,4 @@
-## KAP 2.5 Release Notes
+## KAP 2.5 发布声明
 
 近期我们发布了KAP v2.5，在该版本中，配备了全新的多级权限系统。**项目级权限**支持基于角色的权限管控，**行列级权限**支持更细粒度的访问隔离。同时，KAP v2.5提供了智能化的建模体验，**模型顾问**支持通过SQL自动生成模型，Cube优化器引进**多种优化策略**，**SQL验证**支持快速检验模型、Cube是否可用。
 
@@ -49,8 +49,8 @@ KyAnalyzer无需单独提供许可证，可直接读取KAP的许可证
   产品认证：
 
   	Cloudera CDH 5.7+
-
-​        MapR 5.2.1
+  	
+  	MapR 5.2.1
 
   兼容性测试：
 
@@ -58,9 +58,9 @@ KyAnalyzer无需单独提供许可证，可直接读取KAP的许可证
 
   	Hortonworks HDP 2.2+
 
-  	Azure HDInsight 5.1~5.7
+  	Azure HDInsight 3.4~3.6 
 
-  	AWS EMR 3.4~3.6
+  	AWS EMR 5.1~5.7
 
   	华为 FusionInsight C50/C60+
 
