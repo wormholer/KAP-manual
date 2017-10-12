@@ -1,5 +1,5 @@
-## 重要参数配置
-*kylin.properties*在KAP的配置文件中占据重要位置。本节内容将对一些常用的配置项进行详细介绍。
+## 重要参数配置 
+*kylin.properties* 在 KAP 的配置文件中占据重要位置。本节内容将对一些常用的配置项进行详细介绍。
 
 用户可以将个性化配置写在 *kylin.properties.override* 文件中，这个文件中的配置项将会覆盖*kylin.properties*中的默认值。在系统升级中，用户仅需复制*kylin.properties.override*到新版本的conf路径，即可实现配置升级。
 
