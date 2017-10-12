@@ -1,9 +1,9 @@
-## LDAP验证
+## LDAP 验证
 
-KAP支持与LDAP服务器集成完成用户验证。这种验证是通过Spring Security框架实现的，所以具有良好的通用性。在启用LDAP验证之前，建议您联系LDAP管理员，以获取必要的信息。
+KAP 支持与 LDAP 服务器集成完成用户验证。这种验证是通过 Spring Security 框架实现的，所以具有良好的通用性。在启用 LDAP 验证之前，建议您联系 LDAP 管理员，以获取必要的信息。
 
-### LDAP服务器的安装
-启用LDAP验证之前，需要一个运行的LDAP服务。如果已经有，联系LDAP管理员，以获取必要的信息，如服务器连接信息、人员和组织结构等。
+### LDAP 服务器的安装
+启用 LDAP 验证之前，需要一个运行的LDAP服务。如果已经有，联系LDAP管理员，以获取必要的信息，如服务器连接信息、人员和组织结构等。
 
 如果没有可用的LDAP服务器，需要额外安装。推荐使用OpenLDAP Server 2.4，它是一个开源的实现（基于OpenLDAP Public License）并且也是最流行的LDAP服务器之一。很多企业Linux发行版已经内置了OpenLDAP服务，如果没有可以从官网下载： http://www.openldap.org/
 
@@ -189,30 +189,30 @@ ${KYLIN_HOME}/bin/kylin.sh io.kyligence.kap.tool.general.CryptTool AES *your_pas
 >
 
 ```properties
-# ldap.server=ldap://<your_ldap_host>:<port>
-# ldap.username=<your_user_name>
-# ldap.password=<your_password_hash>
+# kylin.security.ldap.connection-server=ldap://<your_ldap_host>:<port>
+# kylin.security.ldap.connection-username=<your_user_name>
+# kylin.security.ldap.connection-password=<your_password_hash>
 
-ldap.server=ldap://127.0.0.1:389
-ldap.username=cn=Manager,dc=example,dc=com
-ldap.password=${crypted_password}
+kylin.security.ldap.connection-server=ldap://127.0.0.1:389
+kylin.security.ldap.connection-username=cn=Manager,dc=example,dc=com
+kylin.security.ldap.connection-password=${crypted_password}
 ```
 
 其次，提供检索用户信息的模式, 例如从某个节点开始查询，需要满足哪些条件等。下面是一个例子，供参考:
 
 ```properties
 # LDAP user account directory
-ldap.user.searchBase=ou=People,dc=example,dc=com
-ldap.user.searchPattern=(&(cn={0}))
-ldap.user.groupSearchBase=ou=Groups,dc=example,dc=com
+kylin.security.ldap.user-search-base=ou=People,dc=example,dc=com
+kylin.security.ldap.user-search-pattern=(&(cn={0}))
+kylin.security.ldap.user-group-search-base=ou=Groups,dc=example,dc=com
 ```
 
 如果您需要服务账户（供系统集成）可以访问KAP，那么依照上面的例子配置`ldap.service.*`，否则请将它们留空。
 ```properties
 # LDAP service account directory
-ldap.service.searchBase=ou=People,dc=example,dc=com
-ldap.service.searchPattern=(&(cn={0}))
-ldap.service.groupSearchBase=ou=Groups,dc=example,dc=com
+kylin.security.ldap.service-search-base=ou=People,dc=example,dc=com
+kylin.security.ldap.service-search-pattern=(&(cn={0}))
+kylin.security.ldap.service-group-search-base=ou=Groups,dc=example,dc=com
 ```
 
 ### 配置管理员群组和默认角色
@@ -220,8 +220,8 @@ ldap.service.groupSearchBase=ou=Groups,dc=example,dc=com
 KAP允许您将一个LDAP群组映射成管理员角色：在kylin.properties中，将"acl.adminRole"设置为"ROLE_" + GROUP_NAME形式. 在当前例子中，在LDAP中使用群组"ADMIN"来管理所有KAP管理员，那么这里应该设置为:
 
 ```properties
-acl.adminRole=ROLE_ADMIN
-acl.defaultRole=ROLE_ANALYST,ROLE_MODELER
+kylin.security.acl.admin-role=ROLE_ADMIN
+kylin.security.acl.default-role=ROLE_ANALYST,ROLE_MODELER
 ```
 
 属性"acl.defaultRole"定义了赋予登录用户的权限，默认是分析师（ANALYST）和建模人员（MODELER）.
