@@ -83,3 +83,9 @@ kylin.job.notification-mail-sender=kylin@example.com
 如需要停用该功能，请将上述配置项中的`kylin.job.notification-enabled`值设置为`false`。
 
 管理员将会收到所有任务的通知。建模人员和分析师需要在Cube设计器页面中的第一页中，将自己的电子邮件地址输入至`通知邮件列表`框内，便能够收到该Cube相关任务的通知。更详细的通知事件过滤，可以在“需通知的事件”中设置。
+
+###关于配置参数修改时 KAP 的热启动说明
+
+kylin.properties 中定义的参数（全局）会在启动 KAP 时默认加载，修改后需重新启动 KAP 方可生效。
+
+对于 Hive 和 MapReduce 参数，kylin_hive_conf.xml、kylin_job_conf.xml 和 kylin_job_conf_inmem.xml 中定义修改后无需重启 KAP，但需要重新提交构建 Job。每次构建 Job 提交给 Yarn 时会实时读取修改的参数。注意，这些配置项会覆盖 Hadoop 集群中 hive-stie.xm、mapred-site.xml 等的默认参数；同时可以被项目和 Cube 配置重写所覆盖。
