@@ -88,4 +88,4 @@ kylin.job.notification-mail-sender=kylin@example.com
 
 kylin.properties 中定义的参数（全局）会在启动 KAP 时默认加载，修改后需重新启动 KAP 方可生效。
 
-对于 Hive 和 MapReduce 参数，kylin_hive_conf.xml、kylin_job_conf.xml 和 kylin_job_conf_inmem.xml 中定义修改后无需重启 KAP，但需要重新提交构建 Job。每次构建 Job 提交给 Yarn 时会实时读取修改的参数。注意，这些配置项会覆盖 Hadoop 集群中 hive-stie.xm、mapred-site.xml 等的默认参数；同时可以被项目和 Cube 配置重写所覆盖。
+对于 Hive 和 MapReduce 参数，kylin_hive_conf.xml、kylin_job_conf.xml 和 kylin_job_conf_inmem.xml 中定义修改后无需重启 KAP，但需要重新提交构建 Job。每次构建 Job 提交给 Yarn 时会实时读取修改的参数。注意，这些配置项会覆盖 Hadoop 集群中 hive-stie.xml、mapred-site.xml 等的默认参数；同时可以被项目和 Cube 配置重写所覆盖。
