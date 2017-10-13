@@ -9,10 +9,11 @@ KAP 提供了 Windows 系统下的 ODBC 驱动程序，支持 ODBC 接口的应�
 
 ## 前提条件 
 
-1. 安装 Microsoft Visual C++ 2012 (Redistributable)；
+1. 安装 Microsoft Visual C++ 2012 (Redistributable)：
 
-* [32 位系统下载地址](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe)（推荐）
-* [64 位系统下载地址](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
+- - [32 位系统下载地址](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe)（推荐）
+
+- - [64 位系统下载地址](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
 
 2. ODBC 驱动程序会调用 KAP 的 Rest 服务器，务必先确保 KAP 服务已正常运行。
 
@@ -30,6 +31,8 @@ KAP 提供了 Windows 系统下的 ODBC 驱动程序，支持 ODBC 接口的应�
 1. 打开ODBC数据源管理器
 
 * 32位ODBC驱动：请在“开始&gt;运行”中打开C:\Windows\SysWOW64\odbcad32.exe
+
+
 * 64位ODBC驱动：请直接在“控制面板&gt;管理工具”中找到“ODBC Data Source Administrator”并打开
 
 ![](images/odbc_01.png)
@@ -53,7 +56,7 @@ KAP 提供了 Windows 系统下的 ODBC 驱动程序，支持 ODBC 接口的应�
 
 4. 单击Done按钮
 
- 
+
 
 ## 特别提醒
 
