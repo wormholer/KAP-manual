@@ -15,7 +15,7 @@ Qlik 是新一代自助式数据可视化工具。它是一款完整的商业分
 
 参阅 [ODBC 驱动程序](http://docs.kyligence.io/v2.5/en/driver/odbc.en.html)页面上的说明，安装和配置本地 DSN。执行完该页面上的步骤后，系统将弹出对话框  **Apache Kylin DSN Configuration**，选择 **learn_kylin** 项目，然后单击 **Done**。
 
-![Apache_Kylin_DSN_Configuration](images/Qlik/Apache_Kylin_DSN_Configuration.png)
+![Apache_Kylin_DSN_Configuration](images/qlik/apache_kylin_dsn_configuration.png)
 
 #### 安装 Qlik
 
@@ -28,23 +28,23 @@ Qlik 是新一代自助式数据可视化工具。它是一款完整的商业分
 
 2. 输入 Qlik 用户名和密码，接着系统将弹出以下对话框。单击**创建新应用程序**。
 
-![WelcometoQlikdesktop](images/Qlik/WelcometoQlikdesktop.png)
+![welcome_to_qlik_desktop](images/qlik/welcome_to_qlik_desktop.png)
 
 为新建的应用程序指定名称，该名称不得与现有的应用程序相同。创建完成后，打开此应用程序。在本例中，我们将此应用程序命名为“Kylinfortesting”。
 
-![CreateNewApplication](images/Qlik/CreateNewApplication.png)
+![create_new_application](images/qlik/create_new_application.png)
 
 3. 应用程序视图中有两个选项，选择下方的**脚本编辑器**。
 
-![ScriptEditor](images/Qlik/ScriptEditor.png)
+![script_editor](images/qlik/script_editor.png)
 
 此时会显示 Kylinfortesting | Data Load Editor 窗口。单击页面右上方的**创建新连接**。
 
-![CreateDataConnection](images/Qlik/CreateDataConnection.png)
+![create_data_connection](images/qlik/create_data_connection.png)
 
 然后选择 **ODBC -> kylin**，不需要填写帐户信息，单击**创建**即可。
 
-![ODBCConnection](images/Qlik/ODBCConnection.png)
+![odbc_connection](images/qlik/odbc_connection.png)
 
 4. 将 "TimeFormat"、"DateFormat" 和 "TimestampFormat" 的默认脚本更改为：
 
@@ -56,31 +56,31 @@ Qlik 是新一代自助式数据可视化工具。它是一款完整的商业分
 
 由于在配置本地 DSN 时，已经登录 KAP 并选择项目 **learn_kylin**，此时只需新建查询 **select * from KYLIN_SALES**。
 
-![KAPquery](images/Qlik/KAPquery.png)
+![kap_query](images/qlik/kap_query.png)
 
 导出查询结果，用英文逗号分隔，并将它们复制到 Qlik Sense Desktop 的脚本编辑器中。
 
-![ScriptRunResult](images/Qlik/ScriptRunResult.png)
+![script_run_result](images/qlik/script_run_result.png)
 
 脚本成功运行时，检查结果中的行数，该行数应与 KAP 中的行数相同。在本例中，行数为 10,000。
 
-![LoadData](images/Qlik/LoadData.png)
+![load_data](images/qlik/load_data.png)
 
 6. 在 Qlik 中加载数据：
 
 单击 Kylinfortesting | Data Load Editor 窗口右上方的**加载数据**，然后打开**数据管理器**。
 
-![OpenDataManager](images/Qlik/OpenDataManager.png)
+![open_data_manager](images/qlik/open_data_manager.png)
 
 数据管理器打开后，单击页面右上方的**加载数据**。加载完成后，单击**编辑工作表**。
 
-![DataLoad2](images/Qlik/DataLoad2.png)
+![data_load2](images/qlik/data_load2.png)
 
 选择所需的图表类型，并根据需要添加维度和度量项。
 
-![AddDimension](images/Qlik/AddDimension.png)
+![add_dimension](images/qlik/add_dimension.png)
 
 这样，新的工作表创建完成，KAP 与 Qlik 相连。现在您可以在 Qlik 中查看 KAP 数据。
 
-![Final](images/Qlik/Final.png)
+![final](images/qlik/final.png)
 

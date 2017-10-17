@@ -16,7 +16,7 @@ You may find the detailed installation and configuration guides as below.
 
 Please refer to the guide in the page of [ODBC Driver](http://docs.kyligence.io/v2.5/en/driver/odbc.en.html) to install and configure your local DSN. After going through the steps in this page, you will see the pup-up dialog **Apache Kylin DSN Configuration** as blow, please select the project of **learn_kylin**, then click **Done**.
 
-![Apache_Kylin_DSN_Configuration](images/Qlik/Apache_Kylin_DSN_Configuration.png)
+![apache_kylin_dsn_configuration](images/Qlik/apache_kylin_dsn_configuration.png)
 
 #### Install Qlik
 
@@ -29,23 +29,23 @@ After configuring your Local DSN and installing Qlik successfully, you may go th
 
 2. Input your Qlik account to login, then the following dialog will pop up. Click **Create New Application**.
 
-![WelcometoQlikdesktop](images/Qlik/WelcometoQlikdesktop.png)
+![welcome_to_qlik_desktop](images/qlik/welcome_to_qlik_desktop.png)
 
 You may specify any name different from existing applications and then open this application. In this example, we name it as “Kylinfortesting".
 
-![CreateNewApplication](images/Qlik/CreateNewApplication.png)
+![create_new_application](images/qlik/create_new_application.png)
 
 3. There are two choices in the Application View. Please select the bottom **Script Editor**.
 
-![ScriptEditor](images/Qlik/ScriptEditor.png)
+![script_editor](images/qlik/script_editor.png)
 
 The Kylinfortesting | Data Load Editor window shows. Click **Create New Connection** in the upper right of this page.
 
-![CreateDataConnection](images/Qlik/CreateDataConnection.png)
+![create_data_connection](images/qlik/create_data_connection.png)
 
 Select **ODBC -> kylin**, ignore the account information, and then click **Create**. 
 
-![ODBCConnection](images/Qlik/ODBCConnection.png)
+![odbc_connection](images/qlik/odbc_connection.png)
 
 4. Change the default scripts of "TimeFormat", "DateFormat" and "TimestampFormat" to:
 
@@ -57,30 +57,30 @@ Select **ODBC -> kylin**, ignore the account information, and then click **Creat
 
 As we have logged in KAP and select the project **learn_kylin** during local DSN configuration, currently we only need to new a query **select * from KYLIN_SALES** in KAP.
 
-![KAPquery](images/Qlik/KAPquery.png)
+![kap_query](images/qlik/kap_query.png)
 
 Export the query results and copy them to the script editor in Qlik Sense Desktop with comma as delimiter. 
 
-![ScriptRunResult](images/Qlik/ScriptRunResult.png)
+![script_run_result](images/qlik/script_run_result.png)
 
 In the running result, the line count shall be the same as in KAP. In this case, the line count is 10,000.
 
-![LoadData](images/Qlik/LoadData.png)
+![load_data](images/qlik/load_data.png)
 
 6. Load data to Qlik:
 
 After the scripts run successfully, click **Load Data** in the upper right of the window Kylinfortesting | Data Load Editor. And then open **Data Manager**.
 
-![OpenDataManager](images/Qlik/OpenDataManager.png)
+![open_data_manager](images/qlik/open_data_manager.png)
 
 Now Data manager opens. Click **Load Data** in the upper right of this page, and click **Edit worksheet** once data loaded.
 
-![DataLoad2](images/Qlik/DataLoad2.png)
+![data_load2](images/qlik/data_load2.png)
 
 Select the charts you need, then add dimension and measurement based on your requirements. 
 
-![AddDimension](images/Qlik/AddDimension.png)
+![add_dimension](images/qlik/add_dimension.png)
 
 You will get your worksheet and the connection is complete. Your KAP data shows in Qlik now.
 
-![Final](images/Qlik/Final.png)
+![final](images/qlik/final.png)
