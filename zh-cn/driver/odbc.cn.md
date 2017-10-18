@@ -9,53 +9,55 @@ KAP 提供了 Windows 系统下的 ODBC 驱动程序，支持 ODBC 接口的应�
 
 ## 前提条件 
 
-1. 安装 Microsoft Visual C++ 2012 (Redistributable)；
+1. 安装 Microsoft Visual C++ 2012 (Redistributable)：
 
-* [32 位系统下载地址](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe)（推荐）
-* [64 位系统下载地址](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
+- - [32 位系统下载地址](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe)（推荐）
+
+- - [64 位系统下载地址](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
 
 2. ODBC 驱动程序会调用 KAP 的 Rest 服务器，务必先确保 KAP 服务已正常运行。
 
 
 ## 安装
 
-1. 如果已经安装过 KAP ODBC 驱动程序，首先卸载机器上已有的 Apache Kylin 或 KAP ODBC 驱动程序。
-2. 从 [Apache Kylin 下载页面](http://kylin.apache.org/download)下载 ODBP 驱动程序，并运行。
-* 32 位 Microsoft Office Excel：请安装 KylinODBCDriver \(x86\).exe
-* 64 位 Microsoft Office Excel：请安装 KylinODBCDriver \(x64\).exe
+1.  如果已经安装过 KAP ODBC 驱动程序，首先卸载机器上已有的 Apache Kylin 或 KAP ODBC 驱动程序。
+2.  从 [Apache Kylin 下载页面](http://kylin.apache.org/download)下载 ODBP 驱动程序，并运行。
+- - 32 位 Microsoft Office Excel：请安装 KylinODBCDriver \(x86\).exe
+- - 64 位 Microsoft Office Excel：请安装 KylinODBCDriver \(x64\).exe
 
 
-## 配置DSN
+## 配置 DSN
 
-1. 打开ODBC数据源管理器
+1.  打开 ODBC 数据源管理器
 
-* 32位ODBC驱动：请在“开始&gt;运行”中打开C:\Windows\SysWOW64\odbcad32.exe
-* 64位ODBC驱动：请直接在“控制面板&gt;管理工具”中找到“ODBC Data Source Administrator”并打开
+- - 32 位 ODBC 驱动：单击”开始&gt;运行”，并打开 C:\Windows\SysWOW64\odbcad32.exe
+
+- - 64 位 ODBC 驱动：单击“控制面板&gt;管理工具”，找到并打开“ODBC Data Source Administrator”
 
 ![](images/odbc_01.png)
 
-2. 切换到系统DSN选项卡，单击“Add”，在弹出的驱动程序选择框中选择“KylinODBCDriver”并单击Finish按钮。
+2.  切换至系统 DSN 选项卡，单击“Add”，在弹出的驱动程序选择框中选择“KylinODBCDriver”，然后单击 Finish 按钮。
 
 ![](images/odbc_02.png)
 
-3. 在弹出的Kylin DSN Configuration Dialog中输入KAP服务器信息，如图所示
+3.  在弹出的 Kylin DSN Configuration Dialog 中输入 KAP 服务器信息，如图所示
 
 ![](images/odbc_03.png)
 
 其中，各项参数介绍如下：
 
-* DSN Name: DSN数据源名称
-* Server Host: KAP服务器地址
-* Port: KAP服务器端口号
-* Username: KAP服务登录用户名
-* Password: KAP服务登录密码
-* Project: 查询所使用的KAP项目名称；输入完上面空白后单击Connect按钮，才可激活Project选择框
+* DSN Name：DSN 数据源名称
+* Server Host：KAP 服务器地址
+* Port：KAP 服务器端口号
+* Username：KAP 服务登录用户名
+* Password：KAP 服务登录密码
+* Project：查询所使用的 KAP 项目名称；输入完上面空白后单击 Connect 按钮，方可激活 Project 选择框
 
-4. 单击Done按钮
+4.  单击 Done 按钮
 
- 
+
 
 ## 特别提醒
 
-如果用户希望使用ODBC驱动连接其他客户端应用，配置方式和该例类似。更多产品信息，请访问本书[与第三方BI工具集成](../integration/README.md)章节或 Apache Kylin官网。
+如果用户希望使用 ODBC 驱动程序连接其他客户端应用，配置方式和该例类似。更多产品信息，请访问本书[与第三方 BI 工具集成](../integration/README.md)章节或 [Apache Kylin 官网](http://cn.kyligence.io)。
 
