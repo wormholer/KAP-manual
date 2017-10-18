@@ -14,4 +14,4 @@ Continue Read:
 
 [MicroStrategy](microstrategy_10_4.en.md)
 
-[Qlik](integration_with_qlik_en.md)
+[Qlik](qlik.en.md)
