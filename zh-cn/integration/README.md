@@ -15,3 +15,5 @@
 [Cognos](cognos.cn.md)
 
 [MicroStrategy](microstrategy_10_4.cn.md)
+
+[Qlik](integration_with_qlik_cn.md)

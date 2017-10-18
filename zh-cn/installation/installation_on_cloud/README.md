@@ -4,4 +4,4 @@
 
 继续阅读：
 
-[通过 Azure 中国镜像市场安装](cloud_install_azure_cn_image.cn.md)
+[在 Microsoft Azure HDInsight 上部署 KAP 2.5](deploy_on_microsoft_azure_hdinsight_cn.md)
