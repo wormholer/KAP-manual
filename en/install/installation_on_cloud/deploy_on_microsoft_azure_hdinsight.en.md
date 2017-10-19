@@ -1,4 +1,4 @@
-## Deploying on Microsoft Azure HDInsight
+## Deployment on Microsoft Azure HDInsight
 
 ### **Azure HDInsight**
 
@@ -10,9 +10,7 @@ With Azure HDInsight, you can easily deploy KAP in a few minutes. KAP can run on
 
 HDInsight application platform is an easy way to distribute, discover, and install applications that you have built for the Hadoop ecosystem. HDInsight application platform automatically provisions an “Edge Node” for the application, and installs/configures the Hadoop clients on it. Developers only need to provide a shell script to install the application, and other processes are handled by Azure. This is a fancy feature that other Cloud-based Hadoop platform don’t have. This makes deploying KAP on HDInsight much easier and more efficient. Figure 1 shows the architecture of KAP with HDInsight.
 
-![kap_with_hdinsight](images/kap_with_hdinsight.png)
-
-*Figure 1. KAP with Azure HDInsight Architecture*
+![Figure 1. KAP with Azure HDInsight Architecture](images/kap_with_hdinsight.png)
 
 By referring to the samples in Azure [Iaas-Applications](https://github.com/hdinsight/Iaas-Applications) project, we developed the first version of the Azure Resource Manager (ARM) template for KAP, and successfully deployed KAP on a cluster. After that, we continuously enhance the template and scripts to enable more features. Now, both KAP and KyAnalyzer, our agile BI tool, can be installed as HDInsight applications. Users can quickly get a Hadoop-based Data Warehouse + Business Intelligence tool in a couple of minutes.
 
@@ -24,35 +22,25 @@ KAP is now available on Microsoft Azure. Our customers have already started to u
 
 1) You need to prepare a HDInsight cluster with the type of “HBase”. It can be an existing cluster or a new cluster.
 
-![hbase_cluster](images/hbase_cluster.png)
-
-*Figure 2. Select “HBase” as cluster type*
+![Figure 2. Select HBase as cluster type](images/hbase_cluster.png)
 
 2) If it is a new cluster, you need to switch to the “Custom” wizard, select “Kyligence Analytics Platform 2.5” in the third step, as below:
 
-![kap_install](images/kap_install.png)
-
-*Figure 3. Select KAP to install*
+![Figure 3. Select KAP to install](images/kap_install.png)
 
 If it is an existing HBase cluster, you need to click the “Applications” icon, and then click “Add” button. In the application list, select “Kyligence Analytics Platform” to install. Clicking “Purchase” button means you agree with the terms to install. It won’t cause additional charge for KAP. You only need to pay for the Azure resources that you’re using.
 
-![kap_in_hdinsight](images/kap_in_hdinsight.png)
-
-*Figure 4. KAP in HDInsight Applications*
+![Figure 4. KAP in HDInsight Applications](images/kap_in_hdinsight.png)
 
 3) After the cluster is created, you will get the KAP and KyAnalyzer URL from Azure Portal. Clicking them will lead you to the KAP web portal and KyAnalyzer web portal. You can also get the SSH endpoint of the Edge Node that running KAP, so that you can log in the Linux command line remotely.
 
-![kap_kyanalyzerurl](images/kap_kyanalyzerurl.png)
-
-*Figure 5. KAP and KyAnalyzer URL*
+![Figure 5. KAP and KyAnalyzer URL](images/kap_kyanalyzerurl.png)
 
 ### **Request Trial License and Login**
 
 On the first time visiting, KAP will ask for a license. If you don’t have a license, you can easily request a free trial license here. Click ”Apply Evaluation License“, fill in your email address, organization name and person name, and then click ”Submit“. It will download a trial license immediately and then you can go ahead. After the trial expires (two months), you can contact Kyligence to purchase a formal license.
 
-![trial_license](images/trial_license.png)
-
-*Figure 6. Apply Trial License*
+![Figure 6. Apply Trial License](images/trial_license.png)
 
 The initial administrator username is ”ADMIN“ and the password is ”KYLIN“. Enter it and then click ”Submit“ to login. At the first login, KAP will ask you to update the password to a stronger one. Please remember the new password for future login.
 
@@ -62,9 +50,7 @@ KyAnalyzer integrates with KAP for user authentication, so you just need to upda
 
 The installation will create a sample “kylin_sales_cube” (as well as sample tables in Apache Hive) in the “learn_kylin” project. In the left navigation, click ”Studio“ -> ”Cube“ then you will see the sample cube. It is in “DISABLED” status, you need build it before query. Click ”Actions“ -> ”Build“, and then pick an end date like ‘2014-01-01’, KAP will start a build job.
 
-![sample_cube](images/sample_cube.png)
-
-*Figure 7. Sample Cube*
+![Figure 7. Sample Cube](images/sample_cube.png)
 
 You can monitor the build progress on KAP’s  ”Monitor“ tab; After the build is finished (progress 100%), the Cube status is changed to “Ready”, that means you can query it with ANSI-SQL in the “Insight” page, e.g.:
 
@@ -74,9 +60,7 @@ select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers
 
 KAP will return results quickly. You can run the same query in to compare the performance.
 
-![query_in_kap](images/query_in_kap.png)
-
-*Figure 8. Run Query in KAP*
+![Figure 8. Run Query in KAP](images/query_in_kap.png)
 
 Now you know how to use KAP to accelerate your data analysis. But writing SQL is still troublesome for most users. You can use KyAnalyzer to analyze the data by drag-and-drop.
 
@@ -135,9 +119,7 @@ hive> select * from airline_data limit 100;
 
 Now you have successfully created a Hive table with your data files on Azure cloud storage. You can login KAP web GUI, in the ”Studio“ -> ”Datasource“ page, click the ”Hive“ button to import table metadata into KAP:
 
-![hive_table](images/hive_table.png)
-
-*Figure 9. Import Hive Table*
+![Figure 9. Import Hive Table](images/hive_table.png)
 
 The import only synchronizes the table metadata, like column name. The source data is still in origin place, so this operation will be fast.
 
@@ -151,25 +133,19 @@ On each table, click the ”setting“ icon and then mark it as “Fact table”
 
 KAP will automatically detect columns’ type and then determine it is a dimension, measure or none, with “D”, “M” or “-” as the prefix. If it is not accurate, you can click on the prefix to modify.
 
-![data_model](images/data_model.png)
-
-*Figure 10. Create Data Model*
+![Figure 10. Create Data Model](images/data_model.png)
 
 Once finished, click “Save” to save the data model. KAP will automatically to run a job to check and collect statistics of the model. You can track the job progress in the “Monitor” tab. The statistic will help KAP to understand the model and give you advices when creating Cube.
 
 Now you can create a Cube. Cube is a data structure which has dimensions and measures. KAP supports tens of dimensions in a Cube, and you can define the most common measures like SUM, COUNT, MAX, MIN, DISTINCT COUNT and some others. Click the “+Cube”, a wizard will guide you to finish these step by step.
 
-![cube_create](images/cube_create.png)
-
-*Figure 11. Create Cube*
+![Figure 11. Create Cube](images/cube_create.png)
 
 ### **Build Cube**
 
 After the Cube is created, you need to build data into it. In the Cube list, click “Action” -> “Build”. If your data model is partitioned, you need to specify a date range for the source data; otherwise it will build on a full data set.
 
-![build_cube](images/build_cube.png)
-
-*Figure 12. Build Cube*
+![Figure 12. Build Cube](images/build_cube.png)
 
 When trigger a Cube build, a job is created and you can monitor the progress in the “Monitor” page. The build can take a couple of minutes to several hours, which depends on your data size and cluster capacity. You can expand the job to see each steps. If a step is a MR job, it shows the link to job on Hadoop resource manager, where you can track the detail progress. Once the build is finished, the Cube status will be changed to “Ready” automatically, which means it can serve your queries.
 
@@ -181,21 +157,15 @@ Click the “Insight” tab, you can compose a SQL query and then click “Submi
 
 Log in KyAnalyzer with the same user as KAP, in the ” Console” page, click “Sync Cubes from Kylin”, select the “kylin_sales_cube” to sync. The Cube will be imported to KyAnalyzer.
 
-![sync_to_kyanalyzer](images/sync_to_kyanalyzer.png)
-
-*Figure 13. Sync Cube to KyAnalyzer*
+![Figure 13. Sync Cube to KyAnalyzer](images/sync_to_kyanalyzer.png)
 
 Click the “New query” to open a new page, click the refresh button beside “Cubes” to see the new loaded model, select “kylin_sales” in the dropdown list. Now you see the measures and dimensions. Click one measure and one dimension, it will query the data and generate a data table.
 
-![dimension_and_measure](images/dimension_and_measure.png)
-
-*Figure 14. Select dimension and measure in KyAnalyzer*
+![Figure 14. Select dimension and measure in KyAnalyzer](images/dimension_and_measure.png)
 
 By clicking the “Chart Mode” icon in the upper right corner, KyAnalyzer will generate diagram based on the table, as below shows. Isn’t it easy?
 
-![chart_in_kyanalyzer](images/chart_in_kyanalyzer.png)
-
-*Figure 15. Generate chart in KyAnalyzer*
+![Figure 15. Generate chart in KyAnalyzer](images/chart_in_kyanalyzer.png)
 
 Congratulations! You have built your first Cube and created the first chart by drag-and-drop. You can also integrate KAP with more visualization tools like Tableau, PowerBI/Excel. For detailed information, please refer to related pages in the chapter of **Integrate with the 3rd party**.
 
@@ -241,11 +211,9 @@ If OK, then restart KAP service to take effective:
 sudo systemctl restart kap
 ```
 
-When KAP is restarted, go back to the “Studio” -> “Datasource” page, click “Kafka” button, input the Kafka broker host and port info. Then KAP will connect to Kafka, list the topics and then show sample messages, as shown in Figure 19.
+When KAP is restarted, go back to the “Studio” -> “Datasource” page, click “Kafka” button, input the Kafka broker host and port info. Then KAP will connect to Kafka, list the topics and then show sample messages, as shown in Figure 16.
 
-![kafka_integration](images/kafka_integration.png)
-
-*Figure 16. Kafka Integration*
+![Figure 16. Kafka Integration](images/kafka_integration.png)
 
 **Practices of KAP on HDInsight**
 
@@ -259,7 +227,7 @@ If not specified, Azure will use a default virtual network for each HDInsight cl
 
 The default Hadoop settings of HDInsight might not be the best for KAP. They may allocate much resources to HBase but leave less for MapReduce. Besides, as the Cubes are immutable in HBase, we can allocate more resource to block cache to gain better read performance. You can optimize these settings in the HDInsight dashboard (Ambari Web UI). Here are some recommended settings:
 
-![recommended_settings.en](images/recommended_settings.en.png)
+![Table 1. Recommended settings](images/recommended_settings.en.png)
 
 After update these parameters, remember to sync the changes to cluster nodes and then restart the services to take effective.
 

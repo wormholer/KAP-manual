@@ -12,9 +12,7 @@ Azure 云架构使得计算与存储能够分离；由于 Azure Blob Storage 和
 
 HDInsight 的应用程序平台提供了一种简便办法，让第三方应用提供商能够轻松地开发和分发他们的基于 Hadoop 的应用程序。HDInsight 应用程序平台会自动创建并配置一个Hadoop 的边缘节点 (edge node)。第三方应用开发者只需要提供一个安装他们应用的 ARM (Azure Resource Manager) 模版和 shell 脚本即可，其它事情都交给 Azure 处理。这是一个非常友好的功能，使得在 HDInsight 上自动安装 KAP 变得简单。图 1 是 KAP on HDInsight 的架构图。
 
-![kap_with_hdinsight](images/kap_with_hdinsight.png)
-
-*图 1. KAP + Azure HDInsight*
+![图 1. KAP + Azure HDInsight](images/kap_with_hdinsight.png)
 
 通过参考 Azure 的 [Iaas-Applications](https://github.com/hdinsight/Iaas-Applications) 项目示例，我们开发了为 KAP 定制的 ARM 模版，并成功在 HDInsight 上部署启动了 KAP。此后，我们持续改进模版和脚本以丰富更多功能。如今，KAP 及敏捷 BI 工具 KyAnalyzer 都做为 HDInsight 的应用程序一起安装，并发布到 Azure 全球平台；用户可以在很短的时间内获得一个云上的大数据分析平台和 BI 工具。
 
@@ -26,35 +24,25 @@ HDInsight 的应用程序平台提供了一种简便办法，让第三方应用�
 
 1) 选择一个 ”HBase” 类型的集群，可以是新集群，也可以是一个已存在的集群。
 
-![hbase_cluster](images/hbase_cluster.png)
-
-*图 2. 选择 “HBase” 作为集群类型*
+![图 2. 选择 “HBase” 作为集群类型](images/hbase_cluster.png)
 
 2) 如果是新建集群，需要点击 ”Custom”，在第三步 “Applications” 页面选择 “Kyligence Analytics Platform” ，如下图所示：
 
-![kap_install](images/kap_install.png)
-
-*图 3. 选择 KAP 进行安装*
+![图 3. 选择 KAP 进行安装](images/kap_install.png)
 
 如果是已经存在的 HBase 集群，点击 “Applications”，然后点击 “Add”，在应用程序列表中，选择 “Kyligence Analytics Platform” 进行安装。点击 ”Purchase” 按钮表示您已经阅读并同意相关条款。这里不会产生针对 KAP 的额外费用。安装的 KAP 带有一个月的试用许可，试用期内免费，试用结束后请联系 Kyligence 公司购买正式许可。
 
-![kap_in_hdinsight](images/kap_in_hdinsight.png)
-
-*图 4. KAP 出现在 HDInsight Applications 中*
+![图 4. KAP 出现在 HDInsight Applications 中](images/kap_in_hdinsight.png)
 
 3) 集群创建完后，通过 Azure 门户，您可以获取到 KAP 和 KyAnalyzer 的访问地址，如图 5 所示。点击这些地址，可以直接跳转到 KAP 以及 KyAnalyzer 的登录页。在这里您也可以获取运行 KAP 的边缘节点的 SSH 地址。
 
-![kap_kyanalyzerurl](images/kap_kyanalyzerurl.png)
-
-*图 5. KAP 及 KyAnalyzer 的访问 URL*
+![图 5. KAP 及 KyAnalyzer 的访问 URL](images/kap_kyanalyzerurl.png)
 
 ### **申请试用 License 并登录**
 
 第一次打开时，KAP 检测到没有安装 license，会要求用户提供 license 文件。如果您没有 KAP 的 license，可在这个页面立即申请一个试用 license。点击“申请试用许可”，输入您的 email 地址、公司名称及您的名字，点击”提交“，KAP 会自动下载一个试用 license，随后您就可以继续使用了。两个月免费试用期过后，您可以联系 Kyligence 购买正式 license。
 
-![trial_license](images/trial_license.png)
-
-*图 6. 申请试用 License*
+![图 6. 申请试用 License](images/trial_license.png)
 
 KAP 默认管理员账号的用户名是 “ADMIN”，默认密码是 ”KYLIN”。初次登录后会提示修改密码，为了确保服务安全性，请更改密码并将其记录在安全的地方，供后面使用。
 
@@ -64,9 +52,7 @@ KyAnalyzer 与 KAP 共享用户信息，所以您只需要在 KAP 中管理用�
 
 KAP 安装时会自动创建一个样例 Cube 以及它所需要的 Hive 表。登录 KAP 后，在左边“建模 -> Cube”页，您会看到此样例 Cube “kylin_sales_cube”。初始时它的状态是”Disabled”，需要构建。点击“操作” -> “构建”，选择结束日期如 ‘2014-01-01’，随后 KAP 会开始构建。
 
-![sample_cube](images/sample_cube.png)
-
-*图 7. 样例 Cube*
+![图 7. 样例 Cube](images/sample_cube.png)
 
 您可以在 “Monitor” 页监控此构建任务直至完成。任务完成后，Cube 的状态会更新为 “Ready”，意味着它可供查询。这时您可以在 ”Insight” 页输入一句查询 SQL，例如：
 
@@ -76,9 +62,7 @@ select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers
 
 KAP 能够很快返回查询结果。您可以拷贝这条 SQL 到 Hive 命令行中执行，以感受它们的响应时间差异。
 
-![query_in_kap](images/query_in_kap.png)
-
-*图 8. 在 KAP 中执行查询*
+![图 8. 在 KAP 中执行查询](images/query_in_kap.png)
 
 至这里您已经体验了如果使用 KAP 来加速查询分析。然而，写 SQL 依然是一件麻烦的事情，您可以使用一些可视化工具（如 KyAnalyzer）通过拖拽选择的方式开展分析。
 
@@ -139,9 +123,7 @@ hive> select * from airline_data limit 100;
 
 至此已经成功创建了一个 Hive 表，让它使用 Azure Blob Store 上的数据文件。可以登录KAP，在 “Model” -> “Data Source” 页，点击 “Load Hive Table” 按钮来将 Hive 表信息导入到 KAP；导入 Hive 表信息只会同步表的元信息，例如列名、数据类型等，而不会拷贝数据，因此这一步通常非常快。
 
-![hive_table](images/hive_table.png)
-
-*图 9. 导入 Hive 表*
+![图 9. 导入 Hive 表](images/hive_table.png)
 
 ### **创建模型和 Cube**
 
@@ -151,25 +133,19 @@ hive> select * from airline_data limit 100;
 
 KAP 会自动检测每个列的数据类型以推断其是维度或度量，或者两者都不是；维度、度量分别以 ”D” 和 ”M” 的前缀标记，“-” 表示两者都不是。如果自动检测的与实际情况不符，您可以点击其切换。
 
-![data_model](images/data_model.png)
-
-*图 10. 创建数据模型*
+![图 10. 创建数据模型](images/data_model.png)
 
 保存模型的时候，KAP 会自动触发一个异步任务来对模型进行采样和分析。您可以在“监控”页面追踪此任务的进度。这些采样统计信息会帮助 KAP 来理解模型，并帮助您更好地创建 Cube。
 
 保存模型后，就可以开始创建 Cube。Cube 是一种多维空间的数据结构，包含维度和度量。KAP 支持在一个 Cube 中包含数十个维度和上百个度量。KAP 不仅支持普通度量（如SUM、COUNT、MAX、MIN、DISTINCT COUNT 等），还支持高级度量，如 Top- N、Percentile，以及基于 Bitmap 的精确去重计数器等。点击 “+Cube”，KAP 会启动一个向导带领您一步步完成 Cube 创建。
 
-![cube_create](images/cube_create.png)
-
-*图 11. 创建 Cube*
+![图 11. 创建 Cube](images/cube_create.png)
 
 ### **构建 Cube**
 
 Cube 创建好以后，需要将数据加载构建进 Cube。在 Cube 页，点击 “Action” -> “Build”。如果数据模型是分区的，那么需要指定一个源数据的时间范围，如果不是分区的，那么会将所有数据加载进 Cube。
 
-![build_cube](images/build_cube.png)
-
-*图 12. 构建 Cube*
+![图 12. 构建 Cube](images/build_cube.png)
 
 触发 Cube 构建后，一个构建任务会被启动并执行，可以在 “Monitor” 页面监控此任务的进度。 Cube 构建可能会花费数分钟到数小时来完成，取决于数据规模、模型复杂度、集群规模等多种因素。 可以点击某个具体任务以查看每一步的具体信息。如果某个步骤是 MR 任务，KAP 会显示出任务在 YARN 资源管理器上的链接地址。当构建完成后，Cube 状态会自动更新为 “Ready”，意味着可以开始查询了。
 
@@ -181,21 +157,15 @@ Cube 创建好以后，需要将数据加载构建进 Cube。在 Cube 页，点�
 
 您可以使用与 KAP 相同的账户登录到 KyAnalyzer ，在 “Admin Console” 页，点击 “Sync Cubes from Kylin”，然后选择 ”kylin_sales_cube” 进行同步，这样这个 Cube 的定义会被导入到 KyAnalyzer。
 
-![sync_to_kyanalyzer](images/sync_to_kyanalyzer.png)
-
-*图 13. 同步 Cube 到 KyAnalyzer*
+![图 13. 同步 Cube 到 KyAnalyzer](images/sync_to_kyanalyzer.png)
 
 点击 ”New query” 打开一个新的空白页，点击 ”Cubes” 旁的刷新按钮，在下拉列表中选择 ”kylin_sales”，点击选择一个维度和一个度量，KyAnalyzer 会自动生成查询语句、发送查询并展示结果。
 
-![dimension_and_measure](images/dimension_and_measure.png)
-
-*图 14. 选择维度和度量*
+![图 14. 选择维度和度量](images/dimension_and_measure.png)
 
 点击右上角的 ”Chart Mode” 按钮，KyAnalyzer 会根据结果数据生成图表，如下图所示，是不是很容易？
 
-![chart_in_kyanalyzer](images/chart_in_kyanalyzer.png)
-
-*图 15. 生成图形化展示*
+![图 15. 生成图形化展示](images/chart_in_kyanalyzer.png)
 
 现在您已经创建了一个 Cube，并通过拖拽的方式生成了第一个图表。如果需要，您还可以将 KAP 跟更高级的 BI 工具如 Tableau、PowerBI、Excel 等进行集成。有关详细信息，参阅手册中的“与可视化工具集成”一章。
 
@@ -242,9 +212,7 @@ sudo systemctl restart kap
 
 KAP 重启后，回到 “Model” 页面，点击 “Add Streaming Table”，输入 Kafka broker 的地址信息，它会自动连接 Kafka，列出主题以及样例消息。
 
-![kafka_integration](images/kafka_integration.png)
-
-*图 16. Kafka 集成*
+![图 16. Kafka 集成](images/kafka_integration.png)
 
  接下来的步骤，只需要按照 KAP 手册中的 “Streaming Cube” 章节继续即可。
 
@@ -260,7 +228,7 @@ KAP 重启后，回到 “Model” 页面，点击 “Add Streaming Table”，�
 
 HDInsight 默认的 Hadoop 设置并不是最适合 KAP 的，它将较多的资源分配给了 HBase 服务，给 YARN留下的资源较少。此外，HBase 将较多资源分配给写操作，而 KAP 的场景是较少写操作而较多的读操作，因此可以将更多资源分配给 block cache 以获得更好的查询性能。您可以在 HDInsight 仪表盘（也即 Ambari）中对 Hadoop 设置进行更改。下面是一些推荐设置：
 
-![recommended_settings.en](images/recommended_settings.cn.png)
+![表 1. 推荐设置](images/recommended_settings.cn.png)
 
 在 Ambari 中更新这些参数设置后，请同步改动到集群的各个节点，并重启相关服务以使设置生效。KAP 服务也需要重启以确保使用最新设置。
 
