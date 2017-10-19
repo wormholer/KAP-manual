@@ -1,4 +1,4 @@
-## Deploying KAP 2.5 on Microsoft Azure HDInsight
+## Deploying on Microsoft Azure HDInsight
 
 ### **Azure HDInsight**
 

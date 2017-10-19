@@ -4,4 +4,4 @@
 
 继续阅读：
 
-[在 Microsoft Azure HDInsight 上部署 KAP 2.5](deploy_on_microsoft_azure_hdinsight_cn.md)
+[在 Microsoft Azure HDInsight 上部署](deploy_on_microsoft_azure_hdinsight_cn.md)

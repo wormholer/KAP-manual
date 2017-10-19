@@ -1,4 +1,4 @@
-## 在 Microsoft Azure HDInsight 上部署 KAP 2.5
+## 在 Microsoft Azure HDInsight 上部署
 
 ### Azure HDInsight
 
