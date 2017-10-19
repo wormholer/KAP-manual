@@ -118,9 +118,9 @@ https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManu
 
 可计算列函数的具体使用案例请参考Kyilgence官网的技术博客：
 
-http://kyligence.io/zh/2017/07/17/kap-2-4-computed-column/
+http://cn.kyligence.io/2017/07/17/kap-2-4-computed-column/
 
-http://kyligence.io/zh/2017/08/24/kap-v2-4-computed-column-hive-udf/
+http://cn.kyligence.io/2017/08/24/kap-v2-4-computed-column-hive-udf/
 
 
 
