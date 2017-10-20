@@ -6,10 +6,10 @@ Async query helps user to execute queries asynchronously, providing a more effic
 
 #### Request Body
 
-- sql - `required` `string` The text of sql statement.
-- offset - `optional` `int` Query offset. If offset is set in sql, offset will be ignored.
-- limit - `optional` `int` Query limit. If limit is set in sql, limit will be ignored.
-- project - `optional` `string` Project to perform query. Default value is ‘DEFAULT’.
+- sql - ```required``` ```string``` The text of sql statement.
+- offset - ```optional``` ```int``` Query offset. If offset is set in sql, offset will be ignored.
+- limit - ```optional``` ```int``` Query limit. If limit is set in sql, limit will be ignored.
+- project - ```optional``` ```string``` Project to perform query. Default value is ‘DEFAULT’.
 
 #### Request Sample
 
