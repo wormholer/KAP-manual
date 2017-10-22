@@ -9,33 +9,40 @@ KyAnalyzer allow user analyze data easier and quicker.
 * KyAnalyzer does not supprt *left join*, you should use *inner join* when create cube mode in KAP.
 
 ### Installation
-Go to [ KyAccount ]( http://account.kyligence.io/ ) to apply for KyAnalyzer's Installation package and license, Unzip kyanalyzer's install package, it will then generate folder kyanalyzer-server-{version}:
 
-```tar-zxf KyAnalyzer-{version}.tar.gz```
+1. Go to [ KyAccount ]( http://account.kyligence.io/ ) to apply for KyAnalyzer's Installation package and license, Unzip kyanalyzer's install package, it will then generate folder kyanalyzer-server-{version}:
+   
+   ```tar-zxf KyAnalyzer-{version}.tar.gz```
+   
+   In KyAnalyzer 2.4.0 or earlier version, copy license file kyAnalyzer.lic to kyanalyzer-{version}/conf.
+   
+   ```mv kyAnalyzer.lic kyanalyzer-{version}/conf```
+   
+   In KyAnalyzer 2.5.0 or later version, KyAnalyzer will read the KAP license and does not require a separate license file.
 
-In KyAnalyzer 2.4.0 or earlier version, copy license file kyAnalyzer.lic to kyanalyzer-{version}/conf.
+2. KyAnalyzer depends on the jar package of mondrian, it needs to be downloaded and copied to KyAnalyzer's path for the issue of open source license.
+   * For KyAnalyzer-2.1.3 and earlier versions, user is required to down load the jar from [ mondrian-kylin-1.2.jar ]( https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-1.2.jar ), and copy it to folder kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib.
+   * For KyAnalyzer with version later than 2.1.3, the startup script will download and install the jar package automatically.
+   * If no public network is available, user is required to down load the jar from [ mondrian-kylin-2.0.jar ]( https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-2.0.jar ), and copy it to folder kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib.
 
-```mv kyAnalyzer.lic kyanalyzer-{version}/conf```
+3. Edit kyanalyzer.properties under kyanalyzer-server-{version}/conf，set KAP host and KAP port, *kap.host* represents KAP IP(default value localhost), and *kap.port* represents KAP app port (default port is 7070). And you can edit mondrian.properties refer to conf/mondrian.properties.template.（Note: we have moved 'kap.host' and 'kap.port' to kyanalyzer.properties since kap2.2, and also add mondrian.properties to kyanalyzer-server/conf/）
+   
+   Run below script under kyanalyzer-{version} folder to start KyAnalyzer, the default port is 8080. 
+   
+   ```sh start-analyzer.sh```
+   
+   When the server is started, please visit http://{hostname}:8080. If you want to stop the server, please run under kyanalyzer-{version} folder 
+   
+   ```sh stop-analyzer.sh```
+   
+4. If the server is not started normally, please check the logs under tomcat/logs for details. Make sure there's no port conflict, you can check it in tomcat/logs/catalina.out. To fix port conflict, find config item below:
+   ```$xslt
+   <Connector port="8080" protocol="HTTP/1.1"
+                  connectionTimeout="20000"
+                  redirectPort="8443" />
+   ```
+   And modify port to a un-used one.
 
-In KyAnalyzer 2.5.0 or later version, KyAnalyzer will read the KAP license and does not require a separate license file.
-
-Edit kyanalyzer.properties under kyanalyzer-server-{version}/conf，set KAP host and KAP port, *kap.host* represents KAP IP(default value localhost), and *kap.port* represents KAP app port (default port is 7070). And you can edit mondrian.properties refer to conf/mondrian.properties.template.（Note: we have moved 'kap.host' and 'kap.port' to kyanalyzer.properties since kap2.2, and also add mondrian.properties to kyanalyzer-server/conf/）
-
-Run below script under kyanalyzer-{version} folder to start KyAnalyzer, the default port is 8080. 
-
-```sh start-analyzer.sh```
-
-When the server is started, please visit http://{hostname}:8080. If you want to stop the server, please run under kyanalyzer-{version} folder 
-
-```sh stop-analyzer.sh```
-
-If the server is not started normally, please check the logs under tomcat/logs for details. Make sure there's no port conflict, you can check it in tomcat/logs/catalina.out. To fix port conflict, find config item below:
-```$xslt
-<Connector port="8080" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
-```
-And modify port to a un-used one.
 
 #### Files under home directory
 
@@ -65,13 +72,15 @@ KyAnalyzer will save data under the directory *repository* and *data*, suppose y
     <th>Mondrian-Kylin</th>
     <th>COUNT_DISTINCT</th>
     <th>TOP_N</th>
+    <th>Save Calculated Measure</th>
     <th>Normal Query</th>
     <th></th>
     </tr>
     <tr>
         <td>2.0</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.0</td>
+        <td>❎</td>
         <td>❎</td>
         <td>❎</td>
         <td>✅</td>
@@ -79,33 +88,45 @@ KyAnalyzer will save data under the directory *repository* and *data*, suppose y
     </tr>
     <tr>
         <td>2.0</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
         <td>✅</td>
+        <td>❎</td>
         <td>❎</td>
         <td>❎</td>
         <td></td>
     </tr>
     <tr>
-        <td>2.1</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.0</td>
+        <td>❎</td>
         <td>❎</td>
         <td>❎</td>
         <td>✅</td>
         <td></td>
     </tr> 
     <tr>
-        <td>2.1</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&gt;=2.4</td>
+        <td>&gt;=2.5</td>
+        <td>2.0</td>
+        <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>Recommended</td>
-    </tr>     
+    </tr>
 </table>
-
 
 ###About KyAnalyzer,Apache Kylin,Mondrian-Kylin Version/Features
 <table>
@@ -115,47 +136,61 @@ KyAnalyzer will save data under the directory *repository* and *data*, suppose y
     <th>Mondrian-Kylin</th>
     <th>COUNT_DISTINCT</th>
     <th>TOP_N</th>
+    <th>Save Calculated Measure</th>
     <th>Normal Query</th>
     <th></th>
     </tr>
     <tr>
         <td>ALL</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.0</td>
+        <td>❎</td>
         <td>❎</td>
         <td>❎</td>
         <td>✅</td>
         <td></td>
     </tr>
     <tr>
-        <td>version earlier than1.5.4.1</td>
-        <td>2.1</td>
+        <td>&lt;1.5.4.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
         <td>✅</td>
+        <td>❎</td>
         <td>❎</td>
         <td>❎</td>
         <td></td>
     </tr>
     <tr>
         <td>1.5.4.1</td>
-        <td>2.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
         <td>✅</td>
+        <td>❎</td>
         <td>❎</td>
         <td>✅</td>
         <td></td>
     </tr> 
     <tr>
-        <td>version later 1.5.4.1</td>
-        <td>2.1</td>
+        <td>&gt;1.5.4.1</td>
+        <td>&gt;=2.1</td>
         <td>1.1</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&gt;2.0.0</td>
+        <td>&gt;=2.5</td>
+        <td>2.0</td>
+        <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>✅</td>
         <td>Recommended</td>
-    </tr>         
+    </tr>  
 </table>
-
 
 ### Authentication
 KyAnalyzer authenticates user at KAP side, so you can use KAP user and password to login. Users with *Admin* Role in KAP are also *Admin* in KyAnalyzer.
