@@ -10,14 +10,24 @@ KyAnalyzer无缝集成KAP（Kylin），让用户以最简单快捷的方式访�
 
 
 ### 安装
-在[ KyAccount ]( http://account.kyligence.io/ )申请下载KyAnalyzer的安装包和许可证
-解压kyanalyzer安装包，生成目录kyanalyzer-{version}
-```tar-zxf KyAnalyzer-{version}.tar.gz```
-2.4.0版本及之前的版本需要将许可证文件kyAnalyzer.lic拷贝至kyanalyzer-{version}/conf下
-```mv kyAnalyzer.lic kyanalyzer-{version}/conf```
-2.5.0版本及以后的版本将直接使用KAP的许可证进行认证。
+1. 在[ KyAccount ]( http://account.kyligence.io/ )申请下载KyAnalyzer的安装包和许可证。
 
-在kyanalyzer-server-{version}/conf目录下有个配置文件kyanalyzer.properties， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，默认为localhost，*kap.port*为KAP REST API的端口，默认7070。
+2. 解压kyanalyzer安装包，生成目录kyanalyzer-{version} 
+
+   ```tar -zxf KyAnalyzer-{version}.tar.gz```
+   
+   2.4.0版本及之前的版本需要将许可证文件kyAnalyzer.lic拷贝至kyanalyzer-{version}/conf下
+   
+   ```mv kyAnalyzer.lic kyanalyzer-{version}/conf```
+   
+   2.5.0版本及以后的版本将直接使用KAP的许可证进行认证，只需将配置文件kyanalyzer.properties中的`kap.host`配置为当前具有有效许可证的KAP即可。
+
+3. KyAnalyzer依赖于mondrian的jar包，为了符合其开源协议，需要单独下载并拷贝。
+   * 对于KyAnalyzer-2.1.3即之前版本，需要单独下载[ mondrian-kylin-1.2.jar ]( https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-1.2.jar )包，并拷贝至kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib下
+   * 对于KyAnalyzer-2.1.3以上的版本，启动脚本会自动下载所需的mondrian包并拷贝至tomcat下
+   * 在无网络环境下安装KyAnalyzer-2.1.3以上的版本，可通过链接[ mondrian-kylin-2.0.jar ]( https://github.com/Kyligence/kylin-mondrian/blob/master/build/mondrian-kylin-2.0.jar )包，并拷贝至kyanalyzer-server-{version}/tomcat/webapps/saiku/WEB-INF/lib下
+
+4. 在kyanalyzer-server-{version}/conf目录下有个配置文件kyanalyzer.properties， 需要在该文件中配置好KAP的IP及端口信息，*kap.host*为KAP的IP，默认为localhost，*kap.port*为KAP REST API的端口，默认7070。
 同时，关于mondrian的所有配置可以参考conf/mondrian.properties.template 配置到mondrian.properties中。（注：在kap2.2之后，我们将kap.host及kap.port配置移到kyanalyzer.properties中，同时在conf下引入了mondrian.properties）
 
 ###启动
@@ -63,6 +73,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
     <th>Mondrian-Kylin</th>
     <th>COUNT_DISTINCT</th>
     <th>TOP_N</th>
+    <th>自定义度量保存</th>
     <th>正常查询</th>
     <th></th>
     </tr>
@@ -70,6 +81,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td>2.0</td>
         <td>&gt;=2.1</td>
         <td>1.0</td>
+        <td>❎</td>
         <td>❎</td>
         <td>❎</td>
         <td>✅</td>
@@ -82,12 +94,14 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td>✅</td>
         <td>❎</td>
         <td>❎</td>
+        <td>❎</td>
         <td></td>
     </tr>
     <tr>
         <td>&gt;=2.1</td>
         <td>&gt;=2.1</td>
         <td>1.0</td>
+        <td>❎</td>
         <td>❎</td>
         <td>❎</td>
         <td>✅</td>
@@ -99,9 +113,20 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td>1.1</td>
         <td>✅</td>
         <td>✅</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&gt;=2.4</td>
+        <td>&gt;=2.5</td>
+        <td>2.0</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
         <td>✅</td>
         <td>推荐</td>
-    </tr>     
+    </tr>
 </table>
 
 
@@ -113,6 +138,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
     <th>Mondrian-Kylin</th>
     <th>COUNT_DISTINCT</th>
     <th>TOP_N</th>
+    <th>自定义度量保存</th>
     <th>正常查询</th>
     <th></th>
     </tr>
@@ -120,6 +146,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td>ALL</td>
         <td>&gt;=2.1</td>
         <td>1.0</td>
+        <td>❎</td>
         <td>❎</td>
         <td>❎</td>
         <td>✅</td>
@@ -132,6 +159,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td>✅</td>
         <td>❎</td>
         <td>❎</td>
+        <td>❎</td>
         <td></td>
     </tr>
     <tr>
@@ -139,6 +167,7 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td>&gt;=2.1</td>
         <td>1.1</td>
         <td>✅</td>
+        <td>❎</td>
         <td>❎</td>
         <td>✅</td>
         <td></td>
@@ -149,9 +178,20 @@ KyAnalyzer的数据信息主要存储在根目录下的repository和data目录�
         <td>1.1</td>
         <td>✅</td>
         <td>✅</td>
+        <td>❎</td>
+        <td>✅</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&gt;2.0.0</td>
+        <td>&gt;=2.5</td>
+        <td>2.0</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>✅</td>
         <td>✅</td>
         <td>推荐</td>
-    </tr>         
+    </tr>  
 </table>
 
 
