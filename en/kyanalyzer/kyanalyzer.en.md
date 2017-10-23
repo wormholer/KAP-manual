@@ -117,8 +117,8 @@ KyAnalyzer will save data under the directory *repository* and *data*, suppose y
         <td></td>
     </tr>
     <tr>
-        <td>&gt;=2.4</td>
-        <td>&gt;=2.5</td>
+        <td>&gt;=2.4.0</td>
+        <td>&gt;=2.4.0</td>
         <td>2.0</td>
         <td>✅</td>
         <td>✅</td>
@@ -182,7 +182,7 @@ KyAnalyzer will save data under the directory *repository* and *data*, suppose y
     </tr>
     <tr>
         <td>&gt;2.0.0</td>
-        <td>&gt;=2.5</td>
+        <td>&gt;=2.4.0</td>
         <td>2.0</td>
         <td>✅</td>
         <td>✅</td>
