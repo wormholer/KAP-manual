@@ -22,32 +22,45 @@
 
 `访问路径 http://host:port/kylin/api/cubes`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### 请求主体
-* offset - `必选` `int` 返回数据起始下标
-* limit - `必选` `int ` 分页返回对应每页返回多少
+* offset - `可选` `int` 默认0，返回数据起始下标
+* limit - `可选` `int ` 默认10，分页返回对应每页返回多少
 * cubeName - `可选` `string` 返回名称等于该关键字的Cube
+* exactMatch - `可选` `boolean` 默认true, 是否根据cubeName完全匹配 
 * modelName - `可选` `string` 返回对应模型名称等于该关键字的Cube
 * projectName - `可选` `string` 指定返回该项目下Cube
 
 #### 响应示例
 ```json
 [  
-   {  
-      "uuid":"1eaca32a-a33e-4b69-83dd-0bb8b1f8c53b",
-      "last_modified":1407831634847,
-      "name":"test_kylin_cube_with_slr_empty",
-      "owner":null,
-      "version":null,
-      "descriptor":"test_kylin_cube_with_slr_desc",
-      "cost":50,
-      "status":"DISABLED",
-      "segments":[  
-      ],
-      "create_time":null,
-      "source_records_count":0,
-      "source_records_size":0,
-      "size_kb":0
-   }
+   {
+        "uuid": "8372c3b7-a33e-4b69-83dd-0bb8b1f8117e",
+        "last_modified": 1508487909245,
+        "version": "2.3.0.20500",
+        "name": "ci_inner_join_cube",
+        "owner": null,
+        "descriptor": "ci_inner_join_cube",
+        "cost": 50,
+        "status": "DISABLED",
+        "segments": [],
+        "create_time_utc": 0,
+        "cuboid_bytes": null,
+        "cuboid_bytes_recommend": null,
+        "cuboid_last_optimized": 0,
+        "project": "default",
+        "model": "ci_inner_join_model",
+        "is_streaming": false,
+        "partitionDateColumn": "TEST_KYLIN_FACT.CAL_DT",
+        "partitionDateStart": 0,
+        "size_kb": 0,
+        "input_records_count": 0,
+        "input_records_size": 0,
+        "is_draft": false,
+        "multilevel_partition_cols": [],
+        "total_storage_size_kb": 0
+    }
 ]
 ```
 
@@ -56,6 +69,8 @@
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
 * cubeName - `必选` `string` 要获取的Cube 名称.
 
@@ -63,184 +78,712 @@
  维度, 度量，等
 `请求方式 GET`
 
-`访问路径 http://host:port/kylin/api/cube_desc/{cubeName}/desc`
+`访问路径 http://host:port/kylin/api/cube_desc/{projectName}/{cubeName}`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
+* projectName - `必选` `string` Project 名称.
 * cubeName - `必选` `string` Cube 名称.
 
 #### 响应示例
 ```json
     {
-  "uuid" : "a24ca905-1fc6-4f67-985c-38fa5aeafd92",
- 
-  "name" : "test_kylin_cube_with_slr_desc",
-  "description" : null,
-  "dimensions" : [ {
-    "name" : "CAL_DT",
-    "table" : "EDW.TEST_CAL_DT",
-    "column" : "{FK}",
-    "derived" : [ "WEEK_BEG_DT" ]
-  }, {
-    "name" : "CATEGORY",
-    "table" : "DEFAULT.TEST_CATEGORY_GROUPINGS",
-    "column" : "{FK}",
-    "derived" : [ "USER_DEFINED_FIELD1", "USER_DEFINED_FIELD3", "UPD_DATE", "UPD_USER" ]
-  }, {
-    "name" : "CATEGORY_HIERARCHY",
-    "table" : "DEFAULT.TEST_CATEGORY_GROUPINGS",
-    "column" : "META_CATEG_NAME",
-    "derived" : null
-  }, {
-    "name" : "CATEGORY_HIERARCHY",
-    "table" : "DEFAULT.TEST_CATEGORY_GROUPINGS",
-    "column" : "CATEG_LVL2_NAME",
-    "derived" : null
-  }, {
-    "name" : "CATEGORY_HIERARCHY",
-    "table" : "DEFAULT.TEST_CATEGORY_GROUPINGS",
-    "column" : "CATEG_LVL3_NAME",
-    "derived" : null
-  }, {
-    "name" : "LSTG_FORMAT_NAME",
-    "table" : "DEFAULT.TEST_KYLIN_FACT",
-    "column" : "LSTG_FORMAT_NAME",
-    "derived" : null
-  }, {
-    "name" : "SITE_ID",
-    "table" : "EDW.TEST_SITES",
-    "column" : "{FK}",
-    "derived" : [ "SITE_NAME", "CRE_USER" ]
-  }, {
-    "name" : "SELLER_TYPE_CD",
-    "table" : "EDW.TEST_SELLER_TYPE_DIM",
-    "column" : "{FK}",
-    "derived" : [ "SELLER_TYPE_DESC" ]
-  }, {
-    "name" : "SELLER_ID",
-    "table" : "DEFAULT.TEST_KYLIN_FACT",
-    "column" : "SELLER_ID",
-    "derived" : null
-  } ],
-  "measures" : [ {
-    "name" : "GMV_SUM",
-    "function" : {
-      "expression" : "SUM",
-      "parameter" : {
-        "type" : "column",
-        "value" : "PRICE",
-        "next_parameter" : null
-      },
-      "returntype" : "decimal(19,4)"
+    "code": "000",
+    "data": {
+        "cube": {
+            "uuid": "3819ad72-3929-4dff-b59d-cd89a01238af",
+            "last_modified": 1508487309851,
+            "version": "2.3.0.20500",
+            "name": "ci_inner_join_cube",
+            "is_draft": false,
+            "model_name": "ci_inner_join_model",
+            "description": null,
+            "null_string": null,
+            "dimensions": [
+                {
+                    "name": "CAL_DT",
+                    "table": "TEST_CAL_DT",
+                    "column": "{FK}",
+                    "derived": [
+                        "WEEK_BEG_DT"
+                    ]
+                },
+                {
+                    "name": "ORDER_ID",
+                    "table": "TEST_KYLIN_FACT",
+                    "column": "ORDER_ID",
+                    "derived": null
+                },
+                {
+                    "name": "TEST_DATE_ENC",
+                    "table": "TEST_ORDER",
+                    "column": "TEST_DATE_ENC",
+                    "derived": null
+                },
+                {
+                    "name": "TEST_TIME_ENC",
+                    "table": "TEST_ORDER",
+                    "column": "TEST_TIME_ENC",
+                    "derived": null
+                },
+                {
+                    "name": "CATEGORY",
+                    "table": "TEST_CATEGORY_GROUPINGS",
+                    "column": "{FK}",
+                    "derived": [
+                        "USER_DEFINED_FIELD1",
+                        "USER_DEFINED_FIELD3",
+                        "UPD_DATE",
+                        "UPD_USER"
+                    ]
+                },
+                {
+                    "name": "CATEGORY_HIERARCHY",
+                    "table": "TEST_CATEGORY_GROUPINGS",
+                    "column": "META_CATEG_NAME",
+                    "derived": null
+                },
+                {
+                    "name": "CATEGORY_HIERARCHY",
+                    "table": "TEST_CATEGORY_GROUPINGS",
+                    "column": "CATEG_LVL2_NAME",
+                    "derived": null
+                },
+                {
+                    "name": "CATEGORY_HIERARCHY",
+                    "table": "TEST_CATEGORY_GROUPINGS",
+                    "column": "CATEG_LVL3_NAME",
+                    "derived": null
+                },
+                {
+                    "name": "LSTG_FORMAT_NAME",
+                    "table": "TEST_KYLIN_FACT",
+                    "column": "LSTG_FORMAT_NAME",
+                    "derived": null
+                },
+                {
+                    "name": "SITE_ID",
+                    "table": "TEST_SITES",
+                    "column": "{FK}",
+                    "derived": [
+                        "SITE_NAME",
+                        "CRE_USER"
+                    ]
+                },
+                {
+                    "name": "SELLER_TYPE_CD",
+                    "table": "TEST_SELLER_TYPE_DIM",
+                    "column": "{FK}",
+                    "derived": [
+                        "SELLER_TYPE_DESC"
+                    ]
+                },
+                {
+                    "name": "SELLER_ID",
+                    "table": "TEST_KYLIN_FACT",
+                    "column": "SELLER_ID",
+                    "derived": null
+                },
+                {
+                    "name": "SELLER_BUYER_LEVEL",
+                    "table": "SELLER_ACCOUNT",
+                    "column": "ACCOUNT_BUYER_LEVEL",
+                    "derived": null
+                },
+                {
+                    "name": "SELLER_SELLER_LEVEL",
+                    "table": "SELLER_ACCOUNT",
+                    "column": "ACCOUNT_SELLER_LEVEL",
+                    "derived": null
+                },
+                {
+                    "name": "SELLER_COUNTRY",
+                    "table": "SELLER_ACCOUNT",
+                    "column": "ACCOUNT_COUNTRY",
+                    "derived": null
+                },
+                {
+                    "name": "SELLER_COUNTRY_NAME",
+                    "table": "SELLER_COUNTRY",
+                    "column": "NAME",
+                    "derived": null
+                },
+                {
+                    "name": "BUYER_ID",
+                    "table": "TEST_ORDER",
+                    "column": "BUYER_ID",
+                    "derived": null
+                },
+                {
+                    "name": "BUYER_BUYER_LEVEL",
+                    "table": "BUYER_ACCOUNT",
+                    "column": "ACCOUNT_BUYER_LEVEL",
+                    "derived": null
+                },
+                {
+                    "name": "BUYER_SELLER_LEVEL",
+                    "table": "BUYER_ACCOUNT",
+                    "column": "ACCOUNT_SELLER_LEVEL",
+                    "derived": null
+                },
+                {
+                    "name": "BUYER_COUNTRY",
+                    "table": "BUYER_ACCOUNT",
+                    "column": "ACCOUNT_COUNTRY",
+                    "derived": null
+                },
+                {
+                    "name": "DEAL_YEAR",
+                    "table": "TEST_KYLIN_FACT",
+                    "column": "DEAL_YEAR",
+                    "derived": null
+                },
+                {
+                    "name": "SELLER_COUNTRY_ABBR",
+                    "table": "TEST_KYLIN_FACT",
+                    "column": "SELLER_COUNTRY_ABBR",
+                    "derived": null
+                },
+                {
+                    "name": "BUYER_COUNTRY_ABBR",
+                    "table": "TEST_KYLIN_FACT",
+                    "column": "BUYER_COUNTRY_ABBR",
+                    "derived": null
+                },
+                {
+                    "name": "SELLER_ID_AND_COUNTRY_NAME",
+                    "table": "TEST_KYLIN_FACT",
+                    "column": "SELLER_ID_AND_COUNTRY_NAME",
+                    "derived": null
+                },
+                {
+                    "name": "BUYER_ID_AND_COUNTRY_NAME",
+                    "table": "TEST_KYLIN_FACT",
+                    "column": "BUYER_ID_AND_COUNTRY_NAME",
+                    "derived": null
+                },
+                {
+                    "name": "BUYER_COUNTRY_NAME",
+                    "table": "BUYER_COUNTRY",
+                    "column": "NAME",
+                    "derived": null
+                }
+            ],
+            "measures": [
+                {
+                    "name": "TRANS_CNT",
+                    "function": {
+                        "expression": "COUNT",
+                        "parameter": {
+                            "type": "constant",
+                            "value": "1"
+                        },
+                        "returntype": "bigint"
+                    }
+                },
+                {
+                    "name": "ITEM_COUNT_SUM",
+                    "function": {
+                        "expression": "SUM",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.ITEM_COUNT"
+                        },
+                        "returntype": "bigint"
+                    }
+                },
+                {
+                    "name": "GMV_SUM",
+                    "function": {
+                        "expression": "SUM",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.PRICE"
+                        },
+                        "returntype": "decimal(19,4)"
+                    }
+                },
+                {
+                    "name": "GMV_MIN",
+                    "function": {
+                        "expression": "MIN",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.PRICE"
+                        },
+                        "returntype": "decimal(19,4)"
+                    }
+                },
+                {
+                    "name": "GMV_MAX",
+                    "function": {
+                        "expression": "MAX",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.PRICE"
+                        },
+                        "returntype": "decimal(19,4)"
+                    }
+                },
+                {
+                    "name": "SELLER_HLL",
+                    "function": {
+                        "expression": "COUNT_DISTINCT",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.SELLER_ID"
+                        },
+                        "returntype": "hllc(10)"
+                    }
+                },
+                {
+                    "name": "SELLER_FORMAT_HLL",
+                    "function": {
+                        "expression": "COUNT_DISTINCT",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.LSTG_FORMAT_NAME",
+                            "next_parameter": {
+                                "type": "column",
+                                "value": "TEST_KYLIN_FACT.SELLER_ID"
+                            }
+                        },
+                        "returntype": "hllc(10)"
+                    }
+                },
+                {
+                    "name": "TOP_SELLER",
+                    "function": {
+                        "expression": "TOP_N",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.PRICE",
+                            "next_parameter": {
+                                "type": "column",
+                                "value": "TEST_KYLIN_FACT.SELLER_ID"
+                            }
+                        },
+                        "returntype": "topn(100,4)",
+                        "configuration": {
+                            "topn.encoding.TEST_KYLIN_FACT.SELLER_ID": "int:4"
+                        }
+                    }
+                },
+                {
+                    "name": "TEST_COUNT_DISTINCT_BITMAP",
+                    "function": {
+                        "expression": "COUNT_DISTINCT",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.TEST_COUNT_DISTINCT_BITMAP"
+                        },
+                        "returntype": "bitmap"
+                    }
+                },
+                {
+                    "name": "TEST_EXTENDED_COLUMN",
+                    "function": {
+                        "expression": "EXTENDED_COLUMN",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.ORDER_ID",
+                            "next_parameter": {
+                                "type": "column",
+                                "value": "TEST_ORDER.TEST_EXTENDED_COLUMN"
+                            }
+                        },
+                        "returntype": "extendedcolumn(100)"
+                    }
+                },
+                {
+                    "name": "BUYER_CONTACT",
+                    "function": {
+                        "expression": "EXTENDED_COLUMN",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_ORDER.BUYER_ID",
+                            "next_parameter": {
+                                "type": "column",
+                                "value": "BUYER_ACCOUNT.ACCOUNT_CONTACT"
+                            }
+                        },
+                        "returntype": "extendedcolumn(100)"
+                    }
+                },
+                {
+                    "name": "SELLER_CONTACT",
+                    "function": {
+                        "expression": "EXTENDED_COLUMN",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.SELLER_ID",
+                            "next_parameter": {
+                                "type": "column",
+                                "value": "SELLER_ACCOUNT.ACCOUNT_CONTACT"
+                            }
+                        },
+                        "returntype": "extendedcolumn(100)"
+                    }
+                },
+                {
+                    "name": "TRANS_ID_RAW",
+                    "function": {
+                        "expression": "RAW",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.TRANS_ID"
+                        },
+                        "returntype": "raw"
+                    }
+                },
+                {
+                    "name": "PRICE_RAW",
+                    "function": {
+                        "expression": "RAW",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.PRICE"
+                        },
+                        "returntype": "raw"
+                    }
+                },
+                {
+                    "name": "CAL_DT_RAW",
+                    "function": {
+                        "expression": "RAW",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.CAL_DT"
+                        },
+                        "returntype": "raw"
+                    }
+                },
+                {
+                    "name": "COMPUTED_COLUMN_MEASURE",
+                    "function": {
+                        "expression": "SUM",
+                        "parameter": {
+                            "type": "column",
+                            "value": "TEST_KYLIN_FACT.DEAL_AMOUNT"
+                        },
+                        "returntype": "decimal"
+                    }
+                }
+            ],
+            "dictionaries": [
+                {
+                    "column": "TEST_KYLIN_FACT.TEST_COUNT_DISTINCT_BITMAP",
+                    "builder": "org.apache.kylin.dict.global.SegmentAppendTrieDictBuilder"
+                }
+            ],
+            "rowkey": {
+                "rowkey_columns": [
+                    {
+                        "column": "TEST_KYLIN_FACT.SELLER_ID",
+                        "encoding": "int:4",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.ORDER_ID",
+                        "encoding": "int:4",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.CAL_DT",
+                        "encoding": "date",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.LEAF_CATEG_ID",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_CATEGORY_GROUPINGS.META_CATEG_NAME",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.LSTG_FORMAT_NAME",
+                        "encoding": "fixed_length:12",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.LSTG_SITE_ID",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.SLR_SEGMENT_CD",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_ORDER.TEST_TIME_ENC",
+                        "encoding": "time",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_ORDER.TEST_DATE_ENC",
+                        "encoding": "date",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_ORDER.BUYER_ID",
+                        "encoding": "int:4",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "BUYER_ACCOUNT.ACCOUNT_BUYER_LEVEL",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "BUYER_ACCOUNT.ACCOUNT_SELLER_LEVEL",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "BUYER_ACCOUNT.ACCOUNT_COUNTRY",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "BUYER_COUNTRY.NAME",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "SELLER_ACCOUNT.ACCOUNT_BUYER_LEVEL",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "SELLER_ACCOUNT.ACCOUNT_SELLER_LEVEL",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "SELLER_ACCOUNT.ACCOUNT_COUNTRY",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.DEAL_YEAR",
+                        "encoding": "int:2",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "SELLER_COUNTRY.NAME",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.SELLER_COUNTRY_ABBR",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.BUYER_COUNTRY_ABBR",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.SELLER_ID_AND_COUNTRY_NAME",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    },
+                    {
+                        "column": "TEST_KYLIN_FACT.BUYER_ID_AND_COUNTRY_NAME",
+                        "encoding": "dict",
+                        "isShardBy": false
+                    }
+                ]
+            },
+            "hbase_mapping": {
+                "column_family": [
+                    {
+                        "name": "F1",
+                        "columns": [
+                            {
+                                "qualifier": "M",
+                                "measure_refs": [
+                                    "TRANS_CNT",
+                                    "ITEM_COUNT_SUM",
+                                    "GMV_SUM",
+                                    "GMV_MIN",
+                                    "GMV_MAX",
+                                    "COMPUTED_COLUMN_MEASURE"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "F2",
+                        "columns": [
+                            {
+                                "qualifier": "M",
+                                "measure_refs": [
+                                    "SELLER_HLL",
+                                    "SELLER_FORMAT_HLL",
+                                    "TOP_SELLER",
+                                    "TEST_COUNT_DISTINCT_BITMAP"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "F3",
+                        "columns": [
+                            {
+                                "qualifier": "M",
+                                "measure_refs": [
+                                    "TEST_EXTENDED_COLUMN",
+                                    "BUYER_CONTACT",
+                                    "SELLER_CONTACT",
+                                    "TRANS_ID_RAW",
+                                    "PRICE_RAW",
+                                    "CAL_DT_RAW"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "aggregation_groups": [
+                {
+                    "includes": [
+                        "TEST_KYLIN_FACT.CAL_DT",
+                        "TEST_KYLIN_FACT.LEAF_CATEG_ID",
+                        "TEST_KYLIN_FACT.LSTG_FORMAT_NAME",
+                        "TEST_KYLIN_FACT.LSTG_SITE_ID",
+                        "TEST_KYLIN_FACT.SLR_SEGMENT_CD",
+                        "TEST_CATEGORY_GROUPINGS.META_CATEG_NAME",
+                        "TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME",
+                        "TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME",
+                        "TEST_KYLIN_FACT.DEAL_YEAR"
+                    ],
+                    "select_rule": {
+                        "hierarchy_dims": [
+                            [
+                                "TEST_CATEGORY_GROUPINGS.META_CATEG_NAME",
+                                "TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME",
+                                "TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME",
+                                "TEST_KYLIN_FACT.LEAF_CATEG_ID"
+                            ]
+                        ],
+                        "mandatory_dims": [],
+                        "joint_dims": [
+                            [
+                                "TEST_KYLIN_FACT.LSTG_FORMAT_NAME",
+                                "TEST_KYLIN_FACT.LSTG_SITE_ID",
+                                "TEST_KYLIN_FACT.SLR_SEGMENT_CD",
+                                "TEST_KYLIN_FACT.DEAL_YEAR"
+                            ]
+                        ],
+                        "dim_cap": 1
+                    }
+                },
+                {
+                    "includes": [
+                        "TEST_KYLIN_FACT.CAL_DT",
+                        "TEST_KYLIN_FACT.LEAF_CATEG_ID",
+                        "TEST_KYLIN_FACT.LSTG_FORMAT_NAME",
+                        "TEST_KYLIN_FACT.LSTG_SITE_ID",
+                        "TEST_KYLIN_FACT.SLR_SEGMENT_CD",
+                        "TEST_CATEGORY_GROUPINGS.META_CATEG_NAME",
+                        "TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME",
+                        "TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME",
+                        "TEST_KYLIN_FACT.SELLER_ID",
+                        "SELLER_ACCOUNT.ACCOUNT_BUYER_LEVEL",
+                        "SELLER_ACCOUNT.ACCOUNT_SELLER_LEVEL",
+                        "SELLER_ACCOUNT.ACCOUNT_COUNTRY",
+                        "SELLER_COUNTRY.NAME",
+                        "TEST_KYLIN_FACT.ORDER_ID",
+                        "TEST_ORDER.TEST_DATE_ENC",
+                        "TEST_ORDER.TEST_TIME_ENC",
+                        "TEST_ORDER.BUYER_ID",
+                        "BUYER_ACCOUNT.ACCOUNT_BUYER_LEVEL",
+                        "BUYER_ACCOUNT.ACCOUNT_SELLER_LEVEL",
+                        "BUYER_ACCOUNT.ACCOUNT_COUNTRY",
+                        "BUYER_COUNTRY.NAME",
+                        "TEST_KYLIN_FACT.SELLER_COUNTRY_ABBR",
+                        "TEST_KYLIN_FACT.BUYER_COUNTRY_ABBR",
+                        "TEST_KYLIN_FACT.SELLER_ID_AND_COUNTRY_NAME",
+                        "TEST_KYLIN_FACT.BUYER_ID_AND_COUNTRY_NAME"
+                    ],
+                    "select_rule": {
+                        "hierarchy_dims": [],
+                        "mandatory_dims": [
+                            "TEST_KYLIN_FACT.CAL_DT"
+                        ],
+                        "joint_dims": [
+                            [
+                                "TEST_CATEGORY_GROUPINGS.META_CATEG_NAME",
+                                "TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME",
+                                "TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME",
+                                "TEST_KYLIN_FACT.LEAF_CATEG_ID"
+                            ],
+                            [
+                                "TEST_KYLIN_FACT.LSTG_FORMAT_NAME",
+                                "TEST_KYLIN_FACT.LSTG_SITE_ID",
+                                "TEST_KYLIN_FACT.SLR_SEGMENT_CD",
+                                "TEST_KYLIN_FACT.SELLER_COUNTRY_ABBR",
+                                "TEST_KYLIN_FACT.BUYER_COUNTRY_ABBR",
+                                "TEST_KYLIN_FACT.SELLER_ID_AND_COUNTRY_NAME",
+                                "TEST_KYLIN_FACT.BUYER_ID_AND_COUNTRY_NAME"
+                            ],
+                            [
+                                "TEST_KYLIN_FACT.SELLER_ID",
+                                "SELLER_ACCOUNT.ACCOUNT_BUYER_LEVEL",
+                                "SELLER_ACCOUNT.ACCOUNT_SELLER_LEVEL",
+                                "SELLER_ACCOUNT.ACCOUNT_COUNTRY",
+                                "SELLER_COUNTRY.NAME"
+                            ],
+                            [
+                                "TEST_KYLIN_FACT.ORDER_ID",
+                                "TEST_ORDER.TEST_DATE_ENC",
+                                "TEST_ORDER.TEST_TIME_ENC",
+                                "TEST_ORDER.BUYER_ID",
+                                "BUYER_ACCOUNT.ACCOUNT_BUYER_LEVEL",
+                                "BUYER_ACCOUNT.ACCOUNT_SELLER_LEVEL",
+                                "BUYER_ACCOUNT.ACCOUNT_COUNTRY",
+                                "BUYER_COUNTRY.NAME"
+                            ]
+                        ],
+                        "dim_cap": 1
+                    }
+                }
+            ],
+            "signature": "kNACGfzr3/ozZvEsWLNNtg==",
+            "notify_list": null,
+            "status_need_notify": [],
+            "partition_date_start": 0,
+            "partition_date_end": 3153600000000,
+            "auto_merge_time_ranges": null,
+            "retention_range": 0,
+            "engine_type": 100,
+            "storage_type": 99,
+            "override_kylin_properties": {
+                "kylin.cube.algorithm": "LAYER",
+                "kylin.storage.hbase.owner-tag": "kylin@kylin.apache.org"
+            },
+            "cuboid_black_list": [],
+            "parent_forward": 3
+        }
     },
-    "dependent_measure_ref" : null
-  }, {
-    "name" : "GMV_MIN",
-    "function" : {
-      "expression" : "MIN",
-      "parameter" : {
-        "type" : "column",
-        "value" : "PRICE",
-        "next_parameter" : null
-      },
-      "returntype" : "decimal(19,4)"
-    },
-    "dependent_measure_ref" : null
-  }, {
-    "name" : "GMV_MAX",
-    "function" : {
-      "expression" : "MAX",
-      "parameter" : {
-        "type" : "column",
-        "value" : "PRICE",
-        "next_parameter" : null
-      },
-      "returntype" : "decimal(19,4)"
-    },
-    "dependent_measure_ref" : null
-  }, {
-    "name" : "TRANS_CNT",
-    "function" : {
-      "expression" : "COUNT",
-      "parameter" : {
-        "type" : "constant",
-        "value" : "1",
-        "next_parameter" : null
-      },
-      "returntype" : "bigint"
-    },
-    "dependent_measure_ref" : null
-  }, {
-    "name" : "ITEM_COUNT_SUM",
-    "function" : {
-      "expression" : "SUM",
-      "parameter" : {
-        "type" : "column",
-        "value" : "ITEM_COUNT",
-        "next_parameter" : null
-      },
-      "returntype" : "bigint"
-    },
-    "dependent_measure_ref" : null
-  } ],
-  "rowkey" : {
-    "rowkey_columns" : [ {
-      "column" : "seller_id",
-      "encoding" : "int:4",
-      "isShardBy" : true
-    }, {
-      "column" : "cal_dt",
-      "encoding" : "dict"
-    }, {
-      "column" : "leaf_categ_id",
-      "encoding" : "fixed_length:18"
-    }, {
-      "column" : "meta_categ_name",
-      "encoding" : "dict"
-    }, {
-      "column" : "categ_lvl2_name",
-      "encoding" : "dict"
-    }, {
-      "column" : "categ_lvl3_name",
-      "encoding" : "dict"
-    }, {
-      "column" : "lstg_format_name",
-      "encoding" : "fixed_length:12"
-    }, {
-      "column" : "lstg_site_id",
-      "encoding" : "dict"
-    }, {
-      "column" : "slr_segment_cd",
-      "encoding" : "dict"
-    } ]
-  },
-  "signature" : null,
-  "last_modified" : 1448959801271,
-  "model_name" : "test_kylin_inner_join_model_desc",
-  "null_string" : null,
-  "hbase_mapping" : {
-    "column_family" : [ {
-      "name" : "f1",
-      "columns" : [ {
-        "qualifier" : "m",
-        "measure_refs" : [ "gmv_sum", "gmv_min", "gmv_max", "trans_cnt", "item_count_sum" ]
-      } ]
-    } ]
-  },
-  "aggregation_groups" : [ {
-    "includes" : [ "cal_dt", "categ_lvl2_name", "categ_lvl3_name", "leaf_categ_id", "lstg_format_name", "lstg_site_id", "meta_categ_name", "seller_id", "slr_segment_cd" ],
-    "select_rule" : {
-      "hierarchy_dims" : [ [ "META_CATEG_NAME", "CATEG_LVL2_NAME", "CATEG_LVL3_NAME" ] ],
-      "mandatory_dims" : ["seller_id"],
-      "joint_dims" : [ [ "lstg_format_name", "lstg_site_id", "slr_segment_cd" ] ]
-    }
-  } ],
-  "notify_list" : null,
-  "status_need_notify" : [ ],
-  "auto_merge_time_ranges" : null,
-  "retention_range" : 0,
-  "engine_type" : 2,
-  "storage_type" : 2,
-  "partition_date_start" : 0
+    "msg": ""
 }
 ```
 
@@ -248,109 +791,330 @@
  事实表及维度表等信息
 `请求方式 GET`
 
-`访问路径 http://host:port/kylin/api/model/{modelName}`
+`访问路径 http://host:port/kylin/api/model_desc/{projectName}/{modelName}`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
+* projectName - `必选` `string` 返回该项目下的model. 
 * modelName - `必选` `string` 数据模型名称.
 
 #### 响应示例
 ```sh
 {
- 
-  "uuid" : "ff527b94-f860-44c3-8452-93b17774c647",
-  "name" : "test_kylin_inner_join_model_desc",
-  "lookups" : [ {
-    "table" : "EDW.TEST_CAL_DT",
-    "join" : {
-      "type" : "inner",
-      "primary_key" : [ "CAL_DT" ],
-      "foreign_key" : [ "CAL_DT" ]
-    }
-  }, {
-    "table" : "DEFAULT.TEST_CATEGORY_GROUPINGS",
-    "join" : {
-      "type" : "inner",
-      "primary_key" : [ "LEAF_CATEG_ID", "SITE_ID" ],
-      "foreign_key" : [ "LEAF_CATEG_ID", "LSTG_SITE_ID" ]
-    }
-  }, {
-    "table" : "EDW.TEST_SITES",
-    "join" : {
-      "type" : "inner",
-      "primary_key" : [ "SITE_ID" ],
-      "foreign_key" : [ "LSTG_SITE_ID" ]
-    }
-  }, {
-    "table" : "EDW.TEST_SELLER_TYPE_DIM",
-    "join" : {
-      "type" : "inner",
-      "primary_key" : [ "SELLER_TYPE_CD" ],
-      "foreign_key" : [ "SLR_SEGMENT_CD" ]
-    }
-  } ],
-  "dimensions": [
-    {
-      "table": "default.test_kylin_fact",
-      "columns": [
-        "lstg_format_name",
-        "LSTG_SITE_ID",
-        "SLR_SEGMENT_CD",
-        "TRANS_ID",
-        "CAL_DT",
-        "LEAF_CATEG_ID",
-        "SELLER_ID"
-      ]
+    "code": "000",
+    "data": {
+        "model": {
+            "uuid": "72ab4ee2-2cdb-4b07-b39e-4c298563ae27",
+            "last_modified": 1507691058000,
+            "version": "2.3.0.20500",
+            "name": "ci_inner_join_model",
+            "owner": null,
+            "is_draft": false,
+            "description": null,
+            "fact_table": "DEFAULT.TEST_KYLIN_FACT",
+            "lookups": [
+                {
+                    "table": "DEFAULT.TEST_ORDER",
+                    "kind": "FACT",
+                    "alias": "TEST_ORDER",
+                    "join": {
+                        "type": "INNER",
+                        "primary_key": [
+                            "TEST_ORDER.ORDER_ID"
+                        ],
+                        "foreign_key": [
+                            "TEST_KYLIN_FACT.ORDER_ID"
+                        ]
+                    }
+                },
+                {
+                    "table": "EDW.TEST_CAL_DT",
+                    "kind": "LOOKUP",
+                    "alias": "TEST_CAL_DT",
+                    "join": {
+                        "type": "INNER",
+                        "primary_key": [
+                            "TEST_CAL_DT.CAL_DT"
+                        ],
+                        "foreign_key": [
+                            "TEST_KYLIN_FACT.CAL_DT"
+                        ]
+                    }
+                },
+                {
+                    "table": "DEFAULT.TEST_CATEGORY_GROUPINGS",
+                    "kind": "LOOKUP",
+                    "alias": "TEST_CATEGORY_GROUPINGS",
+                    "join": {
+                        "type": "INNER",
+                        "primary_key": [
+                            "TEST_CATEGORY_GROUPINGS.LEAF_CATEG_ID",
+                            "TEST_CATEGORY_GROUPINGS.SITE_ID"
+                        ],
+                        "foreign_key": [
+                            "TEST_KYLIN_FACT.LEAF_CATEG_ID",
+                            "TEST_KYLIN_FACT.LSTG_SITE_ID"
+                        ]
+                    }
+                },
+                {
+                    "table": "EDW.TEST_SITES",
+                    "kind": "LOOKUP",
+                    "alias": "TEST_SITES",
+                    "join": {
+                        "type": "INNER",
+                        "primary_key": [
+                            "TEST_SITES.SITE_ID"
+                        ],
+                        "foreign_key": [
+                            "TEST_KYLIN_FACT.LSTG_SITE_ID"
+                        ]
+                    }
+                },
+                {
+                    "table": "EDW.TEST_SELLER_TYPE_DIM",
+                    "kind": "LOOKUP",
+                    "alias": "TEST_SELLER_TYPE_DIM",
+                    "join": {
+                        "type": "INNER",
+                        "primary_key": [
+                            "TEST_SELLER_TYPE_DIM.SELLER_TYPE_CD"
+                        ],
+                        "foreign_key": [
+                            "TEST_KYLIN_FACT.SLR_SEGMENT_CD"
+                        ]
+                    }
+                },
+                {
+                    "table": "DEFAULT.TEST_ACCOUNT",
+                    "kind": "FACT",
+                    "alias": "SELLER_ACCOUNT",
+                    "join": {
+                        "type": "INNER",
+                        "primary_key": [
+                            "SELLER_ACCOUNT.ACCOUNT_ID"
+                        ],
+                        "foreign_key": [
+                            "TEST_KYLIN_FACT.SELLER_ID"
+                        ]
+                    }
+                },
+                {
+                    "table": "DEFAULT.TEST_ACCOUNT",
+                    "kind": "FACT",
+                    "alias": "BUYER_ACCOUNT",
+                    "join": {
+                        "type": "INNER",
+                        "primary_key": [
+                            "BUYER_ACCOUNT.ACCOUNT_ID"
+                        ],
+                        "foreign_key": [
+                            "TEST_ORDER.BUYER_ID"
+                        ]
+                    }
+                },
+                {
+                    "table": "DEFAULT.TEST_COUNTRY",
+                    "kind": "LOOKUP",
+                    "alias": "SELLER_COUNTRY",
+                    "join": {
+                        "type": "INNER",
+                        "primary_key": [
+                            "SELLER_COUNTRY.COUNTRY"
+                        ],
+                        "foreign_key": [
+                            "SELLER_ACCOUNT.ACCOUNT_COUNTRY"
+                        ]
+                    }
+                },
+                {
+                    "table": "DEFAULT.TEST_COUNTRY",
+                    "kind": "LOOKUP",
+                    "alias": "BUYER_COUNTRY",
+                    "join": {
+                        "type": "INNER",
+                        "primary_key": [
+                            "BUYER_COUNTRY.COUNTRY"
+                        ],
+                        "foreign_key": [
+                            "BUYER_ACCOUNT.ACCOUNT_COUNTRY"
+                        ]
+                    }
+                }
+            ],
+            "dimensions": [
+                {
+                    "table": "TEST_KYLIN_FACT",
+                    "columns": [
+                        "TRANS_ID",
+                        "ORDER_ID",
+                        "CAL_DT",
+                        "LSTG_FORMAT_NAME",
+                        "LSTG_SITE_ID",
+                        "LEAF_CATEG_ID",
+                        "SLR_SEGMENT_CD",
+                        "SELLER_ID",
+                        "TEST_COUNT_DISTINCT_BITMAP",
+                        "DEAL_YEAR",
+                        "SELLER_COUNTRY_ABBR",
+                        "BUYER_COUNTRY_ABBR",
+                        "SELLER_ID_AND_COUNTRY_NAME",
+                        "BUYER_ID_AND_COUNTRY_NAME"
+                    ]
+                },
+                {
+                    "table": "TEST_ORDER",
+                    "columns": [
+                        "ORDER_ID",
+                        "BUYER_ID",
+                        "TEST_DATE_ENC",
+                        "TEST_TIME_ENC",
+                        "TEST_EXTENDED_COLUMN"
+                    ]
+                },
+                {
+                    "table": "BUYER_ACCOUNT",
+                    "columns": [
+                        "ACCOUNT_ID",
+                        "ACCOUNT_BUYER_LEVEL",
+                        "ACCOUNT_SELLER_LEVEL",
+                        "ACCOUNT_COUNTRY",
+                        "ACCOUNT_CONTACT"
+                    ]
+                },
+                {
+                    "table": "SELLER_ACCOUNT",
+                    "columns": [
+                        "ACCOUNT_ID",
+                        "ACCOUNT_BUYER_LEVEL",
+                        "ACCOUNT_SELLER_LEVEL",
+                        "ACCOUNT_COUNTRY",
+                        "ACCOUNT_CONTACT"
+                    ]
+                },
+                {
+                    "table": "TEST_CATEGORY_GROUPINGS",
+                    "columns": [
+                        "LEAF_CATEG_ID",
+                        "SITE_ID",
+                        "META_CATEG_NAME",
+                        "CATEG_LVL2_NAME",
+                        "CATEG_LVL3_NAME",
+                        "USER_DEFINED_FIELD1",
+                        "USER_DEFINED_FIELD3",
+                        "UPD_DATE",
+                        "UPD_USER"
+                    ]
+                },
+                {
+                    "table": "TEST_SITES",
+                    "columns": [
+                        "SITE_ID",
+                        "SITE_NAME",
+                        "CRE_USER"
+                    ]
+                },
+                {
+                    "table": "TEST_SELLER_TYPE_DIM",
+                    "columns": [
+                        "SELLER_TYPE_CD",
+                        "SELLER_TYPE_DESC"
+                    ]
+                },
+                {
+                    "table": "TEST_CAL_DT",
+                    "columns": [
+                        "CAL_DT",
+                        "WEEK_BEG_DT"
+                    ]
+                },
+                {
+                    "table": "BUYER_COUNTRY",
+                    "columns": [
+                        "COUNTRY",
+                        "NAME"
+                    ]
+                },
+                {
+                    "table": "SELLER_COUNTRY",
+                    "columns": [
+                        "COUNTRY",
+                        "NAME"
+                    ]
+                }
+            ],
+            "metrics": [
+                "TEST_KYLIN_FACT.PRICE",
+                "TEST_KYLIN_FACT.ITEM_COUNT",
+                "TEST_KYLIN_FACT.DEAL_AMOUNT"
+            ],
+            "filter_condition": null,
+            "partition_desc": {
+                "partition_date_column": "TEST_KYLIN_FACT.CAL_DT",
+                "partition_time_column": null,
+                "partition_date_start": 0,
+                "partition_date_format": "yyyy-MM-dd",
+                "partition_time_format": "HH:mm:ss",
+                "partition_type": "APPEND",
+                "partition_condition_builder": "org.apache.kylin.metadata.model.PartitionDesc$DefaultPartitionConditionBuilder"
+            },
+            "capacity": "MEDIUM",
+            "multilevel_partition_cols": [],
+            "computed_columns": [
+                {
+                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
+                    "tableAlias": "TEST_KYLIN_FACT",
+                    "columnName": "DEAL_AMOUNT",
+                    "expression": "TEST_KYLIN_FACT.PRICE * TEST_KYLIN_FACT.ITEM_COUNT",
+                    "datatype": "decimal",
+                    "comment": "deal amount of inner join model (with legacy expression format)"
+                },
+                {
+                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
+                    "tableAlias": "TEST_KYLIN_FACT",
+                    "columnName": "DEAL_YEAR",
+                    "expression": "year(TEST_KYLIN_FACT.CAL_DT)",
+                    "datatype": "integer",
+                    "comment": "the year of the deal"
+                },
+                {
+                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
+                    "tableAlias": "TEST_KYLIN_FACT",
+                    "columnName": "BUYER_ID_AND_COUNTRY_NAME",
+                    "expression": "CONCAT(BUYER_ACCOUNT.ACCOUNT_ID, BUYER_COUNTRY.NAME)",
+                    "datatype": "string",
+                    "comment": "synthetically concat buyer's account id and buyer country"
+                },
+                {
+                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
+                    "tableAlias": "TEST_KYLIN_FACT",
+                    "columnName": "SELLER_ID_AND_COUNTRY_NAME",
+                    "expression": "CONCAT(SELLER_ACCOUNT.ACCOUNT_ID, SELLER_COUNTRY.NAME)",
+                    "datatype": "string",
+                    "comment": "synthetically concat seller's account id and seller country"
+                },
+                {
+                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
+                    "tableAlias": "TEST_KYLIN_FACT",
+                    "columnName": "BUYER_COUNTRY_ABBR",
+                    "expression": "SUBSTR(BUYER_ACCOUNT.ACCOUNT_COUNTRY,0,1)",
+                    "datatype": "string",
+                    "comment": "first char of country of buyer account"
+                },
+                {
+                    "tableIdentity": "DEFAULT.TEST_KYLIN_FACT",
+                    "tableAlias": "TEST_KYLIN_FACT",
+                    "columnName": "SELLER_COUNTRY_ABBR",
+                    "expression": "SUBSTR(SELLER_ACCOUNT.ACCOUNT_COUNTRY,0,1)",
+                    "datatype": "string",
+                    "comment": "first char of country of seller account"
+                }
+            ],
+            "project": "default"
+        }
     },
-    {
-      "table": "default.test_category_groupings",
-      "columns": [
-        "leaf_categ_id",
-        "site_id",
-        "USER_DEFINED_FIELD1",
-        "USER_DEFINED_FIELD3",
-        "UPD_DATE",
-        "UPD_USER",
-        "meta_categ_name",
-        "categ_lvl2_name",
-        "categ_lvl3_name"
-      ]
-    },
-    {
-      "table": "edw.test_sites",
-      "columns": [
-        "site_id",
-        "site_name",
-        "cre_user"
-      ]
-    },
-    {
-      "table": "edw.test_seller_type_dim",
-      "columns": [
-        "seller_type_cd",
-        "seller_type_desc"
-      ]
-    },
-    {
-      "table": "edw.test_cal_dt",
-      "columns": [
-        "cal_dt",
-        "week_beg_dt"
-      ]
-    }
-  ],
-  "metrics": [
-  "PRICE",
-  "ITEM_COUNT",
-  "SELLER_ID"
-  ],
-  "last_modified" : 1422435345352,
-  "fact_table" : "DEFAULT.TEST_KYLIN_FACT",
-  "filter_condition" : null,
-  "partition_desc" : {
-    "partition_date_column" : "DEFAULT.TEST_KYLIN_FACT.cal_dt",
-    "partition_date_start" : 0,
-    "partition_type" : "APPEND"
-  }
+    "msg": ""
 }
 ```
 
@@ -359,8 +1123,10 @@
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/rebuild`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
-* cubeName - `必选` `string` Cube 名称.
+* cubeName - `必选` `string` Cube 名称
 
 #### 请求主体
 * startTime - `必选` `long` 要计算的数据对应起始时间的时间戳，应为GMT0格式的
@@ -368,66 +1134,437 @@
 * endTime - `必选` `long` 要计算的数据对应终止时间的时间戳，应为GMT0格式的
   时间戳
 * buildType - `必选` `string` 支持的计算类型: 'BUILD', 'MERGE', 'REFRESH'
+* mpValues - `可选` `string` 对应model的more partition 字段值
 
 #### 响应示例
 ```json
-{  
-   "uuid":"c143e0e4-ac5f-434d-acf3-46b0d15e3dc6",
-   "last_modified":1407908916705,
-   "name":"test_kylin_cube_with_slr_empty - 19700101000000_20140731160000 - BUILD - PDT 2014-08-12 22:48:36",
-   "type":"BUILD",
-   "duration":0,
-   "related_cube":"test_kylin_cube_with_slr_empty",
-   "related_segment":"19700101000000_20140731160000",
-   "exec_start_time":0,
-   "exec_end_time":0,
-   "mr_waiting":0,
-   "steps":[  
-      {  
-         "interruptCmd":null,
-         "name":"Create Intermediate Flat Hive Table",
-         "sequence_id":0,
-         "exec_cmd":"hive -e \"DROP TABLE IF EXISTS kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6;\nCREATE EXTERNAL TABLE IF NOT EXISTS kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6\n(\nCAL_DT date\n,LEAF_CATEG_ID int\n,LSTG_SITE_ID int\n,META_CATEG_NAME string\n,CATEG_LVL2_NAME string\n,CATEG_LVL3_NAME string\n,LSTG_FORMAT_NAME string\n,SLR_SEGMENT_CD smallint\n,SELLER_ID bigint\n,PRICE decimal\n)\nROW FORMAT DELIMITED FIELDS TERMINATED BY '\\177'\nSTORED AS SEQUENCEFILE\nLOCATION '/tmp/kylin-c143e0e4-ac5f-434d-acf3-46b0d15e3dc6/kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6';\nSET mapreduce.job.split.metainfo.maxsize=-1;\nSET mapred.compress.map.output=true;\nSET mapred.map.output.compression.codec=com.hadoop.compression.lzo.LzoCodec;\nSET mapred.output.compress=true;\nSET mapred.output.compression.codec=com.hadoop.compression.lzo.LzoCodec;\nSET mapred.output.compression.type=BLOCK;\nSET mapreduce.job.max.split.locations=2000;\nSET hive.exec.compress.output=true;\nSET hive.auto.convert.join.noconditionaltask = true;\nSET hive.auto.convert.join.noconditionaltask.size = 300000000;\nINSERT OVERWRITE TABLE kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6\nSELECT\nTEST_KYLIN_FACT.CAL_DT\n,TEST_KYLIN_FACT.LEAF_CATEG_ID\n,TEST_KYLIN_FACT.LSTG_SITE_ID\n,TEST_CATEGORY_GROUPINGS.META_CATEG_NAME\n,TEST_CATEGORY_GROUPINGS.CATEG_LVL2_NAME\n,TEST_CATEGORY_GROUPINGS.CATEG_LVL3_NAME\n,TEST_KYLIN_FACT.LSTG_FORMAT_NAME\n,TEST_KYLIN_FACT.SLR_SEGMENT_CD\n,TEST_KYLIN_FACT.SELLER_ID\n,TEST_KYLIN_FACT.PRICE\nFROM TEST_KYLIN_FACT\nINNER JOIN TEST_CAL_DT\nON TEST_KYLIN_FACT.CAL_DT = TEST_CAL_DT.CAL_DT\nINNER JOIN TEST_CATEGORY_GROUPINGS\nON TEST_KYLIN_FACT.LEAF_CATEG_ID = TEST_CATEGORY_GROUPINGS.LEAF_CATEG_ID AND TEST_KYLIN_FACT.LSTG_SITE_ID = TEST_CATEGORY_GROUPINGS.SITE_ID\nINNER JOIN TEST_SITES\nON TEST_KYLIN_FACT.LSTG_SITE_ID = TEST_SITES.SITE_ID\nINNER JOIN TEST_SELLER_TYPE_DIM\nON TEST_KYLIN_FACT.SLR_SEGMENT_CD = TEST_SELLER_TYPE_DIM.SELLER_TYPE_CD\nWHERE (test_kylin_fact.cal_dt < '2014-07-31 16:00:00')\n;\n\"",
-         "interrupt_cmd":null,
-         "exec_start_time":0,
-         "exec_end_time":0,
-         "exec_wait_time":0,
-         "step_status":"PENDING",
-         "cmd_type":"SHELL_CMD_HADOOP",
-         "info":null,
-         "run_async":false
-      },
-      {  
-         "interruptCmd":null,
-         "name":"Extract Fact Table Distinct Columns",
-         "sequence_id":1,
-         "exec_cmd":" -conf C:/kylin/Kylin/server/src/main/resources/hadoop_job_conf_medium.xml -cubename test_kylin_cube_with_slr_empty -input /tmp/kylin-c143e0e4-ac5f-434d-acf3-46b0d15e3dc6/kylin_intermediate_test_kylin_cube_with_slr_desc_19700101000000_20140731160000_c143e0e4_ac5f_434d_acf3_46b0d15e3dc6 -output /tmp/kylin-c143e0e4-ac5f-434d-acf3-46b0d15e3dc6/test_kylin_cube_with_slr_empty/fact_distinct_columns -jobname Kylin_Fact_Distinct_Columns_test_kylin_cube_with_slr_empty_Step_1",
-         "interrupt_cmd":null,
-         "exec_start_time":0,
-         "exec_end_time":0,
-         "exec_wait_time":0,
-         "step_status":"PENDING",
-         "cmd_type":"JAVA_CMD_HADOOP_FACTDISTINCT",
-         "info":null,
-         "run_async":true
-      },
-      {  
-         "interruptCmd":null,
-         "name":"Load HFile to HBase Table",
-         "sequence_id":12,
-         "exec_cmd":" -input /tmp/kylin-c143e0e4-ac5f-434d-acf3-46b0d15e3dc6/test_kylin_cube_with_slr_empty/hfile/ -htablename KYLIN-CUBE-TEST_KYLIN_CUBE_WITH_SLR_EMPTY-19700101000000_20140731160000_11BB4326-5975-4358-804C-70D53642E03A -cubename test_kylin_cube_with_slr_empty",
-         "interrupt_cmd":null,
-         "exec_start_time":0,
-         "exec_end_time":0,
-         "exec_wait_time":0,
-         "step_status":"PENDING",
-         "cmd_type":"JAVA_CMD_HADOOP_NO_MR_BULKLOAD",
-         "info":null,
-         "run_async":false
-      }
-   ],
-   "job_status":"PENDING",
-   "progress":0.0
+{
+    "code": "000",
+    "data": {
+        "uuid": "3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+        "last_modified": 1508837365452,
+        "version": "2.3.0.20500",
+        "name": "BUILD CUBE - mppp_clone1_4142494e - 20171024172711_20171024172711 - GMT+08:00 2017-10-24 17:29:25",
+        "type": "BUILD",
+        "duration": 0,
+        "related_cube": "mppp_clone1_4142494e",
+        "related_segment": "889049e8-5a57-41d8-abcd-3a356d57eea0",
+        "exec_start_time": 0,
+        "exec_end_time": 0,
+        "exec_interrupt_time": 0,
+        "mr_waiting": 0,
+        "steps": [
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-00",
+                "name": "Create Intermediate Flat Hive Table",
+                "sequence_id": 0,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-01",
+                "name": "Redistribute Flat Hive Table",
+                "sequence_id": 1,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-02",
+                "name": "Extract Fact Table Distinct Columns",
+                "sequence_id": 2,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/kylin-3e38d217-0c31-4d9b-9e52-57d10b1e7190/mppp_clone1_4142494e/fact_distinct_columns -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -statisticsenabled true -statisticsoutput hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/kylin-3e38d217-0c31-4d9b-9e52-57d10b1e7190/mppp_clone1_4142494e/fact_distinct_columns/statistics -statisticssamplingpercent 100 -jobname Kylin_Fact_Distinct_Columns_mppp_clone1_4142494e_Step -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-03",
+                "name": "Build Dimension Dictionary",
+                "sequence_id": 3,
+                "exec_cmd": " -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/kylin-3e38d217-0c31-4d9b-9e52-57d10b1e7190/mppp_clone1_4142494e/fact_distinct_columns",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-04",
+                "name": "Save Cuboid Statistics",
+                "sequence_id": 4,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-05",
+                "name": "Sizing Columnar Shards",
+                "sequence_id": 5,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-06",
+                "name": "Build Base Cuboid",
+                "sequence_id": 6,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input FLAT_TABLE -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_base_cuboid -jobname Kylin_Base_Cuboid_Builder_mppp_clone1_4142494e -level 0 -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-07",
+                "name": "Build N-Dimension Cuboid : level 1",
+                "sequence_id": 7,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_base_cuboid -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_1_cuboid -jobname Kylin_ND-Cuboid_Builder_mppp_clone1_4142494e_Step -level 1 -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-08",
+                "name": "Build N-Dimension Cuboid : level 2",
+                "sequence_id": 8,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_1_cuboid -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_2_cuboid -jobname Kylin_ND-Cuboid_Builder_mppp_clone1_4142494e_Step -level 2 -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-09",
+                "name": "Build N-Dimension Cuboid : level 3",
+                "sequence_id": 9,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_2_cuboid -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_3_cuboid -jobname Kylin_ND-Cuboid_Builder_mppp_clone1_4142494e_Step -level 3 -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-10",
+                "name": "Build N-Dimension Cuboid : level 4",
+                "sequence_id": 10,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_3_cuboid -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_4_cuboid -jobname Kylin_ND-Cuboid_Builder_mppp_clone1_4142494e_Step -level 4 -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-11",
+                "name": "Build N-Dimension Cuboid : level 5",
+                "sequence_id": 11,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_4_cuboid -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_5_cuboid -jobname Kylin_ND-Cuboid_Builder_mppp_clone1_4142494e_Step -level 5 -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-12",
+                "name": "Build N-Dimension Cuboid : level 6",
+                "sequence_id": 12,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_5_cuboid -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_6_cuboid -jobname Kylin_ND-Cuboid_Builder_mppp_clone1_4142494e_Step -level 6 -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-13",
+                "name": "Build N-Dimension Cuboid : level 7",
+                "sequence_id": 13,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_6_cuboid -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_7_cuboid -jobname Kylin_ND-Cuboid_Builder_mppp_clone1_4142494e_Step -level 7 -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-14",
+                "name": "Build N-Dimension Cuboid : level 8",
+                "sequence_id": 14,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_7_cuboid -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/level_8_cuboid -jobname Kylin_ND-Cuboid_Builder_mppp_clone1_4142494e_Step -level 8 -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-15",
+                "name": "Clean Layer Cubing Output",
+                "sequence_id": 15,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-16",
+                "name": "Build Cube In-Mem",
+                "sequence_id": 16,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf_inmem.xml -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0//inmem -jobname Kylin_Cube_Builder_mppp_clone1_4142494e -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-17",
+                "name": "Clean InMem Cubing Output",
+                "sequence_id": 17,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-18",
+                "name": "Build Columnar Page Index",
+                "sequence_id": 18,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf_inmem.xml -cubingJobId 3e38d217-0c31-4d9b-9e52-57d10b1e7190 -jobname Kylin_Build_Columnar_Page_Index_mppp_clone1_4142494e_Step -cubename mppp_clone1_4142494e -segmentid 889049e8-5a57-41d8-abcd-3a356d57eea0 -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/ -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0//cube_page_index",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-19",
+                "name": "Clean Cube Index Output",
+                "sequence_id": 19,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-20",
+                "name": "Tarball Columnar Files",
+                "sequence_id": 20,
+                "exec_cmd": " -conf /Users/mingming.ge/Documents/workspace/kap-mp/KAP/extensions/server/../examples/test_case_data/sandbox/kylin_job_conf.xml -jobname Kylin_Parquet_Tarball_mppp_clone1_4142494e_Step -cubename mppp_clone1_4142494e -input hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0/ -output hdfs://sandbox.hortonworks.com:8020/kylin/kylin_mming301_instance/parquet/9836968c-735c-4591-a7ea-77cc3897f808/889049e8-5a57-41d8-abcd-3a356d57eea0//cube_tarball",
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-21",
+                "name": "Clean Cube Tarball Output",
+                "sequence_id": 21,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-22",
+                "name": "Collect Cube File Mapping",
+                "sequence_id": 22,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-23",
+                "name": "Duplicate Files to Remote Cluster",
+                "sequence_id": 23,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-24",
+                "name": "Update Cube Info",
+                "sequence_id": 24,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-25",
+                "name": "Hive Cleanup",
+                "sequence_id": 25,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            },
+            {
+                "interruptCmd": null,
+                "id": "3e38d217-0c31-4d9b-9e52-57d10b1e7190-26",
+                "name": "Garbage Collection",
+                "sequence_id": 26,
+                "exec_cmd": null,
+                "interrupt_cmd": null,
+                "exec_start_time": 0,
+                "exec_end_time": 0,
+                "exec_wait_time": 0,
+                "step_status": "PENDING",
+                "cmd_type": "SHELL_CMD_HADOOP",
+                "info": {},
+                "run_async": false
+            }
+        ],
+        "submitter": "ADMIN",
+        "job_status": "PENDING",
+        "progress": 0
+    },
+    "msg": ""
 }
 ```
 
@@ -435,6 +1572,8 @@
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/clone`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 * cubeName - `必选` `string` 被克隆Cube名称.
@@ -451,6 +1590,8 @@
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/enable`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称.
@@ -508,6 +1649,8 @@
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/disable`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
 * cubeName - `必选` `string` Cube 名称.
 
@@ -519,8 +1662,11 @@
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/purge`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
-* cubeName - `必选` `string` Cube 名称.
+* cubeName - `必选` `string` Cube 名称
+* mpValues - `可选` `string` Model Primary Partition 值
 
 #### 响应示例
 (同 "启用 Cube")
