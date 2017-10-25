@@ -1,8 +1,8 @@
 ## **KAP Across-Hadoop-Cluster Migration**
 
-Please notice that this guide is only available for **KAP Enterprise Plus**. 
+Please notice that this guide is only available for **KAP Enterprise Plus**. It includes whole KAP instance migration and single Cube migration.
 
-**The migration job contains two tasks:**
+**The whole KAP instance migration job contains two tasks:**
 
 + Dump metadata from Source Hadoop Cluster (SHC) and put it to HDFS.
 + Distcp KAP instance data from SHC to Destination Hadoop Cluster (DHC).
@@ -30,3 +30,28 @@ In SHC, run `bin/cluster-migration.sh backup`
 *Step4*:
 
 In DHC, run `bin/cluster-migration.sh restore hdfs://SHC-namenode/kylin_working_dir`
+
+
+
+**The single Cube migration job also contains two tasks:**
+
+- Dump Cube related metadata and  its cuing data, and put them to /tmp on HDFS .
+- Distcp Cube related metadata and  its cuing data to DHC.
+
+It leverages script `bin/kylin io.kyligence.kap.tool.release.KapCubeMigrationCLI` to complete these two tasks.
+
+**Requirements:**
+
+The two clusters are connected and command: **hadoop distcp** is available. 
+
+**Usages:**
+
+*Step1*:
+
+In SHC, run `KAP_DIR/bin/kylin io.kyligence.kap.tool.release.KapCubeMigrationCLI backup cubeName`
+
+*Step2*:
+
+In DHC, run `KAP_DIR/bin/kylin io.kyligence.kap.tool.release.KapCubeMigrationCLI restore cubeName toProject hdfs://SHC_IP overwrite`
+
+If overwrite set to ture, will overwrite the cube no mater if there is already a cube in dest project. Otherwise it will throw exception like: already exists on target metadata store. Use overwriteIfExists to overwrite it. 
