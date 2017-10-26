@@ -17,6 +17,8 @@
 
 `访问路径 http://host:port/kylin/api/query`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### 请求主体
 * sql - `必选` `string` 查询的sql.
 * offset - `可选` `int` 查询默认从第一行返回结果，可以设置改参数设置返回数据从哪一行开始往后返回
@@ -46,88 +48,68 @@
 * affectedRowCount - 这个查询关系到的总行数.
 * isException - 这个查询返回是否是异常.
 * ExceptionMessage - 返回异常对应的内容.
+* totalScanCount - 总记录数
+* totalScanBytes - 总字节数
+* hitExceptionCache - 是否来自执行失败的结果缓存
+* storageCacheUsed - 是否来自执行成功的结果缓存
 * Duration - 查询消耗时间
 * Partial - 这个查询结果是否为部分返回，这个取决于请求参数中的 acceptPartial 为true或者false.
+* pushDown - 是否启用查询下压
 
 #### 响应示例
 ```json
-{  
-   "columnMetas":[  
-      {  
-         "isNullable":1,
-         "displaySize":0,
-         "label":"CAL_DT",
-         "name":"CAL_DT",
-         "schemaName":null,
-         "catelogName":null,
-         "tableName":null,
-         "precision":0,
-         "scale":0,
-         "columnType":91,
-         "columnTypeName":"DATE",
-         "readOnly":true,
-         "writable":false,
-         "caseSensitive":true,
-         "searchable":false,
-         "currency":false,
-         "signed":true,
-         "autoIncrement":false,
-         "definitelyWritable":false
-      },
-      {  
-         "isNullable":1,
-         "displaySize":10,
-         "label":"LEAF_CATEG_ID",
-         "name":"LEAF_CATEG_ID",
-         "schemaName":null,
-         "catelogName":null,
-         "tableName":null,
-         "precision":10,
-         "scale":0,
-         "columnType":4,
-         "columnTypeName":"INTEGER",
-         "readOnly":true,
-         "writable":false,
-         "caseSensitive":true,
-         "searchable":false,
-         "currency":false,
-         "signed":true,
-         "autoIncrement":false,
-         "definitelyWritable":false
-      }
-   ],
-   "results":[  
-      [  
-         "2013-08-07",
-         "32996",
-         "15",
-         "15",
-         "Auction",
-         "10000000",
-         "49.048952730908745",
-         "49.048952730908745",
-         "49.048952730908745",
-         "1"
-      ],
-      [  
-         "2013-08-07",
-         "43398",
-         "0",
-         "14",
-         "ABIN",
-         "10000633",
-         "85.78317064220418",
-         "85.78317064220418",
-         "85.78317064220418",
-         "1"
-      ]
-   ],
-   "cube":"test_kylin_cube_with_slr_desc",
-   "affectedRowCount":0,
-   "isException":false,
-   "exceptionMessage":null,
-   "duration":3451,
-   "partial":false
+{
+    "code":"000",
+    "data":{
+        "columnMetas":[
+            {
+                "isNullable":1,
+                "displaySize":19,
+                "label":"TRANS_ID",
+                "name":"TRANS_ID",
+                "schemaName":"DEFAULT",
+                "catelogName":null,
+                "tableName":"TEST_KYLIN_FACT",
+                "precision":19,
+                "scale":0,
+                "columnType":-5,
+                "columnTypeName":"BIGINT",
+                "readOnly":true,
+                "signed":true,
+                "writable":false,
+                "autoIncrement":false,
+                "caseSensitive":true,
+                "searchable":false,
+                "currency":false,
+                "definitelyWritable":false
+            }
+        ],
+        "results":[
+            [
+                "0",
+                "27",
+                "2012-01-01",
+                "ABIN",
+                "223",
+                "0",
+                "12",
+                "10000843",
+                "TEST322"
+            ]
+        ],
+        "cube":"CUBE[name=mp_cube1]",
+        "affectedRowCount":0,
+        "isException":false,
+        "exceptionMessage":null,
+        "duration":1046,
+        "totalScanCount":2014,
+        "totalScanBytes":30210,
+        "hitExceptionCache":false,
+        "storageCacheUsed":false,
+        "partial":false,
+        "pushDown":false
+    },
+    "msg":""
 }
 ```
 
@@ -142,76 +124,506 @@ curl -X POST -H "Authorization: Basic XXXXXXXXX" -H "Content-Type: application/j
 
 `访问路径 http://host:port/kylin/api/tables_and_columns`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### 请求参数
 * project - `必选` `string` 说明对应要列出哪个Project下的表 
 
 #### 响应示例
 ```json
-[  
-   {  
-      "columns":[  
-         {  
-            "table_NAME":"TEST_CAL_DT",
-            "table_SCHEM":"EDW",
-            "column_NAME":"CAL_DT",
-            "data_TYPE":91,
-            "nullable":1,
-            "column_SIZE":-1,
-            "buffer_LENGTH":-1,
-            "decimal_DIGITS":0,
-            "num_PREC_RADIX":10,
-            "column_DEF":null,
-            "sql_DATA_TYPE":-1,
-            "sql_DATETIME_SUB":-1,
-            "char_OCTET_LENGTH":-1,
-            "ordinal_POSITION":1,
-            "is_NULLABLE":"YES",
-            "scope_CATLOG":null,
-            "scope_SCHEMA":null,
-            "scope_TABLE":null,
-            "source_DATA_TYPE":-1,
-            "iS_AUTOINCREMENT":null,
-            "table_CAT":"defaultCatalog",
-            "remarks":null,
-            "type_NAME":"DATE"
-         },
-         {  
-            "table_NAME":"TEST_CAL_DT",
-            "table_SCHEM":"EDW",
-            "column_NAME":"WEEK_BEG_DT",
-            "data_TYPE":91,
-            "nullable":1,
-            "column_SIZE":-1,
-            "buffer_LENGTH":-1,
-            "decimal_DIGITS":0,
-            "num_PREC_RADIX":10,
-            "column_DEF":null,
-            "sql_DATA_TYPE":-1,
-            "sql_DATETIME_SUB":-1,
-            "char_OCTET_LENGTH":-1,
-            "ordinal_POSITION":2,
-            "is_NULLABLE":"YES",
-            "scope_CATLOG":null,
-            "scope_SCHEMA":null,
-            "scope_TABLE":null,
-            "source_DATA_TYPE":-1,
-            "iS_AUTOINCREMENT":null,
-            "table_CAT":"defaultCatalog",
-            "remarks":null,
-            "type_NAME":"DATE"
-         }
-      ],
-      "table_NAME":"TEST_CAL_DT",
-      "table_SCHEM":"EDW",
-      "ref_GENERATION":null,
-      "self_REFERENCING_COL_NAME":null,
-      "type_SCHEM":null,
-      "table_TYPE":"TABLE",
-      "table_CAT":"defaultCatalog",
-      "remarks":null,
-      "type_CAT":null,
-      "type_NAME":null
-   }
-]
+{
+    "code": "000",
+    "data": [
+        {
+            "columns": [
+                {
+                    "type": [
+                        "DIMENSION"
+                    ],
+                    "column_NAME": "MINUTE_START",
+                    "data_TYPE": 93,
+                    "column_SIZE": 0,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": 0,
+                    "ordinal_POSITION": 1,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "STREAMING_TABLE",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "TIMESTAMP(0)"
+                },
+                {
+                    "type": [
+                        "DIMENSION"
+                    ],
+                    "column_NAME": "HOUR_START",
+                    "data_TYPE": 93,
+                    "column_SIZE": 0,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": 0,
+                    "ordinal_POSITION": 2,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "STREAMING_TABLE",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "TIMESTAMP(0)"
+                },
+                {
+                    "type": [
+                        "DIMENSION"
+                    ],
+                    "column_NAME": "DAY_START",
+                    "data_TYPE": 91,
+                    "column_SIZE": -1,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": -1,
+                    "ordinal_POSITION": 3,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "STREAMING_TABLE",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "DATE"
+                },
+                {
+                    "type": [
+                        "DIMENSION"
+                    ],
+                    "column_NAME": "ITM",
+                    "data_TYPE": 12,
+                    "column_SIZE": 256,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": 256,
+                    "ordinal_POSITION": 4,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "STREAMING_TABLE",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "VARCHAR(256) CHARACTER SET \"UTF-16LE\" COLLATE \"UTF-16LE$en_US$primary\""
+                },
+                {
+                    "type": [
+                        "DIMENSION"
+                    ],
+                    "column_NAME": "SITE",
+                    "data_TYPE": 12,
+                    "column_SIZE": 256,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": 256,
+                    "ordinal_POSITION": 5,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "STREAMING_TABLE",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "VARCHAR(256) CHARACTER SET \"UTF-16LE\" COLLATE \"UTF-16LE$en_US$primary\""
+                },
+                {
+                    "type": [
+                        "MEASURE"
+                    ],
+                    "column_NAME": "GMV",
+                    "data_TYPE": 3,
+                    "column_SIZE": 19,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 6,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": 19,
+                    "ordinal_POSITION": 6,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "STREAMING_TABLE",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "DECIMAL(19, 6)"
+                },
+                {
+                    "type": [
+                        "MEASURE"
+                    ],
+                    "column_NAME": "ITEM_COUNT",
+                    "data_TYPE": -5,
+                    "column_SIZE": -1,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": -1,
+                    "ordinal_POSITION": 7,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "STREAMING_TABLE",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "BIGINT"
+                }
+            ],
+            "type": [
+                "FACT"
+            ],
+            "table_NAME": "STREAMING_TABLE",
+            "table_SCHEM": "DEFAULT",
+            "table_CAT": "defaultCatalog",
+            "table_TYPE": "TABLE",
+            "remarks": null,
+            "type_CAT": null,
+            "type_SCHEM": null,
+            "type_NAME": null,
+            "self_REFERENCING_COL_NAME": null,
+            "ref_GENERATION": null
+        },
+        {
+            "columns": [
+                {
+                    "type": [
+                        "DIMENSION"
+                    ],
+                    "column_NAME": "TRANS_ID",
+                    "data_TYPE": -5,
+                    "column_SIZE": -1,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": -1,
+                    "ordinal_POSITION": 1,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "TEST_KYLIN_FACT",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "BIGINT"
+                },
+                {
+                    "type": [
+                        "DIMENSION",
+                        "FK"
+                    ],
+                    "column_NAME": "ORDER_ID",
+                    "data_TYPE": -5,
+                    "column_SIZE": -1,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": -1,
+                    "ordinal_POSITION": 2,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "TEST_KYLIN_FACT",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "BIGINT"
+                },
+                {
+                    "type": [
+                        "DIMENSION",
+                        "FK"
+                    ],
+                    "column_NAME": "CAL_DT",
+                    "data_TYPE": 91,
+                    "column_SIZE": -1,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": -1,
+                    "ordinal_POSITION": 3,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "TEST_KYLIN_FACT",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "DATE"
+                },
+                {
+                    "type": [
+                        "DIMENSION"
+                    ],
+                    "column_NAME": "LSTG_FORMAT_NAME",
+                    "data_TYPE": 12,
+                    "column_SIZE": 256,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": 256,
+                    "ordinal_POSITION": 4,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "TEST_KYLIN_FACT",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "VARCHAR(256) CHARACTER SET \"UTF-16LE\" COLLATE \"UTF-16LE$en_US$primary\""
+                },
+                {
+                    "type": [
+                        "DIMENSION",
+                        "FK"
+                    ],
+                    "column_NAME": "LEAF_CATEG_ID",
+                    "data_TYPE": -5,
+                    "column_SIZE": -1,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": -1,
+                    "ordinal_POSITION": 5,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "TEST_KYLIN_FACT",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "BIGINT"
+                },
+                {
+                    "type": [
+                        "DIMENSION",
+                        "FK"
+                    ],
+                    "column_NAME": "LSTG_SITE_ID",
+                    "data_TYPE": 4,
+                    "column_SIZE": -1,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": -1,
+                    "ordinal_POSITION": 6,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "TEST_KYLIN_FACT",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "INTEGER"
+                },
+                {
+                    "type": [
+                        "DIMENSION",
+                        "FK"
+                    ],
+                    "column_NAME": "SLR_SEGMENT_CD",
+                    "data_TYPE": 5,
+                    "column_SIZE": -1,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": -1,
+                    "ordinal_POSITION": 7,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "TEST_KYLIN_FACT",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "SMALLINT"
+                },
+                {
+                    "type": [
+                        "DIMENSION",
+                        "FK"
+                    ],
+                    "column_NAME": "SELLER_ID",
+                    "data_TYPE": 4,
+                    "column_SIZE": -1,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": -1,
+                    "ordinal_POSITION": 8,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "TEST_KYLIN_FACT",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "INTEGER"
+                },
+                {
+                    "type": [
+                        "DIMENSION"
+                    ],
+                    "column_NAME": "TEST_COUNT_DISTINCT_BITMAP",
+                    "data_TYPE": 12,
+                    "column_SIZE": 256,
+                    "buffer_LENGTH": -1,
+                    "decimal_DIGITS": 0,
+                    "num_PREC_RADIX": 10,
+                    "nullable": 1,
+                    "column_DEF": null,
+                    "sql_DATA_TYPE": -1,
+                    "sql_DATETIME_SUB": -1,
+                    "char_OCTET_LENGTH": 256,
+                    "ordinal_POSITION": 9,
+                    "is_NULLABLE": "YES",
+                    "scope_CATLOG": null,
+                    "scope_SCHEMA": null,
+                    "scope_TABLE": null,
+                    "source_DATA_TYPE": -1,
+                    "is_AUTOINCREMENT": "",
+                    "table_NAME": "TEST_KYLIN_FACT",
+                    "table_SCHEM": "DEFAULT",
+                    "table_CAT": "defaultCatalog",
+                    "remarks": null,
+                    "type_NAME": "VARCHAR(256) CHARACTER SET \"UTF-16LE\" COLLATE \"UTF-16LE$en_US$primary\""
+                }
+            ],
+            "type": [
+                "FACT"
+            ],
+            "table_NAME": "TEST_KYLIN_FACT",
+            "table_SCHEM": "DEFAULT",
+            "table_CAT": "defaultCatalog",
+            "table_TYPE": "TABLE",
+            "remarks": null,
+            "type_CAT": null,
+            "type_SCHEM": null,
+            "type_NAME": null,
+            "self_REFERENCING_COL_NAME": null,
+            "ref_GENERATION": null
+        }
+    ],
+    "msg": ""
+}
 ```
 

@@ -16,6 +16,8 @@
 
 `访问路径 http://host:port/kylin/api/jobs/{jobId}/resume`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### 路径变量
 * jobId - `必选` `string` Job id.
 
@@ -85,6 +87,8 @@
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/jobs/{jobId}/cancel`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### 路径变量
 * jobId - `必选` `string` Job id.
