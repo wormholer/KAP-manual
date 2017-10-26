@@ -211,15 +211,15 @@ Click the green button **Sync Cubes From Kylin** after selecting a project, then
 
 The schema could be edited online in KyAnalyzer. Usually, it does not need to be modified.
 
-### Query Permission to Project/Table/Cell-level 
-User's query permission to a project and cubes in KyAnalyzer are consistent with KAP. For more details, please refer to [Manage Permissions](../security/acl.en.md).  
+### Access Permission to Project/Table/Cell-level 
+Access permission to a project and cubes in KyAnalyzer are consistent with KAP. For more details, please refer to [Manage Permissions](../security/acl.en.md).  
 
 User's data access to table/row/column in KyAnalyzer would be consistent with KAP. Except that in KyAnalyzer V2.5.0, a user without query permission to a table (table-level access has been removed for a table) cannot sync any Cube that using this table. For details regarding the data access control in KAP, please refer to [Data Access Control](../security/data_access_control.en.md). 
 
-### New a Query
+### Create a New Query
 Click the button **New Query** at the navigation bar, click the button **Refresh** to fetch the latest metadata, and then select the cube to query under the **Cubes** dropdown menu. Now all dimensions and measures are shown. In the report design area, here are four panels: **Measures**, **Columns**, **Rows**, and **Filter**. Users could drag measures into **Measures** panel, and dimensions into **Columns** and **Rows** panels.
 
-![New a Query](images/cube_refresh.png)
+![Create a New Query](images/cube_refresh.png)
 
 ### Data Visulization
 KyAnalyzer supports many types of data visulization, such as table, bar, stacked bar, line chart, area chart, heat grid, tree map, pie chart, dot chart, and water fall chart. Here we illustrate some examples.
