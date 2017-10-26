@@ -128,6 +128,7 @@
     * [Cross Hadoop Cluster Migration](operation/cluster_migration.en.md)
     * [Hadoop Queue Configuration](operation/hadoop_queue.en.md)
 * [KAP Release Notes](release/README.md)
+    * [KAP 2.5 Release Notes](release/KAP_2_5_notes.en.md)
     * [KAP 2.4 Release Notes](release/KAP_2_4_notes.en.md)
     * [KAP 2.3 Release Notes](release/KAP_2_3_notes.en.md)
     * [KAP 2.2 Release Notes](release/KAP_2_2_notes.en.md)
