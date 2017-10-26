@@ -1,11 +1,11 @@
 ## Access and Authentication
 
 ### Access information
-The access prefix of KAP API is "/kylin/api" , this prefix is required regardless of which module API is accessed,  such as access all cube whose API is "/kylin/api/cubes", and correspondingly the complete path is http://host:port/kylin/api/cubes .
+The access prefix of KAP API is "/kylin/api". This prefix is required regardless of which module API is accessed,  such as accessing all cubes whose APIs are "/kylin/api/cubes", and correspondingly the complete path is http://host:port/kylin/api/cubes.
 
 
 ### Authentication
-All APIs in KAP are based on [basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) authentication mechanism. Basic Authentication is a simple access control mechanism, which encodes account and password information based on Base64, and add these information as request headers to HTTP request headers, then the back-end will read account information from the request header for authentication. Take KAP default account password ADMIN / KYLIN as an example, after encoding, the corresponding account password would be "Basic QURNSU46S1lMSU4 =", so the corresponding HTTP header information is "Authorization: Basic QURNSU46S1lMSU4 =". 
+All APIs in KAP are based on [basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) authentication mechanism. Basic Authentication is a simple access control mechanism, which encodes account and password information based on Base64, and add these information as request headers to HTTP request headers, then the back-end will read account information from the request header for authentication. Take KAP default account password ADMIN:KYLIN as an example, after encoding, the corresponding account password would be "Basic QURNSU46S1lMSU4 =", so the corresponding HTTP header information is "Authorization: Basic QURNSU46S1lMSU4 =". 
 
 ### Authentication essentials
 * Add `Authorization` to HTTP header
@@ -38,7 +38,7 @@ $.ajaxSetup({
   });
 ```
 
-How does Javascript generate authorization information( download "jquery.base64.js" [https://github.com/yckart/jquery.base64.js](https://github.com/yckart/jquery.base64.js)).
+How does Javascript generate authorization information (download "jquery.base64.js" [https://github.com/yckart/jquery.base64.js](https://github.com/yckart/jquery.base64.js)).
 
 ```
 var authorizationCode = $.base64('encode', 'NT_USERNAME' + ":" + 'NT_PASSWORD');
