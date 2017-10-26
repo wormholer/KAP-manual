@@ -65,7 +65,7 @@ KyAnalyzer will save the data under the directories: *repository* and *data*. Su
 
 * Notice the default port is 8080, which means that you can visit http://{hostname}:8080 to access KyAnalyzer login page. If you need to change this port, please also config the tomcat/conf/server.xml file or copy and replace the config file of KyAnalyzer-1 to this file.
 
-### About the Versions and Functions of KyAnalyzer, KAP and Mondrian-Kylin
+### Compatibility of KyAnalyzer, KAP and Mondrain-kylin
 
 <table>
     <tr>
@@ -130,7 +130,7 @@ KyAnalyzer will save the data under the directories: *repository* and *data*. Su
     </tr>
 </table>
 
-### About the Versions and Functions of KyAnalyzer, Apache Kylin, and Mondrian-Kylin
+### Compatibility of KyAnalyzer, Apache Kylin and Mondrain-kylin
 
 <table>
     <tr>
