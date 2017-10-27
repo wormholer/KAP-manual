@@ -16,6 +16,8 @@
 
 `Access Path http://host:port/kylin/api/jobs/{jobId}/resume`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### Path Variable
 * jobId - `required` `string` job id.
 
@@ -85,6 +87,8 @@
 `Request Mode PUT`
 
 `Access Path http://host:port/kylin/api/jobs/{jobId}/cancel`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### Path Variable
 * jobId - `required` `string` Job id.

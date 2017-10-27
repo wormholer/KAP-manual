@@ -6,12 +6,30 @@
 >
 
 
-### Purge Cache
+### Purge Cluster Cache
 `Request Mode PUT`
 
-`Access Path http://host:port/kylin/api/cache/{type}/{name}/{action}`
+`Access Path http://host:port/kylin/api/cache/announce/{entity}/{cacheKey}/{event}`
 
-#### Path Parameter
-* type - `required` `string` 'METADATA' or 'CUBE'
-* name - `required` `string` cache key, such as Cube name
-* action - `required` `string` 'create', 'update' or 'drop'
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+
+### Path Variable
+- entity - `required` `string` 'METADATA' or 'CUBE'.
+- cacheKey - `required` `string` cache key, such as Cube name.
+- event - `required` `string` 'create', 'update' or 'drop'.
+
+
+### Purge Single Node Cache
+
+`Request Mode PUT`
+
+`Access Path http://host:port/kylin/api/cache/{entity}/{cacheKey}/{event}`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+### Path Variable
+
+- entity - `required` `string`, 'METADATA' or 'CUBE'.
+- cacheKey - `required` `string`, cache key, such as Cube name.
+- event - `required` `string`, 'create', 'update' or 'drop'.

@@ -6,162 +6,119 @@
 >
 
 
-* [List Models](#list-models)
-* [Get the Model](#get-model)
+* [List Model](#list-model)
 * [Clone Model](#clone-model)
 * [Drop Model](#drop-model)
 
-### List Models
+### List Model
 `Request Mode GET`
 
 `Access Path http://host:port/kylin/api/models`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### Request Body
-* offset - `optional` `int` get data start subscript
-* limit - `required` `int ` how many lines would be included in each returned page
-* modelName - `optional` `string` returned name is the keyword related model
-* projectName - `optional` `string` specify the returned project
+* offset - `optional` `int`, default 0, get data start subscript.
+* limit - `optional` `int `, default 10, how many lines would be included in each returned page.
+* modelName - `optional` `string`, returned name is the keyword related model.
+* exactMatch - `optional` `boolean`, default true, specify whether matching exactly with modelName.
+* projectName - `optional` `string`, specify the returned project.
 
 #### Response Example
 ```sh
-［
-  {
-   
-    "uuid" : "ff527b94-f860-44c3-8452-93b17774c647",
-    "name" : "test_kylin_inner_join_model_desc",
-    "lookups" : [ {
-      "table" : "EDW.TEST_CAL_DT",
-      "join" : {
-        "type" : "inner",
-        "primary_key" : [ "CAL_DT" ],
-        "foreign_key" : [ "CAL_DT" ]
-      }
-    }, {
-      "table" : "DEFAULT.TEST_CATEGORY_GROUPINGS",
-      "join" : {
-        "type" : "inner",
-        "primary_key" : [ "LEAF_CATEG_ID", "SITE_ID" ],
-        "foreign_key" : [ "LEAF_CATEG_ID", "LSTG_SITE_ID" ]
-      }
-    }, {
-      "table" : "EDW.TEST_SITES",
-      "join" : {
-        "type" : "inner",
-        "primary_key" : [ "SITE_ID" ],
-        "foreign_key" : [ "LSTG_SITE_ID" ]
-      }
-    }, {
-      "table" : "EDW.TEST_SELLER_TYPE_DIM",
-      "join" : {
-        "type" : "inner",
-        "primary_key" : [ "SELLER_TYPE_CD" ],
-        "foreign_key" : [ "SLR_SEGMENT_CD" ]
-      }
-    } ],
-    "dimensions": [
-      {
-        "table": "default.test_kylin_fact",
-        "columns": [
-          "lstg_format_name",
-          "LSTG_SITE_ID",
-          "SLR_SEGMENT_CD",
-          "TRANS_ID",
-          "CAL_DT",
-          "LEAF_CATEG_ID",
-          "SELLER_ID"
-        ]
-      },
-      {
-        "table": "default.test_category_groupings",
-        "columns": [
-          "leaf_categ_id",
-          "site_id",
-          "USER_DEFINED_FIELD1",
-          "USER_DEFINED_FIELD3",
-          "UPD_DATE",
-          "UPD_USER",
-          "meta_categ_name",
-          "categ_lvl2_name",
-          "categ_lvl3_name"
-        ]
-      },
-      {
-        "table": "edw.test_sites",
-        "columns": [
-          "site_id",
-          "site_name",
-          "cre_user"
-        ]
-      },
-      {
-        "table": "edw.test_seller_type_dim",
-        "columns": [
-          "seller_type_cd",
-          "seller_type_desc"
-        ]
-      },
-      {
-        "table": "edw.test_cal_dt",
-        "columns": [
-          "cal_dt",
-          "week_beg_dt"
-        ]
-      }
-    ],
-    "metrics": [
-    "PRICE",
-    "ITEM_COUNT",
-    "SELLER_ID"
-    ],
-    "last_modified" : 1422435345352,
-    "fact_table" : "DEFAULT.TEST_KYLIN_FACT",
-    "filter_condition" : null,
-    "partition_desc" : {
-      "partition_date_column" : "DEFAULT.TEST_KYLIN_FACT.cal_dt",
-      "partition_date_start" : 0,
-      "partition_type" : "APPEND"
-    }
-  }
-  ］
+{
+    "code": "000",
+    "data": {
+        "models": [
+            {
+                "uuid": "63c20e51-c580-49dd-b1dc-7bec621c7b03",
+                "last_modified": 1509006427481,
+                "version": "2.3.0.20500",
+                "name": "m1",
+                "owner": "ADMIN",
+                "is_draft": false,
+                "description": "",
+                "fact_table": "DEFAULT.TEST_KYLIN_FACT",
+                "lookups": [],
+                "dimensions": [
+                    {
+                        "table": "TEST_KYLIN_FACT",
+                        "columns": [
+                            "TRANS_ID",
+                            "ORDER_ID",
+                            "CAL_DT",
+                            "LSTG_FORMAT_NAME",
+                            "LEAF_CATEG_ID",
+                            "LSTG_SITE_ID",
+                            "SLR_SEGMENT_CD",
+                            "SELLER_ID",
+                            "TEST_COUNT_DISTINCT_BITMAP"
+                        ]
+                    }
+                ],
+                "metrics": [
+                    "TEST_KYLIN_FACT.PRICE",
+                    "TEST_KYLIN_FACT.ITEM_COUNT"
+                ],
+                "filter_condition": "",
+                "partition_desc": {
+                    "partition_date_column": "TEST_KYLIN_FACT.CAL_DT",
+                    "partition_time_column": null,
+                    "partition_date_start": 0,
+                    "partition_date_format": "yyyy-MM-dd",
+                    "partition_time_format": "",
+                    "partition_type": "APPEND",
+                    "partition_condition_builder": "io.kyligence.kap.cube.mp.MPSqlCondBuilder"
+                },
+                "capacity": "MEDIUM",
+                "multilevel_partition_cols": [
+                    "TEST_KYLIN_FACT.LSTG_FORMAT_NAME"
+                ],
+                "computed_columns": [],
+                "project": "default"
+            }
+        ],
+        "size": 1
+    },
+    "msg": ""
+}   
 ```
-
-### Get Model
-`Request Mode GET`
-
-`Access Path http://host:port/kylin/api/model/{modelName}`
-
-#### Path Variable
-* modelName - `required` `string` Obtained models' name.
 
 ### Clone Model
 `Request Mode PUT`
 
 `Access Path http://host:port/kylin/api/models/{modelName}/clone`
 
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
 #### Path Variable
-* modelName - `required` `string` The name of the cloned model.
+* modelName - `required` `string`, the name of the cloned model.
 
 #### Request Body
-* modelName - `required` `string` New models' name.
-* project - `required` `string` New projects' name. 
+* modelName - `required` `string`, new models' name.
+* project - `required` `string`, new projects' name. 
 
 
 #### Response Example
 ```sh
-  {
-    message:null,
-    modelDescData:null,
-    modelName:"kylin_sales_model_clone",
-    project:"learn_kylin",
-    successful:true,
-    uuid:"c9d164f9-3e1a-425f-b41e-591223e6e91a"
+ {
+    "code": "000",
+    "data": {
+        "modelDescData": "{\n  \"uuid\" : \"60f4e30e-f50f-4abf-8ad2-4f34233aae21\",\n  \"last_modified\" : 1509010496630,\n  \"version\" : \"2.3.0.20500\",\n  \"name\" : \"m2\",\n  \"owner\" : \"ADMIN\",\n  \"is_draft\" : false,\n  \"description\" : \"\",\n  \"fact_table\" : \"DEFAULT.TEST_KYLIN_FACT\",\n  \"lookups\" : [ ],\n  \"dimensions\" : [ {\n    \"table\" : \"TEST_KYLIN_FACT\",\n    \"columns\" : [ \"TRANS_ID\", \"ORDER_ID\", \"CAL_DT\", \"LSTG_FORMAT_NAME\", \"LEAF_CATEG_ID\", \"LSTG_SITE_ID\", \"SLR_SEGMENT_CD\", \"SELLER_ID\", \"TEST_COUNT_DISTINCT_BITMAP\" ]\n  } ],\n  \"metrics\" : [ \"TEST_KYLIN_FACT.PRICE\", \"TEST_KYLIN_FACT.ITEM_COUNT\" ],\n  \"filter_condition\" : \"\",\n  \"partition_desc\" : {\n    \"partition_date_column\" : \"TEST_KYLIN_FACT.CAL_DT\",\n    \"partition_time_column\" : null,\n    \"partition_date_start\" : 0,\n    \"partition_date_format\" : \"yyyy-MM-dd\",\n    \"partition_time_format\" : \"\",\n    \"partition_type\" : \"APPEND\",\n    \"partition_condition_builder\" : \"io.kyligence.kap.cube.mp.MPSqlCondBuilder\"\n  },\n  \"capacity\" : \"MEDIUM\",\n  \"multilevel_partition_cols\" : [ \"TEST_KYLIN_FACT.LSTG_FORMAT_NAME\" ],\n  \"computed_columns\" : [ ]\n}",
+        "uuid": "60f4e30e-f50f-4abf-8ad2-4f34233aae21"
+    },
+    "msg": ""
 }
 ```
 
 ### Drop Model 
 `Request Mode DELETE`
 
-`Access Path http://host:port/kylin/api/model/{modelName}`
+`Access Path http://host:port/kylin/api/model/{projectName}/{modelName}`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
 
 #### Path Variable
-* modelName - `required` `string` Data models' name.
+* projectName - `required` `string`, project name.
+* modelName - `required` `string`, data models' name.
+
