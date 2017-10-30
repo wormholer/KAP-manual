@@ -123,6 +123,7 @@
     * [基本运维](operation/basic_ops.cn.md)
     * [元数据备份](operation/metadata_backup.cn.md)
     * [元数据恢复](operation/metadata_restore.cn.md)
+    * [元数据检查](operation/metadata_check.cn.md)
     * [垃圾清理](operation/storage_cleanup.cn.md)
     * [跨集群迁移](operation/cluster_migration.cn.md)
     * [Hybrid Cube](operation/hybrid_cube.cn.md)
