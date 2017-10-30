@@ -1,14 +1,14 @@
 ## Metadata Check
 
-Ussally we suggest users to backup metadata, in order to recovery quickly. However, KAP is still blocked by metadata inconsistence and there are no available metadata backup.  In this case, try to use metadata check to resolve the issues.
+Usually we suggest you to backup metadata in any case. Now you can use metadata checker to recover medatada in some cases when metadata inconsistence happens weirdly.
 
-Run metadata check：
+Run metadata checker to identify isolated metadata:
 
 ```
 bin/kylin.sh io.kyligence.kap.tool.metadata.MetadataChecker check
 ```
 
-If there are indeed some inconsistent metadata, run metadata recovery ：
+If there are isolated metadata, run following command to recover the metadata ：
 
 ```
 bin/kylin.sh io.kyligence.kap.tool.metadata.MetadataChecker recovery
