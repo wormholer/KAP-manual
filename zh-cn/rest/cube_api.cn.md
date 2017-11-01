@@ -10,7 +10,8 @@
 * [返回指定Cube](#返回指定cube)
 * [返回Cube描述信息](#返回cube描述信息)
 * [返回数据模型](#返回数据模型)
-* [构建 Cube](#构建cube)
+* [构建 Cube-日期分区](#构建cube-日期分区)
+* [构建 Cube-非日期分区](#构建cube-非日期分区)
 * [克隆 Cube](#克隆cube)
 * [启用 Cube](#启用cube)
 * [禁用 Cube](#禁用cube)
@@ -476,7 +477,7 @@
 }
 ```
 
-### 构建Cube
+### 构建Cube-日期分区
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/{cubeName}/rebuild`
@@ -491,7 +492,7 @@
   时间戳 , e.g. 1388563200000 for 2014-1-1
 * endTime - `必选` `long` 要计算的数据对应终止时间的时间戳，应为GMT0格式的
   时间戳
-* buildType - `必选` `string` 支持的计算类型: 'BUILD', 'MERGE', 'REFRESH'
+* buildType - `必选` `string` 支持的计算类型: 'BUILD'
 * mpValues - `可选` `string` 对应model的more partition 字段值
 
 #### 响应示例
@@ -535,6 +536,23 @@
     "msg": ""
 }
 ```
+
+### 构建Cube-非日期分区
+`请求方式 PUT`
+
+`访问路径 http://host:port/kylin/api/cubes/{cubeName}/build_by_offset`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+#### 路径变量
+* cubeName - `必选` `string` Cube 名称
+
+#### 请求主体
+* sourceOffsetStart - `必选` `long` 开始值
+* sourceOffsetEnd - `必选` `long` 结束值
+* buildType - `必选` `string` 支持的计算类型: 'BUILD'
+* mpValues - `可选` `string` 对应model的more partition 字段值
+
 
 ### 克隆Cube
 `请求方式 PUT`
@@ -650,7 +668,7 @@
 * cubeName - `必选` `string` Cube 名称.
 
 #### 请求主体
-* buildType - `必选` `string` BUILD, REFRESH, DROP
+* buildType - `必选` `string` MERGE, REFRESH, DROP
 * force - `必选` `string` 只能为true
 * segments - `必选` `string` segment name 数组
 * mpValues - `可选` `string` Model Primary Partition 值
@@ -659,4 +677,3 @@
 ```
 curl -u ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type: application/json;charset=utf-8" -X PUT -d '{ "buildType": "DROP", "mpValues": "ABIN", "segments": ["0_1000"] }' "http://localhost:8080/kylin/api/cubes/mptest/segments"
 ```
-
