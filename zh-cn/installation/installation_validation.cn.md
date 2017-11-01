@@ -40,10 +40,9 @@ Restart Kylin server or reload the metadata from web UI to see the change.
 当 Cube 构建任务成功后，进入**查询**页面，您将在页面左侧看到之前导入的5个 Hive 表。在右侧的文本框中输入 SQL 语句，即可对样例数据进行查询分析。例如输入下述 SQL 语句：
 
 ```sql
-select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers
-from kylin_sales
-group by part_dt
-order by part_dt
+select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales
+
+where part_dt = Date '2012-01-02' or part_dt= Date '2012-01-03' group by part_dt order by part_dt
 ```
 
 您将在页面下方看到 KAP 为您呈现出的查询结果，如图所示：

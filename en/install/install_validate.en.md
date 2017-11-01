@@ -37,7 +37,9 @@ At the **Monitor** page, click *Refresh* to check the build progress, until 100%
 When the cube is built successfully, at the **Insight** page, three sample hive tables would be shown at the left panel. User could input query statements against these tables. For example: 
 
 ```sql
-select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales group by part_dt order by part_dt
+select part_dt, sum(price) as total_selled, count(distinct seller_id) as sellers from kylin_sales
+
+where part_dt = Date '2012-01-02' or part_dt= Date '2012-01-03' group by part_dt order by part_dt
 ```
 
 The query result will be displayed at the **Insight** page also. User could check the query results between KAP and Hive, including accuracy and response time. 
