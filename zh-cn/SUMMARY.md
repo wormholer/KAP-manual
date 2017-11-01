@@ -60,6 +60,7 @@
         * [明细表索引](model/cube/table_index.cn.md)
     * [验证SQL](model/verify_sql.cn.md)
     * [构建Cube](model/build_cube.cn.md)
+    * [Cube与Segment管理](model/segment_manage.cn.md)
     * [流式Cube](model/streaming_cube.cn.md)
 * [SQL查询](query/README.md)
     * [基本Query](query/basic_query.cn.md)
