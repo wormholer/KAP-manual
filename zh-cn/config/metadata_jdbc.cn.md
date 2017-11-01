@@ -7,15 +7,15 @@ Kylin 使用 HBase 作为 Metastore 存储数据库，KAP 2.4+ 版本可以支�
 
 2. 在 kap 安装目录下的 `$KYLIN_HOME/conf/kylin.properties` 配置文件中，将 `kylin.metadata.url` 修改为 `{metadata_name}@jdbc`，`{metadata_name}` 修改为用户的 metadata 数据表名，如 `kylin_default_instance@jdbc`。如果表已存在，则会使用现有表；如果不存在，则会自动创建新表。
 
-3. 补充 JDBC 连接字符串及其他配置项，完整例子如：`kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`。
+3. 设置JDBC连接字符串及其他配置项，完整例子如：`kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`。
 
-   配置项的含义如下：
+   配置项的含义如下，其中`url`，`username`和`password`为必须配置项，其余项若不配置将使用默认配置项：
+   
+     *url*：jdbc的url；
 
-     *url*：jdbc 的 url，默认值为 `jdbc:mysql://localhost:3306/kylin`；
+     *username*：jdbc的用户名；
 
-     *username*：jdbc 的用户名，默认值 `root`；
-
-     *password*：jdbc 的密码，默认值为空字符串；
+     *password*：jdbc的密码；
 
      *driverClassName*：jdbc 的 driver 类名，默认值为 `com.mysql.jdbc.Driver`；
 

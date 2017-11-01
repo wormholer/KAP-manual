@@ -7,17 +7,15 @@ Steps below are with the case of mysql:
 1. Install KAP Plus
 2. Create database `kylin` in mysql 
 3. In KAP's installation directory, set configuration item `kylin.metadata.url` of configuration file `$KYLIN_HOME/conf/kylin.properties` to `{metadata_name}@jdbc`,
-  replace `{metadata_name}` as user's metadata name, for example, `{metadata_name}@jdbc`. If a metatata table exists, then the table will be used; if no table exists, a new one will be created automatically. 
-4. Set configuration items for jdbc, for example, `kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`. 
+replace `{metadata_name}` as user's metadata name, for example, `{metadata_name}@jdbc`. And set configuration items for jdbc, for example, `kylin_default_instance@jdbc,url=jdbc:mysql://localhost:3306/kylin,username=root,password=,maxActive=10,maxIdle=10`. 
+All items are as below, configs for `url`, `username` and `password` must be set. For others, if not set, default values will be used:
 
-​       All items are as below:
-
-    *url*: jdbc's url, default value is `jdbc:mysql://localhost:3306/kylin`;
-
-    *username*: jdbc's username, default value is `root`;
-
-    *password*: jdbc's password, default value is empty string;
-
+    *url*: jdbc's url;
+    
+    *username*: jdbc's username;
+    
+    *password*: jdbc's password;
+    
     *driverClassName*: jdbc's driver class name, default value is `com.mysql.jdbc.Driver`;
 
     *maxActive*: max number of database's connection number, default value is `5`;
