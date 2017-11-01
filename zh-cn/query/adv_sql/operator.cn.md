@@ -4,7 +4,7 @@ KAP 支持以下运算符：
 
 ### 比较运算符
 
-| Opeartor             | Decription                         | Syntax                                   | Example                                  |
+| 运算符                  | 描述                                 | 语法                                       | 示例                                       |
 | -------------------- | ---------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | <                    | 小于                                 | A<B                                      | Profit < Cost                            |
 | <=                   | 小于或等于                              | A<=B                                     | Profit <=Cost                            |
@@ -24,7 +24,7 @@ KAP 支持以下运算符：
 
 ### 逻辑运算符
 
-| Opeartor     | Decription                               | Syntax                | Example                       |
+| 运算符          | 描述                                       | 语法                    | 示例                            |
 | ------------ | ---------------------------------------- | --------------------- | ----------------------------- |
 | AND          | 是否条件1 *boolean1* 和 条件2 *boolean2* 都为真    | boolean1 AND boolean2 | Name ='frank' AND gender='M'  |
 | OR           | 是否条件1 *boolean1* 或 条件2 *boolean2* 为真     | boolean1 OR boolean2  | Name='frank' OR Name='Hentry' |
@@ -34,17 +34,17 @@ KAP 支持以下运算符：
 | IS TRUE      | 是否 *boolean* 为真; 如果*boolean* 为UNKNOWN则返回假 | boolean IS TRUE       | Name ='frank' IS TRUE         |
 | IS NOT TRUE  | 是否 *boolean* 不为真; 如果*boolean* 为UNKNOWN则返回真 | boolean IS NOT TRUE   | Name ='frank' IS NOT TRUE     |
 
-### Arithmetic Operator
+### 算术运算符
 
-| Opeartor | Decription | Syntax | Example              |
-| -------- | ---------- | ------ | -------------------- |
-| +        | 加号         | A+B    | Cost+Profit          |
-| -        | 减号         | A-B    | Revenue- Cost        |
-| *        | 称号         | A*B    | Unit_Price* Quantity |
-| /        | 除号         | A/B    | Total_Sale/Quantity  |
+| 运算符  | 描述   | 语法   | 示例                   |
+| ---- | ---- | ---- | -------------------- |
+| +    | 加号   | A+B  | Cost+Profit          |
+| -    | 减号   | A-B  | Revenue- Cost        |
+| *    | 称号   | A*B  | Unit_Price* Quantity |
+| /    | 除号   | A/B  | Total_Sale/Quantity  |
 
-### String Operator
+### 字符串运算符
 
-| Opeartor | Decription | Syntax | Example                 |
-| -------- | ---------- | ------ | ----------------------- |
-| \|\|     | 字符连接符      | A\|\|B | First_name\|\|Last_name |
+| 运算符                           | 描述    | 语法                           | 示例                                       |
+| ----------------------------- | ----- | ---------------------------- | ---------------------------------------- |
+| {% endraw %}\|\| {% endraw %} | 字符连接符 | {% raw %}A\|\|B {% endraw %} | {% raw %}First_name\|\|Last_name {% endraw %} |
