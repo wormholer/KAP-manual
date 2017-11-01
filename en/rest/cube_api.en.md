@@ -9,7 +9,8 @@
 * [Get Cube](#get-cube)
 * [Get Cube Descriptor](#get-cube-descriptor)
 * [Get Data Model](#get-data-model)
-* [Build Cube](#build-cube)
+* [Build Cube - Date Partition](#build-cube-date-partition)
+* [Build Cube - Non Date Partition](#build-cube-non-date-partition)
 * [Clone Cube](#clone-cube)
 * [Enable Cube](#enable-cube)
 * [Disable Cube](#disable-cube)
@@ -476,7 +477,7 @@ fact tables, dimension tables and etc.
 }
 ```
 
-### Build Cube
+### Build Cube - Date Partition
 `Request Mode PUT`
 
 `Access Path http://host:port/kylin/api/cubes/{cubeName}/rebuild`
@@ -489,7 +490,7 @@ fact tables, dimension tables and etc.
 #### Request Mode
 * startTime - `required` `long`, the timestamp refers to start time corresponding to the data to be calculated, it should be a GMT0 form timestamp, e.g. 1388563200000 for 2014-1-1.
 * endTime - `required` `long`, the timestamp refers to end time corresponding to the data to be calculated, it should be a GMT0 form timestamp.
-* buildType - `required` `string`, supported calculation types: 'BUILD', 'MERGE', 'REFRESH'.
+* buildType - `required` `string`, supported calculation types: 'BUILD'.
 * mpValues - `optional` `string`, the value of field "more partition" corresponding to model.
 
 #### Response Example
@@ -534,7 +535,27 @@ fact tables, dimension tables and etc.
 }
 ```
 
+### Build Cube - Non Date Partition
+
+`Request Mode PUT`
+
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/build_by_offset`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+#### Path Variable
+
+- cubeName - `required` `string` Cube's name
+
+#### Request Body
+
+- sourceOffsetStart - `required` `long` , start value
+- sourceOffsetEnd - `required` `long`, end value
+- buildType - `required` `string`, supported computing type: 'BUILD'
+- mpValues - `optional` `string`, the value of more partition field for the corresponding model
+
 ### Clone Cube
+
 `Request Mode PUT`
 
 `Access Path http://host:port/kylin/api/cubes/{cubeName}/clone`
@@ -651,7 +672,7 @@ fact tables, dimension tables and etc.
 
 #### Request Body
 
-- buildType - `required` `string`, BUILD, REFRESH, DROP.
+- buildType - `required` `string`, MERGE, REFRESH, DROP.
 - force - `required` `string` , only true.
 - segments - `required` `string`, segment name array.
 - mpValues - `optional` `string`, Model Primary Partition value.
