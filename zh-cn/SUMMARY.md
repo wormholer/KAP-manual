@@ -46,6 +46,7 @@
     * [数据导入](model/data_import.cn.md)
     * [数据采样](model/data_sampling.cn.md)
     * [设计模型](model/data_modeling.cn.md)
+    * [多级分区模型](model/multi_partition.cn.md)
     * [模型推荐](model/auto_modling.cn.md)
     * [可计算列](model/computed_column.cn.md)
     * [模型检测](model/model_check.cn.md)
