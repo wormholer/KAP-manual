@@ -43,8 +43,11 @@ Segmeng最多可执行的操作：刷新（重新构建该segment）、合并（
 
   ​
 
-- 合并segment时，老segment会被重新构建，具体如下图所示。
+- 合并segment时，老segment会被重新构建，如下图所示。
 
   ![build cube](images/cube_segment_manage/merge.png)
 
 
+  点击segment ID （例如上图中的2edfee35），将跳转至监控页面看到Merge Cube任务，具体如下图所示。
+
+  ![build cube](images/cube_segment_manage/merge_job.png)
