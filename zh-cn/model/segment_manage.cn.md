@@ -27,11 +27,11 @@
 
   ​
 
-### Segmeng的状态及管理操作
+### Segment的状态及管理操作
 
 当cube构建后，会生成segment数据，segment的划分是以分区列（partition column）为依据的。
 
-Segmeng最多可执行的操作：刷新（重新构建该segment）、合并（将多个segment合并为一个，segment不连续也可以合并）、删除。
+Segment最多可执行的操作：刷新（重新构建该segment）、合并（将多个segment合并为一个，segment不连续也可以合并）、删除。
 
 > 提示：点击正在被构建、刷新、合并的segment ID，可以跳转至监控页面关联的任务。
 
