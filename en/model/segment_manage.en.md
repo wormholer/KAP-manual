@@ -1,6 +1,6 @@
 ## Cube and Segment Management
 
-### Cube Status and Managment Actions
+### Cube Status and Managment
 
 - Draft : A cube with this status means it has not been saved yet. You may continiue to edit, delete and view it (view the cube's description).
 
@@ -19,13 +19,13 @@
 
 - Broken: A cube with Broken status means it is abnormal because its metadata is broken.
 
-### Segment Status and Management Actions
+### Segment Status and Management
 
 When a cube is built, the segment data will be generated. The segment is divided by partition column. 
 
 Common executable actions: refresh (rebuild the segment), merge (merge several segments into one, even if they are discontinous), and delete.
 
-> Tips: clicking an ID of a segment being built, refreshed or merged may guide you to the tasks associated with the Monitor page.  
+> Tips: clicking an ID of a segment being built, refreshed or merged may lead you to the jobs associated on the Monitor page.  
 
 - After a cube is built, you may view the segment(s) under the cube. The segment being built is shown in the figure below.
 
