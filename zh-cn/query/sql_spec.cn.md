@@ -138,3 +138,13 @@ A, ABS, ABSOLUTE, ACTION, ADA, ADD, ADMIN, AFTER, ALL,ALLOCATE, ALLOW, ALTER, AL
 如果查询的值中有双引号是不需要转义的。
 
 ![](images/spec/6.png)
+
+### 日期查询
+
+下面是日期查询语法范例：
+
+`select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =date '2012-01-01'`
+
+或者
+
+`select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =cast ('2012-01-01' as date)`

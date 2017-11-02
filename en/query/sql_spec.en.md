@@ -137,3 +137,14 @@ If your query contains single quote in the value, you can use another single quo
 For double quotes in the value, escape is not needed. 
 
 ![](images/spec/6.png)
+
+### Date Query
+
+The following are syntax examples of date query:
+
+`select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =date '2012-01-01'`
+
+Or
+
+`select TRANS_ID,PART_DT,PRICE from KYLIN_SALES where PART_DT =cast ('2012-01-01' as date)`
+
