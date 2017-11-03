@@ -25,13 +25,13 @@
 
 如果要批量导出多个结果，可以勾选第一行中的复选框，选中所有查询执行导出；也可以依次勾选所需查询前面对应的复选框，根据需要选中多个查询执行导出。
 
-![一键复制单个查询](images/pushdown/multi_check_export.cn.png)
+![多选批量导出结果](images/pushdown/multi_check_export.cn.png)
 
 #### 点击箭头轻松排序
 
 点击每列标题后方的向上或向下箭头，可对相应的列进行排序。
 
-![一键复制单个查询](images/pushdown/sorting.cn.png)
+![点击箭头轻松排序](images/pushdown/sorting.cn.png)
 
 
 
