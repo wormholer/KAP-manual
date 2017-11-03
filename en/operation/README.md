@@ -10,4 +10,10 @@ Continue reading:
 
 [Metadata Restore](metadata_restore.en.md)
 
+[Metadata Check](metadata_check.en.md)
+
 [Storage Clean Up](storage_cleanup.en.md)
+
+[Cross Hadoop Cluster Migration](cluster_migration.en.md)
+
+[Hadoop Queue Configuration](hadoop_queue.en.md)

@@ -10,4 +10,12 @@
 
 [元数据恢复](metadata_restore.cn.md)
 
+[元数据检查](metadata_check.cn.md)
+
 [垃圾清理](storage_cleanup.cn.md)
+
+[跨集群迁移](cluster_migration.cn.md)
+
+[Hybrid Cube](hybrid_cube.cn.md)
+
+[配置Hadoop队列](hadoop_queue.cn.md)
