@@ -67,6 +67,7 @@
     * [Insight](query/insight.en.md)
     * [SQL Specification](query/sql_spec.en.md)
     * [Async Query](query/async_query.en.md)
+    * [Query Pushdown](query/pushdown.en.md)
     * [Operator and Function](query/adv_sql/README.md)
         * [Operator](query/adv_sql/operator.en.md)
         * [Function](query/adv_sql/function.en.md)

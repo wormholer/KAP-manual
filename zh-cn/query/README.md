@@ -12,3 +12,5 @@
 
 [异步查询](async_query.cn.md)
 
+[查询下压](pushdown.cn.md)
+

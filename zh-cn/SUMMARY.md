@@ -68,6 +68,7 @@
     * [在Insight页面查询](query/insight.cn.md)
     * [SQL规范参考](query/sql_spec.cn.md)
     * [异步查询](query/async_query.cn.md)
+    * [查询下压](query/pushdown.cn.md)
     * [函数及操作符](query/adv_sql/README.md)
         * [操作符](query/adv_sql/operator.cn.md)
         * [函数](query/adv_sql/function.cn.md)

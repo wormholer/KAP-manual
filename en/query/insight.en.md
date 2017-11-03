@@ -44,24 +44,6 @@ All query histories will show in *Query History* tab. Click *Query History* tab,
 
 ![](images/insight/insight_list_history.png)
 
-
-
-### Query Pushdown
-
-KAP supports query pushdown from KAP 2.4. 
-
-If there are queries which cannot be fulfilled with customized Cubes, you can simply leverage query pushdown to redirect the query to Spark SQL, Hive and Impala, making a trade-off  between query latency and query flexibility to obtain a better experience. 
-
-#### How to start query pushdown
-
-Query pushdown is turned off in default. To turn on it, remove the uncomment the configuration item `kylin.query.pushdown.runner-class-name=io.kyligence.kap.storage.parquet.adhoc.PushDownRunnerSparkImp` in file `kylin.properties` to bring it into effect. With query pushdown turned on, queries that cannot get results from Cubes will be redirected to Spark SQL in default. You can also configure it manually, and choose Hive as the default engine to be redirected. Please refer to [Important Configurations](../config/basic_settings.en.md) for more configuration settings.
-
-After turning on query pushdown, all source tables you have synchronized will be shown without building corresponding Cubes. When you submit a query, you can find *Pushdown* in the *Query Engine* item below *Status*, if query pushdown works. 
-
-![](images/insight/insight_pushdown.png)
-
-
-
 ### Data Visualization in KAP
 
 #### Table

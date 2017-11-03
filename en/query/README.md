@@ -11,3 +11,5 @@ Continue reading:
 [SQL Specification](sql_spec.en.md)
 
 [Async Query](async_query.en.md)
+
+[Query Pushdown](pushdown.en.md)
