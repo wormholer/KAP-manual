@@ -645,7 +645,7 @@ fact tables, dimension tables and etc.
 (same as "Enable Cube")
 
 ### Purge Cube
-`Reuest Mode PUT`
+`Request Mode PUT`
 
 `Access Path http://host:port/kylin/api/cubes/{cubeName}/purge`
 
@@ -660,7 +660,7 @@ fact tables, dimension tables and etc.
 
 ### Manage Segment
 
-`Reuest Mode PUT`
+`Request Mode PUT`
 
 `Access Path http://host:port/kylin/api/cubes/<cubeName>/segments`
 
