@@ -56,7 +56,7 @@ Implicit Query is **enabled** by default. To disable it you'll need to remove `k
 
 Computed column is pushed down to data source to be calculated. Hive is the default data source for KAP, thus the syntax for computed need to follow hive's. 
 
-Expressions can support rich advanced functions (specified at the end of this article), but please do not define the expression that contains the aggregations (as cube measures). For example that expression of a computed column cannot directly support count (distinct), such as "select count (distinct seller_ID) from kylin_sales".
+Expressions can support rich advanced functions (specified at the end of this article), but please do not define the expression that contains the aggregate functions (as cube measures). For example that expression of a computed column cannot directly support count (distinct), such as "select count (distinct seller_ID) from kylin_sales".
 
 It is possible to utilize Hive embedded function or Hive User Defined Function in computed column. To learn more about what function Hive SQL offers, please refer to Hive documentation below:
 
