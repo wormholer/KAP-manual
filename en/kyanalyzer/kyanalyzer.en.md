@@ -196,7 +196,7 @@ KyAnalyzer will save the data under the directories: *repository* and *data*. Su
 </table>
 
 ### Authentication
-KyAnalyzer authenticates a user at KAP side, so you can use KAP user and password to login. Users with *Admin* Role in KAP are also *Admin* in KyAnalyzer.
+KyAnalyzer authenticates a user at KAP side, so you can use KAP user and password to login. Users with system *Admin* Role in KAP are also *Admin* in KyAnalyzer.
 ![KyAnalyzer Login](images/analyzer_login.png)
 
 ### Sync Cube
