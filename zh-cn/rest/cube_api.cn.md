@@ -16,7 +16,8 @@
 * [启用 Cube](#启用cube)
 * [禁用 Cube](#禁用cube)
 * [清理 Cube](#清理cube)
-* [管理 Segment](#Segment管理)
+* [管理 Segment](#管理Segment)
+* [删除 Segment](#删除Segment)
 
 ### 返回多个Cube
 
@@ -657,7 +658,7 @@
 #### 响应示例
 (同 "启用 Cube")
 
-### Segment管理
+### 管理Segment
 `请求方式 PUT`
 
 `访问路径 http://host:port/kylin/api/cubes/<cubeName>/segments`
@@ -678,6 +679,6 @@
 curl -u ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type: application/json;charset=utf-8" -X PUT -d '{ "buildType": "DROP", "mpValues": "ABIN", "segments": ["0_1000"] }' "http://localhost:8080/kylin/api/cubes/mptest/segments"
 ```
 
-### 删除 Segment
+### 删除Segment
 
 ```DELETE /kylin/api/cubes/{cubeName}/segs/{segmentName}```
