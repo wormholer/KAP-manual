@@ -194,7 +194,7 @@ KyAnalyzer 的数据信息主要存储在根目录下的 repository 和 data 目
 </table>
 
 ### 认证
-KyAnalyzer 的用户认证是通过 KAP 认证进行的，所以只需要输入 KAP 的帐号和密码即可登录。用户的管理也是通过 KAP 进行。KAP 中的管理员在 KyAnalyzer 中同样具有 Admin 角色。
+KyAnalyzer 的用户认证是通过 KAP 认证进行的，所以只需要输入 KAP 的帐号和密码即可登录。用户的管理也是通过 KAP 进行。KAP 中的系统管理员在 KyAnalyzer 中同样具有 Admin 角色。
 ![登录 KyAnalyzer](images/analyzer_login.png)
 
 ### 管理控制台
