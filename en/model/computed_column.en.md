@@ -42,15 +42,17 @@ Implicit Query is **enabled** by default. To disable it you'll need to remove `k
 
 #### Rules on using Computed Column##
 
-· Computed column must be defined on a face table.
+- Computed column must be defined on a fact table.
 
-. It's allowed to use any column from any tables in current model to consist computed column's expression.
+- Expression of computed column supports across a fact table or a dimension table.
 
-· Under one project, there is one-to-one mapping between computed column and expression defined. That means under different models, computed column with same name can be defined on the condition that two computed columns share the same expression. 
+- It's allowed to use any column from any tables in current model to consist computed column's expression.
 
-· Under one project, computed column cannot duplicate with any other column in current model.
+- Under one project, there is one-to-one mapping between computed column and expression defined. That means under different models, computed column with same name can be defined on the condition that two computed columns share the same expression. 
 
-· If a user has been restricted access to the column that is used in the expression of a computed column, the user will not be able to query the computed column either. 
+- Under one project, computed column cannot duplicate with any other column in current model.
+
+- If a user has been restricted access to the column that is used in the expression of a computed column, the user will not be able to query the computed column either. 
 
 ### Advanced Functions
 
