@@ -15,7 +15,8 @@
 * [Enable Cube](#enable-cube)
 * [Disable Cube](#disable-cube)
 * [Purge Cube](#purge-cube)
-* [Manage Segment](#Manage Segment)
+* [Manage Segment](#Manage-Segment)
+* [Delete Segment](#Delete-Segment)
 
 ### List Cubes 
 `Request Mode GET`
