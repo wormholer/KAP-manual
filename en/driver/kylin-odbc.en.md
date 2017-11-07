@@ -1,4 +1,4 @@
-## ODBC Driver
+## Kylin ODBC Driver
 
 KAP provides an ODBC driver for Windows, through which applications with ODBC interface can access KAP to query data. 
 
@@ -10,10 +10,11 @@ In this article, we take Windows 7 as an example to introduce ODBC driver's inst
 
 ## Prerequisites
 
-1. Install Microsoft Visual C++ 2012 (Redistributable)
+1. Install Microsoft Visual C++ 2012 (Redistributable).
 
-- 32-bit: download [32-bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe) (32 bits ODBC driver is suggested)
-- 64-bit: download [64-bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
+   32-bit: download [32-bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe) (32 bits ODBC driver is suggested)
+
+   64-bit: download [64-bit version](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
 
 2. The ODBC driver would call KAP's Rest server, so make sure the KAP service is working properly.
 
@@ -21,16 +22,17 @@ In this article, we take Windows 7 as an example to introduce ODBC driver's inst
 1. If you have installed ODBC driver, please uninstall ODBC driver first.
 2. [Download](http://kylin.apache.org/download) drivers, and run.
 
-- 32-bit Microsoft Office Excel: Please install KylinODBCDriver (x86).exe
-- 64-bit Microsoft Office Excel: Please install KylinODBCDriver (x64).exe
+   32-bit Microsoft Office Excel: Please install KylinODBCDriver (x86).exe
+
+   64-bit Microsoft Office Excel: Please install KylinODBCDriver (x64).exe
 
 ## Configure the DSN
 
 1. Open ODBC Data Source Manager
 
-* 32-bit ODBC driver: click "start > operation" to open C:\Windows\SysWOW64\odbcad32.exe
-* 64-bit ODBC driver: select "Control Panel > Administrative Tools" to open "ODBC Data Source Administrator" 
+   32-bit ODBC driver: click "start > operation" to open C:\Windows\SysWOW64\odbcad32.exe
 
+   64-bit ODBC driver: select "Control Panel > Administrative Tools" to open "ODBC Data Source Administrator" 
 
 2. Switch to the System DSN tab, click `Add` and select "KylinODBCDriver" in the pop-up driver selection box, then click `finish`.
 
