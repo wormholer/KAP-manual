@@ -12,7 +12,7 @@ Microsoft Power BI 是由微软推出的商业智能的专业分析工具，给�
 3. 在`Preview Features`中勾选`Custom data connectors`。
 4. 重启Power BI Desktop
 
-### 启动Power BI Desktop
+### 使用Power BI Desktop连接KAP
 
 1.  启动您已经安装的Power BI Desktop，单击`Get data`按钮，点击`more`在`Database`类别中选中`Kyligence Analytics Platform`。
     ![](images/powerbi/Picture5.png)
