@@ -1,4 +1,4 @@
-## Kylin ODBC 驱动程序
+## Apache Kylin ODBC 驱动程序
 
 KAP 提供了 Windows 系统下的 ODBC 驱动程序，支持 ODBC 接口的应用可以通过该驱动程序访问 KAP 进行数据查询。
 
@@ -15,16 +15,16 @@ KAP 提供了 Windows 系统下的 ODBC 驱动程序，支持 ODBC 接口的应�
 
    [64 位系统下载地址](http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe)
 
-2. ODBC 驱动程序会调用 KAP 的 Rest 服务器，务必先确保 KAP 服务已正常运行。
+2. Kylin ODBC 驱动程序会调用 KAP 的服务器，务必先确保 KAP 服务已正常运行。
 
 ## 安装
 
-1.  如果已经安装过 KAP ODBC 驱动程序，首先卸载机器上已有的 Apache Kylin 或 KAP ODBC 驱动程序。
-2.  从 [Apache Kylin 下载页面](http://kylin.apache.org/download)下载 ODBP 驱动程序，并运行。
+1.  如果已经安装过 Apache Kylin ODBC 驱动程序，首先卸载机器上已有的 Apache Kylin ODBC 驱动程序。
+2.  从 [Apache Kylin 下载页面](http://kylin.apache.org/download)下载 ODBC 驱动程序，并运行。
 
-    32 位 Microsoft Office Excel：请安装 KylinODBCDriver \(x86\).exe
+    32 位应用程序：请安装 KylinODBCDriver \(x86\).exe
 
-    64 位 Microsoft Office Excel：请安装 KylinODBCDriver \(x64\).exe
+    64 位应用程序：请安装 KylinODBCDriver \(x64\).exe
 
 ## 配置 DSN
 
@@ -40,7 +40,7 @@ KAP 提供了 Windows 系统下的 ODBC 驱动程序，支持 ODBC 接口的应�
 
 ![](images/odbc_02.png)
 
-3.  在弹出的 Kylin DSN Configuration Dialog 中输入 KAP 服务器信息，如图所示
+3.  在弹窗中输入 KAP 服务器信息，如图所示
 
 ![](images/odbc_03.png)
 
@@ -59,5 +59,5 @@ KAP 提供了 Windows 系统下的 ODBC 驱动程序，支持 ODBC 接口的应�
 
 ## 特别提醒
 
-如果用户希望使用 ODBC 驱动程序连接其他客户端应用，配置方式和该例类似。更多产品信息，请访问本书[与第三方 BI 工具集成](../integration/README.md)章节或 Apache Kylin 官网。
+如果用户希望在其他客户端应用中使用 Apache Kylin ODBC 驱动程序连接KAP，更多产品信息，请访问本书[与第三方 BI 工具集成](../integration/README.md)章节或 Apache Kylin 官网。
 
