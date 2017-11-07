@@ -8,8 +8,13 @@ Microsoft Power BI Desktop 是由微软推出的商业智能的专业分析工�
 ###   安装 Power BI DirectQuery 插件
 
 1. 将 DirectQuery 插件文件（.mez 文件）复制到 *C:\Users\<user_name>\Documents\Microsoft Power BI Desktop\Custom Connectors* 文件夹，如果没有 *Custom Connectors* 这个文件夹，可以手动创建一个；
+
 2. 打开 Power BI Desktop 中 **Options and settings** 下的 **Options**；
+
 3. 在 **Preview Features** 中勾选 **Custom data connectors**；
+
+   ![](images/powerbi/Picture11.png)
+
 4. 重启 Power BI Desktop。
 
 ### 使用 Power BI Desktop 连接 KAP
