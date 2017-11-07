@@ -1,30 +1,30 @@
 ## Kyligence ODBC 驱动程序
 
-Kyligence ODBC 驱动程序是 Kyligence 公司自主研发的一款 ODBC 驱动程序。它仅支持与 KAP 连接，并支持原有 Apache Kylin ODBC 驱动程序的全部功能，但不支持与 Apache Kylin 连接。支持 ODBC 接口的应用可以通过该驱动程序访问 KAP 进行数据查询。
+Kyligence ODBC 驱动程序是 Kyligence 公司自主研发的一款 ODBC 驱动程序。它仅支持与 KAP 连接，并支持 Apache Kylin ODBC 驱动程序的全部功能，支持 ODBC 接口的应用可以通过该驱动程序访问 KAP 进行数据查询。
 
 Kyligence ODBC 驱动程序是 KAP 商业发行版中的一部分，用户无需另外付费。有效的 KAP License 可以直接使用 Kyligence ODBC Driver。Kyligence ODBC Driver 的有效使用期限与 KAP 一致。
 
-Kyligence ODBC 驱动程序目前仅支持 Windows 环境，今后将陆续支持其他环境。
+Kyligence ODBC 驱动程序目前仅支持 Windows 环境。
 
 在本文中，我们以 Windows 7 为例，介绍 ODBC 驱动程序的安装和使用步骤。
 
 ## 前提条件 
 
-1. 如果已安装  Microsoft Visual C++ 2015 Redistributable，请先卸载。在安装 Kyligence ODBC 驱动程序的过程中，系统会首先自行安装 Microsoft Visual C++ 2015 Redistributable。
+1. 在安装 Kyligence ODBC 驱动程序的过程中，系统会首先自行安装 Microsoft Visual C++ 2015 Redistributable。如果操作系统中已经安装了 Microsoft Visual C++ 2015 Redistributable，安装步骤会跳过此步。
 
 
-2. Kyligence ODBC 驱动程序会调用 KAP 的 Rest 服务器，务必先确保 KAP 服务已正常运行。
+2. Kyligence ODBC 驱动程序会连接 KAP 服务器，务必先确保 KAP 服务已正常运行。
 
 
 ## 安装
 
-1.  如果机器上已经安装过此类 ODBC 驱动程序，首先卸载已有的 Apache Kylin ODBC 驱动程序或 Kyligence ODBC 驱动程序。
+1.  如果机器上已经安装过 Kyligence ODBC 驱动程序，首先卸载已有 Kyligence ODBC 驱动程序。
 
-2.  从 [Kyligence Account 页面](http://account.kyligence.io)下载 Kyligence ODBP 驱动程序，并运行。
+2.  在 [Kyligence Account 页面](http://account.kyligence.io)申请下载 Kyligence ODBC 驱动程序，并运行安装。
 
-    32 位 Microsoft Office Excel：请下载并安装 kyligence_odbc.x86.exe
+    32 位应用程序：请安装使用 kyligence_odbc.x86.exe
 
-    64 位 Microsoft Office Excel：请下载并安装 kyligence_odbc.x64.exe
+    64 位应用程序：请安装使用 kyligence_odbc.x64.exe
 
 ## 配置 DSN
 
@@ -40,7 +40,7 @@ Kyligence ODBC 驱动程序目前仅支持 Windows 环境，今后将陆续支�
 
 ![添加 Kyligence ODBC 驱动程序](images/kyligence_odbc_02_cn.png)
 
-3.  在弹出的 Kyligence ODBC Driver 2.0 Beta - DSN Setup 对话框中输入 KAP 服务器信息，如图所示：
+3.  在弹出的对话框中输入 KAP 服务器信息，如图所示：
 
 ![DSN 设置](images/kyligence_odbc_03_cn.png)
 
@@ -63,5 +63,5 @@ Kyligence ODBC 驱动程序目前仅支持 Windows 环境，今后将陆续支�
 
 ## 特别提醒
 
-如果用户希望使用 Kyligence ODBC 驱动程序连接其他客户端应用，配置方式和该例类似。有关信息，请访问本书[与第三方 BI 工具集成](../integration/README.md)章节。
+如果用户希望在其他应用程序中使用 Kyligence ODBC 驱动程序连接 KAP，有关信息，请访问本手册[与第三方 BI 工具集成](../integration/README.md)章节。
 
