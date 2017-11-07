@@ -1,26 +1,26 @@
 ## Kyligence ODBC Driver
 
-Kyligence ODBC Driver is developed by Kyligence independently. It only supports the connection with KAP, instead of with Apache Kylin. It supports all functions of the original Apache Kylin ODBC Driver. The applications with ODBC interface can access KAP to query data through this driver.
+Kyligence ODBC Driver is a ODBC Driver that developed by Kyligence. It only supports the connection with KAP. It supports all functions of the Apache Kylin ODBC Driver. Applications with ODBC interface can access KAP through this driver.
 
-Kyligence ODBC Driver is a part of KAP business release. Users with KAP license can use Kyligence ODBC Driver directly without extra payment. The valid period of Kyligence ODBC Driver depends on that of KAP. 
+Kyligence ODBC Driver is a part of KAP Product line. Users with KAP license can use Kyligence ODBC Driver directly without extra payment. The valid period of Kyligence ODBC Driver depends on that of KAP. 
 
-Currently, Kyligence ODBC Driver is only supported in Windows, and will be available in other systems in the near future. 
+Currently, Kyligence ODBC Driver is only supported in Windows. 
 
-In this article, we take Windows 7 as an example to introduce ODBC driver's installation and configuration steps. 
+Next, we will take Windows 7 as an example to introduce ODBC driver's installation and configuration steps. 
 
 ## Prerequisites
 
-1. Uninstall Microsoft Visual C++ 2015 Redistributable, if installed. Microsoft Visual C++ 2015 Redistributable is embedded in the install package. During the installation of Kyligence ODBC Driver, it will be installed first.
+1. Microsoft Visual C++ 2015 Redistributable is embedded in the install package. During the installation of Kyligence ODBC Driver, it will be installed first. If Microsoft Visual C++ 2015 Redistributable is already installed on your machine, this step will be skipped during installation.
 
-2. Kyligence ODBC Driver would invoke KAP's Rest server, so make sure the KAP service is working properly.
+2. Kyligence ODBC Driver woule connect to KAP's server, so make sure the KAP is running properly.
 
 ## Installation
-1. If you have installed such ODBC driver, please uninstall them first.
-2.  [Download](http://account.kyligence.io) Kyligence ODBP drivers, and run.
+1. If you have previously installed Kyligence ODBC driver, please uninstall it first.
+2.  Apply and [Download](http://account.kyligence.io) Kyligence ODBC driver, and install it.
 
-   32-bit Microsoft Office Excel: Please download and install kyligence_odbc.x86.exe
+   For 32-bit application, please install and use kyligence_odbc.x86.exe.
 
-   64-bit Microsoft Office Excel: Please download and install kyligence_odbc.x64.exe
+   For 64-bit application, Please install and use kyligence_odbc.x64.exe.
 
 ## Configure the DSN
 
@@ -37,7 +37,7 @@ In this article, we take Windows 7 as an example to introduce ODBC driver's inst
 
 ![Add Kyligence ODBC Driver](images/kyligence_odbc_02_en.png)
 
-3. In the pop-up Kyligence ODBC Driver 2.0 Beta - DSN Setup dialog, input the KAP server information, as shown in the figure: 
+3. In the pop-up window, input the KAP server information, as shown in the figure: 
 
 ![DSN setting](images/kyligence_odbc_03_en.png)
 
@@ -60,4 +60,4 @@ Where, the parameters are described as below:
 
 ## Special Reminder
 
-If you want to use Kyligence ODBC driver to connect to other client applications, the configuration is similar to this example. For more information, please see [Integration with 3rd party BI tools](../integration/README.md) chapter of KAP manual.
+If you want to use Kyligence ODBC driver to connect to KAP in other client applications, the configuration is similar to this example. For more information, please see [Integration with 3rd party BI tools](../integration/README.md) chapter of KAP manual.
