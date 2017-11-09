@@ -42,7 +42,7 @@
 
 ```shell
 rm -f $KYLIN_HOME/conf/profile
-ln -s $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
+ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 ```
 
 为了使用MapR文件系统，需要将KAP的默认工作目录指向MapR-FS(maprfs:///)。更新kylin.properties文件

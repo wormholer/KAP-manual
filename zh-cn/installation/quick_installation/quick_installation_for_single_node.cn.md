@@ -46,7 +46,7 @@
 
 ```shell
 rm -f $KYLIN_HOME/conf/profile
-ln -s $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
+ln -sfn $KYLIN_HOME/conf/profile_min $KYLIN_HOME/conf/profile
 ```
 
 ### 检查运行环境
