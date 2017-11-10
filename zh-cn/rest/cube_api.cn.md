@@ -16,8 +16,8 @@
 * [启用 Cube](#启用cube)
 * [禁用 Cube](#禁用cube)
 * [清理 Cube](#清理cube)
-* [管理 Segment](#管理Segment)
-* [删除 Segment](#删除Segment)
+* [管理 Segment](#管理segment)
+* [删除 Segment](#删除segment)
 
 ### 返回多个Cube
 

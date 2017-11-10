@@ -15,8 +15,8 @@
 * [Enable Cube](#enable-cube)
 * [Disable Cube](#disable-cube)
 * [Purge Cube](#purge-cube)
-* [Manage Segment](#Manage-Segment)
-* [Delete Segment](#Delete-Segment)
+* [Manage Segment](#manage-segment)
+* [Delete Segment](#delete-segment)
 
 ### List Cubes 
 `Request Mode GET`
@@ -674,9 +674,9 @@ fact tables, dimension tables and etc.
 #### Request Body
 
 - buildType - `required` `string`, MERGE, REFRESH, DROP.
-- force - `required` `string` , only true.
-- segments - `required` `string`, segment name array.
+- segments - `required` `string`, segment name‘s array.
 - mpValues - `optional` `string`, Model Primary Partition value.
+- force - `optional` `string`, true or false.
 
 #### Curl Example
 
@@ -684,4 +684,13 @@ fact tables, dimension tables and etc.
 curl -u ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Content-Type: application/json;charset=utf-8" -X PUT -d '{ "buildType": "DROP", "mpValues": "ABIN", "segments": ["0_1000"] }' "http://localhost:8080/kylin/api/cubes/mptest/segments"
 ```
 ### Delete Segment
-```DELETE /kylin/api/cubes/{cubeName}/segs/{segmentName}```
+
+`Request Mode DELETE`
+
+`Access Path http://host:port/kylin/api/cubes/{cubeName}/segs/{segmentName}`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+#### Path Variable
+- cubeName - `required` `string`,  Cube's name.
+- segmentName - `required` `string`,  segment name‘s array.
