@@ -670,9 +670,9 @@
 
 #### 请求主体
 * buildType - `必选` `string` MERGE, REFRESH, DROP
-* force - `必选` `string` 只能为true
 * segments - `必选` `string` segment name 数组
 * mpValues - `可选` `string` Model Primary Partition 值
+* force - `可选` `string` true 或 false
 
 #### Curl 示例
 ```
@@ -680,5 +680,12 @@ curl -u ADMIN:KYLIN -H "Accept: application/vnd.apache.kylin-v2+json" -H "Conten
 ```
 
 ### 删除Segment
+`请求方式 DELETE`
 
-```DELETE /kylin/api/cubes/{cubeName}/segs/{segmentName}```
+`访问路径 http://host:port/kylin/api/cubes/{cubeName}/segs/{segmentName}`
+
+`Content-Type: application/vnd.apache.kylin-v2+json`
+
+#### 路径变量
+* cubeName - `必选` `string` Cube 名称
+* segmentName - `必选` `string` segment name 数组
