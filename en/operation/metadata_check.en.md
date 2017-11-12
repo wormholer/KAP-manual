@@ -4,7 +4,7 @@ We suggest you backup the metadata regularly so that you may recover it quickly 
 
 ### Check Scope
 
-We summarize some nodes which might cause the metadata inconsistent in KAP. They are as below:
+We summarize some scenarios which might cause the metadata inconsistent in KAP. They are as below:
 
 1. cube and model (consistent check of cube and model)
 2. cube and table index
