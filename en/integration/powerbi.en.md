@@ -1,22 +1,44 @@
-## Power BI Integration
+## Power BI Desktop Integration
 
-Microsoft Power BI is a business intelligence tool providing rich functionality and experience for data visualization and processing to user.
+Microsoft Power BI Desktop is a professional business intelligence analysis tool providing rich functionality and experience for data visualization and processing to user.
 
-> Power BI does not support "connect live" model for other ODBC driver yet, please pay attention when you query on a huge dataset, it may pull too many data into your client which will take a while even fail at the end.
+### Install Kyligence ODBC Driver
+For the installation information, please refer to [Kyligence ODBC Driver tutorial](../driver/kyligence-odbc.en.md).
 
-### Install ODBC Driver
-Refer to this guide: [Kylin ODBC Driver Tutorial](../driver/odbc.en.md).
-Please make sure to download and install Kylin ODBC Driver __v1.5__. If you already installed ODBC Driver in your system, please uninstall it first. 
+### Install Power BI DirectQuery plugin
+1.  Download KAP Power BI DirectQuery plugin from [Kyligence Account Page](http://account.kyligence.io).
 
-### Power BI
-1.  Run Power BI Desktop, and click `Get Data` button, then select `ODBC` as data source type.
-    ![](images/powerbi/Picture5.png)
-2.  Same with Excel, just type Database Connection String of KAP Server in the `Connection String` textbox, and optionally type a SQL statement in `SQL statement` textbox. Click `OK`, the result set will come to Power BI as a new data source query.
-     ![](images/powerbi/Picture6.png)
-3.  If you didn’t input the SQL statement in last step, Power BI will list all tables in the project, which means you can load data from the whole table. But, since KAP
-4.  cannot query on raw data currently, this function may be limited.
-     ![](images/powerbi/Picture7.png)
-5.  Now you can start to enjoy analyzing with Power BI.
-     ![](images/powerbi/Picture8.png)
-6.  To reload the data and redraw the charts, just click `Refresh` button in `Home` fast tab.
+2.  Copy the plugin file (.mez) of DirectQuery to the folder *C:\Users\<user_name>\Documents\Microsoft Power BI Desktop\Custom Connectors*. If this folder does not exist, please create one.
 
+3.  In Power BI Desktop, open **Options** under **Options and settings**.
+
+4.  Click **Preview features** and then check the box **Custom data connectors**.
+
+    ![Check the box Custom data connectors](images/powerbi/Picture11.png)
+
+5.  Restart Power BI Desktop.
+
+### Connect KAP through Power BI Desktop
+
+1.  Start the installed Power BI Desktop, click **Get data -> more**, and then click **Database -> Kyligence Analytics Platform**.
+
+     ![Select Kyligence Analytics Platform](images/powerbi/Picture5.png)
+
+2.  In the pop-up window, type the required database information, and select **DirectQuery** as Data Connectivity mode.
+     ![Data Connectivity mode: DirectQuery](images/powerbi/Picture6.png)
+
+3.  Type user name and password to connect KAP
+
+     ![Input account information to connect KAP](images/powerbi/Picture7.png)
+
+4.  After connecting successfully, Power BI will list all the tables in the project. You may select the tables based on your requirements.
+     ![Select tables as required](images/powerbi/Picture8.png)
+
+5.  Model the tables which need to be connected.
+
+     ![Model the tables to be connected](images/powerbi/Picture9.png)
+
+6.  Return to the report page and start visualization analysis.
+
+
+     ![Visualization analysis](images/powerbi/Picture10.png)

@@ -1,4 +1,4 @@
-## Power BI Deskop 集成
+## Power BI Desktop 集成
 
 Microsoft Power BI Desktop 是由微软推出的一款商业智能的专业分析工具，为用户提供简单而丰富的数据可视化及分析功能。
 
@@ -15,7 +15,7 @@ Microsoft Power BI Desktop 是由微软推出的一款商业智能的专业分�
 
 4. 在 **Preview Features** 中勾选 **Custom data connectors**：
 
-   ![勾选 Custom data connectors](images/powerbi/Picture11.png)
+ ![勾选 Custom data connectors](images/powerbi/Picture11.png)
 
 5. 重启 Power BI Desktop。
 
@@ -25,16 +25,16 @@ Microsoft Power BI Desktop 是由微软推出的一款商业智能的专业分�
     ![选中 Kyligence Analytics Platform](images/powerbi/Picture5.png)
 
 2.  在连接字符串文本框中输入所需的数据库信息。请选择 **DirectQuery** 作为数据连接方式。
-     ![数据连接方式：DirectQuery](images/powerbi/Picture6.png)
+      ![数据连接方式：DirectQuery](images/powerbi/Picture6.png)
 
 3.  输入账号密码进行身份验证。
-     ![登录连接 KAP](images/powerbi/Picture7.png)
+      ![登录连接 KAP](images/powerbi/Picture7.png)
 
 4.  这样 Power BI 会列出项目中所有的表，可以根据需要选择要连接的表。
-     ![根据需要选择表](images/powerbi/Picture8.png)
+      ![根据需要选择表](images/powerbi/Picture8.png)
 
 5.  现在可以进一步使用 Power BI 进行可视化分析，首先对需要连接的表进行建模。
-     ![对需要连接的表建模](images/powerbi/Picture9.png)
+      ![对需要连接的表建模](images/powerbi/Picture9.png)
 
 6.  现在可以回到报表页面开始可视化分析。
-     ![进行可视化分析](images/powerbi/Picture10.png)
+      ![进行可视化分析](images/powerbi/Picture10.png)
