@@ -9,17 +9,23 @@ KAP使用Hive作为cube的数据源，也可以将其配置为查询下压（Que
    ```properties
    #Hive Jdbc的url，例如jdbc:hive2://sandbox:10000/default
    kylin.query.pushdown.jdbc.url
+
    #Hive Jdbc的driver类名，例如org.apache.hive.jdbc.HiveDriver
    kylin.query.pushdown.jdbc.driver
+
    #Hive Jdbc对应数据库的用户名
    kylin.query.pushdown.jdbc.username
+
    #Hive Jdbc对应数据库的密码，默认为空字符串
    kylin.query.pushdown.jdbc.password
-   #Hive Jdbc对应数据库的密码，默认为空字符串
+
+   #Hive Jdbc连接池的最大连接数，默认值为8
    kylin.query.pushdown.jdbc.pool-max-total
+
    #Hive Jdbc连接池的最大等待连接数，默认值为8
    kylin.query.pushdown.jdbc.pool-max-idle
-   #Hive Jdbc连接池的最小连接数，默认值为0
+
+   #Hive Jdbc连接池的最小等待连接数，默认值为0
    kylin.query.pushdown.jdbc.pool-min-idle
    ```
 
