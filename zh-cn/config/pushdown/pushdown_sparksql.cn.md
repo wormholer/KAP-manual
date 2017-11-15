@@ -36,6 +36,20 @@ Spark Thrift 使用 Hive JDBC 接口，支持 JDBC 接口的应用可以通过Hi
           ```
           在初始化 hive-jdbc connection 前，kap 需要具有有效的 kerberos ticket，**请确保 klist 中存在有效的 principal** 能够访问 Spark Thrift。
 
+          ​
+
+> 注意：如果使用的环境没有Spark Thrift时，配置用户名与密码的方式为将下列参数在配置文件`kylin.properties`添加并重启KAP。
+
+```properties
+kylin.query.pushdown.jdbc.username
+#Jdbc对应数据库的用户名
+
+kylin.query.pushdown.jdbc.password
+#Jdbc对应数据库的密码，默认为空字符串
+```
+
+
+
 ####验证 Thrift server
 
 启动 beeline ``${SPARK_HOME} or ${HIVE_HOME}/bin/beeline``
