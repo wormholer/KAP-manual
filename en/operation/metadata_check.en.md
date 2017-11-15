@@ -6,10 +6,11 @@ We suggest you backup the metadata regularly so that you may recover it quickly 
 
 We summarize some scenarios which might cause the metadata inconsistent in KAP. They are as below:
 
-1. cube and model (consistent check of cube and model)
-2. cube and table index
-3. cube and scheduler job
-4. job's metadata and output information (i.e. consistent check of job itself)
+1. cube against model (consistent check of cube and model)
+2. cube against table index
+3. cube against scheduler job
+4. job's metadata against output information (i.e. consistent check of job itself)
+5. KAP runtime loaded metadata against resource store's metadata
 
 ### Usage
 Run the metadata checker to identify inconsistent metadata:

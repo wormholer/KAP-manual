@@ -10,6 +10,7 @@
 2. cube与table index
 3. cube与scheduler job
 4. job的元数据与输出信息（即job本身的一致性检测）
+5. KAP实际加载数据是否与ResourceStore存在的数据一致
 
 
 
