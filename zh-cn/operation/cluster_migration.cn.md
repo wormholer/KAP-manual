@@ -38,7 +38,7 @@
 - 从SHC备份Cube的元数据及其构建数据并上传到HDFS上的/tmp目录下
 - 利用HDFS的Distcp命令将KAP在SHC的HDFS工作目录拷贝到DHC的HDFS上
 
- 整个任务是通过脚本`bin/kylin io.kyligence.kap.tool.release.KapCubeMigrationCLI`来实现的。
+ 整个任务同样是通过脚本`bin/cluster-migration.sh`来实现的。
 
 **必要条件：**
 
@@ -48,12 +48,12 @@
 
 *步骤一：*
 
-在SHC上的KAP目录下执行`bin/kylin io.kyligence.kap.tool.release.KapCubeMigrationCLI backup cubeName`。
+在SHC上的KAP目录下执行`bin/cluster-migration.sh backup-cube --cubeName someCube --onlyMetadata true`。
 
 其中cubeName是要迁移的Cube的名字。
 
 *步骤二：*
 
-在DHC上的KAP目录下执行`bin/kylin io.kyligence.kap.tool.release.KapCubeMigrationCLI restore cubeName toProject hdfs://SHC_IP overwrite `
+在DHC上的KAP目录下执行`bin/cluster-migration.sh restore-cube --cubeName someCube --project someProject --namenode hdfs://someip --overwrite true `
 
-其中cubeName是要迁移的Cube的名字，toProject是Cube要加入的project，hdfs://SHC_IP是源集群的HDFS地址，overwrite为true表示如果目的project已经存在同名Cube则覆盖，为false将抛异常，提示已有同名Cube存在。
+其中cubeName是要迁移的Cube的名字，project是Cube要加入的project，namenode是源集群的HDFS URI地址，overwrite为true表示如果目的project已经存在同名Cube则覆盖，为false将抛异常，提示已有同名Cube存在。

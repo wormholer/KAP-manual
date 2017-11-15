@@ -38,7 +38,7 @@ In DHC, run `bin/cluster-migration.sh restore hdfs://SHC-namenode/kylin_working_
 - Dump Cube related metadata and  its cuing data, and put them to /tmp on HDFS .
 - Distcp Cube related metadata and  its cuing data to DHC.
 
-It leverages script `bin/kylin io.kyligence.kap.tool.release.KapCubeMigrationCLI` to complete these two tasks.
+It leverages script `bin/cluster-migration.sh` to complete these two tasks.
 
 **Requirements:**
 
@@ -48,10 +48,10 @@ The two clusters are connected and command: **hadoop distcp** is available.
 
 *Step1*:
 
-In SHC, run `KAP_DIR/bin/kylin io.kyligence.kap.tool.release.KapCubeMigrationCLI backup cubeName`
+In SHC, run `bin/cluster-migration.sh backup-cube --cubeName someCube --onlyMetadata true`
 
 *Step2*:
 
-In DHC, run `KAP_DIR/bin/kylin io.kyligence.kap.tool.release.KapCubeMigrationCLI restore cubeName toProject hdfs://SHC_IP overwrite`
+In DHC, run `bin/cluster-migration.sh restore-cube --cubeName someCube --project someProject --namenode hdfs://someip --overwrite true`
 
-If overwrite set to ture, will overwrite the cube no mater if there is already a cube in dest project. Otherwise it will throw exception like: already exists on target metadata store. Use overwriteIfExists to overwrite it. 
+If overwrite set to ture, it will overwrite the cube no mater if there is already a cube in dest project. Otherwise it will throw exception like: already exists on target metadata store.
