@@ -54,4 +54,4 @@ In SHC, run `bin/cluster-migration.sh backup-cube --cubeName someCube --onlyMeta
 
 In DHC, run `bin/cluster-migration.sh restore-cube --cubeName someCube --project someProject --namenode hdfs://someip --overwrite true`
 
-If overwrite set to ture, it will overwrite the cube no mater if there is already a cube in dest project. Otherwise it will throw exception like: already exists on target metadata store.
+If overwrite set to ture, it will overwrite the cube even if there is already a cube in target project. Otherwise it will throw exception like: already exists on target metadata store.
